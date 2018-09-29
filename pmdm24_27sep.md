@@ -8,7 +8,8 @@ Se instala y configura Android Studio, explicando las dependencias y cosas neces
 - Views y manejo de la parte gráfica y parte de texto
 - Ciclo de vida de la aplicación con el ejemplo de la gestion de Logs
 
-De forma más concreta se ha visto en clase
+
+DE FORMA MAS CONCRETA LO VISTO EN CLASE
 ***
 Método setContentView() y la instancia de objetos mediante findViewById()
 
