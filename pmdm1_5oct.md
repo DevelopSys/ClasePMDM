@@ -192,4 +192,5 @@ Realizar una aplicación para el cálculo de números aleatorios. Para ellos se 
 2. Números: cantidad de aleatorios que quiero calcular
 
 En el momento de dar botón aparecerá la lista de números aleatorios separados por comas justo encima del botón. La apliacación tendrá que soportar internacionalización y representacion land / portraint
+
 ![Práctica aleatorios](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/aleatorios.png "Práctica aleatorios")
