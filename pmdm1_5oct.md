@@ -139,9 +139,9 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
 }
 ```
  
-### VIERNES
+## VIERNES 
 
-** Trabajo con estado: guardado y recupreación**
+** Trabajo con estado: guardado y recupreación** - http://www.developandsys.es/uso-recursos-recuperacion-estado/
 ****
 Por cada cambio en configuración o pausado de aplicaciones, se pueden eliminar dato que estén presentes en elementos de la interfaz. Para ello se debe guardar el estado sobreescribiendo el método onSaveInstanceState y utilizando el objeto de tipo bundle. Para recuperarlo se utiliza el objeto de tipo bundle dado en el método onCreate
 1. Guardar el estado:
@@ -154,10 +154,34 @@ Por cada cambio en configuración o pausado de aplicaciones, se pueden eliminar 
         outState.putString("clave_dato3", "dato a guardar");
     }
 ````
+2. Recuperar estado
+```
+@Override
+protected void onRestoreInstanceState(Bundle inState){
+    super.onSaveInstanceState(outState);
+    inState.putString("clave_dato1", "dato1");
+    inState.putString("clave_dato2", "dato2");
+}
+```
+ó utilizar el propio onCreate para hacer los mismo
+````
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState); // Always call the superclass first
 
+    // Check whether we're recreating a previously destroyed instance
+    if (savedInstanceState != null) {
+        String dato1 = savedInstanceState.getString("clave_dato1");
+        String dato2 = savedInstanceState.getString("clave_dato2");
+    } else {
+      
+    }
+}
+````
 
-** Gestión de recursos: internazionalización y orientación del dispositivo
+**Gestión de recursos: internazionalización y orientación del dispositivo** - http://www.developandsys.es/uso-recursos-recuperacion-estado/
 ****
+Para poder otorgar al dispositivo la capacidad de gestionar los recursos a utilizar se utilizan los cualificados. Para ello hay que duplicar el fichero del recurso que se quiera gestionar (layout, strings, etc...) con el mismo nombre acompañado de su calificador (_land, _port, _en_Us, etc...)
 
 ### PRÁCTICAS A ENTREGAR
 
