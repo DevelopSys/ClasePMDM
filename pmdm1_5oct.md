@@ -141,4 +141,31 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
  
 ### VIERNES
 
+** Trabajo con estado: guardado y recupreación**
+****
+Por cada cambio en configuración o pausado de aplicaciones, se pueden eliminar dato que estén presentes en elementos de la interfaz. Para ello se debe guardar el estado sobreescribiendo el método onSaveInstanceState y utilizando el objeto de tipo bundle. Para recuperarlo se utiliza el objeto de tipo bundle dado en el método onCreate
+1. Guardar el estado:
+````
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("clave_dato1", "dato a guardar");
+        outState.putString("clave_dato2", "dato a guardar");
+        outState.putString("clave_dato3", "dato a guardar");
+    }
+````
+
+
+** Gestión de recursos: internazionalización y orientación del dispositivo
+****
+
+### PRÁCTICAS A ENTREGAR
+
+Números aleatorios
+***
+Realizar una aplicación para el cálculo de números aleatorios. Para ellos se podrá introducir mediante interfaz los siguientes datos:
+1. Número minimo y número máximo: rango entre los que quiero calcular los aleatorios
+2. Números: cantidad de aleatorios que quiero calcular
+
+En el momento de dar botón aparecerá la lista de números aleatorios separados por comas justo encima del botón. La apliacación tendrá que soportar internacionalización y representacion land / portraint
 ![Práctica aleatorios](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/aleatorios.png "Práctica aleatorios")
