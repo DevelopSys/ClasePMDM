@@ -140,3 +140,5 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
 ```
  
 ### VIERNES
+
+![Práctica aleatorios](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/aleatorios.png "Práctica aleatorios")
