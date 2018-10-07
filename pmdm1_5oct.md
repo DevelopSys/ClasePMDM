@@ -1,7 +1,6 @@
 # Cuarta semana
 
-TEMA 2 INTRODUCCION ANDROID STUDIO
-***
+##TEMA 2 INTRODUCCION ANDROID STUDIO
 
 ### MARTES 
 Gestión de la parte gráfica con la parte lógica y adecuación de elementos gráficos en el xml - http://www.developandsys.es/conceptos-basicos-primera-aplicacion/
@@ -139,7 +138,7 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
 }
 ```
  
-## VIERNES 
+### VIERNES 
 
 ** Trabajo con estado: guardado y recupreación** - http://www.developandsys.es/uso-recursos-recuperacion-estado/
 ****
