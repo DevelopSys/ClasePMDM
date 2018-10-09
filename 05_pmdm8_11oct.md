@@ -2,7 +2,7 @@
 
 ##TEMA 2 INTRODUCCION ANDROID STUDIO
 
-### MARTES 
+### MARTES - http://www.developandsys.es/layout/
 **Linearlayout**
 ***
 
@@ -240,7 +240,6 @@ Calculadora
 ***
 Realizar una aplicación que simule el funcionamiento de una calculadora:
 1. Estándar si está en posición horizontal
-2. Científica si está en posicion vertical
 
 
-![Práctica aleatorios](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/aleatorios.png "Práctica aleatorios")
+![Práctica calculadora](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/calculadora.png "Práctica calculadora")
