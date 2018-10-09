@@ -240,6 +240,8 @@ Calculadora
 ***
 Realizar una aplicación que simule el funcionamiento de una calculadora:
 1. Estándar si está en posición horizontal
-
+2. Científica si está en posición vertical
 
 ![Práctica calculadora](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/calculadora.png "Práctica calculadora")
+![Práctica calculadora](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/calculadora_land.png "Práctica calculadora")
+
