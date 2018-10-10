@@ -1,6 +1,6 @@
 # Cuarta semana
 
-##TEMA 2 INTRODUCCION ANDROID STUDIO
+## TEMA 2 INTRODUCCION ANDROID STUDIO
 
 ### MARTES - http://www.developandsys.es/layout/
 **Linearlayout**
