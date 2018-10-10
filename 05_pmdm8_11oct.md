@@ -230,6 +230,79 @@ ContraintLayut es la evolución de relativelayout, utilizando restricciones entr
 ````
 
 ### MIÉRCOLES
+**Personalizar el color de un botón**
+***
+1. Para personalizar el color de un boton se utiliza la propiedad background indicando el color correspondiente. Se puede acceder a los colores que otorga android mediante @android:color/nombre
+````
+<Button
+            android:text="Elemento 1"
+            android:textSize="15dp"
+            android:background="@android:color/holo_orange_light"
+            android:textColor="@android:color/white"
+            android:id="@+id/boton1"
+/>
+````
+2. También existe la posibilidad de configurar nuestro propio color en el archivo res--values--colors.xml y asignarselo al botón
+
+```
+    <color name="colorBoton">#0033ff</color>
+
+```
+```
+<Button
+            android:text="Elemento 2"
+            android:textSize="15dp"
+            android:background="@color/colorBoton"
+            android:id="@+id/boton2"
+/>
+```
+
+**Asignar escuchador a varios elementos al mismo tiempo**
+1. Implementar la interfaz OnClicklistener
+```
+public class TableActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button b1, b2, b3;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_table);
+        b1 = findViewById(R.id.boton1);
+        b2 = findViewById(R.id.boton2);
+        b3 = findViewById(R.id.boton3);
+    }
+   
+
+    @Override
+    public void onClick(View v) {
+     
+    }
+}
+```
+2. Asignar el evento a los botones mediante el método setOnClickListener
+```
+private void acciones() {
+        b1.setOnClickListener(this);
+        b2.setOnClickListener(this);
+        b3.setOnClickListener(this);
+    }
+```
+3. Evaluar el elemento pulsado mediante v.getId()
+```
+@Override
+    public void onClick(View v) {
+        int idPulsado = v.getId();
+        switch (idPulsado) {
+            case R.id.boton1:
+                break;
+            case R.id.boton2:
+                break;
+            case R.id.boton3:
+                break;
+        }
+    }
+```
 ### JUEVES  
 ### VIERNES 
 
