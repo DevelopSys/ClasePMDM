@@ -304,6 +304,93 @@ private void acciones() {
     }
 ```
 ### JUEVES  
+** Detectar características del dispositivo por programación **
+
+En muchos casos es necesario evaluar si el dispositivo cumple requisitos para ejecutar una cosa u otra. En el caso de tener disposiciones diferentes para land y port, las instancias serán diferentes por lo que para hacer una u otra habrá que evaluar la posición
+
+1. Crear dos disposiciones diferentes para un mismo layout
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<!--xml para la posicion horizontal-->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/textoHorizontal"
+        />
+
+</android.support.constraint.ConstraintLayout>
+```
+```
+<?xml version="1.0" encoding="utf-8"?>
+<!--xml para la posicion vertical-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal|center_vertical">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/imagenVertical"/>
+
+</LinearLayout>
+```
+2. En el método onCreate() evaluar cual es la posición para instanciar un elemento u otro
+```
+public class MainActivity extends AppCompatActivity {
+
+    TextView textView;
+    ImageView imagen;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            textView = findViewById(R.id.textoHorizontal);
+        } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            imagen = findViewById(R.id.imagenVertical);
+        }
+    }  
+}
+```
+
+En el caso de no querer diferenciar pociciones en los layout, existe la posibilidad de forar que solo se pueda ver una orientación
+1. Mediante AndroidManifest.xml en la actividad que se quiere configurar
+````
+<activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+````
+2. Mediante programacion en el método OnCreate
+````
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.activity_main);
+}
+````
+
 ### VIERNES 
 
 
