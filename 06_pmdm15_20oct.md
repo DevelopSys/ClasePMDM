@@ -2,7 +2,7 @@
 
 ## TEMA 2 INTRODUCCION ANDROID STUDIO
 
-### MARTES - http://www.developandsys.es/layout/
+### MARTES - http://www.developandsys.es/elementos-graficos-checkbox-radiobutton-y-otros/
 
 **Elemento CheckBox**
 ***
@@ -104,7 +104,7 @@ radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 **Elemento SeekBar**
 ***
 
-### MIÉRCOLES
+### MIÉRCOLES - http://www.developandsys.es/layout/
 
 RelativeLayout y ContraintLayout
 ***
