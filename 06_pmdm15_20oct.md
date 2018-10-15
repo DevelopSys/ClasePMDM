@@ -1,4 +1,4 @@
-# Cuarta semana
+# Sexta semana
 
 ## TEMA 2 INTRODUCCION ANDROID STUDIO
 
@@ -226,5 +226,4 @@ Realizar una aplicación de cartas Up&Down. Para ello se deberá de indicar si l
 Si se ha arrancado la aplicación en modo competición se podrá el record en el campo asignado. En el caso contrario mantendrá el record de la sesión
 
 ![Práctica cartas](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/cartas1.png "Práctica cartas") 
-
-![Práctica cartas](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/cartas2.png "Práctica cartas")
+ ![Práctica cartas](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/cartas2.png "Práctica cartas")
