@@ -310,7 +310,7 @@ android:alpha="0.1"
 />
 ````
 
-###JUEVES
+### JUEVES
 
 ### VIERNES 
 
@@ -318,7 +318,7 @@ android:alpha="0.1"
 
 ### PRÁCTICAS A ENTREGAR
 
-Primos
+#### Primos
 ***
 Realizar una aplicación para el cálculo de numeros primos. Para ello se debe indicar el numero de primos que se quiere calcular. Hay que tener en cuenta que se debe realizar de la forma más eficiente posible
 
@@ -326,7 +326,7 @@ Un número es primo cuando: es divisible sólo por el mismo y por uno, el resto 
 
 ![Práctica primos](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/primos.png "Práctica primos")
 
-Cartas
+#### Cartas
 ***
 Realizar una aplicación de cartas Up&Down. Para ello se deberá de indicar si la siguiente carta es mayor o menor. En el caso de aceptar se sumará uno a la puntuación y en el caso de fallar se cerrará la ventana.
 
