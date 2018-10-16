@@ -2,7 +2,7 @@
 
 ## TEMA 2 INTRODUCCION ANDROID STUDIO
 
-### MARTES - http://www.developandsys.es/elementos-graficos-checkbox-radiobutton-y-otros/
+### MARTES - http://www.developandsys.es/elementos-graficos-checkbox-radiobutton-y-otros/ http://www.developandsys.es/elementos-graficos-botones/
 
 **Elemento CheckBox**
 ***
@@ -103,6 +103,113 @@ radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
 **Elemento SeekBar**
 ***
+1. Declarar el elemento en el xml
+````
+<SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"/>
+````
+2. Instanciarlo en el .java
+````
+barra = findViewById(R.id.seekBar);
+
+````
+
+3. Tratar su evento asociado
+````
+barra.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Toast.makeText(getApplicationContext(),findViewById(progress).toString(),Toast.LENGTH_SHORT).show();
+                seekBar.getProgress();
+                seekBar.setMax(100);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+````
+
+**Elemento ToogleButton**
+***
+
+1. Declarar el elemento en el xml
+````
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/togButton"
+        android:textOff="Apagado"
+        android:textOn="Encencido"
+        android:checked="true"/>
+````
+2. Instanciarlo en el .java
+````
+tog = findViewById(R.id.togButton);
+````
+3. Tratar su evento asociado
+````
+tog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                tog.isChecked();
+            }
+        });
+````
+**Elemento SwitchButton**
+***
+
+Antes de empezar se deben declarar los elementos que se quieren hacer pertenecer al grupo, en este caso botones.
+````
+    <Button
+        android:id="@+id/botonG1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="boton1" />
+
+    <Button
+        android:id="@+id/botonG2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="boton2" />
+
+    <Button
+        android:id="@+id/botonG3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="boton3" />
+````
+
+1. Crear un objeto en el xml
+````
+<Switch
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/switchButton"/>
+````
+2. Instanciarlo en el .java
+````
+aSwitch = findViewById(R.id.switchButton);
+
+````
+3. Tratar su evento asociado
+````
+aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                aSwitch.setChecked(true);
+                aSwitch.isChecked();
+            }
+        });
+````
 
 ### MIÉRCOLES - http://www.developandsys.es/layout/
 
@@ -172,7 +279,7 @@ ContraintLayut es la evolución de relativelayout, utilizando restricciones entr
 
 </android.support.constraint.ConstraintLayout>
 ````
-**Personaliza el aspecto de un boton**
+**Personaliza el aspecto de un botón**
 ***
 Para poder personalizar el aspecto de un boton se utiliza un xml de tipo selector, donde se le indican las propiedades (pulsado, seleccionado, etc...) y su imagen asociada. Del mismo modo se pueden crear botones con formas (Shapes). Una vez declarado se asigna a la etiqueta src o background (dependiendo del objeto utilizado)
 1. En drawable crear un selector
