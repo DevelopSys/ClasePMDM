@@ -314,22 +314,64 @@ android:alpha="0.1"
 
 1. Declarar el elemento en el xml
 ````
-
+<ImageView
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/imagenPrueba"
+android:src="@android:drawable/ic_input_add"/>
 ````
 2. Asociarlo al .java
 ````
+imagen = findViewById(R.id.imagenPrueba);
 ````
 3. Utilizar el método setImageResource() donde se indica el id del recurso a utilizar
 ````
+imagen.setImageResource(R.id.nombreImagen);
 ````
 
 **Generación de arrays en la carpeta res**
 ***
 
 1. Crear un fichero de tipo values resource file
-2. Introducir el array correspondiente en el xml con el nombre y los elementos que se quieren guardar
-3. Acceder al recurso mediante el método getResource().getArray() o getTypedArray() si se han guardado punteros
+````
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="numeros">
+        <item>4</item>
+        <item>8</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
 
+    <array name="imagenes">
+        <item>@drawable/c1</item>
+        <item>@drawable/c2</item>
+        <item>@drawable/c3</item>
+        <item>@drawable/c4</item>
+        <item>@drawable/c5</item>
+        <item>@drawable/c6</item>
+        <item>@drawable/c7</item>
+        <item>@drawable/c8</item>
+        <item>@drawable/c9</item>
+        <item>@drawable/c10</item>
+        <item>@drawable/c11</item>
+        <item>@drawable/c12</item>
+        <item>@drawable/c13</item>
+    </array>
+</resources>
+````
+2. Introducir el array correspondiente en el xml con el nombre y los elementos que se quieren guardar
+````
+int[] imagenes = getResources().getIntArray(R.array.numeros);
+TypedArray cartas = getResources().obtainTypedArray(R.array.imagenes);
+````
+3. Acceder al recurso mediante el método getResource().getArray() o getTypedArray() si se han guardado punteros
+````
+cartas.getResourceId(1,0);
+images[0]
+````
 ### JUEVES
 
 ### VIERNES 
