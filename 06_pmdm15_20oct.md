@@ -309,6 +309,26 @@ android:id="@+id/botonUpCartas"
 android:alpha="0.1"
 />
 ````
+**Poner una imagen en un elemento ImageView**
+***
+
+1. Declarar el elemento en el xml
+````
+
+````
+2. Asociarlo al .java
+````
+````
+3. Utilizar el método setImageResource() donde se indica el id del recurso a utilizar
+````
+````
+
+**Generación de arrays en la carpeta res**
+***
+
+1. Crear un fichero de tipo values resource file
+2. Introducir el array correspondiente en el xml con el nombre y los elementos que se quieren guardar
+3. Acceder al recurso mediante el método getResource().getArray() o getTypedArray() si se han guardado punteros
 
 ### JUEVES
 
