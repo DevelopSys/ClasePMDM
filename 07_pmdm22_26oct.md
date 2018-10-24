@@ -93,12 +93,66 @@ Utilizado para dividir la pantalla en "capas" las cuales se van superponiendo. E
  
 </FrameLayout>
 ````
-### MIÉRCOLES - http://www.developandsys.es/layout/
+### MIÉRCOLES 
 
-**Spinner**
+**Spinner** - http://www.developandsys.es/elementos-graficos-spinner/
 ***
-
-
+1. Crear un spinner en el xml
+````
+<Spinner
+android:elevation="20dp"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/spinner"/>
+````
+2. Instanciar el array en el .java y crear una coleccion de los datos que se quieren representar
+````
+Spinner sp = findViewById(R.id.spinner);
+````
+3. Crear un objeto de tipo ArrayAdapter()
+````
+ArrayList listaDatos = new ArrayList();
+for (int i = 1; i<11;i++){
+   listaDatos.add("Opción "+String.valueOf(i));
+}
+````
+4. Crear un objeto de tipo ArrayAdapter y asociarlo con el spinner
+````
+ArrayAdapter adapterSpinner =
+        new ArrayAdapter(this,android.R.layout.simple_spinner_item,listaDatos);
+adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+spinner.setAdapter(adapterSpinner);
+````
+5. Obtener información de los elementos asociados al spinner 
+````
+//obtiene el elemento selecionado en la posición correspondiente;
+spinner.getSelectedItemPosition();
+//método que notifica al adaptador que algo ha cambiado en la parte de datos
+//este método siempre se tienen que ejecuatra cuando se añade/borra/modifican datos
+adapterSpinner.notifyDataSetChanged();
+//devuelve el numero de elementos asociados
+adapterSpinner.getCount();
+//devuelve el elementos asociado a una posición concreta
+adapterSpinner.getItem();
+//devuleve el id del elemento asociado a una posción concreta
+adapterSpinner.getItemId();
+````
+6. Evaluar la pulsación del spinner
+````
+spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                //Ejecuatado cuando la selección cambie
+                Toast.makeText(getApplicationContext(),
+                        String.valueOf(parent.getAdapter().getItem(position)),Toast.LENGTH_SHORT).show();
+            }
+ 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Ejecutado cuando se ejecuta la activity
+            }
+});
+````
 
 ### PRÁCTICAS A ENTREGAR
 
