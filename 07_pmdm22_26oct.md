@@ -154,5 +154,25 @@ spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
 });
 ````
 
-### PRÁCTICAS A ENTREGAR
+### JUEVES
+**Spinner desde recurso**
+***
 
+1. Crear un array en el fichero localizaco en res -- values -- arrays.xml
+````
+<resources>
+    <integer-array name="numeros">
+        <item>4</item>
+        <item>8</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+</resources>
+````
+2. Crear el adaptador mediante el método estático createFromResource()
+````
+ArrayList adaptaAnidado = ArrayAdapter.createFromResource(getApplicationContext(),R.array.numeros,android.R.layout.simple_spinner_item);
+                        
+````
