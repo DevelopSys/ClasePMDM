@@ -1,0 +1,13 @@
+
+<resources>
+    <string name="primera">Primera pantalla</string>
+    <string name="app_name">Ejemplo Internacionalización</string>
+    <string name="palabra_b1">Pulsar Boton1</string>
+    <string name="palabra_b2">Pulsar Boton2</string>
+    <string name="palabra_b3">Pulsar Boton3</string>
+    <string name="pulsado1">Boton1</string>
+    <string name="pulsado2">Boton2</string>
+    <string name="pulsado3">Boton3</string>
+    <string name="mensaje">No hay dato introducido</string>
+
+</resources>

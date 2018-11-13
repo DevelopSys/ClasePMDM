@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/botonNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Botón normal" />
+
+    <Button
+        android:id="@+id/botonNormalPerso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/perso_boton"
+        />
+
+    <ToggleButton
+        android:id="@+id/botonToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="Apagado"
+        android:textOn="Encencido" />
+
+    <ToggleButton
+        android:id="@+id/botonTogglePerso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff=""
+        android:textOn=""
+        android:background="@drawable/perso_tog"/>
+
+    <Switch
+        android:id="@+id/botonSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionado" />
+
+    <RadioButton
+        android:id="@+id/radioIndividual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opción 1" />
+
+    <RadioGroup
+        android:id="@+id/grupoRadios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioGrupo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Radio Grupo 1" />
+
+        <RadioButton
+            android:id="@+id/radioGrupo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Radio Grupo 2" />
+    </RadioGroup>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:min="0" />
+
+
+</LinearLayout>
