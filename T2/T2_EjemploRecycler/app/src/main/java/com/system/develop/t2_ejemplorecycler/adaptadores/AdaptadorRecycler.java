@@ -36,7 +36,7 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Mi
     @NonNull
     @Override
     public MiHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_recycler, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_recycler_frame, viewGroup, false);
         MiHolder holder = new MiHolder(view);
         return holder;
     }

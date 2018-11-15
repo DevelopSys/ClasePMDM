@@ -1,5 +1,6 @@
 package com.system.develop.t2_ejemplorecycler;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdaptadorRecycler
         instancias();
         construirRecycler();
         acciones();
-        textView.setText("Ejemplo");
+        finish();
     }
 
     private void construirRecycler() {
@@ -40,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements AdaptadorRecycler
         AdaptadorRecycler adaptadorRecycler = new AdaptadorRecycler(personas,this);
         recyclerView.setAdapter(adaptadorRecycler);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2,LinearLayoutManager.VERTICAL,false));
         //recyclerView.addItemDecoration();
     }
 
@@ -56,6 +58,6 @@ public class MainActivity extends AppCompatActivity implements AdaptadorRecycler
 
     @Override
     public void onPersonaRecyclerSelected(Persona persona) {
-        textView.setText(persona.getNombre());
+        textView.append(persona.getNombre());
     }
 }
