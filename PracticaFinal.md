@@ -13,7 +13,7 @@ Al pulsar este boton aparecerá un cuadro de diálogo con un spinner para selecc
 
 ### Funcionalidad
 
-El juego Se seleccionarán dos cartas una tras otra. 
+Se seleccionarán dos cartas una tras otra. 
 En el caso que tengan el mismo logo se quedarán descubiertas y se sumarán puntos al marcador. En el caso de que sean distintas se darán la vuelta ambas y se retarán puntos al marcador. Para finalizar el juego se pueden dar 3 situaciones:
 
 1. Todas las cartas han quedado descubiertas antes de terminar el tiempo y la puntuación es mayor que 0: aparecerá un cuadro de diálogo dando la enhorabuena y pidiendo el nombre del jugador para poder registrarlo en las puntuaciones
