@@ -49,4 +49,4 @@ La práctica deberá tener los siguientes requisitos:
 
 ### Imágenes
 
-![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory1.png "Práctica versiones") ![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory2.png "Práctica versiones") ![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory3.png "Práctica versiones") ![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory4.png "Práctica versiones")
+![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory1.png "Práctica versiones") ![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory2.png "Práctica versiones") ![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory3.png "Práctica versiones") ![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory4.png "Práctica versiones") ![Práctica final](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/memory5.png "Práctica versiones")
