@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/opcion_menu1_ctx_dos"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Opcion 1 add" />
+    <item
+        android:id="@+id/opcion_menu2_ctx_dos"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Opcion 2 add" />
+</menu>
