@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">T4_Navigation</string>
+    <string name="abierto">Abierto</string>
+    <string name="cerrado">Cerrado</string>
+</resources>

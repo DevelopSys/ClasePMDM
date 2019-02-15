@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/fondo_m" />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/textHeader"
+        android:background="@drawable/fondo_redondo"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginBottom="60dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorFondo"/>
+
+
+
+
+</FrameLayout>
