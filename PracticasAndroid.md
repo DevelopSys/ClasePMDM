@@ -31,3 +31,48 @@ MAINACTIVITY: Pantalla que cargará tres fragments dependiendo de las pulsacione
 La aplicación deberá controlar los fragments o estados cargados en pila (no cargar aquellos ya cargados, gestionar la pulsación del onBackPressed(), etc...)
 
 Entrega Domingo 3 de febrero
+
+## 3. Navigation - Coordinator - Base datos
+
+Realizar una aplicación que tenga la siguiente funcionalidad
+1. Parte central donde se cargarán los fragments: o un recyclerview con la lista de los elementos seleccionados mediante el menú o el detalle del elemento seleccionado. En el caso de hacer scroll la parte del toobar deberá desaparecer
+
+2. Menú lateral con las siguientes opciones:
+
+Header:
+
+Mostrará una imagen y un spinner con las opciones todos, juegos, fútbol y multimedia. Al seleccionar cada una de las opciones cambiará tanto el menú como la imagen de cabecera
+
+Opciones todos:
+1a Juegos: Cargará un fragment con un recycler view relleno con juegos de todas las plataformas
+1b Multimedia: Cargarña un fragment con un recycler view relleno con elementos multimedia de todos los soportes
+1c Fútbol: Cargará un fragment con un recycler view relleno con equipos de fútbol de todas las cometiciones 
+1d SearchView: al introducir un nombre cargará el detalle del elemento cuyo nombre coincida con lo introducido. En el caso de haber dos iguales cargará un fragment con un recycler view con los elementos
+
+Opciones juegos:
+1a PS4: Cargará un fragment con un recycler view relleno con juegos PS4
+1b XBOX: Cargarña un fragment con un recycler view relleno con juegos de XBOX
+1c PC: Cargará un fragment con un recycler view relleno con juegos de pc
+1d SearchView: al introducir un nombre cargará el detalle del juego cuyo nombre coincida con lo introducido. En el caso de haber dos iguales cargará un fragment con un recycler view con los juegos
+
+Opciones multimedia:
+1a Películas: Cargará un fragment con un recycler view relleno con peliculas
+1b Series: Cargarña un fragment con un recycler view relleno con series
+1c Múscia: Cargará un fragment con un recycler view relleno con discos
+1d SearchView: al introducir un nombre cargará el detalle del elemento cuyo nombre coincida con lo introducido. En el caso de haber dos iguales cargará un fragment con un recycler view con los elementos
+
+Opciones futbol:
+1a La Liga: Cargará un fragment con un recycler view relleno con equipos de la liga
+1b Champion: Cargarña un fragment con un recycler view relleno con equipos de la champion
+1c Mundial: Cargará un fragment con un recycler view relleno con selecciones
+1d SearchView: al introducir un nombre cargará el detalle del equipo cuyo nombre coincida con lo introducido. En el caso de haber dos iguales cargará un fragment con un recycler view con los equipos
+
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/coleccion1.png "Práctica colección")
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/coleccion2.png "Práctica colección")
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/coleccion3.png "Práctica colección")
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/coleccion4.png "Práctica colección")
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/coleccion5.png "Práctica colección")
+
+Para que el proyecto no sea tan pesado las imágenes tendrán que ir cargadas mediante Glide o Picasso
+
+Entrega Domingo 24 de Febrero
