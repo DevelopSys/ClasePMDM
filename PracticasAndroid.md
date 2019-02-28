@@ -76,3 +76,20 @@ Opciones futbol:
 Para que el proyecto no sea tan pesado las imágenes tendrán que ir cargadas mediante Glide o Picasso
 
 Entrega Domingo 24 de Febrero
+
+## 3. Volley
+
+Realizar una aplicación que muestra la interpretación de objetos json de un api existente. El ejemplo se puede realizar con cualquier API: películas, juegos, etc...
+
+La aplicación mostrará:
+
+- Navigation View: que mostrará una lista de los elementos pulsados
+- Fragment Lista: mostrará un recycler view con los elementos seleccionados
+- Fragment Detalle: mostrará un detalle del elemento seleccionado en el fragment anterior
+
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/volley1.png "Práctica colección")
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/volley2.png "Práctica colección")
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/volley3.png "Práctica colección")
+
+
+Entrega Lunes 11 de Marzo
