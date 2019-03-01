@@ -91,5 +91,10 @@ La aplicación mostrará:
 ![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/volley2.png "Práctica colección")
 ![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/volley3.png "Práctica colección")
 
+Un ejemplo de las librerías que podéis utilizar es:
+- https://www.thesportsdb.com
+- https://www.themoviedb.org/documentation/api
+- https://www.igdb.com/api
+- https://freemusicarchive.org/api
 
 Entrega Lunes 11 de Marzo
