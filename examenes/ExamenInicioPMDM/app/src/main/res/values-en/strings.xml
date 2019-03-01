@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ExamenInicioPMDM</string>
+    <string name="titulo">Simple Calculator</string>
+    <string name="titulo_pregunta">What kind of operation do you want to perform?</string>
+    <string name="texto_boton">Operate</string>
+    <string name="texto_toast">Some operands are missing or is no selected operation</string>
+    <string name="texto_suma">Sum</string>
+    <string name="texto_resta">Subtraction</string>
+    <string name="texto_multiplicacion">Multiplication</string>
+    <string name="texto_division">Division</string>
+</resources>
