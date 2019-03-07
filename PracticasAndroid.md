@@ -104,6 +104,6 @@ Entrega Viernes 15 de Marzo
 Realizar una aplicación que maneje la base de datos de la aplicación realizada en DI. Dicha aplicación permitirá el manejo de datos (ver e insertar) mediante interaz (viewpager, navigation, etc...)
 
 ![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/app1.png "Práctica colección")
-![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/app22.png "Práctica colección")
+![Práctica colección](https://github.com/DevelopSys/clasepmdm/blob/master/practicas/app2.png "Práctica colección")
 
 Entrega Viernes 15 de Marzo
