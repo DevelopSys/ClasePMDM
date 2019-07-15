@@ -135,11 +135,14 @@ d.	Listas personalizadas: adaptadores
 ***
 a.	Menús
 - http://www.developandsys.es/menus/
+
 b.	Diálogos
 - http://www.developandsys.es/dialogos/
 - http://www.developandsys.es/comunicacion-dialogos/
+
 c.	Action Bar / Toolbar
 - http://www.developandsys.es/toolbar/
+
 d.	Bottom navigation
 - http://www.developandsys.es/bottom-navigation-view/
 
@@ -149,10 +152,13 @@ d.	Bottom navigation
 ***
 a.	Tipo y creación de fragments
 - http://www.developandsys.es/fragments/
+
 b.	Manejo: pila de actividades
 - http://www.developandsys.es/manejo-fragments-y-la-pila-de-actividades/
+
 c.	Comunicación
 - http://www.developandsys.es/comunicacion-entre-fragments/
+
 d.	Disposición Máster / Detail
 - http://www.developandsys.es/master-detail-fragments/
 
@@ -162,10 +168,13 @@ d.	Disposición Máster / Detail
 ***
 a.	View Pager
 - http://www.developandsys.es/view-pager/
+
 b.	Navigation View
 - http://www.developandsys.es/navigation-view/
+
 c.	Coordinador Layout
 - http://www.developandsys.es/coordinator-layout/
+
 d.	Preferences Screen
 - http://www.developandsys.es/preference-screen/
 
@@ -174,6 +183,7 @@ d.	Preferences Screen
 ### Servicios 
 ***
 a.	Servicios
+
 b.	AsynTask
 - http://www.developandsys.es/tareas-asincronas/
 
@@ -183,12 +193,15 @@ b.	AsynTask
 
 a.	SharedPreferences
 - http://www.developandsys.es/shared-preferences/
+
 b.	SQLite3
 - http://www.developandsys.es/sqlite/
 - http://www.developandsys.es/sqlite-cursoradapter/
 - http://www.developandsys.es/recycler-view-sqlite/
+
 c.	Comunicación http
 - http://www.developandsys.es/base-datos-externa/
+
 d.	Firebase
 - http://www.developandsys.es/firebase-database/
 - http://www.developandsys.es/firebase-recyclerview/
