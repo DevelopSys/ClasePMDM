@@ -77,7 +77,7 @@ f.	Tratamiento de ficheros
 - http://www.developandsys.es/ficheros-flujo-de-datos/
 
 <a name="tema2"></a>
-### Instalación y configuración [indice](#indice)
+### Instalación y configuración.			[indice](#indice)
 ***
 
 a.	Configuración del entorno
@@ -92,7 +92,7 @@ d.	Depuración en dispositivo físico
 
 
 <a name="tema3"></a>
-### Manejo de Activitys [indice](#indice)
+### Manejo de Activitys				[indice](#indice)
 ***
 
 a.	Ciclo de vida
@@ -106,7 +106,7 @@ b.	Comunicación entre activitys
 - http://www.developandsys.es/programacion-intents-acciones/
 
 <a name="tema4"></a>
-### Interfaces gráficas [indice](#indice)
+### Interfaces gráficas				[indice](#indice)
 ***
 
 a.	Layouts
@@ -132,7 +132,7 @@ d.	Listas personalizadas: adaptadores
 - http://www.developandsys.es/adaptadores-listas-personalizadas/
 
 <a name="tema5"></a>
-### Elementos adicionales [indice](#indice)
+### Elementos adicionales				[indice](#indice)
 ***
 a.	Menús
 - http://www.developandsys.es/menus/
@@ -149,7 +149,7 @@ d.	Bottom navigation
 
 
 <a name="tema6"></a>
-### Fragments [indice](#indice)
+### Fragments				[indice](#indice)
 ***
 a.	Tipo y creación de fragments
 - http://www.developandsys.es/fragments/
@@ -165,7 +165,7 @@ d.	Disposición Máster / Detail
 
 
 <a name="tema7"></a>
-### Material Design [indice](#indice)
+### Material Design				[indice](#indice)
 ***
 a.	View Pager
 - http://www.developandsys.es/view-pager/
@@ -181,7 +181,7 @@ d.	Preferences Screen
 
 
 <a name="tema8"></a>
-### Servicios [indice](#indice)
+### Servicios				[indice](#indice)
 ***
 a.	Servicios
 
@@ -189,7 +189,7 @@ b.	AsynTask
 - http://www.developandsys.es/tareas-asincronas/
 
 <a name="tema9"></a>
-### Almacenamiento [indice](#indice)
+### Almacenamiento				[indice](#indice)
 ***
 
 a.	SharedPreferences
@@ -210,13 +210,13 @@ d.	Firebase
 
 
 <a name="tema10"></a>
-### Multimedia [indice](#indice)
+### Multimedia				[indice](#indice)
 ***
 <a name="tema11"></a>
-### Localización [indice](#indice)
+### Localización			[indice](#indice)
 ***
 - http://www.developandsys.es/localizacion/
 
 <a name="tema12"></a>
-### Videojuegos [indice](#indice)
+### Videojuegos				[indice](#indice)
 ***
