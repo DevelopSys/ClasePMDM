@@ -54,58 +54,146 @@
 ### POO Java 
 ***
 
-Sintaxis 
+a.	Sintaxis básica, variables, bucles
+- http://www.developandsys.es/estructuras-control-java/
+- http://www.developandsys.es/variables-java/
+- http://www.developandsys.es/string-java/
 
-http://www.developandsys.es/estructuras-control-java/
-http://www.developandsys.es/variables-java/
-http://www.developandsys.es/string-java/
+b.	Colecciones
+- http://www.developandsys.es/arrays-java/
+- http://www.developandsys.es/operaciones-con-array/
+- http://www.developandsys.es/colecciones-dinamicas-arraylist/
+- http://www.developandsys.es/colecciones-dinamicas-hashtable/
 
-Colecciones
+c.	Clases y objetos
+- http://www.developandsys.es/clases-y-objetos/
+- http://www.developandsys.es/clases-abstractas/
 
-http://www.developandsys.es/arrays-java/
-http://www.developandsys.es/operaciones-con-array/
-http://www.developandsys.es/colecciones-dinamicas-arraylist/
-http://www.developandsys.es/colecciones-dinamicas-hashtable/
+d.	Métodos, sobrecarga y sobreescritura
+e.	Herencia y Polimorfismo
+f.	Tratamiento de ficheros
 
-Clases y objetos
-
-http://www.developandsys.es/clases-y-objetos/
-http://www.developandsys.es/clases-abstractas/
-
-Métodos, sobrecarga y sobreescritura
-Herencia y Polimorfismo
-Tratamiento de ficheros
-
+- http://www.developandsys.es/ficheros-flujo-de-datos/
 
 <a name="tema2"></a>
 ### Instalación y configuración 
 ***
 
+a.	Configuración del entorno
+b.	Configuración de un proyecto y su contenido
+
+- http://www.developandsys.es/estructura-android-studio/
+- http://www.developandsys.es/componentes-aplicacion-android/
+- http://www.developandsys.es/conceptos-basicos-primera-aplicacion/
+
+c.	Depuración y creación de dispositivos virtuales
+d.	Depuración en dispositivo físico
+
+
 <a name="tema3"></a>
 ### Manejo de Activitys
 ***
 
+a.	Ciclo de vida
+
+- http://www.developandsys.es/conceptos-basicos-primera-aplicacion/
+- http://www.developandsys.es/manejo-de-activitys/
+- http://www.developandsys.es/uso-recursos-recuperacion-estado/
+
+b.	Comunicación entre activitys 
+
+- http://www.developandsys.es/programacion-intents-acciones/
+
 <a name="tema4"></a>
 ### Interfaces gráficas 
 ***
+
+a.	Layouts
+
+- http://www.developandsys.es/layout/
+
+b.	Botones,Textos, EditText, radios, checks
+
+- http://www.developandsys.es/elementos-graficos-botones/
+- http://www.developandsys.es/elementos-graficos-textos/
+- http://www.developandsys.es/elementos-graficos-checkbox-radiobutton-otros/
+
+c.	Listas básicas: spinner, ListView, GridView, recycler view, CardView
+
+- http://www.developandsys.es/elementos-graficos-spinner/
+- http://www.developandsys.es/elementos-graficos-listview-gridview/
+- http://www.developandsys.es/recycler-view/
+- http://www.developandsys.es/cardview/
+
+d.	Listas personalizadas: adaptadores
+
+- http://www.developandsys.es/manejo-avanzado-listview-spinner/
+- http://www.developandsys.es/adaptadores-listas-personalizadas/
+
 <a name="tema5"></a>
 ### Elementos adicionales 
 ***
+a.	Menús
+- http://www.developandsys.es/menus/
+b.	Diálogos
+- http://www.developandsys.es/dialogos/
+- http://www.developandsys.es/comunicacion-dialogos/
+c.	Action Bar / Toolbar
+- http://www.developandsys.es/toolbar/
+d.	Bottom navigation
+- http://www.developandsys.es/bottom-navigation-view/
+
+
 <a name="tema6"></a>
 ### Fragments 
 ***
+a.	Tipo y creación de fragments
+- http://www.developandsys.es/fragments/
+b.	Manejo: pila de actividades
+- http://www.developandsys.es/manejo-fragments-y-la-pila-de-actividades/
+c.	Comunicación
+- http://www.developandsys.es/comunicacion-entre-fragments/
+d.	Disposición Máster / Detail
+- http://www.developandsys.es/master-detail-fragments/
+
 
 <a name="tema7"></a>
 ### Material Design 
 ***
+a.	View Pager
+- http://www.developandsys.es/view-pager/
+b.	Navigation View
+- http://www.developandsys.es/navigation-view/
+c.	Coordinador Layout
+- http://www.developandsys.es/coordinator-layout/
+d.	Preferences Screen
+- http://www.developandsys.es/preference-screen/
+
 
 <a name="tema8"></a>
 ### Servicios 
 ***
+a.	Servicios
+b.	AsynTask
+- http://www.developandsys.es/tareas-asincronas/
 
 <a name="tema9"></a>
 ### Almacenamiento
 ***
+
+a.	SharedPreferences
+- http://www.developandsys.es/shared-preferences/
+b.	SQLite3
+- http://www.developandsys.es/sqlite/
+- http://www.developandsys.es/sqlite-cursoradapter/
+- http://www.developandsys.es/recycler-view-sqlite/
+c.	Comunicación http
+- http://www.developandsys.es/base-datos-externa/
+d.	Firebase
+- http://www.developandsys.es/firebase-database/
+- http://www.developandsys.es/firebase-recyclerview/
+- http://www.developandsys.es/iniciar-sesion-crear-usuarios-firebase/
+
 
 <a name="tema10"></a>
 ### Multimedia 
@@ -113,6 +201,8 @@ Tratamiento de ficheros
 <a name="tema11"></a>
 ### Localización 
 ***
+- http://www.developandsys.es/localizacion/
+
 <a name="tema12"></a>
 ### Videojuegos 
 ***
