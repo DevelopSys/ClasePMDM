@@ -54,6 +54,29 @@
 ### POO Java 
 ***
 
+Sintaxis 
+
+http://www.developandsys.es/estructuras-control-java/
+http://www.developandsys.es/variables-java/
+http://www.developandsys.es/string-java/
+
+Colecciones
+
+http://www.developandsys.es/arrays-java/
+http://www.developandsys.es/operaciones-con-array/
+http://www.developandsys.es/colecciones-dinamicas-arraylist/
+http://www.developandsys.es/colecciones-dinamicas-hashtable/
+
+Clases y objetos
+
+http://www.developandsys.es/clases-y-objetos/
+http://www.developandsys.es/clases-abstractas/
+
+Métodos, sobrecarga y sobreescritura
+Herencia y Polimorfismo
+Tratamiento de ficheros
+
+
 <a name="tema2"></a>
 ### Instalación y configuración 
 ***
