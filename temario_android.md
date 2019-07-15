@@ -52,7 +52,7 @@
  - [Videojuegos](#tema12) 
 
 <a name="tema1"></a>
-### POO Java 
+## POO Java 
 #### [Volver al indice](#indice)
 ***
 
@@ -78,7 +78,7 @@ f.	Tratamiento de ficheros
 - http://www.developandsys.es/ficheros-flujo-de-datos/
 
 <a name="tema2"></a>
-### Instalación y configuración.
+## Instalación y configuración.
 #### [Volver al indice](#indice)
 ***
 
@@ -94,7 +94,7 @@ d.	Depuración en dispositivo físico
 
 
 <a name="tema3"></a>
-### Manejo de Activitys				
+## Manejo de Activitys				
 #### [Volver al indice](#indice)
 ***
 
@@ -109,7 +109,7 @@ b.	Comunicación entre activitys
 - http://www.developandsys.es/programacion-intents-acciones/
 
 <a name="tema4"></a>
-### Interfaces gráficas				
+## Interfaces gráficas				
 #### [Volver al indice](#indice)
 ***
 
@@ -136,7 +136,7 @@ d.	Listas personalizadas: adaptadores
 - http://www.developandsys.es/adaptadores-listas-personalizadas/
 
 <a name="tema5"></a>
-### Elementos adicionales				
+## Elementos adicionales				
 #### [Volver al indice](#indice)
 ***
 a.	Menús
@@ -154,7 +154,7 @@ d.	Bottom navigation
 
 
 <a name="tema6"></a>
-### Fragments				
+## Fragments				
 #### [Volver al indice](#indice)
 ***
 a.	Tipo y creación de fragments
@@ -171,7 +171,7 @@ d.	Disposición Máster / Detail
 
 
 <a name="tema7"></a>
-### Material Design				
+## Material Design				
 #### [Volver al indice](#indice)
 ***
 a.	View Pager
@@ -188,7 +188,7 @@ d.	Preferences Screen
 
 
 <a name="tema8"></a>
-### Servicios				
+## Servicios				
 #### [Volver al indice](#indice)
 ***
 a.	Servicios
@@ -197,7 +197,7 @@ b.	AsynTask
 - http://www.developandsys.es/tareas-asincronas/
 
 <a name="tema9"></a>
-### Almacenamiento				
+## Almacenamiento				
 #### [Volver al indice](#indice)
 ***
 
@@ -219,16 +219,16 @@ d.	Firebase
 
 
 <a name="tema10"></a>
-### Multimedia				
+## Multimedia				
 #### [Volver al indice](#indice)
 ***
 <a name="tema11"></a>
-### Localización			
+## Localización			
 #### [Volver al indice](#indice)
 ***
 - http://www.developandsys.es/localizacion/
 
 <a name="tema12"></a>
-### Videojuegos				
+## Videojuegos				
 #### [Volver al indice](#indice)
 ***
