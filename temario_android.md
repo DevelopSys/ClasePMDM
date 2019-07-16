@@ -49,7 +49,19 @@
 	 - Cámara
 	 - Audio y video
  - [Localización](#tema11) 
- - [Videojuegos](#tema12) 
+ - [Videojuegos](#tema12)
+
+ ****
+ ## Instalaciones necesarias y webs interesantes
+
+ - [Android Studio + ADB](https://developer.android.com/studio/?&gclid=EAIaIQobChMIjuXaysK64wIVWPlRCh19zQUmEAAYASAAEgLOJvD_BwE)
+ - [Mockup](https://mockflow.com)
+ - [Material Design](https://material.io)
+ - [Color Tool](https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=4DB6AC&secondary.color=AFB42B)
+ - [Firebase](https://firebase.google.com)
+ - [Football API](https://www.thesportsdb.com)
+ - [MovieDB](https://www.themoviedb.org/?language=es-ES)
+ ****
 
 <a name="tema1"></a>
 ## POO Java 
