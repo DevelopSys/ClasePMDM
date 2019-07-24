@@ -68,8 +68,9 @@ Para poder otorgar al dispositivo la capacidad de gestionar los recursos a utili
 b.	Comunicación entre activitys 
 
 - http://www.developandsys.es/programacion-intents-acciones/
+- https://developer.android.com/guide/components/intents-common
 
-### Los intenet marcan acciones a realizar dentro de una aplicación. 
+### Los intents marcan acciones a realizar dentro de una aplicación. 
 
 Para pasar de una activity a otra:
 

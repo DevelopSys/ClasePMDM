@@ -1,15 +1,14 @@
 <a name="tema4"></a>
 ## Interfaces gráficas				
-#### [Volver al índice](#indice)
-***
 
 a.	Layouts
 
 - http://www.developandsys.es/layout/
 
-#### [Volver al índice](#tema4)
-
 ### LinearLayout
+- http://www.developandsys.es/layout/
+- https://developer.android.com/guide/topics/ui/layout/linear
+
 ***
 Colocación de los elementos de arriba a abajo o izquierda a derecha, dependienndo del atributo orientation
 
@@ -186,6 +185,9 @@ Utilizado para mostrar elementos con una disposición de tabla. Este tipo de lay
 ````
 
 ### RelativeLayout y ContraintLayout
+- http://www.developandsys.es/layout/
+- https://developer.android.com/guide/topics/ui/layout/relative
+- https://developer.android.com/training/constraint-layout/index.html
 ***
 
 ContraintLayut es la evolución de relativelayout, utilizando restricciones entre elementos para pode colocarlos. Hay que tener en cuenta que para poder utilizar este tipo de layout hay que tener configuradas las id aunque no se vayan a utilizar en el código java. Este tipo de layout es de la libreria de soporte
@@ -284,9 +286,14 @@ b.	Botones,Textos, EditText, radios, checks
 - http://www.developandsys.es/elementos-graficos-textos/
 - http://www.developandsys.es/elementos-graficos-checkbox-radiobutton-otros/
 
+
 Los views representan los elementos de la interfaz gráfica. 
 
 ### Button
+
+- http://www.developandsys.es/elementos-graficos-botones/
+- https://developer.android.com/guide/topics/ui/controls/button.html
+
 ***
 Elemento principal de formulario, utilizado para disparar acciones
 
@@ -331,6 +338,7 @@ android:alpha="0.1"
 ````
 
 #### Asignar acciones a un botón
+
 ***
 
 Mediante dos metodos:
@@ -411,6 +419,8 @@ private void acciones() {
 ***
 
 ### ToogleButton
+- http://www.developandsys.es/elementos-graficos-botones/
+- https://developer.android.com/guide/topics/ui/controls/togglebutton
 ***
 
 1. Declarar el elemento en el xml
@@ -436,8 +446,11 @@ tog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             }
         });
 ````
-### Elemento SwitchButton
+### SwitchButton
+- http://www.developandsys.es/elementos-graficos-botones/
+- https://developer.android.com/guide/topics/ui/controls/togglebutton
 ***
+
 
 1. Crear un objeto en el xml
 ````
@@ -463,6 +476,8 @@ aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() 
 ````
 
 ### CheckBox
+- http://www.developandsys.es/elementos-graficos-checkbox-radiobutton-otros/
+- https://developer.android.com/guide/topics/ui/controls/checkbox
 ***
 1. Crear un elemento en el xml
 ````
@@ -496,6 +511,10 @@ boolean seleccionado = checkBox.isChecked();
 ````
 
 ### RadioButton y RadioGroup 
+
+- http://www.developandsys.es/elementos-graficos-checkbox-radiobutton-otros/
+- https://developer.android.com/guide/topics/ui/controls/radiobutton
+
 ***
 Los radiobutton se pueden tratar de forma individual (hay que tener en cuenta que si es pulsado no podrá a ser deseleccinado por parte del usuario)
 1. Crear un elemento RadioButton en el xml
@@ -620,7 +639,6 @@ c.	Listas básicas: spinner, ListView, GridView, recycler view, CardView
 ### Spinner
 
 #### [Volver al índice](#tema4)
-
 
 d.	Listas personalizadas: adaptadores
 
