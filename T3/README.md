@@ -49,11 +49,11 @@ Button boton = findViewById(R.id.botonArrancar);;
 ****
 
 ### Ciclo de vida
-Repetar el ciclo de vida: cada elemento en su sitio para no sobre cargar
+Respetar el ciclo de vida: cada elemento en su sitio para no sobre cargar
 
 ****
 
-### Internacionalizacion y acceso a recursos
+### Internacionalización y acceso a recursos
 
 ¿Elementos declarados en xml o hardcode?. Archivos involucrados: string.xml, dimen.xml, menus.xml, colors.xml, style.xml
 
@@ -203,7 +203,3 @@ protected void onCreate(Bundle savedInstanceState) {
     }
 }
 ```
-
-
-
-
