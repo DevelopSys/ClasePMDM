@@ -23,7 +23,7 @@ Colocación de los elementos de arriba a abajo o izquierda a derecha, dependienn
 	<EditText
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:hint:"Introcude texto"
+		android:hint:"Introduce texto"
 	/>
 	<Button 
 		android:layout_width="match_parent"
@@ -637,6 +637,142 @@ c.	Listas básicas: spinner, ListView, GridView, recycler view, CardView
 ***
 
 ### Spinner
+***
+
+Los spinners representan un elemento de selección de datos muy sencillo de utilizar. Para poder utilizar un spinner hay que tener en cuenta que tiene dos elementos: parte gráfica (represetado por el elemento en xml y su correspondiente java) y un modelo de datos donde se cargan todos los elementos a mostrar (representado por un adaptador simple o compuesto)
+
+Para poder utilizar un spinner básico:
+
+1. Crear un spinner en el xml
+````
+<Spinner
+android:elevation="20dp"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/spinner"/>
+````
+2. Instanciar el array en el .java y crear una coleccion de los datos que se quieren representar
+````
+Spinner sp = findViewById(R.id.spinner);
+ArrayList listaDatos = new ArrayList();
+for (int i = 1; i<11;i++){
+   listaDatos.add("Opción "+String.valueOf(i));
+}
+````
+3. Crear un objeto de tipo ArrayAdapter y asociarlo con el spinner (varios tipos de constructor)
+````
+ArrayAdapter adapterSpinner =
+        new ArrayAdapter(this,android.R.layout.simple_spinner_item,listaDatos);
+adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+spinner.setAdapter(adapterSpinner);
+````
+4. Obtener información de los elementos asociados al spinner 
+````
+//obtiene el elemento selecionado en la posición correspondiente;
+spinner.getSelectedItemPosition();
+//método que notifica al adaptador que algo ha cambiado en la parte de datos
+//este método siempre se tienen que ejecuatra cuando se añade/borra/modifican datos
+adapterSpinner.notifyDataSetChanged();
+//devuelve el numero de elementos asociados
+adapterSpinner.getCount();
+//devuelve el elementos asociado a una posición concreta
+adapterSpinner.getItem();
+//devuleve el id del elemento asociado a una posción concreta
+adapterSpinner.getItemId();
+````
+5. Evaluar la pulsación del spinner
+````
+spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                //Ejecuatado cuando la selección cambie
+                Toast.makeText(getApplicationContext(),
+                        String.valueOf(parent.getAdapter().getItem(position)),Toast.LENGTH_SHORT).show();
+            }
+ 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Ejecutado cuando se ejecuta la activity
+            }
+});
+````
+** Crear un spinner desde un recurso creado en el proyecto **
+***
+
+Los puntos son identicos a los anteriores con la única diferencia de la asociación
+
+1. Crear un array en el fichero localizaco en res -- values -- arrays.xml
+````
+<resources>
+    <integer-array name="numeros">
+        <item>4</item>
+        <item>8</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
+</resources>
+````
+2. Crear el adaptador mediante el método estático createFromResource()
+````
+ArrayList adaptaAnidado = ArrayAdapter.createFromResource(getApplicationContext(),R.array.numeros,android.R.layout.simple_spinner_item);                    
+````
+
+### ListView
+***
+Un objeto de tipo listView tiene la misma funcionalidad que un Spinner pero la forma de representación de los datos cambia.
+1. Crear el xml de la actividad con el listview
+````
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".elementos.ListaActivity"
+    android:orientation="vertical">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:id="@+id/listaListView" 
+        android:divider="@color/colorAccent"
+        android:dividerHeight="1dp"/>
+
+</LinearLayout>
+````
+2. Instanciarlo en el .java de la actividad y crear un adaptador simple con el layout que android ofrece para asociarlo
+````
+lista = findViewById(R.id.listaListView);
+ArrayList listaOpciones= new ArrayList();
+for(int i=0;i<101;i++){
+   listaOpciones.add("Opción "+String.valueOf(i));
+ }
+ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,listaOpciones);
+lista.setAdapter(adapter);
+````
+3. Evaluar la pulsación de la lista evaluando la posición
+````
+lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+@Override
+public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      Toast.makeText(getApplicationContext(),"Posición: "+String .valueOf(position),Toast.LENGTH_SHORT).show(); 
+      parent.getAdapter().getItem(position);     
+   }
+});
+````
+
+### GridView
+***
+
+### RecyclerView
+***
+
+### CardView
+***
+
 
 #### [Volver al índice](#tema4)
 
@@ -645,4 +781,623 @@ d.	Listas personalizadas: adaptadores
 - http://www.developandsys.es/manejo-avanzado-listview-spinner/
 - http://www.developandsys.es/adaptadores-listas-personalizadas/
 
+### Adaptadores personalizados Spinner
+
+En muchas ocasiones no es suficiente con la representación de datos mostrada en el punto anterior, ya que puede ser demasiado simple. Para poder personalizarla se debe crear un adaptador personalizado el cual diga exactamente cual es el comportamiento de cada una de la fila de datos que representa el spinner. Para ello:
+
+1. Se crea un xml con el aspecto que se quiere para una fila (todas las filas tienen el mismo aspecto pero con datos diferentes).
+
+````
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagenSpinner"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nombreSpinner"
+        android:text=""
+        android:textSize="30dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="center"
+        />
+
+</LinearLayout>
+````
+2. Crear una clase que exienda de BaseAdapter
+````
+public class AdaptadorSpinnerPerso extends BaseAdapter{
+
+    // número de elementos que tendrá que "renderizar" el adaptador
+    @Override
+    public int getCount() {
+        return null;
+    }
+
+    // obtención del un elemento en una posición determinada
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    // obtención del id de un elemento en una posición determinada
+    @Override
+    public long getItemId(int position) {
+        return null;
+    }
+
+    // como se debe renderizar la fila
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        return null;
+    }
+}
+
+````
+3. Crear un constructor que permita la obtención de una lista de datos y el contexto donde se ejecutan los elementos
+````
+public class AdaptadorSpinnerPerso extends BaseAdapter{
+
+    List listaDatos;
+    Context context;
+
+    public AdaptadorSpinnerPerso(List listaDatos, Context context) {
+        this.listaDatos = listaDatos;
+        this.context = context;
+    }
+}
+````
+
+4. Rellenar los métodos sobreescritos
+4.1 getCount() devuelve el número de filas que se deben pintar en el elemento
+4.2 getItemId() devuelve el id del elemento seleccionado
+4.3 getItem() devuelve el elemento seleccionado
+4.4 getView() devuleve el la vista que será utilizada para representar cada una de las filas del elemento. Para poder "pegar la vista que se ha generado en el punto 1 se utiliza un objeto de tipo inflater"
+
+````
+
+public class AdaptadorSpinnerPerso extends BaseAdapter{
+
+    List listaDatos;
+    Context context;
+
+    public AdaptadorSpinnerPerso(List listaDatos, Context context) {
+        this.listaDatos = listaDatos;
+        this.context = context;
+    }
+
+    @Override
+    public int getCount() {
+        return listaDatos.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return listaDatos.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        convertView = LayoutInflater.from(context).inflate(R.layout.item_spinner_layout,parent,false);
+        return convertView;
+    }
+}
+````
+
+5. Por último quedaría asociar adaptador creado con el spinner
+
+````
+Spinner sp = findViewById(R.id.spinner)
+ArrayList<Usuarios> listaDatos = new ArrayList<Usuarios>;
+AdaptadorSpinnerPerso adaptador = new AdaptadorSpinnerPerso(getApplicationContext(),listaDatos);
+sp.setAdapter(adaptador)
+````
+**Mejorar el funcionamiento del adaptador**
+Si se sigue la lógica del objeto de tipo adaptador, este ejecutará el métodos getView tantas veces como elementos existan en la lista de datos que se quieren representar. Según lo antarior, en este método se inflará n veces la vista que se debe representar por lo que esto puede ser bastante poco productovo. Para ello se utiliza el concepto de holder, el cual realiza esta acción solo la primera vez, el resto de veces recupera la información
+
+
+1. Crear una clase anidada en la clase del adaptador vista anteriormente con los elementos que contiene la vista (fila del elemento) con un constructor e implementarlos
+````
+public class AdaptadorSpinnerPerso extends BaseAdapter {
+
+    List listaDatos;
+    Context context;
+
+    public AdaptadorSpinnerPerso(List listaDatos, Context context) {
+        this.listaDatos = listaDatos;
+        this.context = context;
+    }
+
+    @Override
+    public int getCount() {
+        return listaDatos.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return listaDatos.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+    
+        return convertView;
+    }
+
+    class HolderAdicional{
+
+        TextView nombre;
+        ImageView imagen;
+
+        public HolderAdicional(View view) {
+            nombre = view.findViewById(R.id.nombreSpinner);
+            imagen = view.findViewById(R.id.imagenSpinner);
+        }
+
+        public TextView getNombre() {
+            return nombre;
+        }
+
+        public ImageView getImagen() {
+            return imagen;
+        }
+    }
+}
+````
+2. Modificar el método getView para que solo se rellene la vista la primera vez que se ejecute y el resto de veces se recuperen los datos
+````
+@Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        HolderAdicional holderAdicional = null;
+
+        if (convertView == null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_spinner_layout, parent, false);
+            holderAdicional = new HolderAdicional(convertView);
+            convertView.setTag(holderAdicional);
+
+        }
+        else {
+            holderAdicional = (HolderAdicional) convertView.getTag();
+        }
+
+        Persona p = (Persona) listaDatos.get(position);
+        if (p.getSexo() == 0) {
+            holderAdicional.getImagen().setImageResource(R.drawable.c1);
+        } else if (p.getSexo() == 1) {
+            holderAdicional.getImagen().setImageResource(R.drawable.c2);
+        }
+        holderAdicional.getNombre().setText(p.getNombre());
+
+        holderAdicional.getImagen().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"Has pulsado imagen",Toast.LENGTH_SHORT).show();
+            }
+        });
+        holderAdicional.getNombre().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"Has pulsado nombre",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return convertView;
+    }
+````
+###ListView
+***
+Un objeto de tipo listView tiene la misma funcionalidad que un Spinner pero la forma de representación de los datos cambia.
+1. Crear el xml de la actividad con el listview
+````
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".elementos.ListaActivity"
+    android:orientation="vertical">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:id="@+id/listaListView" 
+        android:divider="@color/colorAccent"
+        android:dividerHeight="1dp"/>
+
+</LinearLayout>
+````
+2. Instanciarlo en el .java de la actividad y crear un adaptador simple con el layout que android ofrece para asociarlo
+````
+lista = findViewById(R.id.listaListView);
+ArrayList listaOpciones= new ArrayList();
+for(int i=0;i<101;i++){
+   listaOpciones.add("Opción "+String.valueOf(i));
+ }
+ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,listaOpciones);
+lista.setAdapter(adapter);
+````
+3. Evaluar la pulsación de la lista evaluando la posición
+````
+lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+@Override
+public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      Toast.makeText(getApplicationContext(),"Posición: "+String .valueOf(position),Toast.LENGTH_SHORT).show(); 
+      parent.getAdapter().getItem(position);     
+   }
+});
+````
+### ListView con un adaptador personalizado
+***
+1. Crear el xml que representa el aspecto de la fila
+````
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/imagenLista"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/nombreLista"
+        android:text=""
+        android:textSize="30dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="center"
+        />
+
+</LinearLayout>
+````
+2. Crear una clase que extienda de baseadapter y sobreescribir los metodos
+````
+public class AdaptadorListaPerso extends BaseAdapter {
+
+    @Override
+    public int getCount() {
+        return null;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        return null;
+    }
+
+}
+````
+3. Crear un constructor en la misma clase al que se le pasen los parámetros necesarios. Lo normal es que necesite un contexto un una lista de datos
+````
+    List listaDatos;
+    Context context;
+
+    public AdaptadorListaPerso(List listaDatos, Context context) {
+        this.listaDatos = listaDatos;
+        this.context = context;
+    }
+````
+4. Rellenar los métodos correspondientes que se han sobreescrito en la clase
+````
+public class AdaptadorListaPerso extends BaseAdapter {
+
+    List listaDatos;
+    Context context;
+
+    public AdaptadorListaPerso(List listaDatos, Context context) {
+        this.listaDatos = listaDatos;
+        this.context = context;
+    }
+
+    @Override
+    public int getCount() {
+        return listaDatos.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return listaDatos.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        HolderAdicional holderAdicional = null;
+
+        if (convertView == null){
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_spinner_layout, parent, false);
+            holderAdicional = new HolderAdicional(convertView);
+            convertView.setTag(holderAdicional);
+
+        }
+        else  
+            holderAdicional = (HolderAdicional) convertView.getTag();
+
+        Persona p = (Persona) listaDatos.get(position);
+        holderAdicional.getNombre().setText(p.getNombre());
+        holderAdicional.getImagen().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"Has pulsado imagen",Toast.LENGTH_SHORT).show();
+            }
+        });
+        holderAdicional.getNombre().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"Has pulsado nombre",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return convertView;
+    }
+
+    class HolderAdicional{
+
+        TextView nombre;
+        ImageView imagen;
+
+        public HolderAdicional(View view) {
+            nombre = view.findViewById(R.id.nombreSpinner);
+            imagen = view.findViewById(R.id.imagenSpinner);
+        }
+
+        public TextView getNombre() {
+            return nombre;
+        }
+
+        public ImageView getImagen() {
+            return imagen;
+        }
+    }
+}
+````
+5. Crear un objeto de tipo adaptador en la clase de la actividad y ponerselo a la lista
+````
+AdaptadorListaPerso adaptadorListaPerso = new AdaptadorListaPerso(personas,getApplicationContext());
+lista.setAdapter(adaptadorLsitaPerso);
+````
+
+##RecyclerView
+***
+El recyclerview representa una lista de datos optimizada, la cual sustituye al elemento listview. Para poder utilizarlo: 
+
+1. Importar librerias necesarias en el gradle
+````
+implementation 'com.android.support:recyclerview-v7:28.0.0'
+implementation 'com.android.support:design:28.0.0'
+````
+2. Crear un objeto recycler en el xml y instanciarlo en el .java
+````
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        />
+
+</LinearLayout>
+````
+````
+recyclerView = findViewById(R.id.recyclerView);
+````
+3. Crear un xml con el aspecto que tendrá cada una de las filas del recycler
+
+````
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/layoutItem">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal|center_vertical"
+            android:id="@+id/nombreItem"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal|center_vertical"
+            android:id="@+id/apellidItem"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
+        android:layout_height="wrap_content"
+        android:id="@+id/telefonoItem"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+````
+4. Crear una clase que extienda de RecyclerView.Adapter junto con una clase que exienda de RecyclerView.ViewHolder. Hay que tener en cuenta que el constructor del adaptador puede modificar su forma, tomando aquella que más nos interese
+````
+public class AdaptadorPersoRecycler extends RecyclerView.Adapter<AdaptadorPersoRecycler.HolderPropio> {
+
+    List<Persona> listaDatos;
+    Context context;
+
+    public AdaptadorPersoRecycler(Context context) {
+               this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public HolderPropio onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull HolderPropio holderPropio, final int i) {
+       
+    }
+
+    @Override
+    public int getItemCount() {
+        return null;
+    }
+
+   class HolderPropio extends RecyclerView.ViewHolder {
+
+        public HolderPropio(@NonNull View itemView) {
+            super(itemView);
+            
+        }
+
+    }
+}
+````
+5. Rellenar los métodos
+- length: cantidad de elementos que tendrá la lista
+````
+    @Override
+    public int getItemCount() {
+        return listaDatos.size();
+    }
+````
+- onCreateViewHolder: creación del objeto de tipo holder que tendrá la vista xml previamente inflada
+````
+    @NonNull
+    @Override
+    public HolderPropio onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        View v = LayoutInflater.from(context).inflate(R.layout.item_recycler, viewGroup, false);
+        HolderPropio holderPropio = new HolderPropio(v);
+        return holderPropio;
+    }
+````
+
+- onBindViewHolder: representar cada uno de los objetos que se "pintarán en las filas"
+````
+    @Override
+    public void onBindViewHolder(@NonNull HolderPropio holderPropio, final int i) {
+        final Persona p = listaDatos.get(i);
+        holderPropio.getNombre().setText(p.getNombre());
+        holderPropio.getApellido().setText(p.getApellido());
+        holderPropio.getTelefono().setText(String.valueOf(p.getTelefono()));
+        holderPropio.getNombre().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(context, p.getNombre(), Toast.LENGTH_SHORT).show();
+                adaptadorPersoListener.onAdaptadorPersoSelected(p);
+            }
+        });
+    }
+````
+- Clase Holder: representa los objetos del xml, instanciandolos
+````
+    class HolderPropio extends RecyclerView.ViewHolder {
+
+        TextView nombre, apellido, telefono;
+        LinearLayout linearLayout;
+
+
+        public HolderPropio(@NonNull View itemView) {
+            super(itemView);
+            nombre = itemView.findViewById(R.id.nombreItem);
+            telefono = itemView.findViewById(R.id.telefonoItem);
+            apellido = itemView.findViewById(R.id.apellidItem);
+            linearLayout = itemView.findViewById(R.id.layoutItem);
+        }
+
+        public TextView getNombre() {
+            return nombre;
+        }
+
+        public TextView getApellido() {
+            return apellido;
+        }
+
+        public TextView getTelefono() {
+            return telefono;
+        }
+
+        public LinearLayout getLinearLayout() {
+            return linearLayout;
+        }
+    }
+````
+6. Crear un objeto de tipo adaptador en la clase donde está el recycler
+````
+adaptadorPersoRecycler = new AdaptadorPersoRecycler(this);
+recyclerView.setAdapter(adaptadorPersoRecycler);
+````
+7. Poner un Layout al recycler y un divisor entre elementos
+````
+recyclerView.setLayoutManager(
+                new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+recyclerView.addItemDecoration(
+                new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+````
+
 #### [Volver al índice](#tema4)
+
