@@ -767,11 +767,6 @@ public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 ### GridView
 ***
 
-### RecyclerView
-***
-
-### CardView
-***
 
 
 #### [Volver al índice](#tema4)
@@ -1203,7 +1198,7 @@ lista.setAdapter(adaptadorLsitaPerso);
 
 ##RecyclerView
 ***
-El recyclerview representa una lista de datos optimizada, la cual sustituye al elemento listview. Para poder utilizarlo: 
+El recyclerview representa una lista de datos optimizada, la cual sustituye al elemento listview. Para poder utilizarlo la funionalidad es muy parecida a la de las listas, con la diferencia del adaptador. En el caso de recycler, cuenta con una clase propia con su holder individual: 
 
 1. Importar librerias necesarias en el gradle
 ````
@@ -1336,7 +1331,7 @@ public class AdaptadorPersoRecycler extends RecyclerView.Adapter<AdaptadorPersoR
     }
 ````
 
-- onBindViewHolder: representar cada uno de los objetos que se "pintarán en las filas"
+- onBindViewHolder: representar cada uno de los objetos que se "pintarán en las filas".
 ````
     @Override
     public void onBindViewHolder(@NonNull HolderPropio holderPropio, final int i) {
@@ -1347,13 +1342,12 @@ public class AdaptadorPersoRecycler extends RecyclerView.Adapter<AdaptadorPersoR
         holderPropio.getNombre().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context, p.getNombre(), Toast.LENGTH_SHORT).show();
-                adaptadorPersoListener.onAdaptadorPersoSelected(p);
+                Toast.makeText(context, p.getNombre(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 ````
-- Clase Holder: representa los objetos del xml, instanciandolos
+- Clase Holder: representa los objetos del xml, instanciándolos
 ````
     class HolderPropio extends RecyclerView.ViewHolder {
 
@@ -1399,5 +1393,219 @@ recyclerView.addItemDecoration(
                 new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 ````
 
+**Eventos en un recycler**
+***
+
+Para poder actuar ante un evento en un recyclerview hay varias formas de hacerlo. Como se ha visto hasta ahora, se podría dar una acción a cualquiera de los elementos presentes en la fila del recycler simplemente poniendo el escuchador asociado:
+
+````
+    @Override
+    public void onBindViewHolder(@NonNull HolderPropio holderPropio, final int i) {
+        final Persona p = listaDatos.get(i);
+        holderPropio.getNombre().setText(p.getNombre());
+        holderPropio.getApellido().setText(p.getApellido());
+        holderPropio.getTelefono().setText(String.valueOf(p.getTelefono()));
+        holderPropio.getNombre().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, p.getNombre(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+````
+
+Sin enbargo esto puede no ser del todo funcional, ya que los datos no están accesibles desde la Activity o lugar donde se haya renderizado el recycler. Otra posibilidad es declarar un método estático **(ojo con esto)** para poder llamarlo desde la clase adaptador. 
+Como es de suponer, el elemento recycler no cuenta con un listener como lo hacía el elemento ListView, el cual me decía la posición pulsada. La solición esta en el uso de las interfaces de CallBack. El concepto es el siguiente:
+- Se crea una interfaz en el origen de los datos (clase adaptador), la cual es llamada (ejecutado sus métodos (**sin tenerlos haber implementado**) desde la acción que produce la comunicación (pulsación de un botón)
+- Se implementa dicha interfaz en el destino de los datos, obligando a rellenar los métodos creados en el paso anterior
+- En el origen de los datos se intancia la interfaz (para poder utilizar los datos), igualándola al contexto (ya que en el contexto ha sido implementada).
+
+De esta forma la interfaz es ejecutada en el adaptador pero donde realmente se ejecutará el método es donde esté implementada, ya que ahí es donde está la definición del método. Los pasos son los siguientes:
+
+1. Crear una interfaz en el origen de los datos con un método que contenga los datos que se quieren pasar. EN este caso la clase del adaptador
+````
+public class AdaptadorPersoRecycler extends RecyclerView.Adapter<AdaptadorPersoRecycler.HolderPropio> {
+
+    // incluir el resto de métodos explicados anteriormente   
+    public interface OnAdaptadorPersoListener{
+        public void onAdaptadorPersoSelected(Persona persona);
+    }
+   
+}
+````
+2. Llamar al método creado en la interfaz cuando se quieran lanzar los datos al destino
+
+````
+@Override
+    public void onBindViewHolder(@NonNull HolderPropio holderPropio, final int i) {
+        final Persona p = listaDatos.get(i);
+        holderPropio.getNombre().setText(p.getNombre());
+        holderPropio.getApellido().setText(p.getApellido());
+        holderPropio.getTelefono().setText(String.valueOf(p.getTelefono()));
+        holderPropio.getNombre().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(context, p.getNombre(), Toast.LENGTH_SHORT).show();
+                adaptadorPersoListener.onAdaptadorPersoSelected(p);
+            }
+        });
+    }
+````
+
+3. Implementar la interfaz en el destino de los datos, obligando a implementar los métodos
+````
+public class MainActivity extends AppCompatActivity implements AdaptadorPersoRecycler.OnAdaptadorPersoListener {
+
+    RecyclerView recyclerView;
+    AdaptadorPersoRecycler adaptadorPersoRecycler;
+    Persona p;
+
+   	// incluir todos los métodos de la clase
+
+    @Override
+    public void onAdaptadorPersoSelected(Persona persona) {
+        p = persona;
+        Toast.makeText(getApplicationContext(),"Persona en Activity" + p.getNombre(),Toast.LENGTH_SHORT).show();
+    }
+}
+````
+
+4. Crear un objeto del tipo interfaz e igualarlo al contexto
+````
+public class AdaptadorPersoRecycler extends RecyclerView.Adapter<AdaptadorPersoRecycler.HolderPropio> {
+
+    Context context;
+	OnAdaptadorPersoListener adaptadorPersoListener;
+    // incluir el resto de métodos explicados anteriormente   
+    
+    public AdaptadorPersoRecycler(Context context) {
+        
+        this.context = context;
+        adaptadorPersoListener = (OnAdaptadorPersoListener) context;
+    }
+    
+    public interface OnAdaptadorPersoListener{
+        public void onAdaptadorPersoSelected(Persona persona);
+    }
+ 
+}
+````
+###CardView
+- http://www.developandsys.es/cardview/
+*****
+
+Este elemento se vasa en la representación del tipico apartado dentro del play store. Se puede utilizar de forma individual o incluyéndolo en un recylerview (por ejemplo). Para poder utilizar este elemento:
+
+1. Implementar la libreria de cardview y recyclerview
+````
+implementation 'com.android.support:recyclerview-v7:28.0.0'
+implementation 'com.android.support:cardview-v7:28.0.0'
+````
+2. Crear un xml que configure el item del recycler
+````
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutRecycler"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:elevation="50dp"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imagenRecyclerItem"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/nombreRecyclerItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="asdasdasda"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/detalleRecyclerItem"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Descripción de un elemento y que solo se ven dos lineas "
+            android:lines="2"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:gravity="center"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonItemRecycler"
+            android:layout_gravity="center"
+            android:text="Pulsar"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonBorrarItemRecycler"
+            android:layout_gravity="center"
+            android:text="Borrar"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+````
+3. Crear un adaptador que infle el xml
+````
+public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Holder> {
+
+    OnRecyclerListener onRecyclerListener;
+    Context context;
+    List<Juego> listaDatos;
+
+    public AdaptadorRecycler(Context context) {
+        this.context = context;
+        listaDatos = DataSet.newInstance().darJuegos();
+        onRecyclerListener = (OnRecyclerListener) context;
+
+    }
+
+    @NonNull
+    @Override
+    public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item_recycler, viewGroup, false);
+        Holder h = new Holder(v);
+        return h;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull Holder holder, int i) {
+        
+    }
+
+    public void borrarElemento(Juego juego){
+        listaDatos.remove(juego);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemCount() {
+        return listaDatos.size();
+    }   
+
+}
+
+````
+4. Trabajar el elemento como si fuese un elemento normal de RecyclerView
+
 #### [Volver al índice](#tema4)
 
+** RecyclerView con cartas diferentes
