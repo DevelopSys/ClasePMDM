@@ -924,5 +924,98 @@ case android.R.id.home:
 d.	Bottom navigation
 - http://www.developandsys.es/bottom-navigation-view/
 
+Una barra de menu inferior agrega fundionalidad a todos los menús anteriores. Son complementarios pero hay que tener cuidado con sobrecargar la aplicación. En concreto esta opción solo debería ser urilizada para las 3 - 5 opciones más importantes, nunca superando este número. Para poder utilizarlo:
+
+1. Asegurarse de la implmentación de la librería de diseño:
+
+````
+implementation 'com.android.support:design:28.0.0'
+````
+
+2. Declar un archivo xml donde se incluyen las opciones del menú a mostrar. Este paso es el mismo que se describió en el punto de los menús normales
+
+3. En el xml de la activity, declar el elemento 
+
+````
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="+@id/"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorPrimary"
+        app:menu="@menu/menu_bottom" />
+    
+</LinearLayout>
+````
+Dentro de las opciones declaradas, destacar:
+- layout_alignParentBottom:coloca al elemento en la parte inferior
+- itemBackground: representa el color que aparecerá en el fondo de cada uno de los elementos
+- itemIconTint: reperenta el color que tendrá el icono
+- itemTextColor: representa el color del texto que tendrá el icono
+
+Los dos últimos atributos son muy interesantes en el caso de personalizarlos. Por ejemplo en el caso de querer un color diferente cuando esté seleccionado 
+
+````
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@android:color/white" android:state_checked="true" />
+    <item android:color="@color/colorPrimaryDark" android:state_checked="false" />
+</selector>
+````
+
+````
+<android.support.design.widget.BottomNavigationView
+android:id="@+id/bottom_bar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+app:itemBackground="@color/colorPrimary"
+app:itemIconTint="@drawable/state_color_bottom"
+app:itemTextColor="@drawable/state_color_bottom"
+app:menu="@menu/menu_bottom" />
+````
+
+4. Al ser un elemento propio del xml no hay que sobreescribir ningún método para que aparezca no para gestionar la pulsación. Tan solo utilizar un método propio para gestionar el evento:
+````
+
+bottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+@Override
+public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.opcion1:
+                        mostrarToast("Pulsada opción 1");
+                        break;
+                    case R.id.opcion2:
+                        mostrarToast("Pulsada opción 2");
+                        break;
+                    case R.id.opcion3:
+                        mostrarToast("Pulsada opción 3");
+                        break;
+                    case R.id.opcion4:
+                        mostrarToast("Pulsada opción 4");
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+ 
+````
+
 #### [Volver al arriba](#tema5)
 
