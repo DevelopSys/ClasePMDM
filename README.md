@@ -2,14 +2,14 @@
 <a name="indice"></a>
 ## PMDM
 
- - <a href="./T1">POO Java]</a>
+ - <a href="./T1">POO Java</a>
 	 - Sintaxis básica, variables, bucles
 	 - Clases y objetos
 	 - Colecciones
 	 - Métodos, sobrecarga y sobreescritura
 	 - Herencia y polimorfismo
 	 - Tratamiento de ficheros
- - <a href="./T2">Instalación y configuración]</a>
+ - <a href="./T2">Instalación y configuración</a>
 	 - Instalación SDK, ADB
 	 - Creación y administración de AVD e imágenes de SO
 	 - Creación proyecto y su estructura básica
@@ -39,12 +39,12 @@
 	 - Coordinator Layout
 	 - Preference Screen
 	 - Splash Screen, Launch Screen
- - <a href="./T8">Servicios</a>
-	 - AsyncTask
- - <a href="./T9">Almacenamiento</a> 
+ - <a href="./T8">Almacenamiento</a> 
 	 - SQLite3
 	 - Comunicación HTTP
 	 - Firebase
+ - <a href="./T9">Servicios</a>
+	 - AsyncTask
  - <a href="./T10">Multimedia</a>
 	 - Cámara
 	 - Audio y video
