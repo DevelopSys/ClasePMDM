@@ -2,54 +2,54 @@
 <a name="indice"></a>
 ## PMDM
 
- - [POO Java](#tema1)
+ - <a href="./T1">POO Java]</a>
 	 - Sintaxis básica, variables, bucles
 	 - Clases y objetos
 	 - Colecciones
 	 - Métodos, sobrecarga y sobreescritura
 	 - Herencia y polimorfismo
 	 - Tratamiento de ficheros
- - [Instalación y configuración](#tema2) 
+ - <a href="./T2">Instalación y configuración]</a>
 	 - Instalación SDK, ADB
 	 - Creación y administración de AVD e imágenes de SO
-	 - Creación proyecto y su estructura bàsica
+	 - Creación proyecto y su estructura básica
 	 - Depuración en dispositivo virtual y dispositivo físico
- - [Manejo Activitys](#tema3) 
+ - <a href="./T3">Manejo Activitys</a>
 	 - Ciclo de vida
 	 - Comunicación entre Activitys
 	 - Tipos de Intents
- - [Interfaces Gráficas](#tema4) 
+ - <a href="./T4">Interfaces Gráficas</a>
 	 - Layouts
 	 - Views básicos formularios: botones, Edit, Radios, Checks
 	 - Views datos formularios: Spinner, ListView, GridView, GridView, Recycler view, CardView
 	 - Personalización de vistas: Adaptadores
- - [Elementos adicionales](#tema5) 
+ - <a href="./T5">Elementos adicionales</a>
 	 - Menús
 	 - Diálogos
 	 - ActionBar / ToolBar
 	 - BottomNavigationView 
- - [Fragments](#tema6) 
+ - <a href="./T6">Fragments</a> 
 	 - Tipos y creación
 	 - Manejo de fragments: la pila
-	 - Comuniación entre fragments
+	 - Comunicación entre fragments
 	 - Diseña Master / Detail
- - [Material Design](#tema7) 
+ - <a href="./T7">Material Design</a>
 	 - View Pager
 	 - Navigation View
 	 - Coordinator Layout
 	 - Preference Screen
 	 - Splash Screen, Launch Screen
- - [Servicios](#tema8) 
+ - <a href="./T8">Servicios</a>
 	 - AsyncTask
- - [Almacenamiento](#tema9) 
+ - <a href="./T9">Almacenamiento</a> 
 	 - SQLite3
 	 - Comunicación HTTP
 	 - Firebase
- - [Multimedia](#tema10) 
+ - <a href="./T10">Multimedia</a>
 	 - Cámara
 	 - Audio y video
- - [Localización](#tema11) 
- - [Videojuegos](#tema12)
+ - <a href="./T11">Localización</a> 
+ - <a href="./T12">Videojuegos</a>
 
  ****
  ## Instalaciones necesarias y webs interesantes
