@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <a name="tema1"></a>
 ## Tema 1. POO Java 
 ***
@@ -39,5 +38,3 @@ f.	Tratamiento de ficheros
 
 #### [Volver al arriba](#tema1)
 =======
-## PROYECTOS DEL TEMA 1 DE PMDM
->>>>>>> 0765e1a0575015f67f7d550b921b6b73fc6da206
