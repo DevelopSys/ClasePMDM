@@ -70,3 +70,32 @@ f.	Tratamiento de ficheros
 	- Salir: terminará la ejecución del programa
 
 - Crear un juego de adivinación de números. Para ello, nada mas empezar el programa se generará un número aleatorio entre 1 y 100. El programa pedirá al usuario que introduzca números enteros hasta encontrar el correcto. Al finalizar indicará el número de intentos alcanzado. (Opcional: hacerlo iterativo, de forma que al terminar una adivinación pregunte si se quiere volver a intentar. Cada vez que se termina se indica el número de intentos medio, el número mínimo de intentos necesitados y si se ha superado el record)
+
+- Desarrollar un programa que gestione temperaturas máximas y mínimas, y el programa calcule los extremos. Para ello hay que utilizar una coleccion de tipo ArrayList Algunas consideraciones a tener en cuenta son:
+a. Para introducir temperaturas el programa me pedirá un dato doublé
+b. Cuando me devuelva los extremos y la media, el programa me devolverá un dato double
+c. Los datos deberán ser guardados de forma dinámica (con un ArrayList)
+
+El menú mediante el cual se introducen los datos es el siguiente:
+
+1. Introducir temperaturas
+2. Mostrar temperaturas
+3. Ordenar temperaturas
+4. Mostrar extremos
+5. Mostrar medias
+6. Salir
+
+- Crear una apliación que permita la gestion de usuarios de tipo Alumno. Para ello hay que tener en cuenta que debe existir un Alumno que tenga nombre (string), apellido (string), dni (string) y matrícula (int). Mediante un menú se podrán realizar las siguientes operaciones:
+
+1. Agregar alumno
+2. Buscar alumno
+3. Borrar alumno
+4. Listar alumnos
+5. Listar dnis
+5. Salir
+
+En cada una de las opciones se pedirán los datos asociados a la opción. Hay que tener en cuenta que no puede haber dados de alta dos alumnos que tengan el mismo dni. Realizar la programación para que la matrícula se genere de forma automática y no esté ya introducida en el sistema 
+
+En todos los casos deben existir mensajes de confirmación tanto si la operación se ha llevado a cabo como si se ha producido algún fallo. Para la realización del problema utilizar una colección de tipo HashTable
+
+
