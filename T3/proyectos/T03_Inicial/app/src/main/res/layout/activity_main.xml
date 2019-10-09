@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Ejemplo inicial"
+        android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnInicialUno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PULSAR"
+            android:textSize="20sp"
+            android:layout_marginRight="20dp"/>
+
+        <Button
+            android:id="@+id/btnInicialDos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PULSAR"
+            android:textSize="20sp"
+            android:layout_marginRight="20dp"/>
+
+
+        <Button
+            android:id="@+id/btnInicialTres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PULSAR"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EJEMPLO"
+        android:textSize="30sp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/texto"/>
+
+
+
+</LinearLayout>
