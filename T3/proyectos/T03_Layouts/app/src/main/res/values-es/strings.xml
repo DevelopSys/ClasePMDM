@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Mi Aplicacion</string>
+    <string name="app_aviso">La aplicación se cerrará automaticamente</string>
+</resources>

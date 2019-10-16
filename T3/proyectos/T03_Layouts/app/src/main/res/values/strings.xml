@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="app_aviso">The application will close on next tap</string>
+</resources>
