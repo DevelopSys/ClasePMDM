@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String apellido = apellidoCaptura.getText().toString();
                     int telefono = Integer.valueOf(telefonoCaptura.getText().toString());
 
+                    // Ejemplo de modificacion realizada desde AS
+
                     Persona persona = new Persona(nombre,apellido,telefono);
 
                     Intent iPasar = new Intent(getApplicationContext(), SecondActivity.class);

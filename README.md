@@ -2,7 +2,7 @@
 <a name="indice"></a>
 ## PMDM
 
- - <a href="https://github.com/DevelopSys/ClaseDI/tree/master/T1">POO Java</a>
+ - <a href="https://github.com/DevelopSys/ClaseDI/tree/master/T1">POO Java Inicial</a>
 	 - Sintaxis básica, variables, bucles
 	 - Clases y objetos
 	 - Colecciones
