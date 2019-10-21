@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.borja.t3_pasodatos.utils.Persona;
+
 public class SecondActivity extends AppCompatActivity {
 
     TextView textoRecuperar;
@@ -19,8 +21,17 @@ public class SecondActivity extends AppCompatActivity {
 
     private void recuperarDatos() {
         if (getIntent().getExtras() != null) {
-            String palabraRecuperada = (String) getIntent().getExtras().get(MainActivity.TAG_1);
-            textoRecuperar.setText(palabraRecuperada);
+            //String palabraRecuperada = (String) getIntent().getExtras().get(MainActivity.TAG_1);
+            Persona pRecuperada = null;
+            try{
+                pRecuperada = (Persona) getIntent().getExtras().get(MainActivity.TAG_1);
+            } catch (ClassCastException e){
+                // FALLO
+            }
+
+            String saludo = String.format("Perfecto %s %s, tu teléfono es %d",
+                    pRecuperada.getNombre(), pRecuperada.getApellido(), pRecuperada.getTelefono());
+            textoRecuperar.setText(saludo);
         }
     }
 
