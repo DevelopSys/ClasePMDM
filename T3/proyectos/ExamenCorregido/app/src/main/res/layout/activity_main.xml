@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:text="Examen PMDM"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:hint="operando1"
+            android:textAlignment="center"
+            android:id="@+id/texto_op1"
+            android:inputType="number"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:hint="operando2"
+            android:textAlignment="center"
+            android:id="@+id/texto_op2"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            >
+
+            <Button android:text="+"
+                android:layout_height="match_parent"
+                android:id="@+id/boton_suma"/>
+            <Button android:text="-"
+                android:layout_height="match_parent"
+                android:id="@+id/boton_resta"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            >
+
+            <Button android:text="*"
+                android:layout_height="match_parent"/>
+            <Button android:text="/"
+                android:layout_height="match_parent"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:text="Permitir paso"
+        android:id="@+id/check_permitir"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:text="PERMITIR PASO"
+        android:id="@+id/boton_pasar"/>
+
+</LinearLayout>
