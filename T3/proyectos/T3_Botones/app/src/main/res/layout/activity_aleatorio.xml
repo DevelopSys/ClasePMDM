@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    tools:context=".AleatorioActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Generador de aleatorios"
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <RadioGroup
+        android:id="@+id/grupoRango"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/radio_sin_rango">
+
+        <RadioButton
+            android:id="@+id/radio_sin_rango"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sin  rango específico" />
+
+        <RadioButton
+            android:id="@+id/radio_con_rango"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Con rango específico" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/linear_rango"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/edit_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:hint="minimo"
+            android:enabled="false"
+            />
+
+        <EditText
+            android:id="@+id/edit_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="máximo"
+            android:enabled="false"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+
+        <CheckBox
+            android:id="@+id/check_decimales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Permitir decimales"
+            android:layout_marginRight="20dp"
+            android:checked="true"/>
+
+
+        <EditText
+            android:id="@+id/edit_decimales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="número de decimales"
+            android:inputType="number"
+            android:maxLength="3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cuantos quieres generar"
+            android:layout_marginRight="20dp" />
+
+
+        <EditText
+            android:id="@+id/edit_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="número de totales"
+            android:inputType="number"
+            android:maxLength="3" />
+
+    </LinearLayout>
+
+    <Switch
+        android:id="@+id/switch_repetir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Repetir números  "
+        android:theme="@style/MiSwitchAdvance"
+        android:thumb="@drawable/repeat"
+        />
+
+
+    <ImageButton
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/start_up"
+        android:text="Generar!"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

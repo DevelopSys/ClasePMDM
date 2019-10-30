@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MiSwitch">
+        <item name="android:colorControlActivated">@color/colorSwitch</item>
+        <item name="android:colorControlNormal">@color/colorSwitchDes</item>
+    </style>
+
+    <style name="MiSwitchAdvance">
+        <item name="android:thumb">@drawable/repeat</item>
+        <item name="android:thumbTint">@color/color_sw</item>
+        <item name="android:trackTint">@color/color_sw</item>
+    </style>
+
+</resources>
