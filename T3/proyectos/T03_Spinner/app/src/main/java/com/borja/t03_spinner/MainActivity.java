@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(),SecondActivity.class);
+                Intent intent = new Intent(getApplicationContext(),EjemploActivity.class);
                 intent.putExtra(TAG_ELEMENTO,"palabra_pasada");
                 startActivity(intent);
                 finish();
