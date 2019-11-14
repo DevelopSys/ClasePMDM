@@ -74,14 +74,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinnerPersonas = findViewById(R.id.spinner_normal);
         adaptadorPersonas = new ArrayAdapter(getApplicationContext(),
                 android.R.layout.simple_spinner_item, listaPersonas);
-        spinnerPersonas.setAdapter(adaptadorPersonas);
+        //spinnerPersonas.setAdapter(adaptadorPersonas);
         botonElemento = findViewById(R.id.boton_elemento);
         edit_nombre = findViewById(R.id.edit_nombre);
         edit_apellido = findViewById(R.id.edit_apellido);
         disponibilidad = findViewById(R.id.chec_disponiblidad);
         boton_seleccionar = findViewById(R.id.boton_seleccionar);
 
-        adaptadorPersoSpinner = new AdaptadorPersoSpinner(listaPersonas,getApplicationContext());
+        adaptadorPersoSpinner = new AdaptadorPersoSpinner(listaPersonas,
+                getApplicationContext());
+        spinnerPersonas.setAdapter(adaptadorPersoSpinner);
 
     }
 
