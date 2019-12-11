@@ -1494,7 +1494,7 @@ public class AdaptadorPersoRecycler extends RecyclerView.Adapter<AdaptadorPersoR
 - http://www.developandsys.es/cardview/
 *****
 
-Este elemento se vasa en la representación del tipico apartado dentro del play store. Se puede utilizar de forma individual o incluyéndolo en un recylerview (por ejemplo). Para poder utilizar este elemento:
+Este elemento se basa en la representación del tipico apartado dentro del play store. Se puede utilizar de forma individual o incluyéndolo en un recylerview (por ejemplo). Para poder utilizar este elemento:
 
 1. Implementar la libreria de cardview y recyclerview
 ````
