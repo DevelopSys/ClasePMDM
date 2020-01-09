@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">dialogos</string>
+    <string name="titulo_dialogo_info">Título de diálogo de información</string>
+    <string name="mensaje_dialogo_info">Esto es un mensaje de un diálogo de información</string>
+
+    <string name="titulo_dialogo_sino">Título de diálogo de sino</string>
+    <string name="mensaje_dialogo_sino">¿Estás seguro que quieres continuar?</string>
+
+    <string name="titulo_dialogo_sino_perso">Título de diálogo perso de sino</string>
+
+    <string name="titulo_dialogo_items">Título de diálogo de items</string>
+
+</resources>

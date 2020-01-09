@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:text="Diálogos"
+        android:textSize="30sp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/boton_dialogo_informacion"
+                android:text="Pulsar" />
+
+            <TextView
+                android:gravity="center"
+                android:text="Información" />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/boton_dialogo_sino"
+                android:text="Pulsar" />
+
+            <TextView
+                android:gravity="center"
+                android:text="Respuesta SI/NO"
+                android:id="@+id/texto_sino_respuesta"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/boton_dialogo_perso_sino"
+                android:text="Pulsar" />
+
+            <TextView
+                android:gravity="center"
+                android:text="Respuesta SI/NO"
+                android:id="@+id/texto_sino_perso_respuesta"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/boton_dialogo_item"
+                android:text="Pulsar" />
+
+            <TextView
+                android:gravity="center"
+                android:text="Respuesta Item"
+                android:id="@+id/texto_item_respuesta"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>
