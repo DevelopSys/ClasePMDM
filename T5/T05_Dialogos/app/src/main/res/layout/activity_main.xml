@@ -92,6 +92,18 @@
                 android:id="@+id/texto_multipleitem_respuesta"/>
         </TableRow>
 
+        <TableRow>
+
+            <Button
+                android:id="@+id/boton_dialogo_perso"
+                android:text="Pulsar" />
+
+            <TextView
+                android:gravity="center"
+                android:text="Respuesta perso"
+                android:id="@+id/texto_perso_respuesta"/>
+        </TableRow>
+
     </TableLayout>
 
 

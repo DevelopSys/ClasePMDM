@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.borja.dialogos.dialogos.DialogoInformacion;
 import com.borja.dialogos.dialogos.DialogoItems;
 import com.borja.dialogos.dialogos.DialogoMultipleItem;
+import com.borja.dialogos.dialogos.DialogoPerso;
 import com.borja.dialogos.dialogos.DialogoSINOPerso;
 import com.borja.dialogos.dialogos.DialogoSiNo;
 import com.borja.dialogos.dialogos.DialogoSingleItem;
@@ -19,7 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DialogoSiNo.OnDialogoSINOListener, DialogoItems.OnDialogoItemSelected,
         DialogoSingleItem.OnDialogoSingleItemSelected {
 
-    Button btnDialogoInfo, btnDialogoSiNo, btnDialogoSiNoPerso, btnDialogoItems, btnDialogoSigle, btnDialogoMultiple;
+    Button btnDialogoInfo, btnDialogoSiNo, btnDialogoSiNoPerso, btnDialogoItems, btnDialogoSigle,
+            btnDialogoMultiple, btnDialogoPerso;
     TextView respuestaSINO, respuestaSINOPerso, respuestaItems, respuestaSingle, respuestaMultiple;
 
     @Override
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDialogoItems.setOnClickListener(this);
         btnDialogoSigle.setOnClickListener(this);
         btnDialogoMultiple.setOnClickListener(this);
+        btnDialogoPerso.setOnClickListener(this);
     }
 
     private void instancias() {
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDialogoItems = findViewById(R.id.boton_dialogo_item);
         btnDialogoSigle = findViewById(R.id.boton_dialogo_singleitem);
         btnDialogoMultiple = findViewById(R.id.boton_dialogo_multipleitem);
+        btnDialogoPerso = findViewById(R.id.boton_dialogo_perso);
         respuestaSINO = findViewById(R.id.texto_sino_respuesta);
         respuestaSINOPerso = findViewById(R.id.texto_sino_perso_respuesta);
         respuestaItems = findViewById(R.id.texto_item_respuesta);
@@ -73,11 +77,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.boton_dialogo_singleitem:
                 DialogoSingleItem dialogoSingleItem = new DialogoSingleItem();
-                dialogoSingleItem.show(getSupportFragmentManager(),"single");
+                dialogoSingleItem.show(getSupportFragmentManager(), "single");
                 break;
             case R.id.boton_dialogo_multipleitem:
                 DialogoMultipleItem dialogoMultipleItem = new DialogoMultipleItem();
-                dialogoMultipleItem.show(getSupportFragmentManager(),"multi");
+                dialogoMultipleItem.show(getSupportFragmentManager(), "multi");
+                break;
+
+            case R.id.boton_dialogo_perso:
+                DialogoPerso dialogoPerso = new DialogoPerso();
+                dialogoPerso.show(getSupportFragmentManager(),"perso");
                 break;
         }
     }
