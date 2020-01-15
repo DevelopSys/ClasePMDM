@@ -2,12 +2,18 @@ package com.borja.dialogos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.borja.dialogos.dialogos.DialogoFecha;
+import com.borja.dialogos.dialogos.DialogoHora;
 import com.borja.dialogos.dialogos.DialogoInformacion;
 import com.borja.dialogos.dialogos.DialogoItems;
 import com.borja.dialogos.dialogos.DialogoMultipleItem;
@@ -19,7 +25,8 @@ import com.borja.dialogos.utils.Persona;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         DialogoSiNo.OnDialogoSINOListener, DialogoItems.OnDialogoItemSelected,
-        DialogoSingleItem.OnDialogoSingleItemSelected, DialogoPerso.OnDialogoPersoListener {
+        DialogoSingleItem.OnDialogoSingleItemSelected, DialogoPerso.OnDialogoPersoListener,
+        DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     Button btnDialogoInfo, btnDialogoSiNo, btnDialogoSiNoPerso, btnDialogoItems, btnDialogoSigle, btnDialogoHora, btnDialogoFecha, btnDialogoMultiple, btnDialogoPerso;
     TextView respuestaSINO, respuestaSINOPerso, respuestaItems, respuestaSingle, respuestaPerso;
@@ -94,8 +101,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dialogoPerso.show(getSupportFragmentManager(), "perso");
                 break;
             case R.id.boton_dialogo_fecha:
+                DialogoFecha dialogoFecha = new DialogoFecha();
+                dialogoFecha.show(getSupportFragmentManager(),"fecha");
                 break;
             case R.id.boton_dialogo_hora:
+                DialogoHora dialogoHora = new DialogoHora();
+                dialogoHora.show(getSupportFragmentManager(),"hora");
                  break;
         }
     }
@@ -121,5 +132,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onDilagoloSelected(Persona persona) {
         String mensaje = String.format("usuario: %s %npass: %s", persona.getNombre(), persona.getPass());
         respuestaPerso.setText(mensaje);
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        String fecha = String.format("%s/%s/%s",i2,i1,i);
+        Toast.makeText(getApplicationContext(),fecha,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+
     }
 }
