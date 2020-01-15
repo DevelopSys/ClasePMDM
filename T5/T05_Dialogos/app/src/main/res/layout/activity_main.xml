@@ -104,6 +104,30 @@
                 android:id="@+id/texto_perso_respuesta"/>
         </TableRow>
 
+        <TableRow>
+
+            <Button
+                android:id="@+id/boton_dialogo_fecha"
+                android:text="Pulsar" />
+
+            <TextView
+                android:gravity="center"
+                android:text="Respuesta perso"
+                android:id="@+id/texto_fecha_respuesta"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/boton_dialogo_hora"
+                android:text="Pulsar" />
+
+            <TextView
+                android:gravity="center"
+                android:text="Respuesta perso"
+                android:id="@+id/texto_hora_respuesta"/>
+        </TableRow>
+
     </TableLayout>
 
 

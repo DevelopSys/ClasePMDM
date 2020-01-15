@@ -21,6 +21,7 @@ public class DialogoMultipleItem extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        elementos = new ArrayList();
     }
 
     @NonNull

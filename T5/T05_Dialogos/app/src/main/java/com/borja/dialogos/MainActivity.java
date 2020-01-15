@@ -15,14 +15,14 @@ import com.borja.dialogos.dialogos.DialogoPerso;
 import com.borja.dialogos.dialogos.DialogoSINOPerso;
 import com.borja.dialogos.dialogos.DialogoSiNo;
 import com.borja.dialogos.dialogos.DialogoSingleItem;
+import com.borja.dialogos.utils.Persona;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         DialogoSiNo.OnDialogoSINOListener, DialogoItems.OnDialogoItemSelected,
-        DialogoSingleItem.OnDialogoSingleItemSelected {
+        DialogoSingleItem.OnDialogoSingleItemSelected, DialogoPerso.OnDialogoPersoListener {
 
-    Button btnDialogoInfo, btnDialogoSiNo, btnDialogoSiNoPerso, btnDialogoItems, btnDialogoSigle,
-            btnDialogoMultiple, btnDialogoPerso;
-    TextView respuestaSINO, respuestaSINOPerso, respuestaItems, respuestaSingle, respuestaMultiple;
+    Button btnDialogoInfo, btnDialogoSiNo, btnDialogoSiNoPerso, btnDialogoItems, btnDialogoSigle, btnDialogoHora, btnDialogoFecha, btnDialogoMultiple, btnDialogoPerso;
+    TextView respuestaSINO, respuestaSINOPerso, respuestaItems, respuestaSingle, respuestaPerso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDialogoSigle.setOnClickListener(this);
         btnDialogoMultiple.setOnClickListener(this);
         btnDialogoPerso.setOnClickListener(this);
+        btnDialogoHora.setOnClickListener(this);
+        btnDialogoFecha.setOnClickListener(this);
     }
 
     private void instancias() {
@@ -50,10 +52,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDialogoSigle = findViewById(R.id.boton_dialogo_singleitem);
         btnDialogoMultiple = findViewById(R.id.boton_dialogo_multipleitem);
         btnDialogoPerso = findViewById(R.id.boton_dialogo_perso);
+        btnDialogoFecha = findViewById(R.id.boton_dialogo_fecha);
+        btnDialogoHora = findViewById(R.id.boton_dialogo_hora);
         respuestaSINO = findViewById(R.id.texto_sino_respuesta);
         respuestaSINOPerso = findViewById(R.id.texto_sino_perso_respuesta);
         respuestaItems = findViewById(R.id.texto_item_respuesta);
         respuestaSingle = findViewById(R.id.texto_singleitem_respuesta);
+        respuestaPerso = findViewById(R.id.texto_perso_respuesta);
     }
 
     @Override
@@ -86,8 +91,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.boton_dialogo_perso:
                 DialogoPerso dialogoPerso = new DialogoPerso();
-                dialogoPerso.show(getSupportFragmentManager(),"perso");
+                dialogoPerso.show(getSupportFragmentManager(), "perso");
                 break;
+            case R.id.boton_dialogo_fecha:
+                break;
+            case R.id.boton_dialogo_hora:
+                 break;
         }
     }
 
@@ -106,5 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onSingleItemSelected(String item) {
         respuestaSingle.setText(item);
+    }
+
+    @Override
+    public void onDilagoloSelected(Persona persona) {
+        String mensaje = String.format("usuario: %s %npass: %s", persona.getNombre(), persona.getPass());
+        respuestaPerso.setText(mensaje);
     }
 }
