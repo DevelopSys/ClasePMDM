@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DialogoSingleItem.OnDialogoSingleItemSelected, DialogoPerso.OnDialogoPersoListener,
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
-    Button btnDialogoInfo, btnDialogoSiNo, btnDialogoSiNoPerso, btnDialogoItems, btnDialogoSigle, btnDialogoHora, btnDialogoFecha, btnDialogoMultiple, btnDialogoPerso;
+    Button btnDialogoInfo, btnDialogoSiNo, btnDialogoSiNoPerso, btnDialogoItems, btnDialogoSigle,
+            btnDialogoHora, btnDialogoFecha, btnDialogoMultiple, btnDialogoPerso;
     TextView respuestaSINO, respuestaSINOPerso, respuestaItems, respuestaSingle, respuestaPerso;
 
     @Override
