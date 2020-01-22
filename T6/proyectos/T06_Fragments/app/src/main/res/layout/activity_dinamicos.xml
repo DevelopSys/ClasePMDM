@@ -4,11 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DinamicosActivity">
+    tools:context=".DinamicosActivity"
+    android:orientation="vertical"
+    android:background="@android:color/darker_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="if fg1"
+            android:id="@+id/button_ir_f1"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="if fg2"
+            android:id="@+id/button_ir_f2"
+            />
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frame_fragments_dinamicos"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:id="@+id/frame_sitio_fragments"/>
 
 </LinearLayout>

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private void instancias() {
         //fEstaticoUno = findViewById(R.id.fragment_estatico_uno);
         FragmentManager fm = getSupportFragmentManager();
+
         fEstaticoUno = fm.findFragmentById(R.id.fragment_estatico_uno);
         fEstaticoDos = fm.findFragmentById(R.id.fragment_estatico_dos);
     }
