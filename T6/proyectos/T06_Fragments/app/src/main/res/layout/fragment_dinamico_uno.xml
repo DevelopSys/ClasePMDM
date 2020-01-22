@@ -3,14 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:background="@android:color/holo_red_light">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:gravity="center"
         android:text="FRAGMENT DINAMICO UNO"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@android:color/white"
+        android:hint="introduce el nombre"
+        android:id="@+id/edit_f1"
+        android:layout_margin="20dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comunicar"
+        android:id="@+id/button_f1"/>
 
 </LinearLayout>
