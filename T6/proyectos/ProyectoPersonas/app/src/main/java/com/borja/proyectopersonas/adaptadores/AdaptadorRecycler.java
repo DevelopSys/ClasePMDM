@@ -54,7 +54,14 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Mi
     public void onBindViewHolder(@NonNull MiHolder holder, int position) {
         final Persona persona = listaPersonas.get(position);
         holder.getImageView().setImageResource(persona.getImagen());
-
+        holder.getToolbar().inflateMenu(R.menu.menu_item);
+        holder.getToolbar().setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
+        holder.getToolbar().setTitle(persona.getNombre());
 
 
     }
@@ -72,13 +79,18 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.Mi
 
         private ImageView imageView;
         private Button button;
+        private Toolbar toolbar;
 
         public MiHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imagen_item_recycler);
             button = itemView.findViewById(R.id.boton_item_recycler);
+            toolbar = itemView.findViewById(R.id.toobar_item);
         }
 
+        public Toolbar getToolbar() {
+            return toolbar;
+        }
 
         public ImageView getImageView() {
             return imageView;
