@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_competiciones"
+        android:title="Competiciones"
+        android:icon="@android:drawable/ic_lock_idle_alarm"/>
+
+    <item android:title="Ligas">
+
+        <menu>
+            <item
+                android:icon="@android:drawable/ic_dialog_map"
+                android:title="Española"
+                android:id="@+id/liga_esp_nav"/>
+            <item
+                android:icon="@android:drawable/ic_dialog_info"
+                android:title="Inglesa"
+                android:id="@+id/liga_ing_nav"/>/>
+            <item
+                android:icon="@android:drawable/ic_dialog_alert"
+                android:title="Alemana"
+                android:id="@+id/liga_ale_nav"/> />
+        </menu>
+
+    </item>
+
+    <item android:title="Activar busqueda"
+        app:actionViewClass="androidx.appcompat.widget.SwitchCompat"
+        android:id="@+id/switch_nav"
+        />
+
+
+</menu>
