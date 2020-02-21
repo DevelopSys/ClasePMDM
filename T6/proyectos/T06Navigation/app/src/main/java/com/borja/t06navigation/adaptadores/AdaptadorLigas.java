@@ -39,7 +39,8 @@ public class AdaptadorLigas extends RecyclerView.Adapter<AdaptadorLigas.MyHolder
         holder.getNombreLiga().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO cualdo pulso ejecuto la interfaz del callback para pasar al main el id de la
+                //TODO cualdo pulso ejecuto la interfaz de
+                // callback para pasar al main el id de la
                 // liga selaccionada
                 Toast.makeText(context,String.valueOf(liga.getId()), Toast.LENGTH_LONG).show();
             }

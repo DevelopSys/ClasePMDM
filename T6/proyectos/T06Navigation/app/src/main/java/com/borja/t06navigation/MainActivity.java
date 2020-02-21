@@ -51,42 +51,7 @@ public class MainActivity extends AppCompatActivity {
         instancias();
         acciones();
         //peticionInicial();
-    }
-
-    private void peticionInicial() {
-
-        JsonObjectRequest peticionJson = new JsonObjectRequest(Request.Method.GET,
-                urlPeticion, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                //Log.v("volley", response.toString());
-                try {
-                    JSONArray jsonArray = response.getJSONArray("leagues");
-                    for (int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                        String nombre = jsonObject.getString("strLeague");
-                        String deporte = jsonObject.getString("strSport");
-                        int id = jsonObject.getInt("idLeague");
-                        if (deporte.toLowerCase().equals("soccer")) {
-                            Liga liga = new Liga(id,nombre);
-                            listaLigas.add(liga);
-                        }
-                    }
-                    Log.v("volley", String.valueOf(listaLigas.size()));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.v("volley", "Error en la conexion");
-            }
-        });
-
-        Volley.newRequestQueue(getApplicationContext()).add(peticionJson);
-
+        Glide.with(getApplicationContext()).load("url").error(123).into(imageView);
     }
 
     private void acciones() {
@@ -110,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
                         textView.setText("competiciones");
                         break;
                     case R.id.liga_esp_nav:
+                        FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
+                        ft2.replace(R.id.sitio_fragments,new FragmentEquipos());
+                        ft2.commit();
                         textView.setText("la liga");
                         break;
                     case R.id.liga_ale_nav:
@@ -143,12 +111,5 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this
                 ,drawerLayout,toolbar,R.string.open, R.string.close);
-
-        Glide.with(getApplicationContext()).load("url").placeholder().error().into();
-
-
-
-
-
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/opcion1"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="Opcion1" />
+    <item
+        android:id="@+id/opcion2"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="Opcion2" />
+    <item
+        android:id="@+id/opcion3"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="Opcion3" />
+
+
+
+</menu>
