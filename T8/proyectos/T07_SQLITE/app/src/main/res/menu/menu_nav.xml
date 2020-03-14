@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Agregar" android:id="@+id/nav_agregar"/>
+    <item android:title="Borrar" android:id="@+id/nav_borrar"/>
+    <item android:title="Actualizar" android:id="@+id/nav_actualizar"/>
+    <item android:title="Consultar" android:id="@+id/nav_consultar"/>
+
+
+</menu>
