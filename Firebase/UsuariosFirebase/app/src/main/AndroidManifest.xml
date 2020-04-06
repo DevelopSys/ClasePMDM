@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".PrincipalActivity"></activity>
         <activity
-            android:name=".ui.login.InicioActivity"
+            android:name=".utils.login.InicioActivity"
             android:label="@string/title_activity_inicio" />
         <activity android:name=".LoginActivity">
             <intent-filter>
