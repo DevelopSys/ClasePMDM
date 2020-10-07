@@ -4,10 +4,11 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/texto_pantalla_dos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Segunda pantalla"
         android:gravity="center"
-        android:textSize="30sp"/>
+        android:text="Segunda pantalla"
+        android:textSize="30sp" />
 
 </LinearLayout>

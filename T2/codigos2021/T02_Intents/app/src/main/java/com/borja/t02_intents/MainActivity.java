@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.borja.t02_intents.utils.Persona;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button botonArranque, botonDatos;
+    private Button botonArranque, botonDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +36,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+        Intent intent = null;
+
         switch (v.getId()) {
             case R.id.boton_arrancar_pantalla:
-
-                Intent intent = new Intent(getApplicationContext(),SegundaActivity.class);
-                startActivity(intent);
+                intent = new Intent(getApplicationContext(), SegundaActivity.class);
 
                 break;
             case R.id.boton_arrancar_pantalla_dato:
+                intent = new Intent(getApplicationContext(), SegundaActivity.class);
+                /*intent.putExtra("nombre","Borja");
+                intent.putExtra("apellido","Martin");
+                intent.putExtra("edad",18);
+                intent.putExtra("experiencia",true);*/
+                intent.putExtra("persona", new Persona("Borja","Martin",18,true));
+
                 break;
+
         }
+
+            startActivity(intent);
+
+
     }
 }
