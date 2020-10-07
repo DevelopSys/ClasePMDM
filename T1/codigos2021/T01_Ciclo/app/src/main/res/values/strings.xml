@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">T01_Ciclo</string>
+    <string name="texto_boton1">Pulsar 1</string>
+    <string name="texto_boton2">Pulsar 2</string>
+</resources>

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">T01_bases</string>
+    <string name="app_name">Proyecto inicial</string>
+    <string name="saludo">Hola que tal estás</string>
 </resources>
