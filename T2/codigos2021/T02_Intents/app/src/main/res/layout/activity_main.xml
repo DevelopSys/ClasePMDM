@@ -18,17 +18,18 @@
 
         <Button
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:text="@string/texto_arranque_normal"
             android:id="@+id/boton_arrancar_pantalla"/>
 
         <Button
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:text="@string/texto_arranque_dato"
             android:id="@+id/boton_arrancar_pantalla_dato"/>
+       
 
     </LinearLayout>
 
