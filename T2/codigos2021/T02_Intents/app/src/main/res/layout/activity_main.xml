@@ -12,34 +12,95 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.3"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         android:weightSum="1">
 
         <Button
+            android:id="@+id/boton_arrancar_pantalla"
             android:layout_width="0dp"
-            android:layout_weight="0.3"
             android:layout_height="wrap_content"
-            android:text="@string/texto_arranque_normal"
-            android:id="@+id/boton_arrancar_pantalla"/>
+            android:layout_weight="0.3"
+            android:text="@string/texto_arranque_normal" />
 
         <Button
+            android:id="@+id/boton_arrancar_pantalla_dato"
             android:layout_width="0dp"
-            android:layout_weight="0.3"
             android:layout_height="wrap_content"
-            android:text="@string/texto_arranque_dato"
-            android:id="@+id/boton_arrancar_pantalla_dato"/>
-       
+            android:layout_weight="0.3"
+            android:text="@string/texto_arranque_dato" />
+
+        <Button
+            android:id="@+id/boton_arrancar_pantalla_resultado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="@string/texto_arranque_resultado" />
+
 
     </LinearLayout>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.7"
         android:gravity="center"
-        android:text="Aplicación cambio pantallas" />
+        android:text="Aplicación cambio pantallas" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apellido" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edad" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
