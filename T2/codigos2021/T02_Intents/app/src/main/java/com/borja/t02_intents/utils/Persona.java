@@ -5,8 +5,23 @@ import java.io.Serializable;
 public class Persona implements Serializable {
 
     private String nombre, apellido;
+    private int telefono;
     private int edad;
     private boolean experiencia;
+
+    public Persona(String nombre, String apellido, int telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
 
     public Persona(String nombre, String apellido, int edad, boolean experiencia) {
         this.nombre = nombre;

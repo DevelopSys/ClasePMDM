@@ -40,64 +40,59 @@
 
     </LinearLayout>
 
-    <!--<TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.7"
-        android:gravity="center"
-        android:text="Aplicación cambio pantallas" />-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.7"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre" />
-
             <EditText
+
+                android:drawableLeft="@drawable/nom"
+                android:id="@+id/edit_nombre"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="introduce nombre"
+                android:inputType="text" />
 
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Apellido" />
-
             <EditText
+
+                android:drawableLeft="@drawable/apell"
+                android:id="@+id/edit_apellido"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="  introduce el apellido"
+                android:inputType="text" />
 
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edad" />
-
             <EditText
+                android:drawableLeft="@drawable/telef"
+                android:id="@+id/edit_telefono"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="introduce telefono"
+                android:inputType="number"
+                android:maxLength="9" />
 
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>

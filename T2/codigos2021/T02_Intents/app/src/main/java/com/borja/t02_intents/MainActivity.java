@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.borja.t02_intents.utils.Persona;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button botonArranque, botonDatos, botonResultado;
+    private EditText editNombre, editApellido, editTelefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         botonArranque = findViewById(R.id.boton_arrancar_pantalla);
         botonDatos = findViewById(R.id.boton_arrancar_pantalla_dato);
         botonResultado = findViewById(R.id.boton_arrancar_pantalla_resultado);
+        editNombre = findViewById(R.id.edit_nombre);
+        editApellido = findViewById(R.id.edit_apellido);
+        editTelefono = findViewById(R.id.edit_telefono);
 
     }
 
@@ -45,10 +51,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == 0 && resultCode == 0) {
 
             Bundle bundle = data.getExtras();
-            int numero = bundle.getInt("dato1");
-            boolean cierto = bundle.getBoolean("dato2");
-            Log.v("arranque", "arranque y respuestado 0 "
-                    + String.valueOf(numero) + String.valueOf(cierto));
+            String dato = bundle.getString("dato_respuesta");
+            Toast.makeText(getApplicationContext(),dato,Toast.LENGTH_SHORT).show();
+            //boolean cierto = bundle.getBoolean("dato2");
+            /*Log.v("arranque", "arranque y respuestado 0 "
+                    + String.valueOf(numero) + String.valueOf(cierto));*/
 
         }
     }
@@ -66,12 +73,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.boton_arrancar_pantalla_dato:
                 intent = new Intent(getApplicationContext(), SegundaActivity.class);
-                /*intent.putExtra("nombre","Borja");
-                intent.putExtra("apellido","Martin");
-                intent.putExtra("edad",18);
-                intent.putExtra("experiencia",true);*/
-                intent.putExtra("persona", new Persona("Borja", "Martin", 18, true));
-                startActivity(intent);
+                String nombre = editNombre.getText().toString();
+                String apellido = editApellido.getText().toString();
+                int telefono ;
+                if (!editTelefono.getText().toString().equals("")) {
+                    telefono = Integer.parseInt(editTelefono.getText().toString());
+                } else {
+                    telefono = 0;
+                }
+
+                if (!nombre.isEmpty() && !apellido.isEmpty()) {
+                    intent.putExtra("persona", new Persona(nombre, apellido, telefono));
+                    startActivity(intent);
+                }
 
                 break;
 

@@ -41,7 +41,7 @@ public class SegundaActivity extends AppCompatActivity {
         boolean experienciaRecuperada = bundle.getBoolean("experiencia");*/
         Persona persona = (Persona) bundle.getSerializable("persona");
         texto.setText(persona.getNombre()+" "+persona.getApellido()+" "
-                +persona.getEdad()+" "+persona.isExperiencia());
+                +persona.getTelefono());
 
 
     }
