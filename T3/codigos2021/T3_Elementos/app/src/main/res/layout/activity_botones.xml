@@ -4,6 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".BotonesActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:text="Botones"
+        android:textSize="25sp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:stretchColumns="0">
+
+
+        <TableRow>
+
+            <TextView
+            android:gravity="center"
+            android:text="Normales" />
+
+            <Button
+                android:text="pulsar"
+                android:id="@+id/boton_obtener_datos"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+            android:gravity="center"
+            android:text="Con imagen" />
+
+            <ImageButton
+                android:text="pulsar"
+                android:src="@drawable/add"
+                android:background="@android:color/transparent"
+                android:id="@+id/boton_imagen"
+                />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+            android:gravity="center"
+            android:text="Toggle" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textOff=""
+                android:textOn=""
+                android:checked="false"
+                android:background="@drawable/fondo_toggle"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
 
 </LinearLayout>
