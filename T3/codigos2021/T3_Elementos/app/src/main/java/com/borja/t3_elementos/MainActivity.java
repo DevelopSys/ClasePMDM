@@ -1,0 +1,60 @@
+package com.borja.t3_elementos;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private Button btnBotones, btnOtros, btnListas, btnListasPerso;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        instancias();
+        acciones();
+    }
+
+    private void acciones() {
+        btnBotones.setOnClickListener(this);
+        btnOtros.setOnClickListener(this);
+        btnListas.setOnClickListener(this);
+        btnListasPerso.setOnClickListener(this);
+    }
+
+    private void instancias() {
+        btnBotones = findViewById(R.id.boton_act_botones);
+        btnOtros = findViewById(R.id.boton_act_otros);
+        btnListas = findViewById(R.id.boton_act_listas);
+        btnListasPerso = findViewById(R.id.boton_act_listas_perso);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Intent intent = null;
+
+        switch (v.getId()) {
+            case R.id.boton_act_botones:
+                intent = new Intent(getApplicationContext(),BotonesActivity.class);
+                break;
+            case R.id.boton_act_otros:
+                intent = new Intent(getApplicationContext(),OtrosActivity.class);
+                break;
+            case R.id.boton_act_listas:
+                intent = new Intent(getApplicationContext(),ListasActivity.class);
+                break;
+            case R.id.boton_act_listas_perso:
+                intent = new Intent(getApplicationContext(),ListasPersoActivity.class);
+
+                break;
+        }
+
+        startActivity(intent);
+
+    }
+}
