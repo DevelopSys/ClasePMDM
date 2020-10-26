@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListasPersoActivity"
-            ></activity>
+
+        <activity android:name=".ListasPersoActivity" />
         <activity android:name=".ListasActivity" />
         <activity android:name=".OtrosActivity" />
         <activity android:name=".BotonesActivity" />
