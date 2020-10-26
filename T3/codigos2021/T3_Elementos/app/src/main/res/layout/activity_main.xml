@@ -48,5 +48,12 @@
         style="@style/Widget.AppCompat.Button.Colored"
         />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/copa"
+        android:id="@+id/imagen_copa"
+        />
+
 
 </LinearLayout>

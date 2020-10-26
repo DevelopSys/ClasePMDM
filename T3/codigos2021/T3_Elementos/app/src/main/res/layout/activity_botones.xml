@@ -136,7 +136,7 @@
             <SeekBar
                 android:id="@+id/seekbar"
                 android:layout_span="2"
-                android:max="10"
+                android:max="100"
                 android:min="0" />
 
         </TableRow>

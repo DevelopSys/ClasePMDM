@@ -3,13 +3,16 @@ package com.borja.t3_elementos;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnBotones, btnOtros, btnListas, btnListasPerso;
+    private ImageView imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnOtros = findViewById(R.id.boton_act_otros);
         btnListas = findViewById(R.id.boton_act_listas);
         btnListasPerso = findViewById(R.id.boton_act_listas_perso);
+        imagen = findViewById(R.id.imagen_copa);
     }
 
     @Override
@@ -49,12 +53,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(getApplicationContext(),ListasActivity.class);
                 break;
             case R.id.boton_act_listas_perso:
-                intent = new Intent(getApplicationContext(),ListasPersoActivity.class);
-
+                //intent = new Intent(getApplicationContext(),ListasPersoActivity.class);
+                //imagen.setImageResource(R.drawable.add);
+                imagen.setImageDrawable(getResources().getDrawable(R.drawable.add,null));
                 break;
         }
 
-        startActivity(intent);
+        //startActivity(intent);
 
     }
 }
