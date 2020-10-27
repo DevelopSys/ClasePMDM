@@ -18,12 +18,15 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jugar"/>
+            android:text="Jugar"
+            android:id="@+id/boton_juego"
+            />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Practicar"
+            android:id="@+id/check_practicar"
             />
 
 
@@ -45,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
+            android:id="@+id/texto_record"
             android:textSize="40sp"
             android:layout_gravity="bottom"
             android:layout_marginBottom="125dp"

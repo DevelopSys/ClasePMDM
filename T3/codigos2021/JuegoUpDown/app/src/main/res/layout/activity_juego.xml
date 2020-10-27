@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cf"
+    android:id="@+id/fondo_cartas"
+    android:layout_margin="20dp"
     tools:context=".JuegoActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        >
+
 
         <ImageButton
             android:layout_width="0dp"
@@ -20,6 +18,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/fondo_down"
             android:scaleType="fitCenter"
+            android:id="@+id/boton_menor"
             android:background="@android:color/transparent"
             />
         <ImageButton
@@ -29,12 +28,9 @@
             android:layout_height="wrap_content"
             android:src="@drawable/fondo_up"
             android:scaleType="fitCenter"
+            android:id="@+id/boton_mayor"
             android:background="@android:color/transparent"
             />
-
-    </LinearLayout>
-
-
 
 
 </LinearLayout>
