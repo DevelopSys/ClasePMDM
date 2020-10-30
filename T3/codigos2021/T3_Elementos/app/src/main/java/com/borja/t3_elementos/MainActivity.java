@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(getApplicationContext(),ListasActivity.class);
                 break;
             case R.id.boton_act_listas_perso:
-                //intent = new Intent(getApplicationContext(),ListasPersoActivity.class);
+                intent = new Intent(getApplicationContext(),ListasPersoActivity.class);
                 //imagen.setImageResource(R.drawable.add);
-                imagen.setImageDrawable(getResources().getDrawable(R.drawable.add,null));
+                //imagen.setImageDrawable(getResources().getDrawable(R.drawable.add,null));
                 break;
         }
 
-        //startActivity(intent);
+        startActivity(intent);
 
     }
 }
