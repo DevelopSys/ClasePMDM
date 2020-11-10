@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.borja.t3_elementos.ListasPersoActivity;
@@ -47,6 +48,7 @@ public class AdaptadorLista extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         TextView textMarca, textModelo;
+        ImageView imagenCoche;
 
         convertView = LayoutInflater.from(context).inflate(R.layout.item_fila_lista
                 ,parent,false);
@@ -55,10 +57,17 @@ public class AdaptadorLista extends BaseAdapter {
 
         textMarca = convertView.findViewById(R.id.marca_lista_perso);
         textModelo = convertView.findViewById(R.id.modelo_lista_perso);
-
+        imagenCoche = convertView.findViewById(R.id.imagen_lista_perso);
 
         textMarca.setText(cocheActual.getMarca());
         textModelo.setText(cocheActual.getModelo());
+        if (cocheActual.getMarca().equals("Mercedes")){
+            imagenCoche.setImageResource(R.drawable.sport);
+        } else if (cocheActual.getMarca().equals("Audi") || cocheActual.getMarca().equals("Volvo")){
+            imagenCoche.setImageResource(R.drawable.luxury);
+        } else {
+            imagenCoche.setImageResource(R.drawable.normal);
+        }
 
         return convertView;
     }

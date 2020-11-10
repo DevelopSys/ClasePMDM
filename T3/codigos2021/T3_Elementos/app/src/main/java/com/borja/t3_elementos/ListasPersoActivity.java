@@ -3,9 +3,12 @@ package com.borja.t3_elementos;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.borja.t3_elementos.adaptadores.AdaptadorLista;
 import com.borja.t3_elementos.adaptadores.AdaptadorSpinner;
@@ -35,6 +38,17 @@ public class ListasPersoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listas_perso);
         instancias();
         rellenarListas();
+        acciones();
+    }
+
+    private void acciones() {
+        listViewCoches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Coche coche = (Coche) adaptadorListaPerso.getItem(position);
+                //Toast.makeText(getApplicationContext(),String.valueOf(position),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void rellenarListas() {
