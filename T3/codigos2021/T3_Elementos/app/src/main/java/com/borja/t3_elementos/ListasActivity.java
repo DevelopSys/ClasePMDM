@@ -40,7 +40,7 @@ public class ListasActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 int cvSelect = Integer.valueOf(adaptadorSpinner.getItem(spinner.getSelectedItemPosition()).toString());
-
+                
                 listaListView.clear();
                 adaptadorLista.notifyDataSetChanged();
                 for (Coche coche:listaCoches) {
