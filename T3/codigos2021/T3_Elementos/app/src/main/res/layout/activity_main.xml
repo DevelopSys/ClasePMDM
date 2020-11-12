@@ -48,12 +48,23 @@
         style="@style/Widget.AppCompat.Button.Colored"
         />
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/copa"
-        android:id="@+id/imagen_copa"
+        android:text="Recycler"
+        android:id="@+id/boton_act_recycler"
+        style="@style/Widget.AppCompat.Button.Colored"
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recycler coches"
+        android:id="@+id/boton_recycler_coches"
+        style="@style/Widget.AppCompat.Button.Colored"
+        />
+
+
 
 
 </LinearLayout>

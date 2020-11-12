@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".RecyclerCochesActivity"></activity>
+        <activity android:name=".RecyclerActivity" />
         <activity android:name=".ListasPersoActivity" />
         <activity android:name=".ListasActivity" />
         <activity android:name=".OtrosActivity" />
