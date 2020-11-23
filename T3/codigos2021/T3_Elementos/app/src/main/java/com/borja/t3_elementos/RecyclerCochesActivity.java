@@ -1,5 +1,6 @@
 package com.borja.t3_elementos;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.borja.t3_elementos.adaptadores.AdaptadorRecyclerCoches;
@@ -30,6 +33,25 @@ public class RecyclerCochesActivity extends AppCompatActivity
         rellenarLista();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_coches_recycler,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_recycler_numero_coches:
+                int numeroCoches = adaptador.getItemCount();
+                Toast.makeText(getApplicationContext(),
+                        "El numero de coches es: "+String.valueOf(numeroCoches),Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return true;
+    }
+
     private void rellenarLista() {
 
         recyclerView.setAdapter(adaptador);
@@ -45,9 +67,7 @@ public class RecyclerCochesActivity extends AppCompatActivity
         listaCoches.add(new Coche("Focus","Mercedes",400,0, R.drawable.focus));
         listaCoches.add(new Coche("Kuga","Mercedes",400,0, R.drawable.kuga));
         listaCoches.add(new Coche("Arteon","Mercedes",400,0, R.drawable.arteon));
-
         adaptador.notifyDataSetChanged();
-
 
     }
 

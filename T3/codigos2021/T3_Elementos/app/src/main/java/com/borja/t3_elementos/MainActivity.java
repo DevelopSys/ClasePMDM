@@ -1,13 +1,18 @@
 package com.borja.t3_elementos;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +25,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         instancias();
         acciones();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // pone un menú en la ActionBar
+        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // indica que opcion del menú (colocado en la ActionBar) ha sido seleccionada
+
+        Intent i = null;
+
+        switch (item.getItemId()) {
+            case R.id.menu_opcion_botones:
+                i = new Intent(getApplicationContext(), BotonesActivity.class);
+                break;
+            case R.id.menu_opcion_otros:
+                i = new Intent(getApplicationContext(), OtrosActivity.class);
+
+                break;
+            case R.id.menu_opcion_listas:
+                i = new Intent(getApplicationContext(), ListasActivity.class);
+
+                break;
+            case R.id.menu_opcion_listas_perso:
+                i = new Intent(getApplicationContext(), ListasPersoActivity.class);
+
+                break;
+            case R.id.menu_opcion_recycler:
+                i = new Intent(getApplicationContext(), RecyclerActivity.class);
+
+                break;
+            case R.id.menu_opcion_recycler_coche:
+                i = new Intent(getApplicationContext(), RecyclerCochesActivity.class);
+
+                break;
+        }
+
+        startActivity(i);
+
+        return true;
     }
 
     private void acciones() {

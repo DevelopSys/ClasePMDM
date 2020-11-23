@@ -14,7 +14,7 @@
         <activity android:name=".ListasPersoActivity" />
         <activity android:name=".ListasActivity" />
         <activity android:name=".OtrosActivity" />
-        <activity android:name=".BotonesActivity" />
+        <activity android:name=".BotonesActivity"  />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
