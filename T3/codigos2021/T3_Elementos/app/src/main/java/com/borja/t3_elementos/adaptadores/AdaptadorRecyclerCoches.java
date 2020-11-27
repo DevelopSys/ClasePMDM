@@ -17,16 +17,17 @@ import com.borja.t3_elementos.utils.Coche;
 
 import java.util.List;
 
-public class AdaptadorRecyclerCoches extends RecyclerView.Adapter<AdaptadorRecyclerCoches.MiHolderCoches> {
+public class AdaptadorRecyclerCoches extends
+        RecyclerView.Adapter<AdaptadorRecyclerCoches.MiHolderCoches> {
 
     Context context;
     List<Coche> listaCoches;
-    OnBotonRecyclerListener listener;
+    OnCocheRecyclerListener listener;
 
     public AdaptadorRecyclerCoches(Context context, List<Coche> listaCoches) {
         this.context = context;
         this.listaCoches = listaCoches;
-        this.listener = (OnBotonRecyclerListener) context;
+        listener = (OnCocheRecyclerListener) context;
     }
 
     @NonNull
@@ -47,15 +48,14 @@ public class AdaptadorRecyclerCoches extends RecyclerView.Adapter<AdaptadorRecyc
         holder.getBtnDetalle().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             // ejecuto algo algo
+                //onCocheSelected();
                 listener.onCocheSelected(cocheActual);
             }
         });
-
         holder.getBtnDetalle().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                listener.onCocheLongClick();
+                listener.onCocheLongSelected();
                 return true;
             }
         });
@@ -66,10 +66,9 @@ public class AdaptadorRecyclerCoches extends RecyclerView.Adapter<AdaptadorRecyc
         return listaCoches.size();
     }
 
-
-    public interface OnBotonRecyclerListener{
+    public interface OnCocheRecyclerListener{
         void onCocheSelected(Coche coche);
-        void onCocheLongClick();
+        void onCocheLongSelected();
     }
 
     class MiHolderCoches extends RecyclerView.ViewHolder {
