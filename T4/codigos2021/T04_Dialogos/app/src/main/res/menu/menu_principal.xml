@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Información"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:id="@+id/menu_informacion"
+        app:showAsAction="always"
+        />
+    <item android:title="Dialogos">
+
+        <menu>
+            <item android:title="Información"
+                android:id="@+id/menu_dialogo_info"/>
+
+            <item android:title="Confirmación"
+                android:id="@+id/menu_dialogo_confirmacion"/>
+            <item
+                android:id="@+id/menu_dialogo_lista"
+                android:title="Lista" />
+        </menu>
+
+    </item>
+
+</menu>
