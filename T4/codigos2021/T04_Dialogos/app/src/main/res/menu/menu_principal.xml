@@ -18,6 +18,14 @@
             <item
                 android:id="@+id/menu_dialogo_lista"
                 android:title="Lista" />
+
+            <item
+                android:id="@+id/menu_dialogo_single"
+                android:title="Lista selección simple" />
+
+            <item
+                android:id="@+id/menu_dialogo_multiple"
+                android:title="Lista selección multiple" />
         </menu>
 
     </item>
