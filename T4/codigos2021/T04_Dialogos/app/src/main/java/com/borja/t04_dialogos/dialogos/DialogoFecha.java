@@ -17,7 +17,8 @@ public class DialogoFecha extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
 
-        return new DatePickerDialog(getContext(), (DatePickerDialog.OnDateSetListener) getContext(),
+        return new DatePickerDialog(getContext(),
+                (DatePickerDialog.OnDateSetListener) getContext(),
                 Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH));

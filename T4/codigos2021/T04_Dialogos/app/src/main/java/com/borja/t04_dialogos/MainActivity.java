@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,9 +13,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.borja.t04_dialogos.dialogos.DialogoConfirmacion;
 import com.borja.t04_dialogos.dialogos.DialogoFecha;
+import com.borja.t04_dialogos.dialogos.DialogoHora;
 import com.borja.t04_dialogos.dialogos.DialogoInfoApp;
 import com.borja.t04_dialogos.dialogos.DialogoLista;
 import com.borja.t04_dialogos.dialogos.DialogoMultiple;
@@ -22,7 +25,8 @@ import com.borja.t04_dialogos.dialogos.DialogoSingle;
 import com.borja.t04_dialogos.utils.Equipo;
 
 public class MainActivity extends AppCompatActivity implements DialogoConfirmacion.OnDialogoConfirmacion,
-        DialogoLista.OnDialogoLista, DialogoSingle.OnDialogoSingle, DatePickerDialog.OnDateSetListener {
+        DialogoLista.OnDialogoLista, DialogoSingle.OnDialogoSingle,
+        DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
 
     TextView textView;
@@ -73,11 +77,19 @@ public class MainActivity extends AppCompatActivity implements DialogoConfirmaci
                 break;
 
             case R.id.menu_dialogo_multiple:
-                /*DialogoMultiple dialogoMultiple = new DialogoMultiple();
-                dialogoMultiple.show(getSupportFragmentManager(),"multiple");*/
+                DialogoMultiple dialogoMultiple = new DialogoMultiple();
+                dialogoMultiple.show(getSupportFragmentManager(), "multiple");
+                break;
 
+            case R.id.menu_dialogo_fecha:
                 DialogoFecha dialogoFecha = new DialogoFecha();
-                dialogoFecha.show(getSupportFragmentManager(),"fecha");
+                dialogoFecha.show(getSupportFragmentManager(), "fecha");
+                break;
+
+            case R.id.menu_dialogo_hora:
+
+                DialogoHora dialogoHora = new DialogoHora();
+                dialogoHora.show(getSupportFragmentManager(),"hora");
                 break;
         }
 
@@ -102,11 +114,15 @@ public class MainActivity extends AppCompatActivity implements DialogoConfirmaci
     @Override
     public void onDialogoSingleEquipoListener(Equipo equipo) {
         textView.setText(equipo.getNombre());
-
     }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        textView.setText(String.format("%d/%d/%d", i2, i1 + 1, i));
+    }
 
+    @Override
+    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+        textView.setText(String.format("%d;%d", i, i1));
     }
 }
