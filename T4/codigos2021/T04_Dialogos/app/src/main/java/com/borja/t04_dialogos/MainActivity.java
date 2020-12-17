@@ -15,21 +15,24 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.borja.t04_dialogos.dialogos.DialogoComunicar;
 import com.borja.t04_dialogos.dialogos.DialogoConfirmacion;
 import com.borja.t04_dialogos.dialogos.DialogoFecha;
 import com.borja.t04_dialogos.dialogos.DialogoHora;
 import com.borja.t04_dialogos.dialogos.DialogoInfoApp;
 import com.borja.t04_dialogos.dialogos.DialogoLista;
 import com.borja.t04_dialogos.dialogos.DialogoMultiple;
+import com.borja.t04_dialogos.dialogos.DialogoPersonalizado;
 import com.borja.t04_dialogos.dialogos.DialogoSingle;
 import com.borja.t04_dialogos.utils.Equipo;
 
 public class MainActivity extends AppCompatActivity implements DialogoConfirmacion.OnDialogoConfirmacion,
         DialogoLista.OnDialogoLista, DialogoSingle.OnDialogoSingle,
-        DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+        DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,
+        DialogoPersonalizado.OnDialogoPersoListener {
 
-
-    TextView textView;
+    private TextView textView;
+    private String user = "borja", pass = "1234";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,19 @@ public class MainActivity extends AppCompatActivity implements DialogoConfirmaci
             case R.id.menu_dialogo_hora:
 
                 DialogoHora dialogoHora = new DialogoHora();
-                dialogoHora.show(getSupportFragmentManager(),"hora");
+                dialogoHora.show(getSupportFragmentManager(), "hora");
+                break;
+
+            case R.id.menu_dialogo_perso:
+
+                //DialogoPersonalizado dialogoPersonalizado = new DialogoPersonalizado();
+                //dialogoPersonalizado.show(getSupportFragmentManager(), "perso");
+
+                //DialogoComunicar dialogoComunicar = DialogoComunicar.newInstance("Nuevo titulo");
+
+                DialogoComunicar dialogoComunicar = new DialogoComunicar();
+                dialogoComunicar.show(getSupportFragmentManager(),"comunicar");
+
                 break;
         }
 
@@ -125,4 +140,37 @@ public class MainActivity extends AppCompatActivity implements DialogoConfirmaci
     public void onTimeSet(TimePicker timePicker, int i, int i1) {
         textView.setText(String.format("%d;%d", i, i1));
     }
+
+    @Override
+    public void onDialogoPersoSelected(String user, String pass, boolean check) {
+        if (this.user.toLowerCase().equals(user.toLowerCase()) && this.pass.equals(pass)) {
+            if (check) {
+                textView.setText("Login correcto, usuario recordado");
+            } else {
+                textView.setText("Login correcto");
+            }
+        } else {
+            textView.setText("Login incorrecto");
+        }
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,6 +15,7 @@
         />
 
     <EditText
+        android:id="@+id/nombre_dialogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -24,6 +25,7 @@
         />
 
     <EditText
+        android:id="@+id/pass_dialogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -45,11 +47,13 @@
             android:layout_height="wrap_content"
             android:text="Recurdar usuario"/>
        <CheckBox
+           android:id="@+id/check_dialogo"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <Button
+        android:id="@+id/boton_dialogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Colored"

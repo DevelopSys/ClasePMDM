@@ -35,6 +35,10 @@
             <item
                 android:id="@+id/menu_dialogo_hora"
                 android:title="Diálogo hora" />
+
+            <item
+                android:id="@+id/menu_dialogo_perso"
+                android:title="Diálogo personalizado" />
         </menu>
 
     </item>
