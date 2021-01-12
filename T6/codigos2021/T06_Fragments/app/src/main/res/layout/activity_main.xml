@@ -10,18 +10,45 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <fragment
+    <!--<fragment
         android:id="@+id/fragemnt_estatico_uno"
         class="com.develop.t06_fragements.fragments.FragmentHeader"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2" />
+        android:layout_weight="0.2" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
 
-   <FrameLayout
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="0.8"
-       android:id="@+id/sitio_fragments"/>
+        <Button
+            android:id="@+id/button_ir_f1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="IrF1" />
+
+        <Button
+            android:id="@+id/button_ir_f2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="IrF2" />
+
+        <Button
+            android:id="@+id/button_ir_f3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="Ver pila" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/sitio_fragments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8" />
 
 
 </LinearLayout>
