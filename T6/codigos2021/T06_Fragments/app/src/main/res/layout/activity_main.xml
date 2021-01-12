@@ -4,36 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
     android:layout_margin="10dp"
     android:layout_weight="1"
-    android:background="@color/fondo_activity">
+    android:background="@color/fondo_activity"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
         android:id="@+id/fragemnt_estatico_uno"
-        class="com.develop.t06_fragements.fragments.FragmentHeader"/>
-
-    <LinearLayout
+        class="com.develop.t06_fragements.fragments.FragmentHeader"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
-        android:gravity="center">
+        android:layout_weight="0.2" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pasar activity"
-            android:id="@+id/button_pasar"/>
-
-    </LinearLayout>
-
-
-
-
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="0.8"
+       android:id="@+id/sitio_fragments"/>
 
 
 </LinearLayout>
