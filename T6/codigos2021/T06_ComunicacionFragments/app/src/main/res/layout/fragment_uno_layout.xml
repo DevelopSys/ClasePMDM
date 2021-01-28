@@ -13,6 +13,17 @@ android:background="@color/design_default_color_error"    >
         android:textColor="@color/white"
         />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce texto"
+        android:id="@+id/edit_fragment_uno"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_margin="20dp"
+        />
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

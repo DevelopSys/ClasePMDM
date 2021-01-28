@@ -37,4 +37,13 @@ public class MainActivity extends AppCompatActivity implements FragmentUno.OnFra
         fragmentTransaction.replace(R.id.sitio_fragments,new FragmentDos(),"fdos");
         fragmentTransaction.commit();
     }
+
+    @Override
+    public void onFragmentTextSelected(String texto) {
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.sitio_fragments,FragmentDos.newInstance(texto),"fdos");
+        fragmentTransaction.commit();
+    }
 }
