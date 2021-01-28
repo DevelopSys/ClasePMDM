@@ -14,13 +14,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.develop.t06_fragements.fragments.FragmentDos;
+import com.develop.t06_fragements.fragments.FragmentEstaticoFuncional;
 import com.develop.t06_fragements.fragments.FragmentUno;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements FragmentEstaticoFuncional.OnFragmentFuncionalListener {
 
-    private Button boton, bF1, bF2, bF3;
+    //private Button boton, bF1, bF2, bF3;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     int cuentaFg = 0;
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        instancias();
-        acciones();
+        //instancias();
+        ///acciones();
         // elemento que permite gestionar todos los fragments: más o menos el una pila
         //FragmentManager fm = getSupportFragmentManager();
         // elemento que pemite manejar los fragments. Entrando saliendo quitando
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //ft2.commit();
 
     }
-
+    /*
     private void acciones() {
         bF1.setOnClickListener(this);
         bF2.setOnClickListener(this);
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         fragmentTransaction.commit();
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -132,16 +133,73 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     "Te quedan "+getSupportFragmentManager().getBackStackEntryCount(),Toast.LENGTH_SHORT).show();
         }*/
     }
+
+    @Override
+    public void comunicarPulsacion(String tag) {
+        //Toast.makeText(getApplicationContext(),"Pulsado desde "+tag,Toast.LENGTH_SHORT).show();
+        // mostrar en el sitiofragments el elemento correspondiente
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fEncontrado = fragmentManager.findFragmentByTag(tag);
+
+        switch (tag) {
+            case "f1":
+                if (fEncontrado != null) {
+                    Log.v("fragments_ejecicio", fEncontrado.toString());
+                    fragmentTransaction.replace(R.id.sitio_fragments, fEncontrado);
+                    fragmentTransaction.addToBackStack(tag);
+                } else {
+                    Log.v("fragments_ejecicio", "no se encuentra");
+                    fragmentTransaction.add(R.id.sitio_fragments, new FragmentUno(), tag);
+                }
+                break;
+            case "f2":
+                if (fEncontrado != null) {
+                    Log.v("fragments_ejecicio", fEncontrado.toString());
+                    fragmentTransaction.replace(R.id.sitio_fragments, fEncontrado);
+                    fragmentTransaction.addToBackStack(tag);
+                    // solo si el estado no se encuentra
+                } else {
+                    Log.v("fragments_ejecicio", "no se encuentra");
+                    fragmentTransaction.add(R.id.sitio_fragments, new FragmentDos(), tag);
+                }
+                break;
+        }
+
+        fragmentTransaction.commit();
+        Log.v("cuenta_fg", String.valueOf(fragmentManager.getFragments().size()));
+        // fragmentTransaction.replace()
+
+
+    }
+
+    @Override
+    public void buscarFragment(String tag) {
+        Toast.makeText(getApplicationContext(), "Pulsado desde buscar: " + tag, Toast.LENGTH_SHORT).show();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fEncontrado = fragmentManager.findFragmentByTag(tag);
+        if (fEncontrado != null) {
+            Log.v("fragments_ejecicio", fEncontrado.toString());
+            fragmentTransaction.replace(R.id.sitio_fragments, fEncontrado);
+            fragmentTransaction.commit();
+        } else {
+            Log.v("fragments_ejecicio", "no se encuentra");
+
+        }
+
+
+    }
 }
 
 /*
-* PILA --> BackStack --> Estados {Como está la pila_: qu eelementos hay en la pila}
-* inicio pila: nada 0 estados
-* replace bf1: (solo con el replace, el addToBackStack "f1" {f1} y el commit) 1 estados --> fragment que se ve: f1
-* replace bf2: (solo con el replace, el addToBackStack "f2" {f2} y el commit) 2 estados --> fragment que se ve: f2
-* si el estado anterior es f2, no quiero hacer el addToBackStack
-* replace bf2: (solo con el replace, y el commit) 2 estados --> fragment que se ve: f2
-* si el estado anterior es f1, no quiero hacer el addToBackStack
-* * replace bf1: (solo con el replace, el addToBackStack "f1" {f1} y el commit) 3 estados --> fragment que se ve: f1
-* * * replace bf1: (solo con el replace, y el commit) 3 estados --> fragment que se ve: f1
+ * PILA --> BackStack --> Estados {Como está la pila_: qu eelementos hay en la pila}
+ * inicio pila: nada 0 estados
+ * replace bf1: (solo con el replace, el addToBackStack "f1" {f1} y el commit) 1 estados --> fragment que se ve: f1
+ * replace bf2: (solo con el replace, el addToBackStack "f2" {f2} y el commit) 2 estados --> fragment que se ve: f2
+ * si el estado anterior es f2, no quiero hacer el addToBackStack
+ * replace bf2: (solo con el replace, y el commit) 2 estados --> fragment que se ve: f2
+ * si el estado anterior es f1, no quiero hacer el addToBackStack
+ * * replace bf1: (solo con el replace, el addToBackStack "f1" {f1} y el commit) 3 estados --> fragment que se ve: f1
+ * * * replace bf1: (solo con el replace, y el commit) 3 estados --> fragment que se ve: f1
  * */

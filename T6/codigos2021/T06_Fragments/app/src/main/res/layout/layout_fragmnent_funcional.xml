@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <Button
+            android:id="@+id/button_ir_f1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="IrF1" />
+
+        <Button
+            android:id="@+id/button_ir_f2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="IrF2" />
+
+        <Button
+            android:id="@+id/button_ir_f3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="IrF3 " />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:hint="intro tag de fragment a buscar"
+            android:layout_height="match_parent"
+            android:id="@+id/edit_buscar"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent"
+            android:id="@+id/button_buscar_fg"
+            android:text="Ir"/>
+    </LinearLayout>
+
+</LinearLayout>
