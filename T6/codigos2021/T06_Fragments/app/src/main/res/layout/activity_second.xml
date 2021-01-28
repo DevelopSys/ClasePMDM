@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SecondActivity">
+    tools:context=".SecondActivity"
+    android:background="@color/fondo_activity">
 
-    <fragment
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:id="@+id/fragemnt_estatico_uno"
-        class="com.develop.t06_fragements.fragments.FragmentHeader"/>
+        android:layout_height="match_parent"
+        android:id="@+id/sitios_fragments_recycler"/>
 
 </LinearLayout>
