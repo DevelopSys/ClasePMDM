@@ -28,10 +28,14 @@ public class FragmentListaTec extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         listaInicial = new ArrayList<>();
-        listaInicial.add(new Tecnologia("Angular","FK JavaScript para aplicaciones SPA",R.drawable.angular));
-        listaInicial.add(new Tecnologia("MySQL","FK JavaScript para aplicaciones SPA",R.drawable.mysql));
-        listaInicial.add(new Tecnologia("Java","FK JavaScript para aplicaciones SPA",R.drawable.java));
-        listaInicial.add(new Tecnologia("HTML","FK JavaScript para aplicaciones SPA",R.drawable.html));
+        listaInicial.add(new Tecnologia("Angular","Framework JavaScript para aplicaciones SPA",R.drawable.angular));
+        listaInicial.add(new Tecnologia("MySQL","Lenguaje destinado a BD relacionales",R.drawable.mysql));
+        listaInicial.add(new Tecnologia("Java","Lenguaje multiplataforma",R.drawable.java));
+        listaInicial.add(new Tecnologia("HTML","Lenguaje destinado a creación de webs estáticas",R.drawable.html));
+        listaInicial.add(new Tecnologia("HTML","Lenguaje destinado a creación de webs dinámicas",R.drawable.js));
+        listaInicial.add(new Tecnologia("HTML","Lenguaje destinado a creación ejecuciones webs del lado del servidor",R.drawable.php));
+        listaInicial.add(new Tecnologia("HTML","Lenguaje destinado a creación ejecuciones del lado del servidor",R.drawable.python));
+        listaInicial.add(new Tecnologia("HTML","Lenguaje destinado a creación ejecuciones para la administración y monitorización de sistemas",R.drawable.powershell));
         adaptadorTec = new AdaptadorRecyclerTec(listaInicial,context);
     }
 
