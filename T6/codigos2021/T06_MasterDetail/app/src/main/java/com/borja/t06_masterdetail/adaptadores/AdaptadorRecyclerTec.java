@@ -24,12 +24,19 @@ public class AdaptadorRecyclerTec extends RecyclerView.Adapter<AdaptadorRecycler
     Context context;
     OnFragmentTecnologiaListener listener;
 
+
+
+
     public AdaptadorRecyclerTec(List<Tecnologia> listaTecnologias, Context context) {
         this.listaTecnologias = listaTecnologias;
         this.context = context;
         listener = (OnFragmentTecnologiaListener) context;
     }
 
+    public void addTecnologia(Tecnologia tecnologia){
+        this.listaTecnologias.add(tecnologia);
+        this.notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

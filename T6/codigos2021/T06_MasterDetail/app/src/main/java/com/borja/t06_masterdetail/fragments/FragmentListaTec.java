@@ -2,6 +2,7 @@ package com.borja.t06_masterdetail.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class FragmentListaTec extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        //Log.v("prueba", "ejecutado onAttach");
         listaInicial = new ArrayList<>();
         listaInicial.add(new Tecnologia("Angular","Framework JavaScript para aplicaciones SPA",R.drawable.angular));
         listaInicial.add(new Tecnologia("MySQL","Lenguaje destinado a BD relacionales",R.drawable.mysql));
@@ -39,16 +41,30 @@ public class FragmentListaTec extends Fragment {
         adaptadorTec = new AdaptadorRecyclerTec(listaInicial,context);
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //outState.putSerializable("adaptador",adaptadorTec);
+    }
+
+    public void addTecnologia(Tecnologia tecnologia){
+        //listaInicial.add(tecnologia);
+        //adaptadorTec.notifyDataSetChanged();
+        adaptadorTec.addTecnologia(tecnologia);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lista_tec_layout,container,false);
+        //Log.v("prueba", "ejecutado OnCreateView");
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         instancias();
         iniciarRecycler();
     }
