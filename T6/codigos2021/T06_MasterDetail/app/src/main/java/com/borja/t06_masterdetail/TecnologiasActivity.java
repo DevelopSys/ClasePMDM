@@ -1,11 +1,16 @@
 package com.borja.t06_masterdetail;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.borja.t06_masterdetail.adaptadores.AdaptadorRecyclerTec;
 import com.borja.t06_masterdetail.fragments.FragmentDetail;
@@ -17,6 +22,7 @@ public class TecnologiasActivity extends AppCompatActivity implements AdaptadorR
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FrameLayout sitioMaster, sitioDetail;
+    private Toolbar toolbar;
 
 
     @Override
@@ -24,6 +30,7 @@ public class TecnologiasActivity extends AppCompatActivity implements AdaptadorR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tecnologias);
         instancias();
+        personalizarToolBar();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -35,9 +42,31 @@ public class TecnologiasActivity extends AppCompatActivity implements AdaptadorR
         fragmentTransaction.commit();
     }
 
+    private void personalizarToolBar() {
+        this.setSupportActionBar(toolbar);
+    }
+
     private void instancias() {
         sitioDetail = findViewById(R.id.sitio_detail);
         sitioMaster = findViewById(R.id.sitio_master);
+        toolbar = findViewById(R.id.toolbar_support);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_add:
+                Toast.makeText(getApplicationContext(),"Pulsado add",Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return true;
     }
 
     @Override
