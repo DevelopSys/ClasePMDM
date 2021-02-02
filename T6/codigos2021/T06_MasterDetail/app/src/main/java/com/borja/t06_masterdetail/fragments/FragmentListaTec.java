@@ -45,12 +45,13 @@ public class FragmentListaTec extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         //outState.putSerializable("adaptador",adaptadorTec);
+        outState.putParcelableArrayList("lista",listaInicial);
     }
 
     public void addTecnologia(Tecnologia tecnologia){
-        //listaInicial.add(tecnologia);
-        //adaptadorTec.notifyDataSetChanged();
-        adaptadorTec.addTecnologia(tecnologia);
+        listaInicial.add(tecnologia);
+        adaptadorTec.notifyDataSetChanged();
+        //adaptadorTec.addTecnologia(tecnologia);
     }
 
     @Nullable
@@ -64,6 +65,8 @@ public class FragmentListaTec extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        listaInicial = savedInstanceState.getParcelableArrayList("lista");
 
         instancias();
         iniciarRecycler();

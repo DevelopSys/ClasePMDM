@@ -34,7 +34,7 @@ public class TecnologiasActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            Log.v("prueba", savedInstanceState.getString("prueba estado"));
+            //Log.v("prueba", savedInstanceState.getString("prueba estado"));
         }
         setContentView(R.layout.activity_tecnologias);
         instancias();
