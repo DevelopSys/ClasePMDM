@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_opcion_uno"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="Opción 1"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_opcion_dos"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Opción 2"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/menu_opcion_tres"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="Opción 3"
+        app:showAsAction="always"
+        />
+
+</menu>
