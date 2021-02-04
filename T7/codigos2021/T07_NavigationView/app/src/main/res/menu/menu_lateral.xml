@@ -20,4 +20,11 @@
         app:showAsAction="always"
         />
 
+    <item
+        android:id="@+id/menu_opcion_busqueda"
+        android:title="Buscar"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView"
+        />
+
 </menu>

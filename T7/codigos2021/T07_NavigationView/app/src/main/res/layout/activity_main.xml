@@ -8,7 +8,8 @@
     tools:context=".MainActivity">
 
 
-    <include layout="@layout/layout_main_content"/>
+
+    <include layout="@layout/layout_main_content" />
 
 
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">T07_NavigationView</string>
+    <string name="open">abierto</string>
+    <string name="close">cerrado</string>
 </resources>
