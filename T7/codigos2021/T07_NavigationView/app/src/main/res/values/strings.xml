@@ -2,4 +2,6 @@
     <string name="app_name">T07_NavigationView</string>
     <string name="open">abierto</string>
     <string name="close">cerrado</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

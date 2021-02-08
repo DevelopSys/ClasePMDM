@@ -5,18 +5,25 @@
     <item
         android:id="@+id/menu_opcion_uno"
         android:icon="@android:drawable/ic_input_add"
-        android:title="Opción 1"
+        android:title="Futbol"
         app:showAsAction="always"/>
     <item
         android:id="@+id/menu_opcion_dos"
         android:icon="@android:drawable/ic_menu_agenda"
-        android:title="Opción 2"
+        android:title="Peliculas"
         app:showAsAction="always"
         />
     <item
         android:id="@+id/menu_opcion_tres"
         android:icon="@android:drawable/ic_btn_speak_now"
-        android:title="Opción 3"
+        android:title="Juegos"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/menu_opcion_cuatro"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="Todos"
         app:showAsAction="always"
         />
 
