@@ -3,9 +3,11 @@ package com.borja.t08_firebase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -73,13 +75,17 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 Log.v("usuarios",usuario.getUid());
                 break;
             case R.id.button_login:
-                firebaseAuth.signInWithEmailAndPassword("bmartinh@gmail.com","password")
+                firebaseAuth.signInWithEmailAndPassword(editNombre.getText().toString(),editPass.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-                                    Log.v("usuario","login correcto");
-                                    Log.v("usuario",firebaseAuth.getCurrentUser().getUid());
+                                    //Log.v("usuario","login correcto");
+                                    //Log.v("usuario",firebaseAuth.getCurrentUser().getUid());
+                                    Intent intent =new Intent(RegistroActivity.this, BaseDatosActivity.class);
+                                    Log.v("usuarios",firebaseAuth.getCurrentUser().getUid());
+                                    intent.putExtra("uid",firebaseAuth.getCurrentUser().getUid());
+                                    startActivity(intent);
                                 } else {
                                     Log.v("usuario","login incorrecto");
                                 }
