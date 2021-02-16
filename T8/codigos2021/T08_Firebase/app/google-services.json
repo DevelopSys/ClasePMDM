@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356699425699",
+    "project_id": "iniciofb-154ad",
+    "storage_bucket": "iniciofb-154ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356699425699:android:dee964603a009e6581a816",
+        "android_client_info": {
+          "package_name": "com.borja.t08_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356699425699-rtkuc57ekn58mnlrb77bc3oqi7jn8eu3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3jejiCofF3J_y5yaugRklJLXT063rtJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356699425699-rtkuc57ekn58mnlrb77bc3oqi7jn8eu3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
