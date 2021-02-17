@@ -33,13 +33,21 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Añadir nodo principal"
+        android:text="Añadir objeto"
         android:id="@+id/button_nodo_secundario"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Añadir nodo principal"
-        android:id="@+id/button_nodo_buscar"/>
+        android:text="Obtener dato"
+        android:id="@+id/button_get_dato"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Obtener objeto"
+        android:id="@+id/button_get_objeto"/>
+
+
 
 </LinearLayout>
