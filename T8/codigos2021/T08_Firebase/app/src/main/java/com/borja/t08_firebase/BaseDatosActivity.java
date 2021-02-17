@@ -1,5 +1,6 @@
 package com.borja.t08_firebase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,13 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Iterator;
 
 public class BaseDatosActivity extends AppCompatActivity {
 
     private TextView textoUID;
-    private Button btnAddMain;
+    private Button btnAddMain, btnSecundario, btnBuscar;
     private FirebaseDatabase firebaseDatabase;
     private String recuperado;
 
@@ -32,10 +38,11 @@ public class BaseDatosActivity extends AppCompatActivity {
         }
 
         btnAddMain = findViewById(R.id.button_nodo_princial);
+        
         btnAddMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference nodoReferencia = firebaseDatabase.getReference("usuarios");
+                DatabaseReference nodoReferencia = firebaseDatabase.getReference("usuarios").child(recuperado);
                 nodoReferencia.setValue(recuperado);
             }
         });
