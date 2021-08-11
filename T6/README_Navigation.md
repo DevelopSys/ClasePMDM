@@ -31,3 +31,182 @@ Para poder empezar, es necesario plantear cual es la navegación que se quiere d
 
 ![navigation flow](./images/navigation.png)
 
+Una vez se tiene claro cual es el flujo de navegación los pasos a seguir son los siguientes
+
+** Para poder realizar todo esto es recomandable que los fragmnents ya estén creados previamente en su parte gráfica ya que la parte lógica se realizará más adelante.
+
+
+1. Crear el navigation graph
+
+Dentro de la carpeta res se crea un directorio de tipo navegación y dentro de este un archivo de navegación llamado nav_graph. Este archivo tendrá todos los fragment que serán cargados y tendrán la posibilidad de ser navegados desde la activity donde se aplique. Una vez creado el archivo XML se crean lo que se llaman Destination, que son los fragments que se quieren relacionar en un mismo espacio. Cada uno de los fragments creará una etiqueta donde se indica el id del fragment, la etiqueta que se utiliza, el layout que se le aplica y las acciones que se dan. Incialmente el archivo queda de la siguiente forma
+
+````
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.navegacionapp.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.navegacionapp.fragments.LogInFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+    </fragment>
+    <fragment
+        android:id="@+id/sigInFragment"
+        android:name="com.example.navegacionapp.fragments.SigInFragment"
+        android:label="fragment_signin"
+        tools:layout="@layout/fragment_signin" >
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.navegacionapp.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+</navigation>
+````
+
+Una vez esto está creado, es necesario crear ahora las relaciones entre pantallas. Para ello basta con seleccionar el origen y el destino. En el XML se creará una acción por cada transición con una id (muy importante). El archivo quedará de la siguiente forma
+
+![navigation flow](./images/graph.png)
+
+````
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.navegacionapp.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_sigInFragment"
+            app:destination="@id/sigInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.navegacionapp.fragments.LogInFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_logInFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sigInFragment"
+        android:name="com.example.navegacionapp.fragments.SigInFragment"
+        android:label="fragment_signin"
+        tools:layout="@layout/fragment_signin" >
+        <action
+            android:id="@+id/action_sigInFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.navegacionapp.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+</navigation>
+````
+
+2. Crear la dependencia en la activity
+
+En el XML de la Activity donde se van a mostrar los fragments, es necesario montar el sistema que permite mostrarlos  con la posibilidad de navegación que se ha configurado en el nav_graph. Para ello es necesario incluir un elemento de tipo NavHost. En realidad este elemento es una etiqueta fragment que tiene como tipo un NavigationHostFragment. El layout de la activity quedaria de la siguiente forma
+
+````
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
+    
+</LinearLayout>
+````
+
+Es importante resaltar varias cosas:
+
+- Es posible introducir más elementos ademas del NavHost como por ejemplo una barra de navegación lateral, menu lateral, toolbar, etc
+- El atributo name tiene que tener la clase asociada NavHostFragment
+- El atributo defaultNavHost tiene que estar marcado a true para que se pueda identificar que es el elemento principal de navegación
+- El atributo navGraph tiene que apuntar al fichero xml que se ha creado en el paso 1. De esta forma el sistema será capaz de interpretar las acciones y los posibles fragments a representar.
+
+3. Dentro de cada uno de los fragments aplicar la ligica de navegación con la pulsación de cada uno de los botones.
+
+Para ello es necesario inicializar cada uno de los botones de los fragments (o los elementos necesarios) para que se puedan dar las acciones. En el caso del fragment home será de la siguiente forma:
+
+````
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        bLogin = view.findViewById(R.id.boton_login_home);
+        bSigIn = view.findViewById(R.id.boton_sigin_home);
+        bLogin.setOnClickListener(this);
+        bSigIn.setOnClickListener(this);
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.boton_login_home:
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_logInFragment);
+                break;
+
+            case R.id.boton_sigin_home:
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_sigInFragment);
+                break;
+        }
+    }
+}
+```` 
+
+Lo más destaclable de este código es la parte de las acciones OnClick. Para poder navegar simplemente es necesario acceder al componente NavController mediante 
+
+````
+ Navigation.findNavController(view)
+````
+
+A este método es necesario pasarle la vista. En este caso al tratarse de un fragment tan solo se le pasa el método getView. Una vez accedido al elemento, solo es necesario ejecuatar el método navigate indicandole la acción que se quiere realizar (el id de las acciones que se han declarado en el paso 1)
+
+
+
+
