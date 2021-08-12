@@ -7,7 +7,7 @@ En lo que a manejo de fragment se supone, el componente en cuestion es el Naviga
 - Host: Se trata del elemento gráfico donde se ubicarán los fragmnets que estén definidos en el grafico de navegacion. Este host se define como etiqueta fragment dentro del xml de la activity donde se quiere se aparezcan los fragments
 - Controller: Se trata del elemento que posibilita la navegación entre los fragments definidos. Es importante tener en cuenta que la navegación se realiza mediante acciones, no llamando a los fragments como se verá más adelante. 
 
-## Configuraciones iniciales
+## Configuraciones necesarias
 
 Antes de empezar con la implementación de la solución propuesta, es necesario traer todas las librerias necesarias para poder funcionar. Por ello se implementarán las siguientes
 
@@ -207,6 +207,151 @@ Lo más destaclable de este código es la parte de las acciones OnClick. Para po
 
 A este método es necesario pasarle la vista. En este caso al tratarse de un fragment tan solo se le pasa el método getView. Una vez accedido al elemento, solo es necesario ejecuatar el método navigate indicandole la acción que se quiere realizar (el id de las acciones que se han declarado en el paso 1)
 
+Por último tan solo quedaría completar el resto de botones y sus acciones en el resto de fragments
 
+````
+FragmnetLogIn
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        blogIn = getView().findViewById(R.id.boton_login_login);
+        blogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getView()).navigate(R.id.action_logInFragment_to_mainFragment);
+            }
+        });
+    }
+````
 
+````
+FragmentSignIn
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        bSigIn = getView().findViewById(R.id.boton_sigin_sigin);
+        bSigIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getView()).navigate(R.id.action_sigInFragment_to_logInFragment);
+            }
+        });
+    }
+
+````
+
+## Manejo de la pila
+
+Por defecto cuando se navega a un fragment, se realiza un proceso de reemplazo del fragment anterior por el existente que se carga auntomáticamente en la pila. Este proceso puede ser controlado desde las propidades de las acciones, seleccionando las mismas y modificando los atributos pupUpTo y popUpToInclusive. Vamos a explicar como funcionan ambos atributos:
+
+- En el caso del atributo popUpTo, se indica cual es el fragment que será cargado en el caso de dar al boton de atras (acción de onBackPressed), dejando el resto de la pila descargada. De esta forma si realizamos una navegacion entre diferentes fragment y llegamos a uno que tiene configurado dicho atributo, al dar al boton de atrás se cargará en la pila solo el fragment indicado
+
+- En el caso del atributo popUpTo incluse tiene dos posibilidades. En el caso de configurarlo como true, aunque el atributo popUp esté configurado con algo el fragment actual será el último y al dar al botón atrás se cerrará la aplicación. En el caso de configurarlo como false, se cargará el fragment indicado en el atributo popUp pero no se mantendrá en la pila
+
+Además de este manajo de estado de la pila, se puede controlar las animaciones de entrada y salida de cada uno de las acciones indicando que animación se ejecutaré en cada momento.
+
+## Paso de parámetros
+
+A la hora de realizar el paso de parámetros es muy similar a como se realiza mediante el método tradicional. La diferencia está en que el número de parámetros y el tipo de los mismos debe ir marcado en el grafico de navegación. En cada acción se identifican cuales son los argumentos y de que tipo son. 
+
+````
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.navegacionapp.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+        <argument
+            android:name="pass"
+            app:argType="string" />
+    </fragment>
+````
+
+Un cosa importante es que siempre se definen dentro del fragment destino. En el caso de poder obtener valores nulos también se puede indicar. En la accion se puede indicar valores por defecto en el caso en el que no se pase nada por parámetros. Una vez configurado esto, en el orginen se debe crear un objeto de tipo Bunde donde se incrustan los argumentos con un par clave - valor como ya se explicó en el paso de parámetros tradicional. Por último este objeto de tipo Bundle se incluye en la navegación:
+
+````
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        blogIn = getView().findViewById(R.id.boton_login_login);
+        editPass = getView().findViewById(R.id.edit_password_login);
+        editUser = getView().findViewById(R.id.edit_user_login);
+        blogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nombre = editUser.getText().toString();
+                String pass = editPass.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("nombre",nombre);
+                bundle.putString("pass",pass);
+                Navigation.findNavController(getView()).navigate(R.id.action_logInFragment_to_mainFragment, bundle);
+            }
+        });
+    }
+````
+
+Para poder recurperar los elementos en destino y utilizarlos como se quiera, es necesario acceder a los agumentos tal y como se hace de la forma tradicional
+
+````
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getArguments()!=null){
+            nombre = getArguments().getString("nombre");
+            pass = getArguments().getString("pass");
+        }
+    }
+````
+
+En este ejemplo se ha realizado desde el método onAttach, pero se puede realizar desde el método que se quiera. 
+
+Adicionalmente, Jetpack ofrece la posibilidad de pasar argumentos de forma más segura (y sencilla) aprovechando lo que se llama save args. Esta funcionalidad se basa en las acciones y argumentos configurados anteriormente en el gráfico de navegación. Para que estos argumentos funcionen es necesario seguir los siguientes pasos
+
+1. Aplicar el pluggin save args dentro del gradle de módulo. Para ello es necesario incluir las siguientes lineas:
+
+````
+apply plugin: "androidx.navigation.safeargs"
+````
+
+2. Una vez incluido y sincronizado el gradle, es necesario hacer un rebuild del proyecot. Esto detectará cuales son todas las acciones declaradas en el gráfico y los argumentos necesarios entre ellas. Se crearán tantas clases XXXXDirection y XXXXArgs como acciones y argumentos se hayan creado. Estas clases realizan la lógica segura del paso de parámetros que explicamos en el paso tradicional.
+
+3. En la pantalla desde la que se quieren enviar parámetros es necesario utilizar las clases del punto anterior. En este ejemplo se pasan parámetros desde el Fragment LogIn hasta el Fragment Main
+
+````
+ blogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nombre = editUser.getText().toString();
+                 String pass = editPass.getText().toString();
+                 /*
+                Bundle bundle = new Bundle();
+                bundle.putString("nombre",nombre);
+                bundle.putString("pass",pass);
+Navigation.findNavController(getView()).navigate(R.id.action_logInFragment_to_mainFragment, bundle);*/
+                LogInFragmentDirections.ActionLogInFragmentToMainFragment action = LogInFragmentDirections.actionLogInFragmentToMainFragment(nombre,pass);
+                Navigation.findNavController(getView()).navigate(action);
+
+            }
+        });
+````
+
+Las lineas anteriores realizan el paso de parámetrosm indicando los elementos que se quieren pasar utilizando la acción correspondiente
+
+4. Para poder capturar los parámetros en el Fragment destino basta con acceder a la clase Arg creada, mediante el siguiente código:
+
+````
+   @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getArguments()!=null){
+        String nombre = MainFragmentArgs.fromBundle(getArguments()).getNombre();
+        String pass = MainFragmentArgs.fromBundle(getArguments()).getPass();
+        }
+    }
+````
+ 
+Con estos pasos los parámetros se pasan entre pantallas de forma más sencilla y segura. 
