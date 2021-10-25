@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">T03_Repaso</string>
+    <string name="boton">Click</string>
+    <string name="mensaje">Primera app adnroid</string>
+</resources>
