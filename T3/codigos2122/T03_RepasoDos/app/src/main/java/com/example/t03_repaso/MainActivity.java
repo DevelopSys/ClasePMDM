@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,11 +16,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        instancias();
+        acciones();
+
+        Log.v("ciclo_vida","Pasado por onCreate");
+    }
+
+    private void instancias(){
         botonUno = this.findViewById(R.id.boton_uno);
         botonDos = this.findViewById(R.id.boton_dos);
-        botonDos.setOnClickListener(this);
+    }
+
+    private void acciones(){
         botonUno.setOnClickListener(this);
-        Log.v("ciclo_vida","Pasado por onCreate");
+        botonDos.setOnClickListener(this);
     }
     
 
@@ -57,6 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.boton_uno:
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.mensaje_toast)+" b1",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.boton_dos:
+                Toast.makeText(getApplicationContext(), R.string.mensaje_toast+" b2",Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
