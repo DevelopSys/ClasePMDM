@@ -20,7 +20,12 @@
         android:id="@+id/boton_saludar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="@string/button_text" />
+
+    <Button
+        android:id="@+id/boton_saludar_dos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_text_dos" />
 
 </LinearLayout>

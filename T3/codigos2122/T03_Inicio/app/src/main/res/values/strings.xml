@@ -2,4 +2,8 @@
     <string name="app_name">T03_Inicio</string>
     <string name="main_text">Primera apñlicación de Android</string>
     <string name="button_text">Pulsar aquí</string>
+    <string name="button_text_dos">Pulsar aquí dos</string>
+    <string name="text_click_b1">Pulsado boton 1</string>
+    <string name="text_click_b2">Pulsado boton 2</string>
+
 </resources>
