@@ -43,7 +43,7 @@ public class ThirdActivity extends AppCompatActivity {
         textNombre = findViewById(R.id.nombre_recuperar);
         textApellido = findViewById(R.id.apellido_recuperar);
         textTelefono = findViewById(R.id.telefono_recuperar);
-        checkExperiencia = findViewById(R.id.check_experiencia);
+        checkExperiencia = findViewById(R.id.check_recuperar);
     }
 
     private void recuperarDatos() {
@@ -52,7 +52,7 @@ public class ThirdActivity extends AppCompatActivity {
         telefono = getIntent().getExtras().getInt("numero");
         experiencia = getIntent().getExtras().getBoolean("experiencia");*/
         personaRecuperada = (Persona) getIntent().getExtras().getSerializable("persona");
-        Log.v("test", nombre);
+        //Log.v("test", nombre);
 
     }
 }
