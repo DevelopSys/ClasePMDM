@@ -10,6 +10,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.t03_repaso.utils.Persona;
+
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editNombre, editApellido, editTelefono;
@@ -47,8 +49,12 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                     String apellido = editApellido.getText().toString();
                     int telefono = Integer.parseInt(editTelefono.getText().toString());
                     boolean experiencia = checkExperiencia.isChecked();
-                    Toast.makeText(getApplicationContext(),nombre+apellido+telefono+experiencia,Toast.LENGTH_SHORT).show();
+                    Persona persona = new Persona(nombre,apellido,telefono,experiencia);
+
+
+                    //Toast.makeText(getApplicationContext(),nombre+apellido+telefono+experiencia,Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(),ThirdActivity.class);
+                    intent.putExtra("persona",persona);
                     //intent.putExtra("nombre",nombre);
                     //intent.putExtra("apellido",apellido);
                     //intent.putExtra("telefono",telefono);
