@@ -97,13 +97,10 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==1){
-            Persona recuperada =
-                    (Persona)data.getExtras().getSerializable("persona");
-            Log.v("test",recuperada.getApellido());
-        } else {
-            Log.v("test","no tienes experiencia");
-
+        if (resultCode == 0){
+           imagenExperiencia.setImageResource(R.drawable.sinex);
+        } else if(resultCode ==1){
+            imagenExperiencia.setImageResource(R.drawable.conex);
         }
     }
 }

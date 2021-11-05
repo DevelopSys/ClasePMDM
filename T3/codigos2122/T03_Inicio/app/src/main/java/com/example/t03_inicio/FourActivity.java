@@ -66,8 +66,16 @@ public class FourActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent intent = new Intent();
         personaRecuperada.setApellido("ApellidoModificado");
+        personaRecuperada.setExperiencia(checkExperiencia.isChecked());
         intent.putExtra("persona",personaRecuperada);
-        setResult(1,intent);
+
+        if (!checkExperiencia.isChecked()){
+            setResult(0,intent);
+        } else {
+            setResult(1,intent);
+        }
+
+
         finish();
     }
 }
