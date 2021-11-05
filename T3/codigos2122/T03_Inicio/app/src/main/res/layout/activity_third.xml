@@ -70,5 +70,13 @@
         />
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imagen_experiencia"
+        android:src="@drawable/sinex"
+        android:scaleType="fitCenter"
+        />
+
 
 </LinearLayout>

@@ -1,20 +1,26 @@
 package com.example.t03_inicio;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.t03_inicio.utils.Persona;
 
 public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editNombre, editApellido, editTelefono;
     private CheckBox checkExperiencia;
     private Button botonRegistro;
+    private ImageView imagenExperiencia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         editTelefono = findViewById(R.id.edit_telefono);
         checkExperiencia = findViewById(R.id.check_experiencia);
         botonRegistro = findViewById(R.id.boton_registrar);
+        imagenExperiencia = findViewById(R.id.imagen_experiencia);
     }
 
     @Override
@@ -58,11 +65,21 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
 
                     Intent intent = new Intent(getApplicationContext(), FourActivity.class);
-                    intent.putExtra("nombre",nombre);
+                    /*intent.putExtra("nombre",nombre);
                     intent.putExtra("apellido",apellido);
                     intent.putExtra("experiencia",experiencia);
-                    intent.putExtra("telefono",telefono);
-                    startActivity(intent);
+                    intent.putExtra("telefono",telefono);*/
+                    intent.putExtra("persona",new Persona(nombre,apellido,telefono,experiencia));
+
+
+
+                    //startActivity(intent);
+                    if (experiencia){
+                        startActivityForResult(intent,1);
+                    } else {
+                        startActivityForResult(intent,0);
+                    }
+
 
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -73,6 +90,20 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
 
 
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==1){
+            Persona recuperada =
+                    (Persona)data.getExtras().getSerializable("persona");
+            Log.v("test",recuperada.getApellido());
+        } else {
+            Log.v("test","no tienes experiencia");
+
         }
     }
 }

@@ -98,6 +98,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/boton_constestar"
         android:text="Contestar" />
 
 </LinearLayout>

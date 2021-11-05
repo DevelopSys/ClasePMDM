@@ -1,9 +1,11 @@
 package com.example.t03_repaso;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -39,6 +41,26 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==1){
+
+            Log.v("test","arrancado con experiencia");
+            if (resultCode ==1) {
+                Persona persona = (Persona) data.getExtras().getSerializable("dato_contestar");
+                Log.v("test", persona.getApellido());
+            }
+        } else if(requestCode == 2) {
+            Log.v("test","arrancado sin experiencia");
+            if (resultCode ==1) {
+                Persona persona = (Persona) data.getExtras().getSerializable("dato_contestar");
+                Log.v("test", persona.getNombre());
+            }
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.boton_pasar:
@@ -59,7 +81,12 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                     //intent.putExtra("apellido",apellido);
                     //intent.putExtra("telefono",telefono);
                     //intent.putExtra("experiencia",experiencia);
-                    startActivity(intent);
+                    //startActivity(intent);
+                    if (experiencia) {
+                        startActivityForResult(intent, 1);
+                    } else{
+                        startActivityForResult(intent, 2);
+                    }
 
                 }else {
                     Toast.makeText(getApplicationContext(),"Faltan datos",Toast.LENGTH_SHORT).show();

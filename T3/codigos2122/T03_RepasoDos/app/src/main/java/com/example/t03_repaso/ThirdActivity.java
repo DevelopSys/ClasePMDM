@@ -2,14 +2,17 @@ package com.example.t03_repaso;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.t03_repaso.utils.Persona;
 
-public class ThirdActivity extends AppCompatActivity {
+public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String nombre, apellido;
     private int telefono;
@@ -18,6 +21,7 @@ public class ThirdActivity extends AppCompatActivity {
 
     private TextView textNombre, textApellido, textTelefono;
     private CheckBox checkExperiencia;
+    private Button btnContestar;
 
 
 
@@ -30,6 +34,12 @@ public class ThirdActivity extends AppCompatActivity {
             recuperarDatos();
             setearDatos();
         }
+        acciones();
+
+    }
+
+    private void acciones() {
+        btnContestar.setOnClickListener(this);
     }
 
     private void setearDatos() {
@@ -44,6 +54,7 @@ public class ThirdActivity extends AppCompatActivity {
         textApellido = findViewById(R.id.apellido_recuperar);
         textTelefono = findViewById(R.id.telefono_recuperar);
         checkExperiencia = findViewById(R.id.check_recuperar);
+        btnContestar = findViewById(R.id.boton_constestar);
     }
 
     private void recuperarDatos() {
@@ -54,5 +65,15 @@ public class ThirdActivity extends AppCompatActivity {
         personaRecuperada = (Persona) getIntent().getExtras().getSerializable("persona");
         //Log.v("test", nombre);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        // contestar a la activity que me ha arrancado
+        Intent i = new Intent();
+        personaRecuperada.setApellido("Apellido Modificado");
+        i.putExtra("dato_contestar",personaRecuperada);
+        setResult(1,i);
+        finish();
     }
 }
