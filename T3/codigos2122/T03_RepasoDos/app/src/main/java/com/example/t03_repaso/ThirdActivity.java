@@ -73,7 +73,12 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         Intent i = new Intent();
         personaRecuperada.setApellido("Apellido Modificado");
         i.putExtra("dato_contestar",personaRecuperada);
-        setResult(1,i);
+        if (checkExperiencia.isChecked()){
+            setResult(1,i);
+        } else {
+            setResult(0,i);
+        }
+
         finish();
     }
 }

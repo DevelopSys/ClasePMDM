@@ -49,4 +49,10 @@
         android:layout_height="wrap_content"
         android:text="Pasar datos"
         android:id="@+id/boton_pasar" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:id="@+id/imagen_experiencia" />
 </LinearLayout>

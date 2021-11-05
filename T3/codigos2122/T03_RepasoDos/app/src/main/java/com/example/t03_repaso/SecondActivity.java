@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.t03_repaso.utils.Persona;
@@ -19,6 +20,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     private EditText editNombre, editApellido, editTelefono;
     private CheckBox checkExperiencia;
     private Button botonPasar;
+    private ImageView imagenExperiencia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,20 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         editTelefono = findViewById(R.id.edit_telefono);
         checkExperiencia = findViewById(R.id.check_experiencia);
         botonPasar = findViewById(R.id.boton_pasar);
+        imagenExperiencia = findViewById(R.id.imagen_experiencia);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==1){
+        if (resultCode==0){
+            imagenExperiencia.setImageResource(R.drawable.sinex);
+        } else if (resultCode ==1){
+            imagenExperiencia.setImageResource(R.drawable.conex);
+        }
+
+        /*if (requestCode==1){
 
             Log.v("test","arrancado con experiencia");
             if (resultCode ==1) {
@@ -57,7 +66,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 Persona persona = (Persona) data.getExtras().getSerializable("dato_contestar");
                 Log.v("test", persona.getNombre());
             }
-        }
+        }*/
+
     }
 
     @Override
