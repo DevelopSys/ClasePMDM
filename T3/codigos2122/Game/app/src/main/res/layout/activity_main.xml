@@ -22,12 +22,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar" />
+            android:text="Iniciar"
+            android:id="@+id/btn_iniciar"/>
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Practicar?" />
+            android:text="¿Practicar?"
+            android:id="@+id/check_practica"/>
 
 
         <LinearLayout
@@ -47,7 +49,8 @@
                 android:layout_weight="0.3"
                 android:gravity="center"
                 android:text="1"
-                android:textSize="70sp" />
+                android:textSize="70sp"
+                android:id="@+id/texto_record"/>
 
             <ImageView
                 android:layout_width="0dp"

@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/c1"
         android:scaleType="fitXY"
+        android:id="@+id/fondo_carta"
         />
 
     <LinearLayout
@@ -27,6 +28,7 @@
             android:layout_weight="0.5"
             android:src="@drawable/background_up"
             android:scaleType="fitXY"
+            android:id="@+id/btn_up"
             />
         <ImageButton
             android:layout_width="match_parent"
@@ -34,6 +36,7 @@
             android:layout_weight="0.5"
             android:src="@drawable/background_down"
             android:scaleType="fitXY"
+            android:id="@+id/btn_down"
             />
 
     </LinearLayout>
