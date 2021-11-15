@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="spacing_gen" type="dimen">20dp</item>
+    <item name="spacing_element" type="dimen">30dp</item>
+
+</resources>
