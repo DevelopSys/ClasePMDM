@@ -13,12 +13,19 @@
        android:layout_weight="0.1"
        android:id="@+id/spinner_coches"/>
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8"
         android:gravity="center"
-        android:id="@+id/texto_coche" />
+        android:scaleType="fitCenter"
+        android:id="@+id/imagen_coche" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_anadir"
+        android:text="Añadir marca"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
