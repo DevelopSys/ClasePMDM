@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.listas.adapters.AdaptadorSpinner;
+import com.example.listas.utils.Coche;
 import com.example.listas.utils.Marca;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button botonComprobar, botonAnadir;
     private ArrayAdapter adaptadorSpinner;
     private ArrayList<Marca> listaMarcas;
+    private ArrayList<Coche> listaCoches;
+    private AdaptadorSpinner adaptadorSpinnerAvanzado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +43,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void iniciarElementos() {
-        spinnerCoches.setAdapter(adaptadorSpinner);
+        //spinnerCoches.setAdapter(adaptadorSpinner);
+        spinnerCoches.setAdapter(adaptadorSpinnerAvanzado);
+
     }
 
     private void iniciarListas() {
-        listaMarcas.add(new Marca("Mercedes",R.drawable.mercedes));
-        listaMarcas.add(new Marca("Audi",R.drawable.audi));
-        listaMarcas.add(new Marca("BMW",R.drawable.bmw));
-        listaMarcas.add(new Marca("VW",R.drawable.vw));
+
+        listaCoches.add(new Coche("C220", "Mercedes", R.drawable.mercedes, 200));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
 
     }
 
@@ -57,14 +85,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         botonComprobar = findViewById(R.id.boton_coches);
         botonAnadir = findViewById(R.id.boton_anadir);
         listaMarcas = new ArrayList();
+        listaCoches = new ArrayList<>();
         adaptadorSpinner = new ArrayAdapter(getApplicationContext(),
                 android.R.layout.simple_spinner_item, listaMarcas);
+        adaptadorSpinnerAvanzado = new AdaptadorSpinner(listaCoches, getApplicationContext());
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.boton_coches:
 
                 //textoCoches.setText(String.valueOf(spinnerCoches.getSelectedItem()));
@@ -82,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.boton_anadir:
 
-                listaMarcas.add(new Marca("MarcaNueva",R.drawable.def));
+                listaMarcas.add(new Marca("MarcaNueva", R.drawable.def));
                 adaptadorSpinner.notifyDataSetChanged();
 
 
