@@ -40,6 +40,26 @@
             android:id="@+id/texto_cv"
             android:textSize="30sp"
             />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introduce marca"
+            android:id="@+id/edit_marca"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introduce modelo"
+            android:id="@+id/edit_modelo"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introduce cv"
+            android:inputType="number"
+            android:id="@+id/edit_cv"
+            />
     </LinearLayout>
 
 

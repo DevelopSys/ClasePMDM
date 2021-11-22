@@ -24,6 +24,18 @@ public class AdaptadorSpinner extends BaseAdapter {
         this.context = context;
     }
 
+    public AdaptadorSpinner(Context context) {
+        this.listaCoches = new ArrayList<>();
+        this.context = context;
+    }
+
+    // añadir elemento;
+
+    public void addCoche(Coche coche){
+        listaCoches.add(coche);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return listaCoches.size();

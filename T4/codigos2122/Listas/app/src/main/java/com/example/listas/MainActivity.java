@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.listas.adapters.AdaptadorSpinner;
 import com.example.listas.utils.Coche;
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Spinner spinnerCoches;
     private TextView textoCoches, textoMarca, textoModelo, textoCv;
+    private EditText editMarca, editModelo, editCV;
 
     private ImageView imagenCoche;
     private Button botonComprobar, botonAnadir;
@@ -41,6 +45,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void acciones() {
         botonComprobar.setOnClickListener(this);
         botonAnadir.setOnClickListener(this);
+        spinnerCoches.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Algo seleccionado", Toast.LENGTH_SHORT).show();
+                Coche coche = (Coche) adaptadorSpinnerAvanzado.getItem(position);
+                textoMarca.setText(coche.getMarca());
+                textoModelo.setText(coche.getModelo());
+                textoCv.setText(String.valueOf(coche.getCv()));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getApplicationContext(), "No hay nada seleccionado", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     private void iniciarElementos() {
@@ -58,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void instancias() {
+        editCV = findViewById(R.id.edit_cv);
+        editMarca = findViewById(R.id.edit_marca);
+        editModelo = findViewById(R.id.edit_modelo);
         spinnerCoches = findViewById(R.id.spinner_coches);
         textoMarca = findViewById(R.id.texto_marca);
         textoModelo = findViewById(R.id.texto_modelo);
@@ -70,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listaCoches = new ArrayList<>();
         adaptadorSpinner = new ArrayAdapter(getApplicationContext(),
                 android.R.layout.simple_spinner_item, listaMarcas);
-        adaptadorSpinnerAvanzado = new AdaptadorSpinner(listaCoches, getApplicationContext());
+        adaptadorSpinnerAvanzado = new AdaptadorSpinner(getApplicationContext());
 
     }
 
@@ -97,8 +121,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.boton_anadir:
 
-                listaMarcas.add(new Marca("MarcaNueva", R.drawable.def));
-                adaptadorSpinner.notifyDataSetChanged();
+                //listaMarcas.add(new Marca("MarcaNueva", R.drawable.def));
+                //adaptadorSpinner.notifyDataSetChanged();
+                Coche cocheAdd = new Coche(editModelo.getText().toString(),
+                        editMarca.getText().toString(),
+                        R.drawable.def,
+                        Integer.valueOf(editCV.getText().toString()));
+
+                adaptadorSpinnerAvanzado.addCoche(cocheAdd);
+
+
+
 
 
                 break;
