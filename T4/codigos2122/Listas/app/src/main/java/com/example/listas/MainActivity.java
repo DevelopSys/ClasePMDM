@@ -19,7 +19,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner spinnerCoches;
-    private TextView textoCoches;
+    private TextView textoCoches, textoMarca, textoModelo, textoCv;
+
     private ImageView imagenCoche;
     private Button botonComprobar, botonAnadir;
     private ArrayAdapter adaptadorSpinner;
@@ -52,36 +53,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         listaCoches.add(new Coche("C220", "Mercedes", R.drawable.mercedes, 200));
         listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
-        listaCoches.add(new Coche("A6", "Audi", R.drawable.audi, 300));
+
 
     }
 
     private void instancias() {
         spinnerCoches = findViewById(R.id.spinner_coches);
+        textoMarca = findViewById(R.id.texto_marca);
+        textoModelo = findViewById(R.id.texto_modelo);
+        textoCv = findViewById(R.id.texto_cv);
         //textoCoches = findViewById(R.id.texto_coche);
-        imagenCoche = findViewById(R.id.imagen_coche);
+        //imagenCoche = findViewById(R.id.imagen_coche);
         botonComprobar = findViewById(R.id.boton_coches);
         botonAnadir = findViewById(R.id.boton_anadir);
         listaMarcas = new ArrayList();
@@ -103,10 +85,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 /*textoCoches.setText(
                         adaptadorSpinner.
                                 getItem(spinnerCoches.getSelectedItemPosition()).toString());*/
-                Marca marcaSeleccionada =
-                        (Marca) adaptadorSpinner.getItem(spinnerCoches.getSelectedItemPosition());
+                Coche coche =
+                        (Coche) adaptadorSpinnerAvanzado.getItem(spinnerCoches.getSelectedItemPosition());
 
-                imagenCoche.setImageResource(marcaSeleccionada.getImagen());
+                textoModelo.setText(coche.getModelo());
+                textoMarca.setText(coche.getMarca());
+                textoCv.setText(String.valueOf(coche.getCv()));
+                //imagenCoche.setImageResource(marcaSeleccionada.getImagen());
 
                 break;
 

@@ -11,15 +11,15 @@ import android.widget.TextView;
 import com.example.listas.R;
 import com.example.listas.utils.Coche;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdaptadorSpinner extends BaseAdapter {
 
-    private List<Coche> listaCoches;
+    private ArrayList<Coche> listaCoches;
     private Context context;
 
-
-    public AdaptadorSpinner(List<Coche> listaCoches, Context context) {
+    public AdaptadorSpinner(ArrayList<Coche> listaCoches, Context context) {
         this.listaCoches = listaCoches;
         this.context = context;
     }
@@ -39,19 +39,26 @@ public class AdaptadorSpinner extends BaseAdapter {
         return position;
     }
 
+    // tantas veces ejecutado como numero indique getCount()
+    // el parámetro position toma valores de 0 - getConunt()-1
+    // converView es la vista (ya rellena) que va a representar
+    // parent es el elemento donde se va a representar la vista
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        convertView = LayoutInflater.from(context).inflate(R.layout.spinner_layout,parent,false);
+        // traigo el xml al código
+        convertView = LayoutInflater.from(context).
+                inflate(R.layout.spinner_layout,parent,false);
 
-        ImageView imagenMarca = convertView.findViewById(R.id.imagen_fila_spinner);
-        TextView textModelo = convertView.findViewById(R.id.modelo_fila_spinner) ;
-        TextView textCv = convertView.findViewById(R.id.cv_fila_spinner);
+        TextView modelo = convertView.findViewById(R.id.modelo_fila_spinner);
+        TextView cv  = convertView.findViewById(R.id.cv_fila_spinner);;
+        ImageView imagen = convertView.findViewById(R.id.imagen_fila_spinner);;
 
-        Coche itemCoche = listaCoches.get(position);
-        imagenMarca.setImageResource(itemCoche.getImagen());
-        textModelo.setText(itemCoche.getModelo());
-        textCv.setText(String.valueOf(itemCoche.getCv()));
+        Coche itemAux = listaCoches.get(position);
+        modelo.setText(itemAux.getModelo());
+        cv.setText(String.valueOf(itemAux.getCv()));
+        imagen.setImageResource(itemAux.getImagen());
+
 
         return convertView;
     }
