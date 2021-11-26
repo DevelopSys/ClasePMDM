@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="pad_gen">10dp</dimen>
-    <dimen name="tam_img_adap">50dp</dimen>
-    <dimen name="tam_img_fila_adap">200dp</dimen>
-</resources>
