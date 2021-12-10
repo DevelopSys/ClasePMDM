@@ -9,13 +9,16 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.res.Configuration;
 import android.icu.lang.UCharacter;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.recycler.adapters.AdaptadorRecycler;
 import com.example.recycler.utils.Modelo;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements AdaptadorRecycler.OnModeloRecyclerListener {
 
     private RecyclerView recyclerView;
     private ArrayList<Modelo> listaModelos;
@@ -28,6 +31,16 @@ public class MainActivity extends AppCompatActivity {
         instancias();
         rellenarListas();
         asociarElementos();
+        acciones();
+    }
+
+    private void acciones() {
+        /*recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Pulsado",Toast.LENGTH_SHORT).show();
+            }
+        });*/
     }
 
     private void asociarElementos() {
@@ -52,7 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void instancias() {
         listaModelos = new ArrayList<>();
-        adaptadorRecycler = new AdaptadorRecycler(listaModelos,getApplicationContext());
+        adaptadorRecycler =
+                new AdaptadorRecycler(listaModelos,MainActivity.this);
         recyclerView = findViewById(R.id.recycler);
+    }
+
+    @Override
+    public void onModeloSelected(Modelo modelo) {
+        Toast.makeText(getApplicationContext(), modelo.getMarca(), Toast.LENGTH_SHORT).show();
     }
 }

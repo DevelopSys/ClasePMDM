@@ -22,10 +22,13 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.My
 
     private List<Modelo> listaElementos;
     private Context context;
+    private OnModeloRecyclerListener listener;
 
     public AdaptadorRecycler(List listaElementos, Context context) {
         this.listaElementos = listaElementos;
         this.context = context;
+        this.listener = (OnModeloRecyclerListener) context;
+
     }
 
     @NonNull
@@ -48,18 +51,18 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.My
         holder.getImagen().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,String.valueOf(modeloActual.getPotencia()),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,String.valueOf(modeloActual.getPotencia()),Toast.LENGTH_SHORT).show();
+                listener.onModeloSelected(modeloActual);
             }
         });
-
-
-
     }
 
     @Override
     public int getItemCount() {
         return listaElementos.size();
     }
+
+
 
     class MyHolder extends RecyclerView.ViewHolder {
 
@@ -96,6 +99,12 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.My
         public void setSubTitulo(TextView subTitulo) {
             this.subTitulo = subTitulo;
         }
+    }
+
+    public interface OnModeloRecyclerListener{
+
+        public void onModeloSelected(Modelo modelo);
+
     }
 
 }
