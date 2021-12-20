@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_op1"
+        android:title="Diálogo info" />
+    <item
+        android:id="@+id/menu_op2"
+        android:title="Diálogo confirmación"
+        />
+
+    <item
+        android:id="@+id/menu_op3"
+        android:title="Diálogo listas"
+        android:icon="@drawable/figth"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/menu_op4"
+        android:title="Menu 3"
+        android:icon="@drawable/twitter"
+        app:showAsAction="always"
+        />
+
+</menu>
