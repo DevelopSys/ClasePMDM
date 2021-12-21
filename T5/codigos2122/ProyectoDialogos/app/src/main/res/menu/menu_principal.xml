@@ -19,7 +19,7 @@
 
     <item
         android:id="@+id/menu_op4"
-        android:title="Menu 3"
+        android:title="Diálogo perso"
         android:icon="@drawable/twitter"
         app:showAsAction="always"
         />

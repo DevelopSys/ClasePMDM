@@ -12,8 +12,10 @@ import android.widget.Toast;
 import com.example.proyectodialogos.dialog.DialogoConfirmacion;
 import com.example.proyectodialogos.dialog.DialogoInformacion;
 import com.example.proyectodialogos.dialog.DialogoListas;
+import com.example.proyectodialogos.dialog.DialogoPersonalizado;
+import com.example.proyectodialogos.utils.Persona;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogoPersonalizado.OnDialogoPersoListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.menu_op4:
-                Toast.makeText(getApplicationContext(),"Opcion4", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Opcion4", Toast.LENGTH_SHORT).show();
+                DialogoPersonalizado dialogoPersonalizado = new DialogoPersonalizado();
+                dialogoPersonalizado.show(getSupportFragmentManager(),"personalizado");
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onPersonaSelected(Persona persona) {
+        Toast.makeText(getApplicationContext(),"comunicacion ok",Toast.LENGTH_SHORT).show();
     }
 }
