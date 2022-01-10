@@ -27,12 +27,29 @@ public class DialogoPersonalizado extends DialogFragment {
     private EditText editUser, editPass;
     private CheckBox checkSession;
     private OnDialogoPersoListener listener;
+    private String nombre;
+
+
+    public static DialogoPersonalizado newInstance(String nombre){
+
+        DialogoPersonalizado dialogoPersonalizado = new DialogoPersonalizado();
+        Bundle bundle = new Bundle();
+        bundle.putString("nombre",nombre);
+        dialogoPersonalizado.setArguments(bundle);
+        return dialogoPersonalizado;
+
+    }
+
+
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
         this.listener = (OnDialogoPersoListener) context;
+        if (this.getArguments()!=null){
+            this.nombre = this.getArguments().getString("nombre");
+        }
     }
 
     @NonNull
@@ -44,8 +61,14 @@ public class DialogoPersonalizado extends DialogFragment {
                 null,false);
         alertDialog.setView(view);
         instancias();
+        recuperarDatos();
         acciones();
         return alertDialog.create();
+    }
+
+    private void recuperarDatos() {
+
+        editUser.setText(nombre);
     }
 
     private void acciones() {
@@ -53,7 +76,8 @@ public class DialogoPersonalizado extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                listener.onPersonaSelected(new Persona("",""));
+                listener.onPersonaSelected(new Persona(editUser.getText().toString()
+                        ,editPass.getText().toString()));
                 //Toast.makeText(context,"Pulsado login", Toast.LENGTH_SHORT).show();
                 dismiss();
             }
@@ -61,6 +85,7 @@ public class DialogoPersonalizado extends DialogFragment {
     }
 
     private void instancias() {
+
         botonLogin = view.findViewById(R.id.boton_login);
         editPass = view.findViewById(R.id.edit_pass);
         editUser = view.findViewById(R.id.edit_usuario);

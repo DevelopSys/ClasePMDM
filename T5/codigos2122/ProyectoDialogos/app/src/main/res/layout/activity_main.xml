@@ -4,8 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height= "wrap_content"
+        android:id="@+id/text_nombre"
+        android:text="ESTO ES UN EJEMPLO"
+        />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height= "wrap_content"
+        android:id="@+id/text_pass"
+        android:text="ESTO ES UN EJEMPLO"
+
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:id="@+id/edit_enviar"
+        />
 </LinearLayout>

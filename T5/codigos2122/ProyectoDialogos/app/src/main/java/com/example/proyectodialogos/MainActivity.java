@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyectodialogos.dialog.DialogoConfirmacion;
@@ -17,10 +19,20 @@ import com.example.proyectodialogos.utils.Persona;
 
 public class MainActivity extends AppCompatActivity implements DialogoPersonalizado.OnDialogoPersoListener {
 
+    private TextView textNombre, textPass;
+    private EditText editComunicar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        instancias();
+    }
+
+    private void instancias() {
+        textNombre = findViewById(R.id.text_nombre);
+        textPass = findViewById(R.id.text_pass);
+        editComunicar = findViewById(R.id.edit_enviar);
     }
 
     @Override
@@ -53,8 +65,12 @@ public class MainActivity extends AppCompatActivity implements DialogoPersonaliz
                 break;
             case R.id.menu_op4:
                 //Toast.makeText(getApplicationContext(),"Opcion4", Toast.LENGTH_SHORT).show();
-                DialogoPersonalizado dialogoPersonalizado = new DialogoPersonalizado();
+                //DialogoPersonalizado dialogoPersonalizado = new DialogoPersonalizado();
+                String dato = editComunicar.getText().toString();
+                DialogoPersonalizado dialogoPersonalizado = DialogoPersonalizado.newInstance(dato);
                 dialogoPersonalizado.show(getSupportFragmentManager(),"personalizado");
+
+
                 break;
         }
         return true;
@@ -62,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements DialogoPersonaliz
 
     @Override
     public void onPersonaSelected(Persona persona) {
-        Toast.makeText(getApplicationContext(),"comunicacion ok",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"comunicacion ok",Toast.LENGTH_SHORT).show();
+        textNombre.setText(persona.getNombre());
+        textPass.setText(persona.getPass());
     }
 }
