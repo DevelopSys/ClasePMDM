@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@android:color/holo_purple"
+    android:padding="20dp"
     >
 
     <TextView
@@ -14,6 +15,18 @@
         android:gravity="center"
         android:textSize="40sp"
         android:textColor="@color/white"
+
         />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_fragment1"
+        android:hint="Enviar datos"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_comunicar_f1"
+        android:text="Comunicar"/>
 
 </LinearLayout>

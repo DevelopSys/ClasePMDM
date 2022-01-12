@@ -5,9 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2874275554936385" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.11956521739130435" />
-        <entry key="app/src/main/res/layout/fragment_dos_layout.xml" value="0.12284701114488349" />
+        <entry key="app/src/main/res/layout/fragment_dos_layout.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_estatico_layout.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/fragment_uno_layout.xml" value="0.12284701114488349" />
+        <entry key="app/src/main/res/layout/fragment_uno_layout.xml" value="0.335" />
       </map>
     </option>
   </component>

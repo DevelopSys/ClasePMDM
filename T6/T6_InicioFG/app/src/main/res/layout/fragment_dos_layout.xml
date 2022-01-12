@@ -14,6 +14,14 @@
         android:gravity="center"
         android:textSize="40sp"
         android:textColor="@color/white"
+        android:id="@+id/etiqueta_fragment2"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:id="@+id/boton_volver_fragment2"
         />
 
 </LinearLayout>

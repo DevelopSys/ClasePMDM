@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.t6_iniciofg.R;
 
-public class FragmentDos extends Fragment {
+public class FragmentDos extends Fragment  {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_dos_layout,container,false);
     }
+
+
 }
