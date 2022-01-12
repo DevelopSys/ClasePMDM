@@ -99,6 +99,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onDataSelected(String data) {
-        Toast.makeText(getApplicationContext(), "Dato comunicado "+data, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Dato comunicado "+data, Toast.LENGTH_SHORT).show();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.sitio_fragments, FragmentDos.newInstance(data),"f2");
+        if (fragmentManager.findFragmentByTag("f2")==null){
+            fragmentTransaction.addToBackStack("f2");
+        }
+        fragmentTransaction.commit();
+
+        //FragmentDos.newInstance(data);
     }
 }
