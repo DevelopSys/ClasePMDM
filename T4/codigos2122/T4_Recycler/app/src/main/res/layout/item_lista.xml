@@ -3,11 +3,13 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/linear_fila_recycler"
     android:padding="20dp">
 
     <ImageView
         android:layout_width="125dp"
         android:layout_height="125dp"
+        android:id="@+id/imagen_fila"
         android:src="@drawable/user_icon"/>
 
     <LinearLayout

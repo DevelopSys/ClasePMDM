@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +44,12 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.My
         Contacto contacto = listaContactos.get(position);
         holder.textoNombre.setText(contacto.getNombre());
         holder.textoTelefono.setText(String.valueOf(contacto.getTelefono()));
-
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, contacto.getDireccion(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -53,11 +61,14 @@ public class AdaptadorRecycler extends RecyclerView.Adapter<AdaptadorRecycler.My
     class MyHolder extends RecyclerView.ViewHolder {
 
         TextView textoNombre, textoTelefono;
-
+        ImageView imagen;
+        LinearLayout linearLayout;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             textoNombre = itemView.findViewById(R.id.nombre_fila);
             textoTelefono = itemView.findViewById(R.id.telefono_fila);
+            imagen = itemView.findViewById(R.id.imagen_fila);
+            linearLayout = itemView.findViewById(R.id.linear_fila_recycler);
         }
     }
 }

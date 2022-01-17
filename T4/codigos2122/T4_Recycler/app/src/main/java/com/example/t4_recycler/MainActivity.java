@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.t4_recycler.adaptadores.AdaptadorRecycler;
 import com.example.t4_recycler.utils.Contacto;
@@ -27,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         instancias();
         rellenarLista();
         asociarListas();
+        acciones();
+    }
+
+    private void acciones() {
+
     }
 
     private void asociarListas() {
