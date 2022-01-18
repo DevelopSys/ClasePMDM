@@ -11,5 +11,8 @@
        android:layout_height="match_parent"
        android:id="@+id/sitio_fragments"
        />
+   <fragment
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"></fragment>
 
 </LinearLayout>

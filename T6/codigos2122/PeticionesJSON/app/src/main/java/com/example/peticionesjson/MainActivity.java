@@ -6,18 +6,22 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.peticionesjson.adaptadores.AdaptadorEquipos;
+import com.example.peticionesjson.fragments.FragmentDetalle;
 import com.example.peticionesjson.fragments.FragmentLista;
+import com.example.peticionesjson.utils.Equipo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdaptadorEquipos.OnEquipoListener {
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -65,6 +69,15 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
 
+    @Override
+    public void onEquipoSelected(Equipo equipo) {
+        //Toast.makeText(getApplicationContext(), equipo.getId(), Toast.LENGTH_SHORT).show();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.sitio_fragments, new FragmentDetalle());
+        fragmentTransaction.addToBackStack("fdetalle");
+        fragmentTransaction.commit();
     }
 }
