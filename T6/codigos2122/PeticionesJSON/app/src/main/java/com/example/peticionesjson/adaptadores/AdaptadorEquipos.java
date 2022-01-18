@@ -20,9 +20,14 @@ public class AdaptadorEquipos extends RecyclerView.Adapter<AdaptadorEquipos.MyHo
     private ArrayList<Equipo> listaEquipos;
     private Context context;
 
-    public AdaptadorEquipos(ArrayList listaEquipos, Context context) {
-        this.listaEquipos = listaEquipos;
+    public AdaptadorEquipos(Context context) {
+        this.listaEquipos = new ArrayList<>();
         this.context = context;
+    }
+
+    public void agregarEquipo (Equipo equipo){
+        this.listaEquipos.add(equipo);
+        this.notifyDataSetChanged();
     }
 
     @NonNull
