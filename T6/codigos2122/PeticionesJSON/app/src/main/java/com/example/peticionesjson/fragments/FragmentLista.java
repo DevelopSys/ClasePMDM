@@ -78,7 +78,8 @@ public class FragmentLista extends Fragment {
                 String estadio = equipo.getString("strStadium");
                 String imagen = equipo.getString("strTeamBadge");
                 String id = equipo.getString("idTeam");
-                Equipo equipoActual = new Equipo(nombre,estadio, imagen,id);
+                String detalle = equipo.getString("strDescriptionEN");
+                Equipo equipoActual = new Equipo(nombre,estadio, imagen,id,detalle);
                 adaptadorEquipos.agregarEquipo(equipoActual);
 
             }

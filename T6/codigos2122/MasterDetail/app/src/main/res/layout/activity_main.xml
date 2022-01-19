@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-   <FrameLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/sitio_fragments"
-       />
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_purple"
+        android:id="@+id/sitio_master"
+        />
 
 </LinearLayout>

@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements AdaptadorEquipos.
         //Toast.makeText(getApplicationContext(), equipo.getId(), Toast.LENGTH_SHORT).show();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.sitio_fragments, new FragmentDetalle());
+        fragmentTransaction.replace(R.id.sitio_fragments, FragmentDetalle.newInstance(equipo));
         fragmentTransaction.addToBackStack("fdetalle");
         fragmentTransaction.commit();
     }

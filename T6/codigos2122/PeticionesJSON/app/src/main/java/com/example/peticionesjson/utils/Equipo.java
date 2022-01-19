@@ -1,14 +1,25 @@
 package com.example.peticionesjson.utils;
 
-public class Equipo {
+import java.io.Serializable;
 
-    private String nombre, estadio, imagen, id;
+public class Equipo implements Serializable {
 
-    public Equipo(String nombre, String estadio, String imagen, String id) {
+    private String nombre, estadio, imagen, id, detalle;
+
+    public Equipo(String nombre, String estadio, String imagen, String id, String detalle) {
         this.nombre = nombre;
         this.estadio = estadio;
         this.imagen = imagen;
         this.id = id;
+        this.detalle = detalle;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
     public String getNombre() {
