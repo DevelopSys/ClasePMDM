@@ -1,5 +1,6 @@
 package com.example.masterdetail.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,13 @@ public class FragmentMaster extends Fragment {
     private ListView listView;
     private ArrayAdapter adapter;
     private ArrayList datos;
+    private OnElementoListener listener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        listener = (OnElementoListener) context;
+    }
 
     @Nullable
     @Override
@@ -47,8 +55,13 @@ public class FragmentMaster extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), listView.getAdapter().getItem(i).toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), listView.getAdapter().getItem(i).toString(), Toast.LENGTH_SHORT).show();
+                listener.onElementoSelected((String) listView.getItemAtPosition(i));
             }
         });
+    }
+
+    public interface OnElementoListener{
+        void onElementoSelected(String elemento);
     }
 }

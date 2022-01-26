@@ -11,7 +11,7 @@ import android.widget.ListView;
 import com.example.masterdetail.fragments.FragmentDetail;
 import com.example.masterdetail.fragments.FragmentMaster;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentMaster.OnElementoListener {
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -34,7 +34,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onMasterSelected(String s){
+    @Override
+    public void onElementoSelected(String elemento) {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        if (frameDetalle!=null){
+
+
+            fragmentTransaction.replace(R.id.sitio_detail, FragmentDetail.newInstance(elemento));
+        } else {
+
+            fragmentTransaction.replace(R.id.sitio_master, FragmentDetail.newInstance(elemento));
+            fragmentTransaction.addToBackStack(null);
+        }
+
+        fragmentTransaction.commit();
+    }
+
+    /*public void onMasterSelected(String s){
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         if (frameDetalle!=null){
@@ -47,5 +64,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fragmentTransaction.commit();
-    }
+    */
 }
