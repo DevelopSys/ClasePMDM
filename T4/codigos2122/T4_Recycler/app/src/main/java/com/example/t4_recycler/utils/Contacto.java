@@ -1,6 +1,8 @@
 package com.example.t4_recycler.utils;
 
-public class Contacto {
+import java.io.Serializable;
+
+public class Contacto implements Serializable {
 
     private String nombre, apellido, direccion;
     private int telefono, imagen;

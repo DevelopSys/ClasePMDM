@@ -6,16 +6,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.t4_recycler.adaptadores.AdaptadorRecycler;
 import com.example.t4_recycler.utils.Contacto;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdaptadorRecycler.OnContantoRecyclerListener {
 
     private RecyclerView recyclerView;
     private AdaptadorRecycler adaptadorRecycler;
@@ -28,12 +30,9 @@ public class MainActivity extends AppCompatActivity {
         instancias();
         rellenarLista();
         asociarListas();
-        acciones();
-    }
-
-    private void acciones() {
 
     }
+
 
     private void asociarListas() {
         recyclerView.setAdapter(adaptadorRecycler);
@@ -66,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         listaContactos = new ArrayList<>();
         adaptadorRecycler = new AdaptadorRecycler(listaContactos,MainActivity.this);
+
+    }
+
+
+    @Override
+    public void onContactoSelected(Contacto contacto) {
+        Toast.makeText(getApplicationContext(),String.valueOf(contacto.getTelefono()),Toast.LENGTH_SHORT).show();
+
 
     }
 }
