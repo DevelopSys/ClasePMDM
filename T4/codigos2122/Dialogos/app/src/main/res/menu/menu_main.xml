@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Opcion 1"
+        android:id="@+id/menu_op1"
+        />
+    <item android:title="Opcion 2"
+        android:id="@+id/menu_op2"
+        />
+    <item android:title="Opcion 3"
+        android:icon="@android:drawable/ic_dialog_map"
+        app:showAsAction="ifRoom"
+        android:id="@+id/menu_op3"
+        />
+    <item android:title="Opcion 4"
+        android:id="@+id/menu_op4"
+        android:icon="@android:drawable/ic_dialog_alert"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
