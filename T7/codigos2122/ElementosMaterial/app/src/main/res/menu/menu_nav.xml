@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Opcion 1"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:id="@+id/menu_nav_op1"
+        />
+
+    <group>
+        <item android:title="Opcion 2"
+            android:id="@+id/menu_nav_op2"
+            ></item>
+        <item android:title="Opcion 3"
+            android:id="@+id/menu_nav_op3"
+            ></item>
+
+    </group>
+
+    <item android:title="Navegacion">
+
+        <menu>
+            <item android:title="Fragment 1"
+                android:icon="@android:drawable/ic_dialog_email"
+                android:id="@+id/menu_nav_f1"
+                />
+
+            <item android:title="Fragment 2"
+                android:icon="@android:drawable/ic_dialog_info"
+                android:id="@+id/menu_nav_f2"
+                />
+
+        </menu>
+
+    </item>
+
+
+</menu>
