@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.dialogos.dialogos.DialogoConfirmacion;
 import com.example.dialogos.dialogos.DialogoInformacion;
+import com.example.dialogos.dialogos.DialogoListas;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 dialogoInformacion.show(fragmentManager,"info");
                 break;
             case R.id.menu_op2:
-                Toast.makeText(getApplicationContext(), "Opcion 2", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Opcion 2", Toast.LENGTH_SHORT).show();
+                DialogoConfirmacion dialogoConfirmacion = new DialogoConfirmacion();
+                dialogoConfirmacion.show(fragmentManager,"confirm");
                 break;
             case R.id.menu_op3:
-                Toast.makeText(getApplicationContext(), "Opcion 3", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Opcion 3", Toast.LENGTH_SHORT).show();
+                DialogoListas dialogoListas = new DialogoListas();
+                dialogoListas.show(fragmentManager, "lists");
                 break;
             case R.id.menu_op4:
                 Toast.makeText(getApplicationContext(), "Opcion 4", Toast.LENGTH_SHORT).show();
