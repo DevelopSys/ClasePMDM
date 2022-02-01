@@ -3,6 +3,7 @@ package com.example.elementosmaterial;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,10 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private Button boton;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         instancias();
         configurarToolbar();
         acciones();
+
+        navigationView.getHeaderView(0).findViewById(R.id.letra_header_nav);
+        navigationView.getHeaderView(0).findViewById(R.id.spinner_header_nav);
     }
 
     private void acciones() {
@@ -44,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configurarToolbar() {
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("Nuevo titulo");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Nuevo titulo");
     }
 
     private void instancias() {
-        //toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
     }
 
     @Override
