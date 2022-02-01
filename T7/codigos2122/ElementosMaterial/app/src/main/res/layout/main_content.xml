@@ -11,6 +11,10 @@
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
         android:id="@+id/toolbar" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sitio_fragment"/>
 
 
 
