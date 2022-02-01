@@ -1,6 +1,7 @@
 package com.example.elementosmaterial;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -29,8 +31,10 @@ public class MainActivity extends AppCompatActivity {
         configurarToolbar();
         acciones();
 
-        navigationView.getHeaderView(0).findViewById(R.id.letra_header_nav);
-        navigationView.getHeaderView(0).findViewById(R.id.spinner_header_nav);
+        //navigationView.getHeaderView(0).findViewById(R.id.letra_header_nav);
+        //navigationView.getHeaderView(0).findViewById(R.id.spinner_header_nav);
+
+
     }
 
     private void acciones() {
@@ -59,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void instancias() {
         toolbar = findViewById(R.id.toolbar);
+        configurarToolbar();
+        navigationView = findViewById(R.id.navigation_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                0,
+                0);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
     }
 
     @Override
@@ -70,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_pref_1:
                 Toast.makeText(getApplicationContext(), "Opcion 1", Toast.LENGTH_SHORT).show();
                 break;
@@ -80,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+
 }

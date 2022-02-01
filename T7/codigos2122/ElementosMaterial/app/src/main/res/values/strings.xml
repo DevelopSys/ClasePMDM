@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ElementosMaterial</string>
+    <string name="open">Abierto</string>
+    <string name="close">Cerrado</string>
 </resources>
