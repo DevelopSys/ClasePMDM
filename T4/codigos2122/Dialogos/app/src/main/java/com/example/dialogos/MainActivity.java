@@ -13,8 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.dialogos.dialogos.DialogoConfirmacion;
 import com.example.dialogos.dialogos.DialogoInformacion;
 import com.example.dialogos.dialogos.DialogoListas;
+import com.example.dialogos.dialogos.DialogoLogin;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogoLogin.OnDialogoListener {
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -60,10 +61,18 @@ public class MainActivity extends AppCompatActivity {
                 dialogoListas.show(fragmentManager, "lists");
                 break;
             case R.id.menu_op4:
-                Toast.makeText(getApplicationContext(), "Opcion 4", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), "Opcion 4", Toast.LENGTH_SHORT).show();
+                DialogoLogin dialogoLogin = new DialogoLogin();
+                dialogoLogin.show(fragmentManager,"login");
+
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDialogoSelected(String s) {
+        // escribo las acciones que quiero que se ejecuten
     }
 }
