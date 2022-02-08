@@ -41,9 +41,7 @@ public class DialogoLogin extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         view = LayoutInflater.from(context).inflate(R.layout.dialogo_login,null,false);
-
         builder.setView(view);
-
         return builder.create();
     }
 
@@ -62,7 +60,8 @@ public class DialogoLogin extends DialogFragment {
                 && editPass.getText().toString().equals("pass")
                 && checkPass.isChecked()){
                     //Toast.makeText(context, "Login correcto",Toast.LENGTH_SHORT).show();
-                    listener.onDialogoSelected("asdasd");
+                    listener.onDialogoSelected(editNombre.getText().toString(), editPass.getText().toString());
+                    dismiss();
                 } else {
                     Toast.makeText(context, "Login incorrecto",Toast.LENGTH_SHORT).show();
                 }
@@ -71,7 +70,7 @@ public class DialogoLogin extends DialogFragment {
     }
 
     public interface OnDialogoListener{
-        void onDialogoSelected(String s);
+        void onDialogoSelected(String nombre, String pass);
     }
 
     private void instancias() {
