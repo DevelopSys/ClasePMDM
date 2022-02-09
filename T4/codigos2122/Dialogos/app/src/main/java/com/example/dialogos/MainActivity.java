@@ -1,9 +1,13 @@
 package com.example.dialogos;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,11 +17,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.dialogos.dialogos.DialogoComunicacion;
 import com.example.dialogos.dialogos.DialogoConfirmacion;
+import com.example.dialogos.dialogos.DialogoFecha;
+import com.example.dialogos.dialogos.DialogoHora;
 import com.example.dialogos.dialogos.DialogoInformacion;
 import com.example.dialogos.dialogos.DialogoListas;
 import com.example.dialogos.dialogos.DialogoLogin;
 
-public class MainActivity extends AppCompatActivity implements DialogoLogin.OnDialogoListener {
+public class MainActivity extends AppCompatActivity implements DialogoLogin.OnDialogoListener,
+        TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -72,7 +79,18 @@ public class MainActivity extends AppCompatActivity implements DialogoLogin.OnDi
             case R.id.menu_op5:
 
                 DialogoComunicacion dialogoComunicacion = DialogoComunicacion.newInstance("ASDASDASDA ASDASDASD");
-                dialogoComunicacion.show(fragmentManager,"comunicacion");
+                dialogoComunicacion.show(fragmentManager, "comunicacion");
+                break;
+
+            case R.id.menu_op6:
+                DialogoHora dialogoHora = new DialogoHora();
+                dialogoHora.show(fragmentManager,"hora");
+
+                break;
+            case R.id.menu_op7:
+                DialogoFecha dialogoFecha = new DialogoFecha();
+                dialogoFecha.show(fragmentManager,"fecha");
+
                 break;
 
         }
@@ -90,5 +108,16 @@ public class MainActivity extends AppCompatActivity implements DialogoLogin.OnDi
         intent.putExtra("nombre", n);
         intent.putExtra("pass", p);
         startActivity(intent);
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+        Toast.makeText(getApplicationContext(),i+":"+i1, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        Toast.makeText(getApplicationContext(),i+"/"+i1+"/"+i2, Toast.LENGTH_SHORT).show();
+
     }
 }
