@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Cerrar"
+        android:id="@+id/menu_cerrar"/>
+
+    <item android:title="Categorias">
+        <menu>
+            <item android:title="Deportes"
+                android:id="@+id/menu_deportes"
+                android:icon="@drawable/sp"
+                />
+
+            <item android:title="Juegos"
+                android:id="@+id/menu_juegos"
+                android:icon="@drawable/vg"
+
+                />
+
+            <item android:title="Television"
+                android:id="@+id/menu_television"
+                android:icon="@drawable/tv"
+                />
+        </menu>
+    </item>
+
+</menu>

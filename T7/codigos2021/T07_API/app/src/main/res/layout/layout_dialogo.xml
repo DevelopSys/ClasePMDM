@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:src="@drawable/god"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_correcto"
+        android:background="@android:color/transparent"
+        />
+
+    <ImageButton
+        android:src="@drawable/bad"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_incorrecto"
+        android:background="@android:color/transparent"
+        />
+
+</LinearLayout>
