@@ -19,6 +19,10 @@ public class FragmentUno extends Fragment {
         Log.v("fragment","OnAttach 1");
     }
 
+    public void cambiarTexto(){
+        // cambia el texto de algo que hay dentro
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();

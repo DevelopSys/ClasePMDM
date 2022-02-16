@@ -11,6 +11,14 @@
         android:background="?attr/colorPrimary"
         android:id="@+id/toolbar"
         />
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tab"
+        android:background="?attr/colorPrimary"
+        app:tabIndicatorColor="@color/white"
+        />
+
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_dark"
     android:gravity="center_vertical"
+    android:id="@+id/linear_fragment"
     >
 
     <TextView

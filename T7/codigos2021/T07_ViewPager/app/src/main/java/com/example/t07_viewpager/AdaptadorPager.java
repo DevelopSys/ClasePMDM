@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class AdaptadorPager extends FragmentPagerAdapter{
 
     ArrayList<Fragment> listaFragments;
+    ArrayList<String> listaNombres;
 
     public AdaptadorPager(@NonNull FragmentManager fm) {
         super(fm);
@@ -22,6 +23,14 @@ public class AdaptadorPager extends FragmentPagerAdapter{
         listaFragments.add(new FragmentUno());
         listaFragments.add(new FragmentDos());
         listaFragments.add(new FragmentTres());
+        listaNombres = new ArrayList<>();
+        listaNombres.add("F1");
+        listaNombres.add("F2");
+        listaNombres.add("F3");
+    }
+
+    public void cambiarTextoF1(){
+        ((FragmentUno)listaFragments.get(0)).cambiarTexto();
     }
 
     public void eliminarFragment(int posicion){
@@ -43,5 +52,11 @@ public class AdaptadorPager extends FragmentPagerAdapter{
     @Override
     public int getCount() {
         return listaFragments.size();
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return listaNombres.get(position);
     }
 }
