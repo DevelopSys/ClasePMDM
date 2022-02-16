@@ -3,6 +3,7 @@ package com.example.t07_viewpager;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -16,6 +17,7 @@ public class AdaptadorPager extends FragmentPagerAdapter{
 
     public AdaptadorPager(@NonNull FragmentManager fm) {
         super(fm);
+
         listaFragments = new ArrayList<>();
         listaFragments.add(new FragmentUno());
         listaFragments.add(new FragmentDos());

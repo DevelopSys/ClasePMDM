@@ -23,6 +23,8 @@ import com.example.dialogos.dialogos.DialogoInformacion;
 import com.example.dialogos.dialogos.DialogoListas;
 import com.example.dialogos.dialogos.DialogoLogin;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements DialogoLogin.OnDialogoListener,
         TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
@@ -117,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements DialogoLogin.OnDi
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        Date date = new Date();
+        TimF
         Toast.makeText(getApplicationContext(),i+"/"+i1+"/"+i2, Toast.LENGTH_SHORT).show();
 
     }
