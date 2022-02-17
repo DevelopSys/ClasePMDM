@@ -7,19 +7,42 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <fragment
+    <!--<fragment
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2"
         class="com.example.fragmentinicio.fragments.FragmentEstatico"
         android:tag="estatico"
         android:id="@+id/fragment_estatico"
-        />
+        />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.1"
+        android:layout_height="0dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="F1"
+            android:id="@+id/boton_f1"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="F2"
+            android:id="@+id/boton_f2"
+            />
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_weight="0.9"
         android:id="@+id/sitio_fragments"/>
 
 
