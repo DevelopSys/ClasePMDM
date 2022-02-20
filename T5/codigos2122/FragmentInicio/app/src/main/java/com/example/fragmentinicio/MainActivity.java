@@ -5,13 +5,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.fragmentinicio.fragments.FragmentDinamicoDos;
 import com.example.fragmentinicio.fragments.FragmentDinamicoUno;
+import com.example.fragmentinicio.utils.Usuario;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, FragmentDinamicoUno.OnFragmentUnoListener {
 
     private Button bF1, bF2;
     private FragmentManager fm;
@@ -44,6 +46,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
+        ft.commit();
+    }
+
+    @Override
+    public void onPersonaSelected(Usuario usuario) {
+        //Log.v("prueba","Desde la ACT: "+usuario.getNombre());
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        ft.replace(R.id.sitio_fragments,
+                FragmentDinamicoDos.newInstance(usuario));
         ft.commit();
     }
 }
