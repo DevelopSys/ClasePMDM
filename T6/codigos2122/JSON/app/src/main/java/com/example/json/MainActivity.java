@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.json.adapters.AdaptadorJSON;
+import com.example.json.dialogos.DialogoInfo;
 import com.example.json.utils.Equipo;
 
 import org.json.JSONArray;
@@ -23,10 +24,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements AdaptadorJSON.OnEquipoListener {
+public class MainActivity extends AppCompatActivity
+        implements AdaptadorJSON.OnEquipoListener,
+        DialogoInfo.OnDialogoConfirm {
 
     private RecyclerView recyclerView;
     private AdaptadorJSON adaptadorJSON;
+    private Equipo equipo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +78,19 @@ public class MainActivity extends AppCompatActivity implements AdaptadorJSON.OnE
 
     @Override
     public void onEquipoSelected(Equipo equipo) {
-        // Cuadro de diálogo: ESTAS SEGURO QUE ES TU EQUIPO
+        // Cuadro de diálogo: ESTAS SEGURO QUE EL SAN JUAN ES TU EQUIPO
             // SI --> CAMBIO DE PANTALLA
             // NO --> NADA
+        this.equipo = equipo;
+        DialogoInfo dialogoInfo = DialogoInfo.newInstance(equipo.getNombre());
+        dialogoInfo.show(getSupportFragmentManager(),"dialogo");
+        /*Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        intent.putExtra("equipo",equipo);
+        startActivity(intent);*/
+    }
+
+    @Override
+    public void onDialogoSelected() {
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
         intent.putExtra("equipo",equipo);
         startActivity(intent);
