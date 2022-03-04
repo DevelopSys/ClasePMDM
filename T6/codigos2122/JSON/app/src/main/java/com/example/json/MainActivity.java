@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdaptadorJSON.OnEquipoListener {
 
     private RecyclerView recyclerView;
     private AdaptadorJSON adaptadorJSON;
@@ -69,5 +70,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Volley.newRequestQueue(getApplicationContext()).add(jsonRequest);
+    }
+
+    @Override
+    public void onEquipoSelected(Equipo equipo) {
+        // Cuadro de diálogo: ESTAS SEGURO QUE ES TU EQUIPO
+            // SI --> CAMBIO DE PANTALLA
+            // NO --> NADA
+        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        intent.putExtra("equipo",equipo);
+        startActivity(intent);
     }
 }

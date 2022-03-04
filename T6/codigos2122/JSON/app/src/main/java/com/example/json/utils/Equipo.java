@@ -1,6 +1,8 @@
 package com.example.json.utils;
 
-public final class Equipo {
+import java.io.Serializable;
+
+public final class Equipo implements Serializable {
 
     private String id, nombre, anio, estadio, escudo;
 

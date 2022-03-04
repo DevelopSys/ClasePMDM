@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24871794871794872" />
+        <entry key="app/src/main/res/layout/activity_second.xml" value="0.2526041666666667" />
         <entry key="app/src/main/res/layout/item_recycler.xml" value="0.24871794871794872" />
       </map>
     </option>
