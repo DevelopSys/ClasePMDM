@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_salir"
+        android:title="Salir"></item>
+    <item android:title="Categorias">
+        <menu>
+            <item
+                android:id="@+id/menu_sport"
+                android:title="Sport"
+                android:icon="@android:drawable/ic_dialog_email"
+                app:showAsAction="ifRoom"
+                />
+            <item
+                android:id="@+id/menu_tv"
+                android:title="TV"></item>
+            <item
+                android:id="@+id/menu_games"
+                android:title="Games"></item>
+        </menu>
+    </item>
+
+
+</menu>
