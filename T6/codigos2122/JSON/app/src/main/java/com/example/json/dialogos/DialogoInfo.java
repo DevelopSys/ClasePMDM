@@ -40,6 +40,7 @@ public class DialogoInfo extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+                
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
