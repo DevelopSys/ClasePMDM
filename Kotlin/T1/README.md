@@ -1,6 +1,4 @@
-
 # Conceptos básicos
-
 
 Alguno de los conceptos básicos de kotlin y que los diferencia con java son:
 
@@ -9,39 +7,39 @@ Alguno de los conceptos básicos de kotlin y que los diferencia con java son:
 - No existe el conepto de static
 - El nombre del fichero no tiene porque coincidir con el nombre de la clase.
 - Un fichero puede contener una o varias clases
-- Un fichero puede contener variables y funciones (únicamente) 
-
+- Un fichero puede contener variables y funciones (únicamente)
 
 Los tipos de modificadores de visibilidad son:
 
-* private
-* protected
-* internal
-* public (por defecto)
+- private
+- protected
+- internal
+- public (por defecto)
 
 ## Efecto de modificadores de visibilidad a nivel de **paquete**
 
 Hay 4 elementos que se pueden definir a nivel de paquete: propiedades, funciones, clases y objetos. Asi les afectan los modificadores de visibilidad en este nivel:
 
-* public: visible de manera global, desde cualquier elemento del programa
-* internal: visible para los elementos del mismo paquete.
-* private: visible solo en el mismo fichero y/o clase.
-* protected: visible para las subclases
-
+- public: visible de manera global, desde cualquier elemento del programa
+- internal: visible para los elementos del mismo paquete.
+- private: visible solo en el mismo fichero y/o clase.
+- protected: visible para las subclases
 
 # Variables
+
 **Documentación oficial:** https://kotlinlang.org/docs/reference/basic-syntax.html#defining-local-variables
 
 Para poder definir variables en kotlin se utiliza el nombre: tipo = valor
 
-```kotlin
+```java
 var numero: Int = 0;
 ```
-En muchas ocasiones el tipo se puede obviar, ya que el compilador otrorgará el tipo más adecuado. 
+
+En muchas ocasiones el tipo se puede obviar, ya que el compilador otrorgará el tipo más adecuado.
 
 En cuanto a los tipos de variables que pueden existir en kotlin, son principalmente dos las que nos podemos encontrar: var y val. Var se trata de una variable "normal", la cual puede alterar su valor a lo largo del programa, mientras que val se trata de una variable constante que no puede cambiar su valor una vez ha sido asignado
 
-```kotlin
+```java
 var numero: Int = 0;
 val VARIABLE_CONSTANTE = "VALOR FIJO"
 
@@ -57,13 +55,13 @@ fun main(arg: Array<String>) {
 
 A la hora de declarar variables, kotlin tiene un mecanismo para evitar las excepciones de nullpointer. Se conoce como null safety y permite asignar un posible valor nulo a una variable sin que al utilizarlo se rompa la ejecución. Para ello se utiliza el símbolo de ? despues del tipo de la variable;
 
-```kotlin
+```java
 var nombre: String? = null
 ```
 
 Esto indica que la variable tiene asignada un valor de null. Con esta declaración cada vez que se quiera utilizar la variable se tendrá que indicar la posibiidad de obtener un null en la ejecución
 
-```kotlin
+```java
 var nombre: String? = null
 fun main(arg: Array<String>) {
     println(nombre?.length)
@@ -75,7 +73,7 @@ null
 
 Hay en otros casos que no se puede obviar el fallo por uso de null. En estos casos es necesario indicar al compilador que si se encuentra con un elemento null que continue con la ejecuci´pon normal
 
-```kotlin
+```java
 var totalFacturado: Int? = null
 fun main(arg: Array<String>) {
     if (totalFacturado!! <0){
@@ -86,7 +84,7 @@ fun main(arg: Array<String>) {
 
 En el caso de querer utilizar el null safety indicado anteriormente tambien se podría, siempre teniendo que llamar a una funcion despues de la variable que puede ser nula
 
-```kotlin
+```java
 fun main(arg: Array<String>) {
     if (totalFacturado?.compareTo(0) ==0){
         println("Estamos en perdidas");
@@ -102,7 +100,7 @@ totalFacturado?.compareTo(0) ?: -1
 
 En este caso se está intentando utilizar el método comparteTo de la variable totalFacturado y comparandolo con 0. En el caso en el que la variable sea null, el valor se sustituirá por -1. Un ejemplo con un estamento completo sería el siguiente
 
-```kotlin
+```java
 var totalFacturado: Int? = null;
 
 fun main(arg: Array<String>) {
@@ -125,8 +123,7 @@ El valor es nulo
 
 Las propiedades son elementos que quedan declarados y se puede acceder a ellos gracias a sus métodos get y set. Para declarar esos métodos se hace justo despues de crear la propiedad y se definen como un método normal. Hay que tiener en cuenta que el uso de la palabra reservada field hace referncia al apropio valor
 
-
-```kotlin
+```java
 
 var propiedad = 0
     get() = field
@@ -146,10 +143,116 @@ fun main(arg: Array<String>) {
 
 En el ejemplo la variablo propiedad tiene declarado dos métodos (get y set) el primero de los cuales al tener solo una linea se hace con una funcion de linea
 
+# Sentencias de control
+
+Las sentencias de control permiten maneja el flujo del programa de forma que el código no se ejecute de forma estructurada, sino que pueda dar "saltos" dependiendo de que es lo que ocurra dentro del programa. Las estructuras de control en Kotlin son muy similares a java, pero podemos encontrar alguna diferencia como por ejemplo la construcción del for o la sentencia switch que es sustituida por la sentencia when
+
+## if
+
+Esta estructura en kotlin es exactamente igual que en java, no existe diferenciañ
+
+```java
+fun main(arguments: Array<String>){
+    print("Estructuras de control")
+    val comienzo: Boolean = true
+    if (comienzo) print("Comenzamos con el curso") else print("No estamos preparados")
+}
+```
+
+En este caso la salida sera Comenzamos con el curso ya que la variable de la condición es true. Como se puede ver y al igual que pasa en java, si la sentencia if solo tiene una linea de ejecución no es necesario el uso de las llaves
+
+```java
+fun main(arg: Array<String>){
+
+    println("Indica cual es tu nombre")
+    val nombre: String? = readLine();
+    println("Indica cual es tu edad")
+    val edad: Int = readLine()!!.toInt();
+    val comienzo: Boolean = true;
+
+    if (comienzo && edad >17){
+        print("Bienvenido ${nombre} el curso comenzará")
+    } else if (comienzo && edad<18) {
+        println("Han dado consentimiento tus padres")
+        val consentimiento: String? = readLine();
+        if (consentimiento.equals("SI")) println("Perfecto ${nombre} podemos empezar")
+    } else {
+        println("No podemos empezar el curso")
+    }
+
+}
+```
+
+Como veremos más adelante, kotlin cuenta con un mecanismo de null safety para poder garantizar que no se utiliza ninguna variable que pueda ser nula. De ahí el caracter ? y el caracter !!. Lo veremos más adelante pero para que podamos entender el código el ? indica que la variable puede ser nula y !! indica que se garantiza que la variable nunca va a ser nula. En el caso de estar declarada como posible nula, si se quiere utilizar se tiene que garantizar su no nulo
+
+```java
+    if (nombre?.length!! <= 0){
+        print("No se ha introducido nada")
+    }
+```
+
+## when
+
+En kotlin no existe el uso de la sentencia de control swith. Esta ha sido sustituida por el uso de la sentencia when. El uso es muy parecido, cambiando la forma de escribirlo. Para poder utilarlo se utiliza la siguiente constucción:
+
+```java
+when(condicion){
+    caso -> {ejecuciones}
+    else -> {ejecuciones}
+}
+```
+
+Como podemos ver se parece bastante al switch de java, con la diferencia que en este caso se pueden indicar multitud de posibilidades a la hora de evaluar un caso (además que el default no existe sino que existe un else). Un ejemplo sería el siguiente
+
+```java
+    val nota: Int= readLine()?.toInt() ?: 0;
+    when (nota){
+        !in 0..10 -> {print("Número incorrecto")}
+        in 5..9 -> {
+            print("Has aprobado")
+        }
+        in 3..4-> {
+            print("Hay que estudiar más")
+        }
+        10 -> {
+            print("Perfecto examen de matrícula")
+        }
+        else -> {
+            print("El examen ha salidao muy mal")
+        }
+    }
+```
+
+En este caso existen cuatro casos
+
+- que el número no esté comprendido entre un rango indicado mediante !in inicio..final
+- que el número esté comprendido entre un rango indicado mediante in inicio..final
+- que el número sea un caso concreto
+- el resto de las posibilidades
+
+Estos casos pueden ser cualquier cosa, incluso la salida de un método, donde uno de los casos sería
+
+```java
+        calcularMedia(nota) -> {
+            print("El examen no da una media correcta")
+        }
+```
+
+y la función sería
+
+```java
+fun calcularMedia(nota: Int): Int{
+    return  nota/2;
+}
+```
+
+## for
+
 # Funciones
+
 **Documentación oficial:** https://kotlinlang.org/docs/reference/functions.html
 
-Las funciones en kotlin se declaran con la palabra reservada `fun` 
+Las funciones en kotlin se declaran con la palabra reservada `fun`
 
 ```kotlin
 fun nombreFuncion(){}
@@ -166,8 +269,8 @@ Para poder declarar parámetros dentro de una funcion se definen con un nombre y
 
 ```kotlin
 fun funcionParamentros(arg1: String, arg2: Int){
-    println("$arg1 es el primer parámetro")    
-    println("$arg2 es el segundo parámetro")    
+    println("$arg1 es el primer parámetro")
+    println("$arg2 es el segundo parámetro")
 }
 
 fun main(arguments: Array<String>) {
@@ -236,7 +339,6 @@ La función de suma ha retornado 9
 
 Una función lambda es aquella que se define de forma directa, sin necesidad de declararla como las vistas en el punto anterior. Para ello se puede declarar con la siguiente sintaxis
 
-
 ```kotlin
 {arg1: Tipo, arg2: Tipo -> // cuerpo de la funcion}
 ```
@@ -261,8 +363,7 @@ var funcionLambdaNormal: ((Int) -> Int) = { argumento1: Int ->
 }
 ```
 
-Algun ejemplo de funciónlambda con diferentes configuraciones es: 
-
+Algun ejemplo de funciónlambda con diferentes configuraciones es:
 
 ```kotlin
 // función lambda que tiene un parámetro obligatorio y que puede retornar nulo
@@ -354,7 +455,8 @@ PowerScript
 
 # Coleecciones
 
-# Clases 
+# Clases
+
 **Documentación oficial:** https://kotlinlang.org/docs/reference/classes.html
 
 Las clases representan la posibilidad de objetos. Una de las cosas más importantes en kotlin es que en una clase se pueden crear varias clases. Al igual que en java toda clase tiene un constructor por defecto, por lo que se puede crear un objeto de la clase
@@ -371,7 +473,7 @@ Si se quiere crear un constructor con parámetros, se utiliza la palabra reserva
 
 ```kotlin
 class ClaseA{
-    var nombre: String; 
+    var nombre: String;
     constructor(nombre: String){
         this.nombre = nombre;
     }
@@ -386,7 +488,7 @@ fun main(arg: Array<String>){
 }
 
 class ClaseA (var nombre: String){
-    
+
 }
 ```
 
@@ -414,7 +516,6 @@ class Lenguaje{
 
 En este primer ejemplo se tiene una clase llamada Lenguaje que para poder crearla se necesita un contructor con tres parámetros que son obligatorios: nombre, plataforma y versión. Sin embargo si se quieren utilizar constructores múltiples se puede pasando por parámetros aquellos que se necesiten, pero teniendo en cuenta que aquellas propiedades que no estén incluidas deberán estar configuradas como null safety
 
-
 ```kotlin
 class Lenguaje{
     var nombre: String
@@ -425,7 +526,7 @@ class Lenguaje{
         this.plataforma = plataforma;
         this.version = version;
     }
-    
+
     constructor(nombre: String, plataforma: String){
         this.nombre = nombre;
         this.plataforma = plataforma;
@@ -473,7 +574,7 @@ class Lenguaje (var nombre: String){
 }
 ```
 
-En este caso como se ha utilizado un constrotr base ocurren dos cosas: 
+En este caso como se ha utilizado un constrotr base ocurren dos cosas:
 
 - Todas las propiedades de la case se tienen que inicializar con un valor (existe la posicbilidad de utilizar lateinit que se verá más adelante)
 - Todos los constructores adicionales tienen que devolver el constructor base, y que además realizarán las acciones que hayan definido en su definición
@@ -701,21 +802,21 @@ data class PersonaData(val nombre : String, val apellido : String)
 
 fun main(args : Array<String>) {
     val persona = PersonaData("Pedro", "Herrera")
-    
+
 ```
 
-Para que una clase pueda ser definida como data se deben cumplir los siguientes elementos: 
+Para que una clase pueda ser definida como data se deben cumplir los siguientes elementos:
 
-* El constructor primario debe tener como mínimo un parámetro.
-* Todos los parámetros del constructor primario deben estar definidas con var o val.
-* No pueden ser abstract, open, sealed ni inner.
+- El constructor primario debe tener como mínimo un parámetro.
+- Todos los parámetros del constructor primario deben estar definidas con var o val.
+- No pueden ser abstract, open, sealed ni inner.
 
 Una de las cosas importantes que permiten las clases data, es que las variables pueden ser deconstruidas
 
 ```kotlin
 package herencia_trabajadores
 fun main(arg: Array<String>){
- 
+
     var (nombre,apellido) = personaData;
     println(nombre)
     println(apellido)
@@ -759,9 +860,9 @@ En este caso se ha creado una clase llamada Persona con un constructor base llam
 
 ```kotlin
 class Trabajador: Persona() {
-    
+
 }
-``` 
+```
 
 En este caso la clase Trabajador hereda de la clase Persona y utiliza el constructor por defecto de la misma (ya que se ha indicado con los paréntesis). Si se quieren sobreescribir constructores secundarios, es necesario indicarlo sin los paréntesis en la extensión de la clase
 
@@ -778,14 +879,15 @@ Si se quiere añadir propiedades a la clase se puede hacer e inicializarla en al
 ```kotlin
 class Trabajador : Persona  {
     var numeroSS: Int?=null
-    
+
     constructor(nombre: String, apellido: String, dni: String, numeroSS: Int) : super(nombre, apellido, dni){
         this.numeroSS = numeroSS;
     }
 }
 ```
 
-En este caso tan solo se sobreescribe el conctructore que admite tres parámetros, al cual se le ha añadido el de la nueva propiedad incluida en la clase. Si se quieren cambiar la definición de algún método de los definicids en superclases es necesario dos cosas: 
+En este caso tan solo se sobreescribe el conctructore que admite tres parámetros, al cual se le ha añadido el de la nueva propiedad incluida en la clase. Si se quieren cambiar la definición de algún método de los definicids en superclases es necesario dos cosas:
+
 - Que el método cuando se define tenga la palabra reservada `open` (obligatorio aunque la clase sea `open`)
 - En el método que se quiera sobreescribir utilizar la palabra reservada override antes de la definición de la función
 
@@ -878,13 +980,14 @@ class Trabajador : Persona  {
 En este ejemplo la clase persona se ha marcado como abstracta, donde se cuenta con un método abstracto que no tiene definición. En el caso de querer crerar un objeto de tipo Persona no se podría al ser abstracta. La clase trabajador extiende de persona y tiene la obligación de sobrescribir el método mostrarDatos ya que en la clase Persona es abstracto.
 
 ## Interfaces
+
 **Referencia documentación oficial:** https://kotlinlang.org/docs/reference/interfaces.html
 
-Uno de los puntos que no permite kotlin (al igual que java) es la herencia múltiple. Para paliar esta desventaja existe el concepto de interfaz, utilizando la palabra reservada `interface` en vez del de `class`. Hay que recordad que una interfaz tienen un conjunto de métodos no definidos (por edefecto abstractos) que serán declarados en aquellas clases donde sean utilizadas las interfaces. 
+Uno de los puntos que no permite kotlin (al igual que java) es la herencia múltiple. Para paliar esta desventaja existe el concepto de interfaz, utilizando la palabra reservada `interface` en vez del de `class`. Hay que recordad que una interfaz tienen un conjunto de métodos no definidos (por edefecto abstractos) que serán declarados en aquellas clases donde sean utilizadas las interfaces.
 
 ```kotlin
 interface Directivo {
-    
+
     fun realizarVoto(voto: Int);
 }
 ```
