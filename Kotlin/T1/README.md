@@ -246,7 +246,128 @@ fun calcularMedia(nota: Int): Int{
 }
 ```
 
+
 ## for
+
+La estructura de repeticion for permite realizar una tarea repetitiva un número de veces indicadas y/o recorrer una colección completa o en un rango específico. Para ello existen las siguientes estructuras
+
+- for en un rango concreto creciente
+
+```java
+    for (i in 10..20){
+        println(i)
+    }
+
+// SALIDA
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+```
+
+Existe la posibilidad de indicar un numero determinado de paso (cantidad de incremento cada vez que se ejecute el for). Para ello es necesario indicarlo con step
+
+```java
+    for (i in 10..20 step 5){
+        println(i)
+    }
+
+// SALIDA
+10
+15
+20
+```
+
+- for en un rango concreto decreciente: es necesario indicar downTo para decir hasta que numero es necesario llege
+
+```java
+    
+    for (i in 10 downTo 1){
+        println(i)
+    }
+
+// SALIDA
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+```
+
+Al igual que en el caso anterior también es posible configurar la cantidad de pasos
+
+
+- for de una colección de datos: en el caso de tener una colección es posible recorrerla indicando directamente la iteración sobre el elemento
+```java
+    for (i in (10..15))
+    {
+        println(i)
+    }
+// SALIDA
+    10
+    11
+    12
+    13
+    14
+    15
+```
+
+- Foreach. Se trata de una función de iteración dentro de una colección. El método nativo tan solo obtiene como parámetro el dato que se está iterando. En el caso de necesaitar el índice, es necesario utilizar la funcion foreachIndexed
+
+```java
+(1..5).forEach({ item ->
+        println(item)
+    })
+
+// SALIDA
+1
+2
+3
+4
+5
+```
+
+```java
+(1..5).forEachIndexed { index, value -> println(${index} - ${value} }
+// SALIDA
+0 - 1
+1 - 2
+2 - 3
+3 - 4
+4 - 5
+```
+
+## Ejercicios de clase
+
+1. Generar 10 aleatorios entre el 1 y el 100, calculando:
+    - la suma de todos
+    - el número medio
+    - el número max
+    - el numero min
+
+modificar el ejercicio anterior para que antes de empezar: 
+
+- pida la edad y compruebe si esta es mayor que 18. En caso de ser así ejecutará lo anterior. En caso de no ser mayor de 18 saltará un aviso de que no se puede ejecutar
+
+2. Crea un programa que pida al usuario que indique cuantas palabras desea meter en un array. Tras introducirlo, el sitema pedirá al usuario tantas palabras como se hayan indicado. Una vez hecho esto se pide que se cree un menú con las siguientes opciones:
+
+    - 1. Listar todas las palabras
+    - 2. Listar las de las posiciones pares
+    - 3. Listar las de las posiciones impares
+    - 4. Listar las de una longitud concreta, donde se peditá al usuario la longitud y se mostrarán todas las palabras que cumplan dicha condicion
+    - 5. Salir
 
 # Funciones
 
