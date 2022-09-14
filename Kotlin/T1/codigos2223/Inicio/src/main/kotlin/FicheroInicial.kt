@@ -28,7 +28,11 @@ fun main(arg: Array<String>) {
     println("Hola son ${nombre} y tengo ${edad}")
     println("La suma de los numeros 2 y 4 es ${2 + 4}")*/
     //estructuraIf();
-    estructuraFor();
+    //estructuraFor();
+    //ejercicioAleatorios();
+    // while / dowhile / java igual que java
+    //estructuraWhen()
+    funcionArrays()
 
 }
 
@@ -49,13 +53,14 @@ fun estructuraIf() {
     // en caso contrario sacar por consola "nombre correcto"
 
     // (null > 5) --> (7>5)
-    if (nombre?.length!! > 5){
+    if (nombre?.length!! > 5) {
         println("nombre demasiado largo")
     } else {
         println("nombre correcto")
     }
 }
-fun estructuraFor(){
+
+fun estructuraFor() {
     // for (int i=0;i<11;i++){}
     // for (i in 1..10){}
     /*for (i in 1..50 step 5){
@@ -65,14 +70,110 @@ fun estructuraFor(){
         //println(aleatorio)
     }*/
     // 1..10 10..1
-    for (i in 10 downTo 0){
+    /*for (i in 10 downTo 0){
         println(i)
-    }
+    }*/
+    /*for (i in 10 until 20){
+        println(i)
+    }*/
+    // 1 2 3 4 5 6 7 8 9 10
+    // recorrer la coleccion de forma completa
+    // coleccion.foreach( parametro (it) -> ejecucion)
+    (1..10).forEach({ item ->
+        println("Ejecucion del foreach")
+        println(item) })
+}
 
+fun ejercicioAleatorios() {
     // generar 10 aleatorios entre el 1 y el 100, calculando:
     // la suma de todos
     // el numero medio
-    // el nmuero max
+    // el numero max
     // el numero min
 
+    // modificar el ejercicio anterior para que antes de empezar
+    // pida la edad y compruebe si esta es mayor que 18. En caso de
+    // ser así ejecutará lo anterior. En caso de no ser mayor de 18
+    // saltará un aviso de que no se puede ejecutar
+
+    var edad = 0;
+    println("Por favor introduce tu edad")
+    //edad = readLine() as Int;
+    edad = readLine()!!.toInt();
+    if (edad >= 18) {
+        var sumatorio = 0;
+        var max = -1;
+        var min = 201;
+        for (i in 1..10) {
+            var aleatorio = (1..200).random();
+            sumatorio += aleatorio;
+            if (aleatorio > max) {
+                max = aleatorio
+            }
+            if (aleatorio < min) {
+                min = aleatorio
+            }
+        }
+        println("La suma de los aleatorios es ${sumatorio}")
+        println("El max de los aleatorios es ${max}")
+        println("El min de los aleatorios es ${min}")
+        println("La media de los aleatorios es ${sumatorio / 10}")
+    } else {
+        println("No tienes la edad requerida")
+    }
+
+
+}
+
+fun estructuraWhen(){
+    // when dato{
+    //   valor -> {ejecuta}
+    //   valor -> {ejecuta}
+    //   valor -> {ejecuta}
+    //   default -> {ejecuta}
+    // }
+    println("Por favor introduce la nota del examen")
+    var nota = readLine()!!.toInt()
+    when(nota){
+        in 5..10 ->{
+            println("Examen aprobado")
+        }
+        in 0..4->{
+            println("Examen suspenso")
+        }
+        !in 0..12 -> {
+            println("nota incorrecta")
+        }
+        11 -> {
+            println("nota incorrecta de 11")
+        }
+        // TODO ejecucion por metodo
+        // si te paso 6 el caso es 12
+        calculoNota(nota)->{
+            println("nota incorrecta de 12")
+        }
+    }
+}
+
+fun calculoNota(nota: Int): Int{
+    return nota*2;
+}
+
+fun funcionArrays(){
+    // String[] arrayDecosas = new String[9]
+    // String[] arrayDecosas = new String[]{"1","2","3","4",5","6"}
+    // int[] array = new int[5] -> //0,0,0,0,0
+    // [null,null,null,null,null]--> tiene valor
+    var arrayPalabras: Array<String?> = arrayOfNulls<String>(5)
+    //var arrayPalabrasDos: Array<String>?  = null;
+    //arrayPalabras[0] = "Hola";
+    arrayPalabras.set(0,"Hola")
+    arrayPalabras[1] = "que";
+    arrayPalabras[2] = "tal";
+    arrayPalabras[3] = "estas";
+    arrayPalabras[4] = "tu";
+
+    println(arrayPalabras.get(0))
+
+    
 }
