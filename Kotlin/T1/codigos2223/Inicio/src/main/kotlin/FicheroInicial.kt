@@ -81,7 +81,8 @@ fun estructuraFor() {
     // coleccion.foreach( parametro (it) -> ejecucion)
     (1..10).forEach({ item ->
         println("Ejecucion del foreach")
-        println(item) })
+        println(item)
+    })
 }
 
 fun ejercicioAleatorios() {
@@ -125,7 +126,7 @@ fun ejercicioAleatorios() {
 
 }
 
-fun estructuraWhen(){
+fun estructuraWhen() {
     // when dato{
     //   valor -> {ejecuta}
     //   valor -> {ejecuta}
@@ -134,11 +135,11 @@ fun estructuraWhen(){
     // }
     println("Por favor introduce la nota del examen")
     var nota = readLine()!!.toInt()
-    when(nota){
-        in 5..10 ->{
+    when (nota) {
+        in 5..10 -> {
             println("Examen aprobado")
         }
-        in 0..4->{
+        in 0..4 -> {
             println("Examen suspenso")
         }
         !in 0..12 -> {
@@ -149,17 +150,17 @@ fun estructuraWhen(){
         }
         // TODO ejecucion por metodo
         // si te paso 6 el caso es 12
-        calculoNota(nota)->{
+        calculoNota(nota) -> {
             println("nota incorrecta de 12")
         }
     }
 }
 
-fun calculoNota(nota: Int): Int{
-    return nota*2;
+fun calculoNota(nota: Int): Int {
+    return nota * 2;
 }
 
-fun funcionArrays(){
+fun funcionArrays() {
     // String[] arrayDecosas = new String[9]
     // String[] arrayDecosas = new String[]{"1","2","3","4",5","6"}
     // int[] array = new int[5] -> //0,0,0,0,0
@@ -167,7 +168,7 @@ fun funcionArrays(){
     var arrayPalabras: Array<String?> = arrayOfNulls<String>(5)
     //var arrayPalabrasDos: Array<String>?  = null;
     //arrayPalabras[0] = "Hola";
-    arrayPalabras.set(0,"Hola")
+    arrayPalabras.set(0, "Hola")
     arrayPalabras[1] = "que";
     arrayPalabras[2] = "tal";
     arrayPalabras[3] = "estas";
@@ -184,10 +185,11 @@ fun funcionArrays(){
     }*/
     // foreach
     //arrayPalabras.forEach({ palabra -> println(palabra) })
-    arrayPalabras.forEachIndexed({index, value -> println("${index} ${value}") })
+    arrayPalabras.forEachIndexed({ index, value -> println("${index} ${value}") })
     // hacer una busqueda de solo sacar
     // hola(0)SI que(1) tal(2)SI estas(3) tu(4)SI
     // las palabras que están en posiciones pares
+    arrayPalabras.forEachIndexed { index, value -> if (index % 2 == 0) println(value) }
     // las palanras que tengan una longitud de al menos 5 de longigud
-
+    arrayPalabras.forEach { value-> if (value?.length!! >= 5) println(value) }
 }
