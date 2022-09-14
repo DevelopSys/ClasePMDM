@@ -173,7 +173,21 @@ fun funcionArrays(){
     arrayPalabras[3] = "estas";
     arrayPalabras[4] = "tu";
 
-    println(arrayPalabras.get(0))
+    //println(arrayPalabras.get(0))
+    // for
+    /*for(i in arrayPalabras){
+        print(i+" ")
+    }*/
 
-    
+    /*for (i in 0..arrayPalabras.size-1){
+        println(arrayPalabras.get(i))
+    }*/
+    // foreach
+    //arrayPalabras.forEach({ palabra -> println(palabra) })
+    arrayPalabras.forEachIndexed({index, value -> println("${index} ${value}") })
+    // hacer una busqueda de solo sacar
+    // hola(0)SI que(1) tal(2)SI estas(3) tu(4)SI
+    // las palabras que están en posiciones pares
+    // las palanras que tengan una longitud de al menos 5 de longigud
+
 }
