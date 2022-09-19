@@ -1,3 +1,5 @@
+import kotlin.math.sign
+
 // clase - varible - funciones
 // String nombre = "Valor"
 // var nombre: String = "Valor"
@@ -21,7 +23,45 @@ fun main(arg: Array<String>): Unit {
     //estructurasWhen()
     //estructuraFor()
     //ejercicioAleatorio()
-    funcionArrays()
+    //funcionArrays()
+    //funcionEjercicioArrays()
+    funcionArraysList()
+
+}
+
+fun funcionArraysList() {
+
+    // List -> no mutables - mutables (ArrayList)
+    // []
+    
+    var arrayMutableKt = ArrayList<String>();
+
+
+
+
+
+}
+
+fun funcionEjercicioArrays() {
+    var arrayPalabras = arrayOfNulls<String>(10)
+    for (i in 0..9) {
+        println("Que palabra quieres guardar")
+        var palabra = readln();
+        arrayPalabras[i] = palabra
+    }
+
+    /*arrayPalabras.forEachIndexed({ index, value ->
+        // sacar todas las palabras que tengan una long >= 5
+        if (value?.length!! >= 5){
+            println("Posicion: $index")
+            println("Elemento: $value");
+        }
+    })*/
+
+    var listaFilstrada = arrayPalabras.filter ({value -> value?.length!!>=5 })
+    listaFilstrada.forEach({ elemento-> println(elemento) })
+
+
 }
 
 fun funcionArrays() {
@@ -31,7 +71,36 @@ fun funcionArrays() {
     var arrayNumeros: Array<Any>? = null
     // [null,null,null.null,null]
     var arrayCosas: Array<Int?> = arrayOfNulls<Int>(5);
-    println(arrayCosas[0]!! > 5)
+    arrayCosas[0] = 1
+    arrayCosas[1] = 2
+    arrayCosas[2] = 3
+    arrayCosas[3] = 4
+    arrayCosas[4] = 5
+    // 1,2,3,4,5
+    /*for (i in arrayCosas){
+        if (i!! >= 4) println(i)
+    }*/
+
+    var contador = 0;
+
+    /*arrayCosas.forEach({ element ->
+        println("Linea de ejecucion $contador")
+        println("Impresion de elemento $element")
+        contador++
+    })*/
+
+    //arrayCosas.forEach ({ e -> println(e) })
+    arrayCosas.forEachIndexed({ index, it ->
+        if (index % 2 == 0) {
+            println("Impresion $index")
+            println("Elemento con valor: $it")
+        }
+    })
+
+    /*arrayCosas.get(0)
+    arrayCosas[1] = 1;
+    arrayCosas.set(1,null);*/
+    //println(arrayCosas[0] > 5)
 
 }
 
