@@ -206,6 +206,7 @@ fun funcionArrays() {
     }*/
     // foreach
     //arrayPalabras.forEach({ palabra -> println(palabra) })
+
     arrayPalabras.forEachIndexed({ index, value -> println("${index} ${value}") })
     // hacer una busqueda de solo sacar
     // hola(0)SI que(1) tal(2)SI estas(3) tu(4)SI
