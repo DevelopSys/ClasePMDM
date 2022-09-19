@@ -32,7 +32,28 @@ fun main(arg: Array<String>) {
     //ejercicioAleatorios();
     // while / dowhile / java igual que java
     //estructuraWhen()
-    funcionArrays()
+    //funcionArrays()
+    funcionListas();
+
+}
+
+fun funcionListas() {
+
+    // List --> Listas mutables --> ArrayList
+    var listaAlumnosKt = ArrayList<String>();
+    listaAlumnosKt.add("Alumno1_");
+    listaAlumnosKt.add("Alumno2");
+    listaAlumnosKt.add("Alumno3_");
+    listaAlumnosKt.add("Alumno4");
+    listaAlumnosKt.add("Alumno5_");
+
+    //println(listaAlumnosKt.get(0));
+    //listaAlumnosKt.set(0,"AlumnoNuevo")
+    //listaAlumnosKt.removeAt(0)
+    //listaAlumnosKt.removeIf ({elemento-> elemento.contains("_")})
+    //listaAlumnosKt.forEach ({ nombre -> println(nombre) })
+    //listaAlumnosKt.forEach { if (it.length >5){} }
+    //listaAlumnosKt.find { it.contains("_1") }
 
 }
 
@@ -169,7 +190,7 @@ fun funcionArrays() {
     //var arrayPalabrasDos: Array<String>?  = null;
     //arrayPalabras[0] = "Hola";
     arrayPalabras.set(0, "Hola")
-    arrayPalabras[1] = "que";
+    arrayPalabras[1] = "queasd";
     arrayPalabras[2] = "tal";
     arrayPalabras[3] = "estas";
     arrayPalabras[4] = "tu";
@@ -192,4 +213,8 @@ fun funcionArrays() {
     arrayPalabras.forEachIndexed { index, value -> if (index % 2 == 0) println(value) }
     // las palanras que tengan una longitud de al menos 5 de longigud
     arrayPalabras.forEach { value-> if (value?.length!! >= 5) println(value) }
+    println("Filtrado: ")
+    // las palabras que tengan una longitud de al menos 5 de longigud
+    var listaFiltrada = arrayPalabras.filter ({value -> value?.length!! >=5 })
+    listaFiltrada.forEach({ println(it) })
 }
