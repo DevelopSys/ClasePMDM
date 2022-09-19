@@ -499,7 +499,6 @@ fun main(arguments: Array<String>) {
     //println(funcionLambdaNull(0))
     println(funcionLambdaNullEntera?.invoke(-1));
 }
-
 ```
 
 # Arrays
@@ -573,8 +572,59 @@ Python
 JavaScript
 PowerScript
 ```
-
 # Coleecciones
+Al igual que pasa en java, los arrays pueden quedar algo cortos debido a su poca mutabilidad. Esto quiere decir que en el caso de tern un array con 5 posiciones, este no puede crecer y tan solo podría ser modificados los valores que están guardados en las posiciones. Para poder paliar este tipo de carencia, existe lo que se conoce como colecciones o listas mutables. En este apartedo veremos el usao de los ArrayList
+
+Para poder crear un arraylist, no es necesario indicar cual es el tamaño inicial, ni siquiera que elementos forman parte del mismo. Basta con crear el objecto con su constructor
+
+```java
+var lista: ArrayList<String> = ArrayList<String>()
+```
+
+Lo que si es obligatorio es indicar el tipo del dato que va a guardad dentro.En el ejemplo anterior se indica que se procede a guardar datos de tipo String. Una vez está creado la colección, los principales métodos que se pueden utilizar son los siguientes:
+
+- add o addAll: Permite agregar un elemento en una posición determinada. En el caso de no indicar cual es la posición donde se agrega el elemento, este se podrá al final de la lista. El tipo de retorno es boolean, indicando si la tarea se ha realizado correctamente.
+
+```java
+var lista: ArrayList<String> = ArrayList<String>()
+    lista.add("Primer")
+    lista.add("elemento")
+    lista.add("de")
+    lista.add("la")
+    lista.add("lista")
+
+// SALIDA
+Primer, elemento, de, la, lista
+```
+
+-remove o removeAt: Permite borra elemento de la lista indicado. También se puede borrar por posición. El tipo de retorno es booleano, indicando si se ha hecho la acción correctamente.
+
+```java
+// siendo lista = Primer, elemento, de, la, lista
+    lista.removeAt(0);
+    lista.remove("de")
+// SALIDA
+Primer, elemento, la, lista
+
+```
+
+- get: Permite obtener un elemento concreto, siendo buscado por posición. 
+
+```java
+// siendo lista = Primer, elemento, de, la, lista
+println(lista.get(0));
+// Salida
+Primer
+```
+
+Otrs métodos interesantes son:
+
+```java
+// obtiene el primer elemento que cumple una condición
+lista.filter { it.length == 2 }
+// elimina de la lista todos aquellos elmeentos que cumplen una condición 
+lista.removeIf { it.length == 3 }
+```
 
 # Clases
 
@@ -695,7 +745,7 @@ class Lenguaje (var nombre: String){
 }
 ```
 
-En este caso como se ha utilizado un constrotr base ocurren dos cosas:
+En este caso como se ha utilizado un constructor base ocurren dos cosas:
 
 - Todas las propiedades de la case se tienen que inicializar con un valor (existe la posicbilidad de utilizar lateinit que se verá más adelante)
 - Todos los constructores adicionales tienen que devolver el constructor base, y que además realizarán las acciones que hayan definido en su definición
