@@ -33,13 +33,18 @@ fun funcionArraysList() {
 
     // List -> no mutables - mutables (ArrayList)
     // []
-    
+
     var arrayMutableKt = ArrayList<String>();
-
-
-
-
-
+    // recorro
+    arrayMutableKt.forEach({ elemento -> println(elemento) })
+    // añadir
+    arrayMutableKt.add("Hola")
+    arrayMutableKt.add("que")
+    arrayMutableKt.add("tal")
+    arrayMutableKt.add("estas")
+    //arrayMutableKt.removeAt(0);
+    arrayMutableKt.get(0);
+    arrayMutableKt.removeIf ({elemento->elemento.length >=3})
 }
 
 fun funcionEjercicioArrays() {
@@ -58,8 +63,8 @@ fun funcionEjercicioArrays() {
         }
     })*/
 
-    var listaFilstrada = arrayPalabras.filter ({value -> value?.length!!>=5 })
-    listaFilstrada.forEach({ elemento-> println(elemento) })
+    var listaFilstrada = arrayPalabras.filter({ value -> value?.length!! >= 5 })
+    listaFilstrada.forEach({ elemento -> println(elemento) })
 
 
 }

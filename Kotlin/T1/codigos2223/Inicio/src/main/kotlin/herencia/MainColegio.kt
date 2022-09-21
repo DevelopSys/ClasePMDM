@@ -17,4 +17,8 @@ fun main() {
     println("Mostrando datos")
     listados.forEach({ persona: Persona -> persona.mostrarDatos() })
 
+    profesor1::class.simpleName
+
+
+
 }
