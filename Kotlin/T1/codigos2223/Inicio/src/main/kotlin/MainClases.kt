@@ -10,8 +10,8 @@ fun main() {
     println(propietario.nombre)*/
 
     var coche: Coche = Coche("Mercedes", "C220");
-    // ejecucion de set
-    coche.cv = 150;
-    println(coche.cv)
+    coche.asignarPropietarios(Propietario("B","M","123A"))
+    println(coche.propietario)
+
 
 }

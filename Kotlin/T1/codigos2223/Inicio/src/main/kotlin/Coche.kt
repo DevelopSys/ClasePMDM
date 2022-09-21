@@ -9,7 +9,7 @@ class Coche (var marca: String, var modelo: String) {
         get() = field
     var bastidor: String? = null;
     var velocidad: Int? = null;
-
+    lateinit var propietario: Propietario;
 
     // constructores
     // public Coche(){}
@@ -17,7 +17,6 @@ class Coche (var marca: String, var modelo: String) {
         this.cv = cv;
         this.velocidad = 0;
     }
-
     constructor(marca: String, modelo: String, cv: Int, bastidor: String) : this(marca, modelo) {
         this.cv = cv;
         this.bastidor = bastidor;
@@ -27,6 +26,9 @@ class Coche (var marca: String, var modelo: String) {
     // metodos
     fun aumentarVelocidad(velocidad: Int) {
         this.velocidad = this.velocidad?.plus(velocidad);
+    }
+    fun asignarPropietarios(propietario: Propietario){
+        this.propietario = propietario
     }
 
     // si intento frenar mas de la v a la que va el coche --> false v =0
