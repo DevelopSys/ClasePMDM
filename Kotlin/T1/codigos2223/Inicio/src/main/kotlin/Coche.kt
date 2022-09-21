@@ -1,15 +1,9 @@
-class Coche {
+class Coche (var marca: String, var modelo: String) {
 
     // variables
-    var marca: String;
-    var modelo: String
-        set(value) {
-            field = value
-        }
-        get() = field
-
-    var cv: Int
+    var cv: Int? = null
         set(cv) {
+            println("Setter ejecutado")
             field = cv;
         }
         get() = field
@@ -19,16 +13,12 @@ class Coche {
 
     // constructores
     // public Coche(){}
-    constructor(marca: String, modelo: String, cv: Int) {
-        this.marca = marca;
-        this.modelo = modelo
+    constructor(marca: String, modelo: String, cv: Int): this(marca, modelo) {
         this.cv = cv;
         this.velocidad = 0;
     }
 
-    constructor(marca: String, modelo: String, cv: Int, bastidor: String) {
-        this.marca = marca;
-        this.modelo = modelo
+    constructor(marca: String, modelo: String, cv: Int, bastidor: String) : this(marca, modelo) {
         this.cv = cv;
         this.bastidor = bastidor;
         this.velocidad = 0;
@@ -59,6 +49,5 @@ class Coche {
         this.velocidad = velocidad;
     }
 
-    // toString
 
 }
