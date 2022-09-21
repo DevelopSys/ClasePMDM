@@ -1,15 +1,16 @@
 package herencia
 
-class Alumno(nombre: String, apellido: String, dni: String, edad: Int) : Persona(nombre, apellido, dni, edad) {
+class Alumno(nombre: String, apellido: String, dni: String, edad: Int)
+    : Persona(nombre, apellido, dni, edad) {
 
     var matricula: String? = null;
 
-    constructor(nombre: String, apellido: String, dni: String, edad: Int, matricula: String) : this(
+    constructor(nombre: String, apellido: String, dni: String,
+                edad: Int, matricula: String) : this(
         nombre,
         apellido,
         dni,
-        edad
-    ) {
+        edad) {
         this.matricula = matricula;
     }
 
@@ -22,5 +23,7 @@ class Alumno(nombre: String, apellido: String, dni: String, edad: Int) : Persona
         super.mostrarDatos()
         println("Matricula: $matricula")
     }
+
+    // HACER LA HERENCIA DE LOS PROFESORES Y PONER QUE TIENEN UN SUELDO MINIMO DE 1000€
 
 }

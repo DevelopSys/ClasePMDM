@@ -16,6 +16,7 @@
 
 - Modifica el ejercicio anterior para que una vez adivinado el número el sistema muestre el siguiente mensaje: "Quieres volver a jugar (S/N)":
 
+**Para entregar**
 (TrabajadoresHerencia)
 
 Realizar una aplicación para la gestión de trabajadores. La aplicación podrá registrar trabajadores (asalariados, autónomos y/o jefes). Cada uno de los anteriores tiene las siguientes características:
@@ -73,6 +74,7 @@ Desarrollar una clase llamada Triangulo que:
 
 Desarrolla una clase Entrada que permita registrar figuras y operar con figuras (pidiendo datos mediante un menú de la misma forma que en el ejercicio de temas anteriores)
 
+**Para entregar**
 (LlamadasHerencia)
 Desarrollar una aplicación de control de llamadas realizadas en una centralita telefónica.
 
