@@ -1,6 +1,7 @@
 class Coche (var marca: String, var modelo: String) {
 
     // variables
+    var funcionSinDefinir: (()->Unit)? = null;
     var cv: Int? = null
         set(cv) {
             println("Setter ejecutado")
@@ -24,6 +25,13 @@ class Coche (var marca: String, var modelo: String) {
     }
 
     // metodos
+
+    fun calcularPar(funcionCalculo: (Int)->Int,aceleracion: Int){
+        // no puedo poner funcionalidad porque no se como se hace
+        funcionCalculo(aceleracion)
+        invoke.funcionSinDefinir()
+    }
+
     fun aumentarVelocidad(velocidad: Int) {
         this.velocidad = this.velocidad?.plus(velocidad);
     }
@@ -37,7 +45,6 @@ class Coche (var marca: String, var modelo: String) {
         if ((this.velocidad!! - v) < 0) false
         else true
     }
-
     // crear metodos que permitan al coche aumentar la velocidad,
     // reducir la velocidad y parar el coche
 
