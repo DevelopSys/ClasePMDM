@@ -32,6 +32,7 @@ Adicionalmente existirá una clase Empresa que tendrá una lista de trabajadores
 - Registrar un trabajador. Para ello preguntará si se quiere registrar un asalariado, autónomo o jefe y pedirá los datos del trabajador
 - Listar trabajadores. Para ello preguntará si se quiere listar los asalariados, los autónomos o todos
 - Mostrar datos de trabajador. Para ello pedirá el DNI y mostrará el siguiente formato:
+- Despedir trabajador: Para ello pide el dni del jefe y del trabajador a despedir y elimina a de la lista
 
 - Si es jefe:
 

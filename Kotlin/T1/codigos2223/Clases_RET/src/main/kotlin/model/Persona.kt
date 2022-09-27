@@ -27,4 +27,6 @@ open abstract class Persona (var nombre: String, var apellido: String, var edad:
         return this.dni;
     }
 
+
+
 }

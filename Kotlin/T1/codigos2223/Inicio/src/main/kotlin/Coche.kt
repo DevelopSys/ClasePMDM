@@ -1,7 +1,6 @@
 class Coche (var marca: String, var modelo: String) {
 
     // variables
-    var funcionSinDefinir: (()->Unit)? = null;
     var cv: Int? = null
         set(cv) {
             println("Setter ejecutado")
@@ -9,8 +8,10 @@ class Coche (var marca: String, var modelo: String) {
         }
         get() = field
     var bastidor: String? = null;
-    var velocidad: Int? = null;
+    private var velocidad: Int = 0;
+    var comunicacionVelocidad: ((Int)->Unit)? = null
     lateinit var propietario: Propietario;
+
 
     // constructores
     // public Coche(){}
@@ -29,11 +30,12 @@ class Coche (var marca: String, var modelo: String) {
     fun calcularPar(funcionCalculo: (Int)->Int,aceleracion: Int){
         // no puedo poner funcionalidad porque no se como se hace
         funcionCalculo(aceleracion)
-        invoke.funcionSinDefinir()
     }
 
     fun aumentarVelocidad(velocidad: Int) {
-        this.velocidad = this.velocidad?.plus(velocidad);
+        // quiero llamar a una funcion; --> comunicacionVelocidad()
+        this.velocidad = this.velocidad.plus(velocidad);
+        comunicacionVelocidad?.invoke(this.velocidad);
     }
     fun asignarPropietarios(propietario: Propietario){
         this.propietario = propietario

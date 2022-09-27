@@ -10,26 +10,39 @@ fun main() {
     println(propietario.nombre)*/
 
     var coche: Coche = Coche("Mercedes", "C220");
+    coche.comunicacionVelocidad = { valor ->
+        println("Definido en el mail")
+        println("Pero ejecutado en la clase coche")
+        println(valor)
+    }
+    coche.aumentarVelocidad(7)
     var coche1: Coche = Coche("Ford", "Fiesta");
-    coche.cv = 200;
-/*coche.asignarPropietarios(Propietario("B","M","123A"))
-    println(coche.propietario)*/
+    /*coche.cv = 200;
+    // crear una variable nombre y apellido del propietario del coche -> coche
+    coche.asignarPropietarios(Propietario("B", "M", "123A"))
+    //var (marcaC, modeloC) = coche;
+    var (nombreP, apellidoP,_) = coche.propietario
+    println(nombreP)*/
 
-    var listaCoches = ArrayList<Coche>();
+
+    /*var listaCoches = ArrayList<Coche>();
     listaCoches.add(coche1)
     listaCoches.add(coche)
 
-    listaCoches.forEach({
+    /*listaCoches.forEach({
         if (it.cv!! > 100) {
             //it.calcularPar({},10)
         } else {
             //it.calcularPar()
         }
-    })
+    })*/
 
     coche.calcularPar({ item -> (coche.cv!! * 2) / item }, 100);
     coche.calcularPar({ item -> coche.cv!! / item }, 50);
 
-    coche.funcionSinDefinir = {}
 
+    var propietario = Propietario("Borja", "Martin","001A")
+    var (nombrePro, _, dniProp) = propietario
+    println(nombrePro)
+    println(dniProp)*/
 }
