@@ -30,8 +30,14 @@ class Coche(var marca: String, var modelo: String) {
     /*init {
         propietario = Propietario("Borja","Martin","1234A")
     }*/
-
     // funciones
+
+    var calcularVelocidad: ((Int)->Unit)? = null;
+
+    fun aumentarVelocidad(velocidad: Int ){
+        // calcularVelocidad(6) --> no se como se comporta Int -> Unit
+        calcularVelocidad?.invoke(this.cc)
+    }
 
     fun asignarPropietario(propietario: Propietario){
         this.propietario = propietario;

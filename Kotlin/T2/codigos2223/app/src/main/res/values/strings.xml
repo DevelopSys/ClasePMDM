@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Hello</string>
+    <string name="saludo">Esto es un ejemplo de ejecución </string>
+    <string name="saludo2">Esto otra linea </string>
+</resources>
