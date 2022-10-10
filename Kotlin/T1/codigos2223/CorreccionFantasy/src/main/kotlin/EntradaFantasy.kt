@@ -39,12 +39,15 @@ fun main() {
     liga.realizarFichaje(liga.getListaParticipantes().get(3),4);
     liga.realizarFichaje(liga.getListaParticipantes().get(3),5);
 
-    //liga.mostrarParticipantes()
+    liga.mostrarParticipantes()
     var admin = Administrador(5, "Admin",1234);
 
     //liga.mostrarJugadoresCaros()
 
     liga.iniciarJuego(admin)
+
+    liga.mostrarParticipantes()
+
 
 
 

@@ -127,7 +127,7 @@ class Fantasy {
                 })
             })
         })
-        mostrarGanador()
+        //mostrarGanador()
 
 
     }

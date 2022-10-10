@@ -18,11 +18,10 @@ class Participante(id: Int, nombre: String) : Persona(id, nombre) {
 
     fun anadirJugador(jugador: Jugador){
         // validarFichaje
-
-        println("Proceso iniciado")
         when(jugador.getPosicion()){
             "Portero" ->{
                 if (validarFicha(jugador.getPosicion())<1){
+
                     this.plantilla.add(jugador)
                     this.presupuesto -= jugador.getValor()
                 }
@@ -60,20 +59,20 @@ class Participante(id: Int, nombre: String) : Persona(id, nombre) {
 
     fun validarFicha(posicion: String): Int{
 
-        if (posicion.equals("Medio") || posicion.equals("Defensa")){
+        if (posicion =="Medio" || posicion == "Defensa"){
             // dos posibilidades de df o md
-            if (posicion == "medio"){
-                return plantilla.filter({ it.equals("Medio")}).size
+            if (posicion == "Medio"){
+                return plantilla.filter({ it.getPosicion().equals("Medio")}).size
             } else{
-                return plantilla.filter({ it.equals("Defensa")}).size
+                return plantilla.filter({ it.getPosicion().equals("Defensa")}).size
             }
 
         } else{
             // una posibilidad de pt o dl
-            if (posicion.equals("Portero")){
-                return plantilla.filter({ it.equals("Portero")}).size
+            if (posicion == "Portero"){
+                return plantilla.filter({ it.getPosicion().equals("Portero")}).size
             } else{
-                return plantilla.filter({ it.equals("Delantero")}).size
+                return plantilla.filter({ it.getPosicion().equals("Delantero")}).size
             }
         }
     }
