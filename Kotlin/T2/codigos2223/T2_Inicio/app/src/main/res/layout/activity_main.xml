@@ -35,6 +35,17 @@
         android:id="@+id/boton_pulsar"
         />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/paddingNormal"
+        android:id="@+id/edit_nombre"
+        android:hint="@string/hint_edit"
+        android:inputType="text"
+        android:drawableLeft="@android:drawable/ic_menu_agenda"
+        android:drawablePadding="@dimen/paddingDrawable"
+        />
+
 
 
 
