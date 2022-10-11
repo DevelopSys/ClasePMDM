@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">T2_Inicio_RET</string>
+    <string name="saludo">Primera app Android</string>
+    <string name="boton_pulsar">Pulsar</string>
 </resources>
