@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop"
         android:textSize="@dimen/texto_medio"
+
         android:textAlignment="center"
         android:id="@+id/texto_saludo"
         />
@@ -33,6 +34,26 @@
         android:layout_gravity="center"
         android:textSize="@dimen/texto_pequenio"
         android:id="@+id/boton_inicial"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        android:hint="@string/hint_nombre"
+        android:inputType="text"
+        android:drawableStart="@android:drawable/ic_menu_agenda"
+        android:drawablePadding="@dimen/marginTop"
+        android:id="@+id/edit_nombre"
+        />
+
+    <ImageView
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/thinking"
+        android:scaleType="fitCenter"
+        android:id="@+id/imagen_estado"
         />
 
 

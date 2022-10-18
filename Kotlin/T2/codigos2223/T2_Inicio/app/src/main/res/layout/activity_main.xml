@@ -26,14 +26,36 @@
         android:id="@+id/texto_bienvenida"
         />
 
-    <Button
+    <LinearLayout
         android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/texto_pulsar"
-        android:id="@+id/boton_pulsar"
-        />
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/texto_pulsar"
+            android:id="@+id/boton_pulsar"
+
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/texto_pasar"
+            android:id="@+id/boton_pasar"
+            />
+
+    </LinearLayout>
+    
+
 
     <EditText
         android:layout_width="match_parent"

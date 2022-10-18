@@ -3,5 +3,6 @@
     <string name="saludo">Primera app de android </string>
     <string name="saludo2">Esto otra linea </string>
     <string name="texto_pulsar">Pulsar</string>
+    <string name="texto_pasar">Pasar</string>
     <string name="hint_edit">Introduce tu nombre</string>
 </resources>

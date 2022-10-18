@@ -7,10 +7,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var botonPulsar: Button
+    lateinit var botonPasar: Button
     lateinit var textoSaludo: TextView
     lateinit var editNombre: EditText;
 
@@ -23,19 +26,12 @@ class MainActivity : AppCompatActivity() {
         botonPulsar = findViewById(R.id.boton_pulsar)
         textoSaludo = findViewById(R.id.texto_bienvenida);
         editNombre = findViewById(R.id.edit_nombre);
+        botonPasar = findViewById(R.id.boton_pasar)
 
+        // onClickListener --> View el elemento que ha producido el evento
+        botonPasar.setOnClickListener(this)
         // parametro onClick -> View el elemento que provoca el evento
-        botonPulsar.setOnClickListener({ view: View ->
-
-            if (!editNombre.text.isEmpty()){
-                var texto = editNombre.text;
-                textoSaludo.setText(texto)
-                editNombre.setText("")
-            } else {
-                Log.v("avisos", "texto introducido vacío")
-            }
-
-        })
+        botonPulsar.setOnClickListener(this)
 
     }
 
@@ -73,6 +69,30 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         Log.v("ciclo_vida", "Método onDestroy ejecutado")
 
+    }
+
+    override fun onClick(p0: View?) {
+        //Snackbar.make(p0!!,"Pulsado boton",Snackbar.LENGTH_SHORT).show();
+        when (p0!!.id) {
+            R.id.boton_pulsar -> {
+                if (!editNombre.text.isEmpty()){
+                    val texto = editNombre.text;
+                    textoSaludo.setText(texto)
+                    editNombre.setText("")
+                } else {
+                    Toast.makeText(applicationContext, "Faltan datos",Toast.LENGTH_SHORT).show()
+                }
+            }
+            R.id.boton_pasar -> {
+                var notificacion =
+                    Snackbar.make(p0!!, "Snack completado", Snackbar.LENGTH_INDEFINITE)
+                notificacion.setAction("Seguro que quieres cerrar", {
+                    // pasar de activity
+                    // INTENT -> acciones
+                })
+                notificacion.show()
+            }
+        }
     }
 
 
