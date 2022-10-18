@@ -5,4 +5,5 @@
     <string name="texto_pulsar">Pulsar</string>
     <string name="texto_pasar">Pasar</string>
     <string name="hint_edit">Introduce tu nombre</string>
+    <string name="saludo_recuperado">, has pasado de pantalla</string>
 </resources>

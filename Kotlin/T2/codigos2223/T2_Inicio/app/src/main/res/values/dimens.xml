@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <dimen name="textNormal">20sp</dimen>
     <dimen name="paddingNormal">20dp</dimen>
     <dimen name="paddingDrawable">10dp</dimen>
-
+    <dimen name="texto_pequenio">15sp</dimen>
+    <dimen name="texto_mediano">20sp</dimen>
+    <dimen name="texto_grande">25sp</dimen>
 </resources>

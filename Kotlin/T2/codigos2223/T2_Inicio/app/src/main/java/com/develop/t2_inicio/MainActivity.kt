@@ -1,5 +1,6 @@
 package com.develop.t2_inicio
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -86,9 +87,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.boton_pasar -> {
                 var notificacion =
                     Snackbar.make(p0!!, "Snack completado", Snackbar.LENGTH_INDEFINITE)
-                notificacion.setAction("Seguro que quieres cerrar", {
+                notificacion.setAction("Seguro que quieres cambiar", {
                     // pasar de activity
                     // INTENT -> acciones
+                    var intent: Intent = Intent(applicationContext,SecondActivity::class.java);
+                    var datos: Bundle = Bundle();
+                    datos.putString("nombre",editNombre.text.toString())
+                    intent.putExtras(datos)
+                    startActivity(intent)
+                    //startActivity(intent)
+                    //finish();
                 })
                 notificacion.show()
             }
