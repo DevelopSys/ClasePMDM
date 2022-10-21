@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_general"
+    tools:context=".MainActivity">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       >
+
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Pulsar"
+           />
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:text="Texto boton normal"
+           android:gravity="end|center_vertical"
+           />
+
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_superior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fondo_boton"
+            android:background="@android:color/transparent"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Texto boton normal"
+            android:gravity="end|center_vertical"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_superior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ToggleButton
+            android:checked="false"
+            android:textOn=""
+            android:textOff=""
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fondo_toggle"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Texto boton normal"
+            android:gravity="end|center_vertical"
+            />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_marginTop="@dimen/margin_superior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pulsar"
+            android:layout_gravity="center"
+            />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:src="@drawable/fondoneon"
+            />
+    </FrameLayout>
+
+</LinearLayout>
