@@ -1,28 +1,27 @@
 # Objetivos
 
 - Comprender el concepto de los ficheros y notificaciones
-- Crear diálogos tanto por defecto con interfaz personalizada 
+- Crear diálogos tanto por defecto con interfaz personalizada
 - Mostrar y manejar diferentes tipos de diálogos
 - Gestionar la comunicación entre elementos (activity-diálogo, diálogo-activity, diálogo-diálogo)
 
 # Contenidos
 
-Una de las principales formas de comunicación con el usuario dentro de las aplicaciones son los cuadros de diálogo. Estos permiten tanto mostrar al usuario información o introducir datos a la aplicación. A diferencia de las notificaciones Toast y Snackbar, los cuadro de diálogo son modales, por lo que quitan el foco a la aplicación. 
+Una de las principales formas de comunicación con el usuario dentro de las aplicaciones son los cuadros de diálogo. Estos permiten tanto mostrar al usuario información o introducir datos a la aplicación. A diferencia de las notificaciones Toast y Snackbar, los cuadro de diálogo son modales, por lo que quitan el foco a la aplicación.
 
 Se pueden utilizar muchos tipos de cuadros de diálogo, pudiendo utilizar diálogos por defecto con elementos sencillos (cabeceras, títulos, listas botones), diálogos precargados como por ejemplo los diálogos de fechas y hora hasta diálogos que muestran una vista personalizada utilizando layouts que se crean de forma independiente.
 
 A la hora de crear diálogos, se pueden hacer dentro de las activitys o dentro de los fragments (que empezaremos a ver en el siguiente tema). Para poder crear cuadros de diálogo utilizaremos la clase AlertDialog.Buider
 
-
 # Cuadros de diálogo
 
-Como se ha dicho, los diálogos son una forma de interactuar con el usuario, bien para dar información a modo información o para pedir algún tipo de dato. Antiguamente se utilizaban diálogos normales, pero desde la aparición de Android 4.0 se utilizan por defecto DialogFragment. Por este motivo el ciclo de vida de un diálogo es idéntico al que se explicará en el siguiente tema de la gestión de los fragments. 
+Como se ha dicho, los diálogos son una forma de interactuar con el usuario, bien para dar información a modo información o para pedir algún tipo de dato. Antiguamente se utilizaban diálogos normales, pero desde la aparición de Android 4.0 se utilizan por defecto DialogFragment. Por este motivo el ciclo de vida de un diálogo es idéntico al que se explicará en el siguiente tema de la gestión de los fragments.
 
 Antes de empezar a explicar la creación de diálogos es importante recordar los siguiente elementos:
 
 - getSupportFragmentManager(): elemento que permite manejar los diálogos, mostrarlos y asignarles etiquetas
-- DialogFragment: tipo que representa el diálogo como tal. Esta clase tiene sus propios elementos (titulo, contenido, botones) o se le puede inflar una vista propia. 
-- AlertDialog.Builder: Tipo que permite la creación del diálogo con todos sus elementos 
+- DialogFragment: tipo que representa el diálogo como tal. Esta clase tiene sus propios elementos (titulo, contenido, botones) o se le puede inflar una vista propia.
+- AlertDialog.Builder: Tipo que permite la creación del diálogo con todos sus elementos
 
 Para poder hacer un ejemplo de diálogos, vamos a crear una aplicación que permita lanzar diferentes tipos. Para ello vamos a crear la siguiente interfaz:
 
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun acciones() {
         binding.botonDialogoNormal.setOnClickListener{
-            
+
         }
     }
 }
@@ -119,7 +118,7 @@ class DialogoAviso: DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        return 
+        return
     }
 }
 ```
@@ -141,8 +140,6 @@ Adicionalmente a los métodos anteriores, se ha ejecutado el método setIcon el 
 
 - SupportFragmentManager: el elemento que permite gestionar que ventanas se muestran o se ocultan. Hay que recordad que los cuadros de diálogo son fragments
 - Tag: Un texto que se le asigna al cuadro para que si se quiere recuperar pueda ser llamado por esta etiqueta. En fragments esta opción es muy útil
-
-
 
 ```java
 private fun acciones() {
@@ -175,7 +172,6 @@ Esta última parte la explicaremos en detalle en el siguiente tipo de cuadro de 
 En el siguiente tipo de cuadro de diálogo, además de poder mostrar un mensaje, se le pide al usuario que pulse un botón para constestar a una pregunta simple. Las opciones serán: respuesta positiva, respuesta negativa o respuesta neutra.
 
 Al igual que antes es necesario crear una clase adicional incluiyendo en el onCreateDialog los métodos de setPostiveButton setNegativeButton o setNeutralButton
-
 
 ```java
 package com.develop.dialogos.dialogos
@@ -239,4 +235,133 @@ Si nos damos cuenta el código es muy similar al visto anteriormente, tan solo s
                 )
             }
 
+```
+
+En el caso de querer tener más de una opción a seleccionar dentro del cuadro de diálogo, sería necesario utilizar un cuadro de diálogo de selección
+
+## Diálogo de selección
+
+Su construcción es muy similar a los casos anteriores, la única diferencia es que a la hora de trabajar con el builder es necesario incorporar un método nuevo que es el setItems, el cual admite un array de elementos (tambien objetos de los cuales cuales cogerá el método toString para representar el dato) y quitar el método setMessage ya que ambos elementos ocupan la misma posición. Esto es importante ya que luego a la hora de determinar cual ha sido el seleccionado se utilizará un parámetro que indique la posición, siendo 0 el primer elemento de la lista.
+
+```java
+package com.develop.dialogos.dialogos
+
+import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+
+class DialogoSeleccion : DialogFragment() {
+
+    lateinit var elementos: Array<String>
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        elementos = arrayOf("Opción 1", "Opción 2", "Opción 3")
+
+        var builder = AlertDialog.Builder(requireContext());
+        builder.setTitle("Cuadro de selección")
+            //.setMessage("Que opción quieres hacer")
+            .setItems(elementos) { dialgoInterface, posicion ->
+                 Toast.makeText(context, elementos.get(posicion), Toast.LENGTH_SHORT).show()
+            }
+
+
+        return builder.create()
+    }
+}
+```
+
+Es importante tener en cuenta que este tipo de cuadro de diálogo no necesita botón, ya que el diálogo se oculta en el momento que se realice una selección. Es posible que queramos agregarle un botón cancelar par que no tengamos necesidad de seleccionar nada, para lo cual tendríamos que agregar un boton negative sin acción en el listener
+
+```java
+setNegativeButton("Cerrar"){dialogo, posicion->null}
+```
+
+## Diálogos de selección simple y múltiple
+
+Estos dos tipos de cuadro de diálogo son muy similares. La diferencia entre ellos es el tipo de selección que se puede hacer, solo un elemento y o varios
+En el caso de querer tener una seleccion simple utilizaremos el método setOnSingle tener una selección
+
+```java
+package com.develop.dialogos.dialogos
+
+import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+
+class DialogoSingle : DialogFragment() {
+
+    lateinit var elementos: Array<String>
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        elementos = arrayOf("Opción 1", "Opción 2", "Opción 3")
+
+        var builder = AlertDialog.Builder(requireContext());
+        builder.setTitle("Cuadro de selección")
+            //.setMessage("Que opción quieres hacer")
+            .setSingleChoiceItems(elementos, -1) { dialogo, posicion ->
+                run {
+                    Log.v("seleccion","seleccion realizada "+ elementos[posicion])
+                }
+            }
+
+        return builder.create()
+    }
+}
+```
+
+En este caso el método setSingleChoiceItems pide tres parámetros: el dialogo, la posición del seleccionado y la interfaz que hace de ejecución. Es importante tener en cuenta que en este tipo de cuadro de diálogo a diferencia de los anteriores, si es necesario tener un botón que permita cerrar el cuadro de diálogo (o un método dismiss() dentro de la puslación)
+
+```java
+package com.develop.dialogos.dialogos
+
+import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+
+class DialogoSingle : DialogFragment() {
+
+    lateinit var elementos: Array<String>
+    lateinit var seleccion: String;
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        elementos = arrayOf("Opción 1", "Opció 2", "Opción 3")
+        var builder = AlertDialog.Builder(requireContext());
+        builder.setTitle("Cuadro de selección")
+            //.setMessage("Que opción quieres hacer")
+            .setSingleChoiceItems(elementos, -1) { dialogo, posicion ->
+                run {
+                    Log.v("seleccion", "seleccion realizada " + elementos[posicion])
+                    seleccion = elementos[posicion]
+                    //dismiss()
+                }
+            }
+            .setPositiveButton("Aceptar") { dialogo, posicion->
+                Toast.makeText(
+                    context,
+                    "Selección: " + seleccion,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+
+        return builder.create()
+    }
+}
 ```
