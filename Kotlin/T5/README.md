@@ -284,6 +284,8 @@ setNegativeButton("Cerrar"){dialogo, posicion->null}
 
 ## Diálogos de selección simple y múltiple
 
+### Seleccion simple
+
 Estos dos tipos de cuadro de diálogo son muy similares. La diferencia entre ellos es el tipo de selección que se puede hacer, solo un elemento y o varios
 En el caso de querer tener una seleccion simple utilizaremos el método setOnSingle tener una selección
 
@@ -365,3 +367,576 @@ class DialogoSingle : DialogFragment() {
     }
 }
 ```
+
+Como se puede ver, y al igual que en los casos anteriores, la gestión de la pulsación se realiza mediante un listener que trae como parámetros dos elementos: el propieo diálogo y la posición del elemento seleccionado.
+
+### Seleccion multiple
+
+Muy similar al anterior, con la diferencia que el usuario podrá seleccionar más de una opción al mismo tiempo. Para ello es necesario utilizar el método setMultiChoiceItems, pasando como parámetros el conjunto de acciones, un array de booleanos que indican cual de los elementos están marcados por defecto y el listener que en este caso es OnMultiChoiceListener, el cual tiene como parámetros el diálogo, la posición del seleccionado y un booleano que indica el estado del elemento puslado
+
+```java
+setMultiChoiceItems(elementos, null) { dialogo, posicion, boolean ->}
+```
+
+```java
+package com.develop.dialogos.dialogos
+
+import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+
+class DialogoMulti : DialogFragment() {
+
+    lateinit var elementos: Array<String>
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        elementos = arrayOf("Opción 1", "Opció 2", "Opción 3")
+        var builder = AlertDialog.Builder(requireContext());
+        builder.setTitle("Cuadro de selección")
+            //.setMessage("Que opción quieres hacer")
+            .setMultiChoiceItems(elementos, null) { dialogo, posicion, boolean ->
+                run {
+                    Log.v("multiple","Posición seleccionada: ${posicion.toString()}")
+                    Log.v("multiple","Valor del seleccionado: ${boolean}")
+                }
+            }
+            .setPositiveButton("Aceptar") { dialogo, posicion ->
+               null
+            }
+
+
+        return builder.create()
+    }
+}
+```
+
+Al igual que pasa en el caso del diálogo de selección simple, es necesario (y en este caso con más sentido) que añadamos un botón aceptar y/o cancelar para cerrar el cuadro de diálogo con el resultado del mismo
+
+```java
+package com.develop.dialogos.dialogos
+
+import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+
+class DialogoMulti : DialogFragment() {
+
+    lateinit var elementos: Array<String>
+    lateinit var elementosSeleccionados: ArrayList<String>
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        elementosSeleccionados = ArrayList();
+        elementos = arrayOf("Opción 1", "Opción 2", "Opción 3")
+        var builder = AlertDialog.Builder(requireContext());
+        builder.setTitle("Cuadro de selección")
+            //.setMessage("Que opción quieres hacer")
+            .setMultiChoiceItems(elementos, null) { dialogo, posicion, boolean ->
+                run {
+                    Log.v("multiple", "Posición seleccionada: ${posicion.toString()}")
+                    Log.v("multiple", "Valor del seleccionado: ${boolean}")
+                    if (boolean) {
+                        elementosSeleccionados.add(elementos[posicion])
+                    } else {
+                        elementosSeleccionados.remove(elementos[posicion])
+                    }
+                }
+            }
+            .setPositiveButton("Aceptar") { dialogo, posicion ->
+                run {
+                    Log.v(
+                        "multiple",
+                        "Selección finalizada ${elementosSeleccionados.size.toString()}"
+                    )
+                    elementosSeleccionados.forEach {Log.v("multiple","$it") }
+                }
+            }
+
+
+        return builder.create()
+    }
+}
+```
+
+En este ejemplo, cada vez que un elemento es pulsado y el valor que se captura es un true, el elemento se mete dentro de un ArrayList previamente instanciado. En el caso de capturar un false se elimina del array. Cuando se pulsa el botón de confirmar se muestra el tamaño del mismo y sus elementos
+
+Hasta este punto se han visto todos los cuadros de diálogo que tienen una creación por defecto. Sin embargo hay ocasiones donde no basta con las posibilidades que me dá el sistema operativo, sino que se necesita construir un cuadro de diálogo personalizado, con una vista propia. Para ello y tal y como se verá en el siguiente punto, es necesario crear un archivo xml nuevo que represente la vista y asociarlo a la clase del diálogo.
+
+## Diálogos personalizados
+
+Como se acaba de comentar, hay ocasiones en los que el programador necesita realizar un cuadro de diálogo que se sale de lo estandar, por lo que se necesita una vista especial. Aquí es donde entran los cuadros de diálogo personalizados. Lo primero que es necesario para poder tener un cuadro de diálogo personalizado es la creación de la vista, por lo que se creará un archivo xml con la vista que se quiera utilizar:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:hint="Introduce correo de usuario"
+        android:layout_marginTop="20dp"
+        android:id="@+id/edit_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:hint="Introduce pass de usuario"
+        android:layout_marginTop="10dp"
+        android:id="@+id/edit_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edit_nombre"
+        app:layout_constraintStart_toStartOf="@+id/edit_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/edit_nombre" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recordar sesión"
+        app:layout_constraintEnd_toEndOf="@+id/edit_password"
+        app:layout_constraintTop_toBottomOf="@+id/edit_password" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/button_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LogIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Recordar pass"
+        app:layout_constraintEnd_toEndOf="@+id/edit_password"
+        app:layout_constraintTop_toBottomOf="@+id/button_login" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear cuenta"
+        app:layout_constraintStart_toStartOf="@+id/edit_password"
+        app:layout_constraintTop_toBottomOf="@+id/button_login" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+Esta vista representa el tipoco cuadro de diálogo de login. Una vez se tiene la parte gráfica, es necesario crear la parte lógica. En este caso la parte lógica es manejada desde el cuadro de diálogo, por lo que lo primero necesario será asociar ambas partes. Para ello, en una clase que haya extendido de DialogFragment traemos el xml que se ha creado mediante un objeto de tipo LayoutInflater. Este tipo de objetos permite manejar ficheros de tipo layout e incorporarlos dentro de las clases. Esta clase tiene un método estático from() el cual pide un contexto (ya que no se puede crear un cuadro de diálogo de la nada), para lo que es muy útil el método onAttach (primer método del ciclo de vida del diálogo)
+
+```java
+package com.develop.dialogos.dialogos
+
+class DialogoPerso : DialogFragment() {
+
+    lateinit var vista: View;
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        vista = LayoutInflater.from(context).inflate(R.layout.dialog_perso,null);
+    }
+}
+```
+
+Con el elemento layout traido al código, el siguiente paso es el de ponerlo dentro del diálogo. Para ello se utiliza el método setView dentro del builder que hemos usado en los casos anteriores
+
+```java
+package com.develop.dialogos.dialogos
+
+class DialogoPerso : DialogFragment() {
+
+    lateinit var vista: View;
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        vista = LayoutInflater.from(context).inflate(R.layout.dialog_perso,null);
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        var builder = AlertDialog.Builder(requireContext())
+        builder.setView(vista)
+        return builder.create()
+
+    }
+}
+```
+
+Con esto ya sería suficiente y la vista sería mostrada cuando el cuadro de diálogo sea llamado. El siguiente punto es el recuperar los datos que se metan en los campos o simplemente trabajar con la pulsción del botón. Para ello es necesario instanciar cada uno de los elementos (o utilizar viewBinding). Para ello es necario utilizar el método findViewById pero no sobre this (que es el diálogo), sino sobre view que es el objeto donde se ha guardado el xml y por lo tanto tiene todos los elementos. Una vez instanciados se puede hacer con ellos lo que se quiera
+
+```java
+package com.develop.dialogos.dialogos
+
+class DialogoPerso : DialogFragment() {
+
+    private lateinit var vista: View;
+    private lateinit var botonLog: Button;
+    private lateinit var editNombre: EditText;
+    private lateinit var editPass: EditText;
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        vista = LayoutInflater.from(context).inflate(R.layout.dialog_perso, null);
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        var builder = AlertDialog.Builder(requireContext())
+        builder.setView(vista)
+        return builder.create()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        editNombre = vista.findViewById(R.id.edit_nombre);
+        editPass = vista.findViewById(R.id.edit_password);
+        botonLog = vista.findViewById(R.id.button_login);
+    }
+
+    override fun onResume() {
+        super.onResume()
+        botonLog.setOnClickListener {
+            run {
+                Log.v("perso", editNombre.text.toString())
+                Log.v("perso",editPass.text.toString())
+                dismiss()
+            }
+        }
+    }
+}
+```
+
+# Comunicación en los cuadros de diálogo
+
+En todos los ejemplos que se han mostrado anteriormente, no ha sido necesario ejecutar tareas pesadas o complejas pero imaginemos que se quiere arrancar una tarea con la constestación de un cuadro de diálogo. Para ello es necesario hacer una comunicación bien sea desde el cuadro de diálogo hasta la pantalla o desde la pantalla hasta el cuadro de diálogo. Esto es lo que se conoce como interfaces de callback o también existe la posibilidad de crear funciones posible nulas. Vamos a ver ambas posibilidades.
+
+## Comunicacion diálogo - activity
+
+Para poder ilustrar este ejemplo vamoa a coger el cuadro de diálogo personalizado. Este será lanzado desde la pulsación de un botón que se ubica en una activity, por lo que es necesario programar su pulsación
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/boton_dialogo_perso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:text="Diálogo login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+
+        />
+
+    <TextView
+        android:id="@+id/texto_perso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/boton_dialogo_perso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/boton_dialogo_perso"
+        app:layout_constraintTop_toTopOf="@+id/boton_dialogo_perso" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+```java
+package com.develop.dialogos
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        acciones();
+    }
+
+    private fun acciones() {
+        binding.botonDialogoPerso.setOnClickListener {
+
+            DialogoPerso().show(supportFragmentManager,"")
+        }
+    }
+}
+```
+
+Con este código el cuadro de diálogo es mostrado. Ahora lo que se quiere es, una vez introducidos los datos dentro del cuadro de diálogo, que estos (nombre y pass) sean enviados de vuelta a la activity para allí gestionarlos. Esto se puede hacer de dos formas
+
+- Comunicación mediante interfaces de callback
+
+Por definición, una interfaz es una clase abstracta que tiene un conjunto de métodos que no están implementados. Si nos ceñimos a esta definición una interfaz sirve para que sea implementada en diferentes clases y así poder juntar tipos que inicialmente no tienen nada que ver. Además de esta funcionalidad, las interfaces también sirven para ser ejecucutadas desde un sitio (donde se implementan) y llamadas desde otro donde se declaran. Precisamente esto es lo que permite comunicar un diálogo con una interfaz. Vayamos por pasos:
+
+1. Crear una interfaz en el origen de los datos: en aquella clase donde tengamos los datos que quieremos comunicar se declara una interfaz con los métodos que se necesiten. Es obvio que tendrá un método cuyos parametros sean aquellos datos que se quieren comunicar. En este caso esta interfaz será creada en el diálogo, yaq ue es allí donde está el nombre y pass que se quieren comunicar a la activity
+
+```java
+class DialogoPerso : DialogFragment() {
+
+    private lateinit var vista: View;
+    private lateinit var botonLog: Button;
+    private lateinit var editNombre: EditText;
+    private lateinit var editPass: EditText;
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        vista = LayoutInflater.from(context).inflate(R.layout.dialog_perso, null);
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        var builder = AlertDialog.Builder(requireContext())
+        builder.setView(vista)
+        return builder.create()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        editNombre = vista.findViewById(R.id.edit_nombre);
+        editPass = vista.findViewById(R.id.edit_password);
+        botonLog = vista.findViewById(R.id.button_login);
+    }
+
+    override fun onResume() {
+        super.onResume()
+        botonLog.setOnClickListener {
+
+        }
+    }
+
+    interface OnLoginListener{
+        fun onLoginDataSelected(nombre: String, pass: String)
+    }
+}
+```
+
+2. Una vez está creada la interfaz, es momento de utilizarla. En este caso se utilizará con la pulsación del botón, por lo que se necesita un objeto del tipo de la interfaz en la clase para llamar al método onLoginDataSelected con los parametros que se quieren comunicar. Es necesario declarar esta variable como lateinit porque no se puede inicializar tal cual
+
+```java
+package com.develop.dialogos.dialogos
+
+class DialogoPerso : DialogFragment() {
+
+    private lateinit var vista: View;
+    private lateinit var botonLog: Button;
+    private lateinit var editNombre: EditText;
+    private lateinit var editPass: EditText;
+    private lateinit var listener: OnLoginListener;
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        vista = LayoutInflater.from(context).inflate(R.layout.dialog_perso, null);
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        var builder = AlertDialog.Builder(requireContext())
+        builder.setView(vista)
+        return builder.create()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        editNombre = vista.findViewById(R.id.edit_nombre);
+        editPass = vista.findViewById(R.id.edit_password);
+        botonLog = vista.findViewById(R.id.button_login);
+    }
+
+    override fun onResume() {
+        super.onResume()
+        botonLog.setOnClickListener {
+            listener.onLoginDataSelected(editNombre.text.toString(), editPass.text.toString())
+            dismiss()
+        }
+    }
+
+    interface OnLoginListener{
+        fun onLoginDataSelected(nombre: String, pass: String)
+    }
+}
+```
+
+La variable listener es utilizada cuando se pulsa el botón, por lo que como última configuración antes de pasar al siguiente paso es la de instanciar la variable ya que ahora mismo tiene un valor de null. Para poder instanciarla hay que igualarla a algo que sea de tipo OnLoginListener y no sería nada útili hacerlo sobre ella misma
+
+```java
+listener = object : OnLoginListener {
+            override fun onLoginDataSelected(nombre: String, pass: String) {
+
+            }
+        }
+```
+
+De esta forma no conseguimos nada ya que los datos no se mueven de la clase donde está declarada la interfaz. Lo que tenemos que hacer es igualarla al contexto dentro del método onAttach() haciendo un casting.
+
+```java
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        vista = LayoutInflater.from(context).inflate(R.layout.dialog_perso, null);
+        listener = context as OnLoginListener;
+        }
+    }
+```
+
+De esta forma dejamos a la variable preparada para el último paso. Si recordamos de casos anteriores, hemos dicho siempre que el contexto es el ámbito o sitio donde se ejecutan las cosas, por lo que en este caso el contexto es el MainActivity o desde donde se haya sacado el diálogo. Una vez visto esto, ¿como podemos hacer que MainActivity sea también de tipo OnLoginListener? Muy sencillo
+
+3. La respuesta a la pregunta es muy fácil: implementando la interfaz. Con la implementación de la interfaz en el destino de los datos conseguimos que la igualdad que se ha hecho antes en el método onAttach siempre sea verdadera. No solo eso, sino que esta implementación obliga a escribir el método de la interfaz el cual tiene los dos parámetros que son los datos que queremos comunicar desde el diálogo hasta la pantalla
+
+```java
+package com.develop.dialogos
+
+class MainActivity : AppCompatActivity(), DialogoPerso.OnLoginListener {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        acciones();
+    }
+
+    private fun acciones() {
+        binding.botonDialogoPerso.setOnClickListener {
+
+            DialogoPerso().show(supportFragmentManager,"")
+        }
+    }
+
+    override fun onLoginDataSelected(nombre: String, pass: String) {
+        TODO("Not yet implemented")
+    }
+}
+```
+
+Por último tan solo quedaría por utilizar los datos que vienen como parámetros y tendremos la comunicación terminada
+
+- Comunicación mediante funciones null
+
+En el caso de no querer utilizar una interfaz de callback, existe la posibilidad de utilizar funciones nulas, ya que kotlin ofrece dicha funcionalidad. En realizadad es un proceso muy parecido al que hemos descrito en el punto anterior, ya que el fondo es exactamente igual. Para poder hacer un ejemplo de esto vamos a realizarlo sobre el dialogo de selección multiple, donde al dar al botón de aceptar queremos llevar los datos al la pantalla de origen. Para ello es necesario seguir los siguientes pasos:
+
+1. En el origen de los datos, declaramos una variable de tipo función, la cual admite como parámetros aquellos datos que queremos comunicar. En este caso seré el array de elementos que se vá llenando con la punsacion de cada opción tal y como vimos en los puntos anteriores
+
+```java
+    lateinit var funcionComunicar: ((ArrayList<String>)->Unit)? = null
+```
+
+Evidentemente esta funcion es nula, ya que no es aquí donde la queremos definir pero si es donde la queremos utilizar. Al ser un posible nulo (?), para poder utilizarla es necesario el uso de la funcion invoke donde como parámetros podremos lo que pide la función. En este caso se realizar con la pulsación del botón positivo
+
+```java
+package com.develop.dialogos.dialogos
+
+class DialogoMulti : DialogFragment() {
+
+    lateinit var elementos: Array<String>
+    lateinit var elementosSeleccionados: ArrayList<String>
+    var funcionComunicar: ((ArrayList<String>)->Unit)? = null
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        elementosSeleccionados = ArrayList();
+        elementos = arrayOf("Opción 1", "Opción 2", "Opción 3")
+        var builder = AlertDialog.Builder(requireContext());
+        builder.setTitle("Cuadro de selección")
+            //.setMessage("Que opción quieres hacer")
+            .setMultiChoiceItems(elementos, null) { dialogo, posicion, boolean ->
+                run {
+                    if (boolean) {
+                        elementosSeleccionados.add(elementos[posicion])
+                    } else {
+                        elementosSeleccionados.remove(elementos[posicion])
+                    }
+                }
+            }
+            .setPositiveButton("Aceptar") { dialogo, posicion ->
+                    funcionComunicar?.invoke(elementosSeleccionados)
+            }
+
+
+        return builder.create()
+    }
+}
+```
+
+2. Una vez está la llamada hecha, es necesario irse al destino de los datos (en este ejemplo el MainActivity) y declarar un objeto del tipo Dialogo (la clase donde está definida la función) y dentro de instancias al mismo tiempo que se da valor al objeto, se define el comportamiento del la funcion nula.
+
+```java
+package com.develop.dialogos
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var dialogo: DialogoPerso
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        instancias();
+        acciones();
+    }
+
+    private fun instancias() {
+
+        dialogo = DialogoPerso();
+        dialogo.funcionNula = {elementos -> binding.textoPerso.setText(elementos.size.toString())}
+    }
+
+    private fun acciones() {
+
+        binding.botonDialogoPerso.setOnClickListener {
+
+            dialogo.show(supportFragmentManager,"")
+        }
+    }
+}
+```
+
+# Comunicación de activity a diálogo
+
+Sería el caso contrario al anterior. Si se quiere pasar un dato desde la pantalle al cuadro de diálogo es necesario utilizar un constructor estático, lo que se conoce con el nombre de newInstance
