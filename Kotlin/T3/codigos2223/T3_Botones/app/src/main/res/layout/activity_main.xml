@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/padding_general"
-    android:background="@android:color/holo_green_light"
     tools:context=".MainActivity">
 
    <LinearLayout
@@ -64,6 +63,7 @@
         >
 
         <ToggleButton
+            android:id="@+id/toggle_estado"
             android:checked="false"
             android:textOn=""
             android:textOff=""
@@ -82,32 +82,83 @@
 
     </LinearLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:hint="asdasd"
-        android:textColorLink="@android:color/white"
-        />
-
-    <FrameLayout
+    <LinearLayout
         android:layout_marginTop="@dimen/margin_superior"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pulsar"
-            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/grupo_radios"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opcion 1"
+                android:id="@+id/radio_uno"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opcion 2"
+                android:id="@+id/radio_dos"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opcion 3"
+                android:id="@+id/radio_tres"
+                />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Resultado del radio group"
+            android:gravity="center_vertical|end"
             />
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:src="@drawable/fondoneon"
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_superior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/check_estado"
             />
-    </FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:text="Check resultado"
+
+            />
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_marginTop="@dimen/margin_superior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Pulsar"
+        android:id="@+id/boton_pulsar"
+        />
+
+
+
 
 </LinearLayout>
