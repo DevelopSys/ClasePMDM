@@ -149,6 +149,35 @@
     </LinearLayout>
 
 
+    <FrameLayout
+        android:layout_marginTop="@dimen/margin_superior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/fondofl"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pulsar"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explicacion FL"
+            android:layout_gravity="bottom|center_horizontal"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="10dp"
+            />
+
+
+    </FrameLayout>
+
     <Button
         android:layout_marginTop="@dimen/margin_superior"
         android:layout_width="wrap_content"

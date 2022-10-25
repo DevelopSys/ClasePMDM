@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/padding_general"
-    android:background="@android:color/holo_green_light"
     tools:context=".MainActivity">
 
    <LinearLayout
@@ -18,14 +17,14 @@
        <Button
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Pulsar"
+           android:text="@string/boton_pulsar"
 
            />
 
        <TextView
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:text="Texto boton normal"
+           android:text="@string/texto_normal"
            android:gravity="end|center_vertical"
            />
 
@@ -49,7 +48,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Texto boton normal"
+            android:text="@string/texto_boton_iomagen"
             android:gravity="end|center_vertical"
             />
 
@@ -64,6 +63,7 @@
         >
 
         <ToggleButton
+            android:id="@+id/toggle_estado"
             android:checked="false"
             android:textOn=""
             android:textOff=""
@@ -75,21 +75,81 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Texto boton normal"
+            android:text="@string/texto_boton_toggle"
             android:gravity="end|center_vertical"
             />
 
 
     </LinearLayout>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:hint="asdasd"
-        android:textColorLink="@android:color/white"
-        />
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_superior">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grupo_radios"
+            >
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/opcion_uno"
+                android:id="@+id/radio_uno"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/opcion_dos"
+                android:id="@+id/radio_dos"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/opcion_tres"
+                android:id="@+id/radio_tres"
+                />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/texto_grupo_radios"
+            android:layout_gravity="center_vertical"
+            android:gravity="end"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_superior"
+        >
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/opcion"
+            android:id="@+id/check_estado"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/texto_check"
+            />
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_marginTop="@dimen/margin_superior"
@@ -99,14 +159,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pulsar"
+            android:text="@string/boton_pulsar"
             android:layout_gravity="center"
+            android:id="@+id/boton_pulsar"
             />
 
         <ImageView
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:src="@drawable/fondoneon"
+
             />
     </FrameLayout>
 

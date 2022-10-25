@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">T3_Botones_Ret</string>
+    <string name="boton_pulsar">Click</string>
+    <string name="texto_normal">Button normal textl</string>
+    <string name="texto_boton_iomagen">Button normal image </string>
+    <string name="texto_boton_toggle">Button normal toggle</string>
+    <string name="texto_grupo_radios">Button normal radio group</string>
+    <string name="texto_check">Text check</string>
+    <string name="opcion">Option</string>
+    <string name="opcion_uno">Option 1</string>
+    <string name="opcion_dos">Option 2</string>
+    <string name="opcion_tres">Option 3</string>
+</resources>
