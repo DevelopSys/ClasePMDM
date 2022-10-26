@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import at.markushi.ui.*
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.O
     private lateinit var radioTres: RadioButton;
     private lateinit var toggleEstado: ToggleButton;
     private lateinit var checkEstado: CheckBox;
+    private lateinit var botonCircular: CircleButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.O
             var radioSeleccioando: RadioButton = findViewById(i);
             Snackbar.make(grupoRadios,radioSeleccioando.text,Snackbar.LENGTH_SHORT).show()
         }
+        botonCircular.setOnClickListener {  }
         toggleEstado.setOnCheckedChangeListener(this)
         checkEstado.setOnCheckedChangeListener(this)
     }
