@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">T3_Botones_Ret</string>
+    <string name="app_name" translatable="false">T3_Botones_Ret</string>
+    <string name="texto_pulsar">Pulsar</string>
+    <string name="texto_boton_normal">Texto boton normal</string>
+    <string name="texto_boton_imagen">Texto boton imagen</string>
+    <string name="texto_boton_toggle">Texto boton toggle</string>
+    <string name="texto_ra1">Opcion 1</string>
+    <string name="texto_ra2">Opcion 2</string>
+    <string name="texto_ra3">Opcion 3</string>
+    <string name="resultado_group">Resultado del radio group</string>
+    <string name="texto_check">Check resultado</string>
 </resources>

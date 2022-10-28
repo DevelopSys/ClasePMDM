@@ -17,14 +17,14 @@
        <Button
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Pulsar"
+           android:text="@string/texto_pulsar"
 
            />
 
        <TextView
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:text="Texto boton normal"
+           android:text="@string/texto_boton_normal"
            android:gravity="end|center_vertical"
            />
 
@@ -48,7 +48,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Texto boton normal"
+            android:text="@string/texto_boton_imagen"
             android:gravity="end|center_vertical"
             />
 
@@ -75,7 +75,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Texto boton normal"
+            android:text="@string/texto_boton_toggle"
             android:gravity="end|center_vertical"
             />
 
@@ -98,19 +98,19 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opcion 1"
+                android:text="@string/texto_ra1"
                 android:id="@+id/radio_uno"
                 />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opcion 2"
+                android:text="@string/texto_ra2"
                 android:id="@+id/radio_dos"
                 />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opcion 3"
+                android:text="@string/texto_ra3"
                 android:id="@+id/radio_tres"
                 />
 
@@ -120,7 +120,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Resultado del radio group"
+            android:text="@string/resultado_group"
             android:gravity="center_vertical|end"
             />
 
@@ -142,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical|end"
-            android:text="Check resultado"
+            android:text="@string/texto_check"
 
             />
 
@@ -162,7 +162,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pulsar"
+            android:text="@string/texto_pulsar"
             android:layout_gravity="center"
             />
 
@@ -183,7 +183,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Pulsar"
+        android:text="@string/texto_pulsar"
         android:id="@+id/boton_pulsar"
         />
 

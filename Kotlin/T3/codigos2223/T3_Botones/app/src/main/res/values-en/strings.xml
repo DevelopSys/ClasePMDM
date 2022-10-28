@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="texto_pulsar">Click</string>
+    <string name="texto_boton_normal">Normal button text</string>
+    <string name="texto_boton_imagen">Image button text</string>
+    <string name="texto_boton_toggle">toggle button text</string>
+    <string name="texto_ra1">Option 1</string>
+    <string name="texto_ra2">Option 2</string>
+    <string name="texto_ra3">Option 3</string>
+    <string name="resultado_group">Radio gruopu result</string>
+    <string name="texto_check">Check result</string>
+
+</resources>
