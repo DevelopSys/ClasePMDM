@@ -7,24 +7,19 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
     <TextView
-        android:id="@+id/texto_saludo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="texto algo mas grande como ejemoplo" />
+        android:text="Valor"
+        android:id="@+id/texto_contador"
+        />
 
     <Button
-        android:id="@+id/boton_uno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Texto mas largo" />
-
-    <Button
-        android:id="@+id/boton_dos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="+1"
+        android:id="@+id/boton_contador"
+        />
 
 
 </LinearLayout>
