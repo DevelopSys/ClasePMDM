@@ -3,17 +3,19 @@ package com.develop.calculador_ret
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
+import androidx.core.widget.addTextChangedListener
 import com.develop.calculador_ret.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, TextWatcher {
 
 
     private lateinit var binding: ActivityMainBinding
-
-
+    private lateinit var frameEjemplo: ImageButton;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val view: View = binding.root
         setContentView(view)
 
+        //        frameEjemplo = findViewById(R.id.boton_uno_uno);
+        //        binding.editNumeros.append(frameEjemplo.tag as String);
+
         //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         /*if (resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_main)
@@ -29,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             setContentView(R.layout.activity_warning)
         }*/
         //instancias();
-        //acciones();
+        acciones();
     }
 
     private fun acciones() {
@@ -38,6 +43,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.botonDos?.setOnClickListener(this)
         binding.botonTres?.setOnClickListener(this)
         binding.botonCuatro?.setOnClickListener(this)
+        /*binding.editNumeros.addTextChangedListener { editable ->
+            run {
+                Log.v(
+                    "texto",
+                    editable.toString()
+                )
+            }
+        }*/
+        binding.editNumeros.addTextChangedListener(this)
+
+        //binding.editNumeros.addText
+
     }
 
     /*private fun instancias() {
@@ -65,5 +82,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     editNumeros.append("4")
                 }
             }*/
+    }
+
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        Log.v("texto", p0.toString())
+        
+    }
+
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+    }
+
+    override fun afterTextChanged(p0: Editable?) {
+
     }
 }
