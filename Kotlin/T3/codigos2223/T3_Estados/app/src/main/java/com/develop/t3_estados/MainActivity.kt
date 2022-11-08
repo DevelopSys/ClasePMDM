@@ -16,10 +16,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         //val view: View = binding.root;
         setContentView(binding.root)
-        var variable = savedInstanceState?.getInt("contador") ?: 0;
-
-
         contador = savedInstanceState?.getInt("contador",0)?:0
+        binding.textoContador.text = contador.toString()
         
         acciones();
     }
