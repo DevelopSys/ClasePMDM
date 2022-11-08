@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">T3_Spinner</string>
+    <string-array name="paises">
+        <item>España</item>
+        <item>Brasil</item>
+        <item>Alemania</item>
+        <item>Francia</item>
+        <item>Qatar</item>
+    </string-array>
 </resources>
