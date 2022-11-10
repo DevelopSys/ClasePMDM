@@ -34,13 +34,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }*/
 
         binding.spinnerSimple.onItemSelectedListener = this;
-        binding.spinnerComplejo.onItemSelectedListener = this;
+        binding.spinnerComplejo.onItemSelectedListener = this
         binding.botonAgregar.setOnClickListener {
             var pais = Pais("Argentina", R.drawable.argentina)
             adaptadorPersonalizado.agregarPais(pais)
             //arraySpinner.add(pais)
             //adaptadorPersonalizado.notifyDataSetChanged()
-
         }
     }
 
@@ -51,8 +50,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private fun instancias() {
         arraySpinner = ArrayList()
-        /*adaptadorSencillo = ArrayAdapter(applicationContext,android.R.layout.simple_spinner_item,
-            arraySpinner)*/
+        //adaptadorSencillo = ArrayAdapter(applicationContext,
+        // android.R.layout.simple_spinner_item, arraySpinner)
         adaptadorSencillo = ArrayAdapter.createFromResource(
             applicationContext,
             R.array.paises,
@@ -60,7 +59,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         );
         //adaptadorSencillo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // lista + xml + context --> adapter
-        adaptadorPersonalizado = AdaptadorPersonalizado(arraySpinner, applicationContext)
+        //rellenarSpinnerPersonalizado()
+        adaptadorPersonalizado = AdaptadorPersonalizado(arraySpinner, this)
 
     }
 
@@ -71,17 +71,20 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         arraySpinner.add(Pais("Alemania", R.drawable.alemania))
         arraySpinner.add(Pais("Francia", R.drawable.francia))
         arraySpinner.add(Pais("Qatar", R.drawable.qatar))
+        adaptadorPersonalizado.notifyDataSetChanged()
 
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-        when (p1?.id) {
+        when (p0?.id) {
             R.id.spinner_simple -> {
                 Log.v("testSpinner", adaptadorSencillo.getItem(p2).toString())
             }
             R.id.spinner_complejo -> {
-                Log.v("testSpinner", adaptadorPersonalizado.getItem(p2).toString())
+
+                var pais: Pais = adaptadorPersonalizado.getItem(p2) as Pais;
+                Log.v("testSpinner", pais.nombre)
             }
         }
 
