@@ -27,4 +27,10 @@
         android:id="@+id/boton_agregar"
         />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/image_escudo"
+        />
+
 </LinearLayout>

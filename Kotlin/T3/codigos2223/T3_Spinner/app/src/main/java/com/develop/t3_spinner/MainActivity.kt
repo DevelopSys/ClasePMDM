@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         binding.spinnerSimple.onItemSelectedListener = this;
         binding.spinnerComplejo.onItemSelectedListener = this
         binding.botonAgregar.setOnClickListener {
-            var pais = Pais("Argentina", R.drawable.argentina)
+            var pais = Pais("Argentina", R.drawable.argentina, 0, "Messi");
             adaptadorPersonalizado.agregarPais(pais)
             //arraySpinner.add(pais)
             //adaptadorPersonalizado.notifyDataSetChanged()
@@ -66,11 +66,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private fun rellenarSpinnerPersonalizado() {
         // lista --> array arraylist ó recurso-string
-        arraySpinner.add(Pais("España", R.drawable.espania))
-        arraySpinner.add(Pais("Brasil", R.drawable.brasil))
-        arraySpinner.add(Pais("Alemania", R.drawable.alemania))
-        arraySpinner.add(Pais("Francia", R.drawable.francia))
-        arraySpinner.add(Pais("Qatar", R.drawable.qatar))
+        arraySpinner.add(Pais("España", R.drawable.espania, 1, "Pedri"))
+        arraySpinner.add(Pais("Brasil", R.drawable.brasil, 5, "Neymar"))
+        arraySpinner.add(Pais("Alemania", R.drawable.alemania, 4, "Muller"))
+        arraySpinner.add(Pais("Francia", R.drawable.francia, 2, "Mbappe"))
+        arraySpinner.add(Pais("Qatar", R.drawable.qatar, 0, "Desconocido"))
         adaptadorPersonalizado.notifyDataSetChanged()
 
     }
@@ -84,7 +84,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             R.id.spinner_complejo -> {
 
                 var pais: Pais = adaptadorPersonalizado.getItem(p2) as Pais;
-                Log.v("testSpinner", pais.nombre)
+                //Log.v("testSpinner", pais.nombre)
+                binding.imageEscudo.setImageResource(pais.imagen)
             }
         }
 
