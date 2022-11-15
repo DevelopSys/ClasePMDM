@@ -1,5 +1,6 @@
 package com.develop.t3_spinner
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,6 +41,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             adaptadorPersonalizado.agregarPais(pais)
             //arraySpinner.add(pais)
             //adaptadorPersonalizado.notifyDataSetChanged()
+        }
+        binding.botonDetalle.setOnClickListener {
+            // cambiar pantalla
+            // pasando escudo, nombre, titulo, estrella
+            var intent: Intent = Intent(applicationContext,DetailActivity::class.java)
+            // bundle
+            startActivity(intent)
         }
     }
 

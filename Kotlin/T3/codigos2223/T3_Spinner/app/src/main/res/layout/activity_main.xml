@@ -20,17 +20,38 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner_complejo"
         />
-    <Button
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar Pais"
-        android:id="@+id/boton_agregar"
-        />
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Agregar Pais"
+            android:id="@+id/boton_agregar"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Ver detalle"
+            android:id="@+id/boton_detalle"
+            />
+
+    </LinearLayout>
+
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/image_escudo"
         />
+
+
+
 
 </LinearLayout>
