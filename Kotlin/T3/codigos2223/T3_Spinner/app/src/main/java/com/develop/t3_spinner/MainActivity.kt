@@ -50,10 +50,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             // bundle
             var bundle = Bundle();
             //var equipoSeleccionado = binding.spinnerComplejo.selectedItem
-            bundle.putInt("imagen", pais.imagen)
+            /*bundle.putInt("imagen", pais.imagen)
             bundle.putString("nombre", pais.nombre)
             bundle.putString("estrella", pais.estrella)
-            bundle.putInt("titulos", pais.numeroTitulos)
+            bundle.putInt("titulos", pais.numeroTitulos)*/
+            bundle.putSerializable("equipo",pais);
             accionPasar.putExtras(bundle)
             startActivity(accionPasar)
         }
