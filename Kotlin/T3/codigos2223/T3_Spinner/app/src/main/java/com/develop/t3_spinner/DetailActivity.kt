@@ -12,6 +12,12 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        recuperarDatos()
 
+    }
+
+    private fun recuperarDatos() {
+        // intent --> bundle --> dato
+        var bundle = intent.extras
     }
 }

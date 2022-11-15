@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var arraySpinner: ArrayList<Pais>;
     lateinit var adaptadorSencillo: ArrayAdapter<CharSequence>;
     lateinit var adaptadorPersonalizado: AdaptadorPersonalizado;
+    lateinit var pais: Pais;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +45,17 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
         binding.botonDetalle.setOnClickListener {
             // cambiar pantalla
-            // pasando escudo, nombre, titulo, estrella
-            var intent: Intent = Intent(applicationContext,DetailActivity::class.java)
+            // pasando escudo, nombre, estrella
+            var accionPasar: Intent = Intent(applicationContext,DetailActivity::class.java)
             // bundle
-            startActivity(intent)
+            var bundle = Bundle();
+            //var equipoSeleccionado = binding.spinnerComplejo.selectedItem
+            bundle.putInt("imagen", pais.imagen)
+            bundle.putString("nombre", pais.nombre)
+            bundle.putString("estrella", pais.estrella)
+            bundle.putInt("titulos", pais.numeroTitulos)
+            accionPasar.putExtras(bundle)
+            startActivity(accionPasar)
         }
     }
 
@@ -91,7 +99,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
             R.id.spinner_complejo -> {
 
-                var pais: Pais = adaptadorPersonalizado.getItem(p2) as Pais;
+                pais = adaptadorPersonalizado.getItem(p2) as Pais;
                 //Log.v("testSpinner", pais.nombre)
                 binding.imageEscudo.setImageResource(pais.imagen)
             }
