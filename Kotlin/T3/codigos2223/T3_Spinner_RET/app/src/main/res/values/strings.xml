@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">T3_Spinner_RET</string>
+    <string-array name="array_recurso">
+        <item>Elemento recurso 1</item>
+        <item>Elemento recurso 2</item>
+        <item>Elemento recurso 3</item>
+        <item>Elemento recurso 4</item>
+        <item>Elemento recurso 5</item>
+    </string-array>
+</resources>
