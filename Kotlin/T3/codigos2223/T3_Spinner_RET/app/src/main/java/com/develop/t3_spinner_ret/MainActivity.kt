@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.develop.t3_spinner_ret.adapter.AdapterPais
 import com.develop.t3_spinner_ret.databinding.ActivityMainBinding
+import com.develop.t3_spinner_ret.model.Pais
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adaptadorSimple: ArrayAdapter<String>
-    private lateinit var arrayDatos: ArrayList<String>
+    private lateinit var adaptadorSimple: ArrayAdapter<Pais>
+    private lateinit var arrayDatos: ArrayList<Pais>
+    private lateinit var adaptadorPais: AdapterPais
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,29 +32,38 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun acciones() {
+        binding.spinnerComplejo.onItemSelectedListener = this
         binding.spinnerSimple.onItemSelectedListener = this
         binding.botonAgregar.setOnClickListener {
-            arrayDatos.add("Dato nuevo")
+            //arrayDatos.add("Dato nuevo")
             adaptadorSimple.notifyDataSetChanged()
         }
     }
 
 
     private fun rellenarLista() {
-        arrayDatos.add("Elemento uno")
+        /*arrayDatos.add("Elemento uno")
         arrayDatos.add("Elemento dos")
         arrayDatos.add("Elemento tres")
-        arrayDatos.add("Elemento cuatro")
+        arrayDatos.add("Elemento cuatro")*/
+        arrayDatos.add(Pais("España",R.drawable.espania,1,"Pedri"))
+        arrayDatos.add(Pais("Brasil",R.drawable.brasil,5,"Neymar"))
+        arrayDatos.add(Pais("Alemania",R.drawable.alemania,3,"Muller"))
+        arrayDatos.add(Pais("Argentina",R.drawable.argentina,2,"MESSI"))
+        arrayDatos.add(Pais("Francia",R.drawable.francia,2,"Mbappe"))
+        arrayDatos.add(Pais("Qatar",R.drawable.qatar,0,"Desconocido"))
         adaptadorSimple.notifyDataSetChanged()
+        adaptadorPais.notifyDataSetChanged()
     }
 
     private fun asociarDatos() {
-
         binding.spinnerSimple.adapter = adaptadorSimple
+        binding.spinnerComplejo.adapter = adaptadorPais;
     }
 
     private fun instancias() {
         arrayDatos = ArrayList();
+        adaptadorPais = AdapterPais(arrayDatos,applicationContext);
         adaptadorSimple = ArrayAdapter(applicationContext,
             android.R.layout.simple_spinner_item, arrayDatos)
         adaptadorSimple.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -65,8 +77,20 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // p1 --> la fila que se ha pulsado
         // p2 --> la posicion pulsada 0...n
         // p3 --> id (pk): id --> posicion
-        Snackbar.make(binding.spinnerSimple, adaptadorSimple.getItem(p2) ?: "No hay datos", Snackbar.LENGTH_SHORT)
-            .show()
+
+        when(p0!!.id){
+            R.id.spinner_simple -> {
+                Snackbar.make(binding.spinnerSimple,
+                    adaptadorSimple.getItem(p2)?.getEstrella() ?: "No hay datos",
+                    Snackbar.LENGTH_SHORT)
+                    .show()
+            }
+            R.id.spinner_complejo -> {
+                binding.imagenEscudo.setImageResource(adaptadorPais.getItem(p2).getImagen())
+            }
+        }
+
+
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

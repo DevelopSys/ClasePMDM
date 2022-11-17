@@ -12,11 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_simple" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_complejo" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Agregar dato"
         android:id="@+id/boton_agregar"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imagen_escudo"
         />
 
 </LinearLayout>
