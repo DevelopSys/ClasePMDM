@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.develop.t3_spinner.adaptadores.AdaptadorPersonalizado
 import com.develop.t3_spinner.databinding.ActivityMainBinding
 import com.develop.t3_spinner.modelo.Pais
@@ -19,8 +20,18 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var adaptadorSencillo: ArrayAdapter<CharSequence>;
     lateinit var adaptadorPersonalizado: AdaptadorPersonalizado;
     lateinit var pais: Pais;
+    lateinit var resultadoTexto: TextView;
+    var numeroString:String= "2"
+    var numeroNumero:Int= 2
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        resultadoTexto.text.toString().toInt() as Int
+        numeroString.toInt()
+
+        numeroNumero.toString()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

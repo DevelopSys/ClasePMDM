@@ -1,5 +1,6 @@
 package com.develop.t3_spinner_ret
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -29,6 +30,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         asociarDatos()
         rellenarLista();
         acciones()
+
+        var intent : Intent = Intent()
+        var bundle: Bundle = Bundle()
+        bundle.putSerializable("equipo",adaptadorPais.getItem(binding.spinnerComplejo.selectedItemPosition))
     }
 
     private fun acciones() {

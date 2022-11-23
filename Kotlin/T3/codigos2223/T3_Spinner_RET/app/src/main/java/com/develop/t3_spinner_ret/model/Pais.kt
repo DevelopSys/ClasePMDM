@@ -1,7 +1,10 @@
 package com.develop.t3_spinner_ret.model
 
+import java.io.Serializable
+
+
 class Pais(private var nombre: String, private var imagen: Int,
-           private var numeroTitulos: Int, private var jugadorEstrella: String){
+           private var numeroTitulos: Int, private var jugadorEstrella: String): Serializable{
 
     fun getNombre(): String{
         return this.nombre

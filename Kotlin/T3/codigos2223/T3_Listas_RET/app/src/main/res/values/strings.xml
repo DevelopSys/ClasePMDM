@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">T3_Listas_RET</string>
+    <string-array name="usuarios">
+        <item>Usuario1</item>
+        <item>Usuario2</item>
+        <item>Usuario3</item>
+        <item>Usuario4</item>
+        <item>Usuario5</item>
+        <item>Usuario6</item>
+        <item>Usuario7</item>
+    </string-array>
+</resources>
