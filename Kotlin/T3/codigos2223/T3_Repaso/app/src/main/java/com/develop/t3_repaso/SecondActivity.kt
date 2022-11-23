@@ -34,10 +34,10 @@ class SecondActivity : AppCompatActivity() {
     private fun instancias() {
 
         listaLenguajes = ArrayList();
-        listaLenguajes.add(Lenguaje("Java",1))
-        listaLenguajes.add(Lenguaje("Kotlin",1))
-        listaLenguajes.add(Lenguaje("Python",1))
-        listaLenguajes.add(Lenguaje("JS",1))
+        listaLenguajes.add(Lenguaje("Java",R.drawable.java))
+        listaLenguajes.add(Lenguaje("Kotlin",R.drawable.kotlin))
+        listaLenguajes.add(Lenguaje("Python",R.drawable.python))
+        listaLenguajes.add(Lenguaje("JS",R.drawable.js))
         adaptadorLenguaje = AdapterLenguaje(listaLenguajes,applicationContext);
         adaptadorLenguaje.notifyDataSetChanged()
 
@@ -63,6 +63,8 @@ class SecondActivity : AppCompatActivity() {
             bundle.putInt("nota2",binding.editNota2.text.toString().toInt())
             bundle.putString("asignatura",radioSeleccionado.text.toString())
             bundle.putSerializable("lenguaje",adaptadorLenguaje.getItem(binding.spinnerLenguaje.selectedItemPosition))
+            intent.putExtras(bundle)
+            startActivity(intent)
         }
 
     }

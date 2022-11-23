@@ -73,6 +73,7 @@
         android:id="@+id/edit_nota1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/grupo_asignaturas" />
