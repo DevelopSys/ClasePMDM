@@ -22,6 +22,7 @@
         android:layout_width="49dp"
         android:layout_height="16dp"
         android:text="Correo"
+        app:layout_constraintBottom_toTopOf="@+id/nombre_fila"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
