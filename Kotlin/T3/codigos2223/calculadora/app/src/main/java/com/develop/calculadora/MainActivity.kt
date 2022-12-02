@@ -15,43 +15,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view: View = binding.root;
+        val view: View = binding.root
         setContentView(view)
-        //instancias();
-        acciones();
-        /*if (resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
-            //accionesLand();
-            setContentView(R.layout.activity_main)
-            instancias();
-            acciones();
-        } else if (resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-        {
-            setContentView(R.layout.activity_warning)
-        }*/
+        acciones()
     }
 
-    /*private fun accionesLand() {
-        botonTres!!.setOnClickListener(this)
-        botonCuatro!!.setOnClickListener(this)
-    }*/
 
     private fun acciones() {
         binding.botonUno .setOnClickListener(this)
         binding.botonDos.setOnClickListener(this)
         binding.botonTres?.setOnClickListener(this)
         binding.botonCuatro?.setOnClickListener(this)
-
     }
-
-    /*private fun instancias() {
-        botonUno = findViewById(R.id.boton_uno);
-        botonDos = findViewById(R.id.boton_dos);
-        botonTres = findViewById(R.id.boton_tres);
-        botonCuatro = findViewById(R.id.boton_cuatro);
-        editNumeros = findViewById(R.id.edit_numeros)
-    }*/
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
