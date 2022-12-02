@@ -6,10 +6,12 @@ import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.develop.t4_listasholder.R
 import com.develop.t4_listasholder.model.Usuario
+import com.google.android.material.snackbar.Snackbar
 
 class AdaptadorRecycler(var context: Context, var lista: ArrayList<Usuario>) :
     RecyclerView.Adapter<AdaptadorRecycler.MyHolder>() {
@@ -27,6 +29,15 @@ class AdaptadorRecycler(var context: Context, var lista: ArrayList<Usuario>) :
         holder.nombre.setText(usuarioFila.nombre)
         holder.apellido.setText(usuarioFila.apellido)
         holder.correo.setText(usuarioFila.correo)
+        holder.nombre.setOnClickListener{
+            Snackbar.make(holder.nombre,"Pulsado nombre ${usuarioFila.nombre}",Snackbar.LENGTH_SHORT).show()
+        }
+        holder.apellido.setOnClickListener{
+            Snackbar.make(holder.nombre,"Pulsado apellido",Snackbar.LENGTH_SHORT).show()
+        }
+        holder.correo.setOnClickListener{
+            Snackbar.make(holder.nombre,"Pulsado correo",Snackbar.LENGTH_SHORT).show()
+        }
         /*usuarioFila.apellido
         usuarioFila.nombre
         usuarioFila.correo*/

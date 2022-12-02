@@ -19,6 +19,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         instancias();
+        binding.botonAgregar.setOnClickListener{
+            listaUsuarios.add(Usuario("Nuevo","Nuevo","Nuevo",123));
+            adaptadorRecycler.notifyItemInserted(listaUsuarios.size-1);
+        }
+
+
     }
 
     private fun instancias() {
