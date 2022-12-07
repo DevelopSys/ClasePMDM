@@ -6,7 +6,21 @@
 
 # Contenidos
 
-Una de la parte dentro del desarrollo movil es la de los menús ya que ofrecen la posibilidad de crear y gestionar acciones desde un mismo sitio colocado en la barra superior (de forma general) o de forma contextual desde cualquier elemento de la interfaz. Estos menús desde la version de android 3.0 se sitúan en la parte superior también llamada ActioBar, pero se pueden cambiar a un elemento llamado ToolBar la cual nos otorgará un control mucho mayor de los elementos que se pueden ejecutar. Por último, en este tema veremos las notificaciones emergentes, que aunque tienen mucho sentido cuando trabajamos con una aplicación con conexión en red, pueden ser útiles en alguno de los escenarios locales.
+Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen la posibilidad de crear y gestionar acciones desde un mismo sitio colocado en la barra superior (de forma general) o de forma contextual desde cualquier elemento de la interfaz. Estos menús desde la version de android 3.0 se sitúan en la parte superior también llamada ActioBar, pero se pueden cambiar a un elemento llamado ToolBar la cual nos otorgará un control mucho mayor de los elementos que se pueden ejecutar. Por último, en este tema veremos las notificaciones emergentes, que aunque tienen mucho sentido cuando trabajamos con una aplicación con conexión en red, pueden ser útiles en alguno de los escenarios locales.
+
+# Índice
+
+1. [Menus] (#menus)
+   1. [Creación](#creación-de-un-menu-de-opciones)
+   2. [Configurar](#configurar-menu-en-la-activity)
+   3. [Pulsación](#configurar-las-pulsaciones-dentro-de-un-menu)
+   4. [Contextuales](#creación-de-menus-contextuales)
+2. [Toolbar](#toolbar)
+   1. [Configurar home](#configurar-el-botón-home-de-la-barra-superior)
+3. [Notifiaciones de barra](#notificaciones-de-barra)
+   1. [Crear canal](#crear-un-canal-de-notificaciones)
+   2. [Crear notificacion](#crear-y-lanzar-una-notificación)
+
 
 # Menús
 
@@ -277,3 +291,95 @@ var intent = Intent(this, MainActivity::class.java)
 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 startActivity(intent)
 ```
+
+# Notificaciones de barra
+
+Otro de los elementos que permiten gestión de la información que de inicio están ocultos, son las notificaciones de barra de estado. Estas notificaciones permiten mostrar un globo con conctenido en momentos concretos de la aplicación. Si bien es cierto que cuando trabajamos con una aplicación que tienen conexión de red este tipo de notificaciones cobran mucho más sentido, también pueden ser útiles cuando trabajamos con una aplicación local. Para poder crear este tipo de notificaciones es necesario cumplir dos pasos: crear el canal de notificaciones y crear/lanzar la propia notificación
+
+## Crear un canal de notificaciones
+
+Desde android 8.0 es obligatorio crear y registrar el canal de notificaciones antes de poder lanzarla. Este canal de notificaciones representa el sitio donde las notificaciones serán mostradas, por lo tanto sin su existencia es literalmente imposible utilizarlas. Para crearlas se utiliza un objeto de tipo NotificationChannel
+
+```java
+val canal = NotificationChannel("mi_canal","canal1",NotificationManager.IMPORTANCE_DEFAULT)
+```
+
+Los parámetros que admite este constructor son:
+- id: nombre sobre el cual luego podremos lanzar las notificaciones
+- nombre: nombre que obtendrá el canal
+- nivel prioridad: para poder gestionar varios canales en el caso de que están activos al mismo tiempo
+
+Como esto es obligatorio desde la version Android Oreo, es necesario hacer una evaluación antes de crear el canal.
+
+```java
+    fun createChannel(): Unit {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val canal = NotificationChannel("mi_canal","canal1",NotificationManager.IMPORTANCE_DEFAULT)
+            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(canal)
+        }
+    }
+```
+El registro se hace a traves del sistema de notificaciones del sistema operativo. Este método creado se tendrá que ejecutar en el método onCreate para que el canal esté disponible nada más arrancar la aplicación (en el caso de que así se quiera)
+
+## Crear y lanzar una notificación
+
+Una vez está el canal creado y activado, tan solo falta crear la notificación y lanzarla sobre el canal que se quiera. Para ello es necesario utilizar un objeto NotificationManager.Builder
+
+```java
+val notificacion =  NotificationCompat.Builder(this, "mi_canal");
+```
+
+Para poder crearla es necesario indicar el contexto y el id del canal a traves del cual se mostrará la notificación. Una vez creada se pueden utilizar numerosos métodos para configurarla, donde destacan
+
+- setContentTitle: pone el título 
+- setContentText: pone el contenido del texto 
+- setSmallIcon: pone el icono 
+- priority: indica la prioridad
+- setContentIntent: pone la acción a realizar al pulsar la notificación. Se hace a través de un objeto de tipo pendingIntent
+
+```java
+val notificacion =  NotificationCompat.Builder(this, "mi_canal");
+notificacion.setContentTitle("Notificación general")
+notificacion.setContentText("Cuerpo de la notificación")
+notificacion.setSmallIcon(R.drawable.challenge)
+notificacion.priority = NotificationManager.IMPORTANCE_HIGH
+val intent = Intent(applicationContext, MainActivity::class.java)
+val pedingIntent = PendingIntent.getActivity(this, 0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
+notificacion.setContentIntent(pedingIntent)
+```
+
+Una vez la notificación se crea, tan solo falta lanzarla mediante un objeto de tipo NotificationManager y el método notify
+
+```java
+val notificationManager = NotificationManagerCompat.from(this)
+notificationManager.notify(1,notificacion.build())
+```
+
+Los parámetros del método notify son un ID para poder gestionar varios tipos de notificaciones y la creación de la propia notificación. Un ejemplo completo de lanzamiento de notificación desde la pulsación de un elemento de menu contextuales el siguiente:
+
+```java
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_context_1->{
+                val notificacion =  NotificationCompat.Builder(this, "mi_canal");
+                notificacion.setContentTitle("Notificación general")
+                notificacion.setContentText("Cuerpo de la notificación")
+                notificacion.setSmallIcon(R.drawable.challenge)
+                notificacion.priority = NotificationManager.IMPORTANCE_HIGH
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                val pedingIntent = PendingIntent.getActivity(this, 0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
+                notificacion.setContentIntent(pedingIntent)
+                lanzarNotificacion(notificacion)
+            }
+            R.id.menu_context_2->{}
+        }
+        return true
+    }
+
+    fun lanzarNotificacion(notificacion: NotificationCompat.Builder): Unit {
+        val notificationManager = NotificationManagerCompat.from(this)
+        notificationManager.notify(1,notificacion.build())
+    }
+```
+
