@@ -8,8 +8,8 @@
   - [Diálogos de confirmación](#diálogos-de-confirmación)
   - [Diálogo de selección](#diálogo-de-selección)
   - [Diálogos de selección simple y múltiple](#diálogos-de-selección-simple-y-múltiple)
-    - [Seleccion simple](#seleccion-simple)
-    - [Seleccion multiple](#seleccion-multiple)
+    - [Selección simple](#selección-simple)
+    - [Selección multiple](#selección-multiple)
   - [Diálogos personalizados](#diálogos-personalizados)
 - [Comunicación en los cuadros de diálogo](#comunicación-en-los-cuadros-de-diálogo)
   - [Comunicación diálogo - activity](#comunicación-diálogo---activity)
@@ -31,6 +31,7 @@ Se pueden utilizar muchos tipos de cuadros de diálogo, pudiendo utilizar diálo
 A la hora de crear diálogos, se pueden hacer dentro de las activitys o dentro de los fragments (que empezaremos a ver en el siguiente tema). Para poder crear cuadros de diálogo utilizaremos la clase AlertDialog.Buider
 
 # Cuadros de diálogo
+[volver arriba](#índice)
 
 Como se ha dicho, los diálogos son una forma de interactuar con el usuario, bien para dar información a modo información o para pedir algún tipo de dato. Antiguamente se utilizaban diálogos normales, pero desde la aparición de Android 4.0 se utilizan por defecto DialogFragment. Por este motivo el ciclo de vida de un diálogo es idéntico al que se explicará en el siguiente tema de la gestión de los fragments.
 
@@ -127,6 +128,7 @@ class DialogoAviso: DialogFragment() {
 Una vez visto cuales son las ubicaciones donde se pueden poner las cosas en los cuadros de diálogo y su creación básica, vamos a ver los diferentes tipos
 
 ## Cuadros de diálogo de aviso
+[volver arriba](#índice)
 
 Se trata de unos cuadros de diálogo que no tienen mucha interacción con el usuario, simplemente muestran un mensaje. Para ello se utiliza el método setTitle y setMessage para indicar ambas posiciones. Para poder crear un cuadro de diálogo de este tipo, vamos a crear una clase tal y como hemos visto en el punto anterior
 
@@ -185,6 +187,7 @@ Esta última parte la explicaremos en detalle en el siguiente tipo de cuadro de 
 **cuando se trabaja con cuadros de diálogo / fragments siempre hay que mantener una correlación con las clases que se utilizan. Siempre es necesario trabajar con android.x que ofrece clases de soporte (retrocompativilidad), por lo que se utilizará getSuppontFragmentManager en vez de FragmentManager a la hora de mostrarlos**
 
 ## Diálogos de confirmación
+[volver arriba](#índice)
 
 En el siguiente tipo de cuadro de diálogo, además de poder mostrar un mensaje, se le pide al usuario que pulse un botón para constestar a una pregunta simple. Las opciones serán: respuesta positiva, respuesta negativa o respuesta neutra.
 
@@ -247,6 +250,7 @@ Si nos damos cuenta el código es muy similar al visto anteriormente, tan solo s
 En el caso de querer tener más de una opción a seleccionar dentro del cuadro de diálogo, sería necesario utilizar un cuadro de diálogo de selección
 
 ## Diálogo de selección
+[volver arriba](#índice)
 
 Su construcción es muy similar a los casos anteriores, la única diferencia es que a la hora de trabajar con el builder es necesario incorporar un método nuevo que es el setItems, el cual admite un array de elementos (también objetos de los cuales cuales cogerá el método toString para representar el dato) y quitar el método setMessage ya que ambos elementos ocupan la misma posición. Esto es importante ya que luego a la hora de determinar cual ha sido el seleccionado se utilizará un parámetro que indique la posición, siendo 0 el primer elemento de la lista.
 
@@ -280,7 +284,8 @@ setNegativeButton("Cerrar"){dialogo, posicion->null}
 
 ## Diálogos de selección simple y múltiple
 
-### Seleccion simple
+### Selección simple
+[volver arriba](#índice)
 
 Estos dos tipos de cuadro de diálogo son muy similares. La diferencia entre ellos es el tipo de selección que se puede hacer, solo un elemento y o varios
 En el caso de querer tener una selección simple utilizaremos el método setOnSingle tener una selección
@@ -344,7 +349,8 @@ class DialogoSingle : DialogFragment() {
 
 Como se puede ver, y al igual que en los casos anteriores, la gestión de la pulsación se realiza mediante un listener que trae como parámetros dos elementos: el propio diálogo y la posición del elemento seleccionado.
 
-### Seleccion multiple
+### Selección multiple
+[volver arriba](#índice)
 
 Muy similar al anterior, con la diferencia que el usuario podrá seleccionar más de una opción al mismo tiempo. Para ello es necesario utilizar el método setMultiChoiceItems, pasando como parámetros el conjunto de acciones, un array de booleanos que indican cual de los elementos están marcados por defecto y el listener que en este caso es OnMultiChoiceListener, el cual tiene como parámetros el diálogo, la posición del seleccionado y un booleano que indica el estado del elemento pulsado
 
@@ -425,6 +431,7 @@ En este ejemplo, cada vez que un elemento es pulsado y el valor que se captura e
 Hasta este punto se han visto todos los cuadros de diálogo que tienen una creación por defecto. Sin embargo hay ocasiones donde no basta con las posibilidades que me dá el sistema operativo, sino que se necesita construir un cuadro de diálogo personalizado, con una vista propia. Para ello y tal y como se verá en el siguiente punto, es necesario crear un archivo xml nuevo que represente la vista y asociarlo a la clase del diálogo.
 
 ## Diálogos personalizados
+[volver arriba](#índice)
 
 Como se acaba de comentar, hay ocasiones en los que el programador necesita realizar un cuadro de diálogo que se sale de lo estándar, por lo que se necesita una vista especial. Aquí es donde entran los cuadros de diálogo personalizados. Lo primero que es necesario para poder tener un cuadro de diálogo personalizado es la creación de la vista, por lo que se creará un archivo xml con la vista que se quiera utilizar:
 
@@ -589,10 +596,12 @@ class DialogoPerso : DialogFragment() {
 ```
 
 # Comunicación en los cuadros de diálogo
+[volver arriba](#índice)
 
 En todos los ejemplos que se han mostrado anteriormente, no ha sido necesario ejecutar tareas pesadas o complejas pero imaginemos que se quiere arrancar una tarea con la constestación de un cuadro de diálogo. Para ello es necesario hacer una comunicación bien sea desde el cuadro de diálogo hasta la pantalla o desde la pantalla hasta el cuadro de diálogo. Esto es lo que se conoce como interfaces de callback o también existe la posibilidad de crear funciones posible nulas. Vamos a ver ambas posibilidades.
 
 ## Comunicación diálogo - activity
+[volver arriba](#índice)
 
 Para poder ilustrar este ejemplo vamos a coger el cuadro de diálogo personalizado. Este será lanzado desde la pulsación de un botón que se ubica en una activity, por lo que es necesario programar su pulsación
 
@@ -875,5 +884,6 @@ class MainActivity : AppCompatActivity() {
 ```
 
 ## Comunicación de activity a diálogo
+[volver arriba](#índice)
 
-Sería el caso contrario al anterior. Si se quiere pasar un dato desde la pantalle al cuadro de diálogo es necesario utilizar un constructor estático, lo que se conoce con el nombre de newInstance
+Sería el caso contrario al anterior. Si se quiere pasar un dato desde la pantalla al cuadro de diálogo es necesario utilizar un constructor estático, lo que se conoce con el nombre de newInstance
