@@ -1,3 +1,20 @@
+# Índice
+
+- [Índice](#índice)
+- [Objetivos](#objetivos)
+- [Contenidos](#contenidos)
+- [Cuadros de diálogo](#cuadros-de-diálogo)
+  - [Cuadros de diálogo de aviso](#cuadros-de-diálogo-de-aviso)
+  - [Diálogos de confirmación](#diálogos-de-confirmación)
+  - [Diálogo de selección](#diálogo-de-selección)
+  - [Diálogos de selección simple y múltiple](#diálogos-de-selección-simple-y-múltiple)
+    - [Seleccion simple](#seleccion-simple)
+    - [Seleccion multiple](#seleccion-multiple)
+  - [Diálogos personalizados](#diálogos-personalizados)
+- [Comunicación en los cuadros de diálogo](#comunicación-en-los-cuadros-de-diálogo)
+  - [Comunicación diálogo - activity](#comunicación-diálogo---activity)
+  - [Comunicación de activity a diálogo](#comunicación-de-activity-a-diálogo)
+
 # Objetivos
 
 - Comprender el concepto de los ficheros y notificaciones
@@ -89,11 +106,11 @@ En cuanto a la forma de crearlo existen dos posibilidades:
 - Crearlo en el propio código
 - Crearlo en una clase independiente
 
-Ámbas posibilidades son útiles, dependiendo de cual es el uso se realizará de una forma u otra. Por ejemplo, si queremos reutilizar el diálogo lo crearemos en una clase independiente para que pueda ser llamado desde diferentes sitios sin tener que crear el mísmo código n veces. No obstante el código de programación vamos a ver que es el mismo.
+Ambas posibilidades son útiles, dependiendo de cual es el uso se realizará de una forma u otra. Por ejemplo, si queremos reutilizar el diálogo lo crearemos en una clase independiente para que pueda ser llamado desde diferentes sitios sin tener que crear el mismo código n veces. No obstante el código de programación vamos a ver que es el mismo.
 
 Dependiendo de cual sea el cuadro de diálogo que queramos crear las características que se le pondrán son diferentes. Antes de empezar a distinguir cuadros de diálogo, es necesario entender la morfología de los mismos, y en que parte pueden ir los datos. Para ello podemos ver la siguiente imagen
 
-Para explicar esto, vamos a utilizar la creacion de los cuádros de diálogo mediante clases independientes. Para ello lo primero es crear una clase kotlin la cual extienda de DialogFragment (de la clase androidx) y sobreescribimos el método onCreateDialgo. Este método del ciclo de vida del cuadro de diálogo permite crear y personalizar el cuadro de forma completa. Si nos fijamos, este método debe retornar un objeto de tiepo Dialog, el cual será construido a través del Builder
+Para explicar esto, vamos a utilizar la creación de los cuadros de diálogo mediante clases independientes. Para ello lo primero es crear una clase kotlin la cual extienda de DialogFragment (de la clase androidx) y sobreescribimos el método onCreateDialgo. Este método del ciclo de vida del cuadro de diálogo permite crear y personalizar el cuadro de forma completa. Si nos fijamos, este método debe retornar un objeto de tiempo Dialog, el cual será construido a través del Builder
 
 ```java
 class DialogoAviso: DialogFragment() {
@@ -111,7 +128,7 @@ Una vez visto cuales son las ubicaciones donde se pueden poner las cosas en los 
 
 ## Cuadros de diálogo de aviso
 
-Se trata de unos cuadros de diálogo que no tienen mucha interacción con el usuario, simplemente muestran un mensaje. Para ello se utiliza el método setTitle y setMessage para indicar ambas posiciones. Para poder crear un cuadro de diálogo de este tipo, vamos a crear una clase tal y como hemos visto en el punto anteriore
+Se trata de unos cuadros de diálogo que no tienen mucha interacción con el usuario, simplemente muestran un mensaje. Para ello se utiliza el método setTitle y setMessage para indicar ambas posiciones. Para poder crear un cuadro de diálogo de este tipo, vamos a crear una clase tal y como hemos visto en el punto anterior
 
 ```java
 class DialogoAviso: DialogFragment() {
@@ -123,7 +140,7 @@ class DialogoAviso: DialogFragment() {
 }
 ```
 
-Para poder crear el cuandro de diálogo, tan solo es necesario que este método retorne un objeto de tipo diálogo. Para ello hay que instanciar el Builder a través del contexto (sitio donde se ejecuta la aplicación) y utilizar los métodos que se quieran. En este caso utilizaremos los que se comentaron anteriormente
+Para poder crear el cuadro de diálogo, tan solo es necesario que este método retorne un objeto de tipo diálogo. Para ello hay que instanciar el Builder a través del contexto (sitio donde se ejecuta la aplicación) y utilizar los métodos que se quieran. En este caso utilizaremos los que se comentaron anteriormente
 
 ```java
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -149,7 +166,7 @@ private fun acciones() {
     }
 ```
 
-Una vez hecho esto el cuadro de diálogo es mostrado, y para poder ocultarlo es necesario pulsar fuera. En el caso de querer poner un botón de confirmación podríemos hacerlo incluyendo el método setPositiveButton dentro de la clase del diálogo
+Una vez hecho esto el cuadro de diálogo es mostrado, y para poder ocultarlo es necesario pulsar fuera. En el caso de querer poner un botón de confirmación podríamos hacerlo incluyendo el método setPositiveButton dentro de la clase del diálogo
 
 ```java
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -174,16 +191,6 @@ En el siguiente tipo de cuadro de diálogo, además de poder mostrar un mensaje,
 Al igual que antes es necesario crear una clase adicional incluiyendo en el onCreateDialog los métodos de setPostiveButton setNegativeButton o setNeutralButton
 
 ```java
-package com.develop.dialogos.dialogos
-
-import android.app.Dialog
-import android.content.DialogInterface
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-
 class DialogoConfirmacion : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -213,7 +220,7 @@ class DialogoConfirmacion : DialogFragment() {
 }
 ```
 
-Si nos damos cuenta el código es muy similar al visto anteriormente, tan solo se ha añadido la funcionalidad de los botones. Para ello el método ha pedido dos parámentos: el texto que tendrá el boton y la función de flecha (o listener asociado) la cual admite dos parámetros: la interfaz que ha generado el evento y la posición del boton pulsado:
+Si nos damos cuenta el código es muy similar al visto anteriormente, tan solo se ha añadido la funcionalidad de los botones. Para ello el método ha pedido dos paramentos: el texto que tendrá el boton y la función de flecha (o listener asociado) la cual admite dos parámetros: la interfaz que ha generado el evento y la posición del boton pulsado:
 
 ```java
         builder.setTitle("Cuadro de confirmacion")
@@ -241,20 +248,9 @@ En el caso de querer tener más de una opción a seleccionar dentro del cuadro d
 
 ## Diálogo de selección
 
-Su construcción es muy similar a los casos anteriores, la única diferencia es que a la hora de trabajar con el builder es necesario incorporar un método nuevo que es el setItems, el cual admite un array de elementos (tambien objetos de los cuales cuales cogerá el método toString para representar el dato) y quitar el método setMessage ya que ambos elementos ocupan la misma posición. Esto es importante ya que luego a la hora de determinar cual ha sido el seleccionado se utilizará un parámetro que indique la posición, siendo 0 el primer elemento de la lista.
+Su construcción es muy similar a los casos anteriores, la única diferencia es que a la hora de trabajar con el builder es necesario incorporar un método nuevo que es el setItems, el cual admite un array de elementos (también objetos de los cuales cuales cogerá el método toString para representar el dato) y quitar el método setMessage ya que ambos elementos ocupan la misma posición. Esto es importante ya que luego a la hora de determinar cual ha sido el seleccionado se utilizará un parámetro que indique la posición, siendo 0 el primer elemento de la lista.
 
 ```java
-package com.develop.dialogos.dialogos
-
-import android.app.Dialog
-import android.content.DialogInterface
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-
 class DialogoSeleccion : DialogFragment() {
 
     lateinit var elementos: Array<String>
@@ -287,20 +283,9 @@ setNegativeButton("Cerrar"){dialogo, posicion->null}
 ### Seleccion simple
 
 Estos dos tipos de cuadro de diálogo son muy similares. La diferencia entre ellos es el tipo de selección que se puede hacer, solo un elemento y o varios
-En el caso de querer tener una seleccion simple utilizaremos el método setOnSingle tener una selección
+En el caso de querer tener una selección simple utilizaremos el método setOnSingle tener una selección
 
 ```java
-package com.develop.dialogos.dialogos
-
-import android.app.Dialog
-import android.content.DialogInterface
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-
 class DialogoSingle : DialogFragment() {
 
     lateinit var elementos: Array<String>
@@ -323,20 +308,9 @@ class DialogoSingle : DialogFragment() {
 }
 ```
 
-En este caso el método setSingleChoiceItems pide tres parámetros: el dialogo, la posición del seleccionado y la interfaz que hace de ejecución. Es importante tener en cuenta que en este tipo de cuadro de diálogo a diferencia de los anteriores, si es necesario tener un botón que permita cerrar el cuadro de diálogo (o un método dismiss() dentro de la puslación)
+En este caso el método setSingleChoiceItems pide tres parámetros: el dialogo, la posición del seleccionado y la interfaz que hace de ejecución. Es importante tener en cuenta que en este tipo de cuadro de diálogo a diferencia de los anteriores, si es necesario tener un botón que permita cerrar el cuadro de diálogo (o un método dismiss() dentro de la pulsación)
 
 ```java
-package com.develop.dialogos.dialogos
-
-import android.app.Dialog
-import android.content.DialogInterface
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-
 class DialogoSingle : DialogFragment() {
 
     lateinit var elementos: Array<String>
@@ -368,28 +342,17 @@ class DialogoSingle : DialogFragment() {
 }
 ```
 
-Como se puede ver, y al igual que en los casos anteriores, la gestión de la pulsación se realiza mediante un listener que trae como parámetros dos elementos: el propieo diálogo y la posición del elemento seleccionado.
+Como se puede ver, y al igual que en los casos anteriores, la gestión de la pulsación se realiza mediante un listener que trae como parámetros dos elementos: el propio diálogo y la posición del elemento seleccionado.
 
 ### Seleccion multiple
 
-Muy similar al anterior, con la diferencia que el usuario podrá seleccionar más de una opción al mismo tiempo. Para ello es necesario utilizar el método setMultiChoiceItems, pasando como parámetros el conjunto de acciones, un array de booleanos que indican cual de los elementos están marcados por defecto y el listener que en este caso es OnMultiChoiceListener, el cual tiene como parámetros el diálogo, la posición del seleccionado y un booleano que indica el estado del elemento puslado
+Muy similar al anterior, con la diferencia que el usuario podrá seleccionar más de una opción al mismo tiempo. Para ello es necesario utilizar el método setMultiChoiceItems, pasando como parámetros el conjunto de acciones, un array de booleanos que indican cual de los elementos están marcados por defecto y el listener que en este caso es OnMultiChoiceListener, el cual tiene como parámetros el diálogo, la posición del seleccionado y un booleano que indica el estado del elemento pulsado
 
 ```java
 setMultiChoiceItems(elementos, null) { dialogo, posicion, boolean ->}
 ```
 
 ```java
-package com.develop.dialogos.dialogos
-
-import android.app.Dialog
-import android.content.DialogInterface
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-
 class DialogoMulti : DialogFragment() {
 
     lateinit var elementos: Array<String>
@@ -418,17 +381,6 @@ class DialogoMulti : DialogFragment() {
 Al igual que pasa en el caso del diálogo de selección simple, es necesario (y en este caso con más sentido) que añadamos un botón aceptar y/o cancelar para cerrar el cuadro de diálogo con el resultado del mismo
 
 ```java
-package com.develop.dialogos.dialogos
-
-import android.app.Dialog
-import android.content.DialogInterface
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-
 class DialogoMulti : DialogFragment() {
 
     lateinit var elementos: Array<String>
@@ -474,7 +426,7 @@ Hasta este punto se han visto todos los cuadros de diálogo que tienen una creac
 
 ## Diálogos personalizados
 
-Como se acaba de comentar, hay ocasiones en los que el programador necesita realizar un cuadro de diálogo que se sale de lo estandar, por lo que se necesita una vista especial. Aquí es donde entran los cuadros de diálogo personalizados. Lo primero que es necesario para poder tener un cuadro de diálogo personalizado es la creación de la vista, por lo que se creará un archivo xml con la vista que se quiera utilizar:
+Como se acaba de comentar, hay ocasiones en los que el programador necesita realizar un cuadro de diálogo que se sale de lo estándar, por lo que se necesita una vista especial. Aquí es donde entran los cuadros de diálogo personalizados. Lo primero que es necesario para poder tener un cuadro de diálogo personalizado es la creación de la vista, por lo que se creará un archivo xml con la vista que se quiera utilizar:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -556,11 +508,9 @@ Como se acaba de comentar, hay ocasiones en los que el programador necesita real
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-Esta vista representa el tipoco cuadro de diálogo de login. Una vez se tiene la parte gráfica, es necesario crear la parte lógica. En este caso la parte lógica es manejada desde el cuadro de diálogo, por lo que lo primero necesario será asociar ambas partes. Para ello, en una clase que haya extendido de DialogFragment traemos el xml que se ha creado mediante un objeto de tipo LayoutInflater. Este tipo de objetos permite manejar ficheros de tipo layout e incorporarlos dentro de las clases. Esta clase tiene un método estático from() el cual pide un contexto (ya que no se puede crear un cuadro de diálogo de la nada), para lo que es muy útil el método onAttach (primer método del ciclo de vida del diálogo)
+Esta vista representa el típico cuadro de diálogo de login. Una vez se tiene la parte gráfica, es necesario crear la parte lógica. En este caso la parte lógica es manejada desde el cuadro de diálogo, por lo que lo primero necesario será asociar ambas partes. Para ello, en una clase que haya extendido de DialogFragment traemos el xml que se ha creado mediante un objeto de tipo LayoutInflater. Este tipo de objetos permite manejar ficheros de tipo layout e incorporarlos dentro de las clases. Esta clase tiene un método estático from() el cual pide un contexto (ya que no se puede crear un cuadro de diálogo de la nada), para lo que es muy útil el método onAttach (primer método del ciclo de vida del diálogo)
 
 ```java
-package com.develop.dialogos.dialogos
-
 class DialogoPerso : DialogFragment() {
 
     lateinit var vista: View;
@@ -572,11 +522,9 @@ class DialogoPerso : DialogFragment() {
 }
 ```
 
-Con el elemento layout traido al código, el siguiente paso es el de ponerlo dentro del diálogo. Para ello se utiliza el método setView dentro del builder que hemos usado en los casos anteriores
+Con el elemento layout traído al código, el siguiente paso es el de ponerlo dentro del diálogo. Para ello se utiliza el método setView dentro del builder que hemos usado en los casos anteriores
 
 ```java
-package com.develop.dialogos.dialogos
-
 class DialogoPerso : DialogFragment() {
 
     lateinit var vista: View;
@@ -596,10 +544,9 @@ class DialogoPerso : DialogFragment() {
 }
 ```
 
-Con esto ya sería suficiente y la vista sería mostrada cuando el cuadro de diálogo sea llamado. El siguiente punto es el recuperar los datos que se metan en los campos o simplemente trabajar con la pulsción del botón. Para ello es necesario instanciar cada uno de los elementos (o utilizar viewBinding). Para ello es necario utilizar el método findViewById pero no sobre this (que es el diálogo), sino sobre view que es el objeto donde se ha guardado el xml y por lo tanto tiene todos los elementos. Una vez instanciados se puede hacer con ellos lo que se quiera
+Con esto ya sería suficiente y la vista sería mostrada cuando el cuadro de diálogo sea llamado. El siguiente punto es el recuperar los datos que se metan en los campos o simplemente trabajar con la pulsación del botón. Para ello es necesario instanciar cada uno de los elementos (o utilizar viewBinding). Para ello es necesario utilizar el método findViewById pero no sobre this (que es el diálogo), sino sobre view que es el objeto donde se ha guardado el xml y por lo tanto tiene todos los elementos. Una vez instanciados se puede hacer con ellos lo que se quiera
 
 ```java
-package com.develop.dialogos.dialogos
 
 class DialogoPerso : DialogFragment() {
 
@@ -645,9 +592,9 @@ class DialogoPerso : DialogFragment() {
 
 En todos los ejemplos que se han mostrado anteriormente, no ha sido necesario ejecutar tareas pesadas o complejas pero imaginemos que se quiere arrancar una tarea con la constestación de un cuadro de diálogo. Para ello es necesario hacer una comunicación bien sea desde el cuadro de diálogo hasta la pantalla o desde la pantalla hasta el cuadro de diálogo. Esto es lo que se conoce como interfaces de callback o también existe la posibilidad de crear funciones posible nulas. Vamos a ver ambas posibilidades.
 
-## Comunicacion diálogo - activity
+## Comunicación diálogo - activity
 
-Para poder ilustrar este ejemplo vamoa a coger el cuadro de diálogo personalizado. Este será lanzado desde la pulsación de un botón que se ubica en una activity, por lo que es necesario programar su pulsación
+Para poder ilustrar este ejemplo vamos a coger el cuadro de diálogo personalizado. Este será lanzado desde la pulsación de un botón que se ubica en una activity, por lo que es necesario programar su pulsación
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -684,8 +631,6 @@ Para poder ilustrar este ejemplo vamoa a coger el cuadro de diálogo personaliza
 ```
 
 ```java
-package com.develop.dialogos
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -710,9 +655,9 @@ Con este código el cuadro de diálogo es mostrado. Ahora lo que se quiere es, u
 
 - Comunicación mediante interfaces de callback
 
-Por definición, una interfaz es una clase abstracta que tiene un conjunto de métodos que no están implementados. Si nos ceñimos a esta definición una interfaz sirve para que sea implementada en diferentes clases y así poder juntar tipos que inicialmente no tienen nada que ver. Además de esta funcionalidad, las interfaces también sirven para ser ejecucutadas desde un sitio (donde se implementan) y llamadas desde otro donde se declaran. Precisamente esto es lo que permite comunicar un diálogo con una interfaz. Vayamos por pasos:
+Por definición, una interfaz es una clase abstracta que tiene un conjunto de métodos que no están implementados. Si nos ceñimos a esta definición una interfaz sirve para que sea implementada en diferentes clases y así poder juntar tipos que inicialmente no tienen nada que ver. Además de esta funcionalidad, las interfaces también sirven para ser ejecutadas desde un sitio (donde se implementan) y llamadas desde otro donde se declaran. Precisamente esto es lo que permite comunicar un diálogo con una interfaz. Vayamos por pasos:
 
-1. Crear una interfaz en el origen de los datos: en aquella clase donde tengamos los datos que quieremos comunicar se declara una interfaz con los métodos que se necesiten. Es obvio que tendrá un método cuyos parametros sean aquellos datos que se quieren comunicar. En este caso esta interfaz será creada en el diálogo, yaq ue es allí donde está el nombre y pass que se quieren comunicar a la activity
+1. Crear una interfaz en el origen de los datos: en aquella clase donde tengamos los datos que queremos comunicar se declara una interfaz con los métodos que se necesiten. Es obvio que tendrá un método cuyos parámetros sean aquellos datos que se quieren comunicar. En este caso esta interfaz será creada en el diálogo, yaq ue es allí donde está el nombre y pass que se quieren comunicar a la activity
 
 ```java
 class DialogoPerso : DialogFragment() {
@@ -758,8 +703,6 @@ class DialogoPerso : DialogFragment() {
 2. Una vez está creada la interfaz, es momento de utilizarla. En este caso se utilizará con la pulsación del botón, por lo que se necesita un objeto del tipo de la interfaz en la clase para llamar al método onLoginDataSelected con los parametros que se quieren comunicar. Es necesario declarar esta variable como lateinit porque no se puede inicializar tal cual
 
 ```java
-package com.develop.dialogos.dialogos
-
 class DialogoPerso : DialogFragment() {
 
     private lateinit var vista: View;
@@ -802,7 +745,7 @@ class DialogoPerso : DialogFragment() {
 }
 ```
 
-La variable listener es utilizada cuando se pulsa el botón, por lo que como última configuración antes de pasar al siguiente paso es la de instanciar la variable ya que ahora mismo tiene un valor de null. Para poder instanciarla hay que igualarla a algo que sea de tipo OnLoginListener y no sería nada útili hacerlo sobre ella misma
+La variable listener es utilizada cuando se pulsa el botón, por lo que como última configuración antes de pasar al siguiente paso es la de instanciar la variable ya que ahora mismo tiene un valor de null. Para poder instanciarla hay que igualarla a algo que sea de tipo OnLoginListener y no sería nada útil hacerlo sobre ella misma
 
 ```java
 listener = object : OnLoginListener {
@@ -828,8 +771,6 @@ De esta forma dejamos a la variable preparada para el último paso. Si recordamo
 3. La respuesta a la pregunta es muy fácil: implementando la interfaz. Con la implementación de la interfaz en el destino de los datos conseguimos que la igualdad que se ha hecho antes en el método onAttach siempre sea verdadera. No solo eso, sino que esta implementación obliga a escribir el método de la interfaz el cual tiene los dos parámetros que son los datos que queremos comunicar desde el diálogo hasta la pantalla
 
 ```java
-package com.develop.dialogos
-
 class MainActivity : AppCompatActivity(), DialogoPerso.OnLoginListener {
 
     private lateinit var binding: ActivityMainBinding
@@ -858,19 +799,17 @@ Por último tan solo quedaría por utilizar los datos que vienen como parámetro
 
 - Comunicación mediante funciones null
 
-En el caso de no querer utilizar una interfaz de callback, existe la posibilidad de utilizar funciones nulas, ya que kotlin ofrece dicha funcionalidad. En realizadad es un proceso muy parecido al que hemos descrito en el punto anterior, ya que el fondo es exactamente igual. Para poder hacer un ejemplo de esto vamos a realizarlo sobre el dialogo de selección multiple, donde al dar al botón de aceptar queremos llevar los datos al la pantalla de origen. Para ello es necesario seguir los siguientes pasos:
+En el caso de no querer utilizar una interfaz de callback, existe la posibilidad de utilizar funciones nulas, ya que kotlin ofrece dicha funcionalidad. En realidad es un proceso muy parecido al que hemos descrito en el punto anterior, ya que el fondo es exactamente igual. Para poder hacer un ejemplo de esto vamos a realizarlo sobre el dialogo de selección multiple, donde al dar al botón de aceptar queremos llevar los datos al la pantalla de origen. Para ello es necesario seguir los siguientes pasos:
 
-1. En el origen de los datos, declaramos una variable de tipo función, la cual admite como parámetros aquellos datos que queremos comunicar. En este caso seré el array de elementos que se vá llenando con la punsacion de cada opción tal y como vimos en los puntos anteriores
+1. En el origen de los datos, declaramos una variable de tipo función, la cual admite como parámetros aquellos datos que queremos comunicar. En este caso seré el array de elementos que se vá llenando con la pulsación de cada opción tal y como vimos en los puntos anteriores
 
 ```java
     lateinit var funcionComunicar: ((ArrayList<String>)->Unit)? = null
 ```
 
-Evidentemente esta funcion es nula, ya que no es aquí donde la queremos definir pero si es donde la queremos utilizar. Al ser un posible nulo (?), para poder utilizarla es necesario el uso de la funcion invoke donde como parámetros podremos lo que pide la función. En este caso se realizar con la pulsación del botón positivo
+Evidentemente esta función es nula, ya que no es aquí donde la queremos definir pero si es donde la queremos utilizar. Al ser un posible nulo (?), para poder utilizarla es necesario el uso de la función invoke donde como parámetros podremos lo que pide la función. En este caso se realizar con la pulsación del botón positivo
 
 ```java
-package com.develop.dialogos.dialogos
-
 class DialogoMulti : DialogFragment() {
 
     lateinit var elementos: Array<String>
@@ -903,11 +842,9 @@ class DialogoMulti : DialogFragment() {
 }
 ```
 
-2. Una vez está la llamada hecha, es necesario irse al destino de los datos (en este ejemplo el MainActivity) y declarar un objeto del tipo Dialogo (la clase donde está definida la función) y dentro de instancias al mismo tiempo que se da valor al objeto, se define el comportamiento del la funcion nula.
+2. Una vez está la llamada hecha, es necesario irse al destino de los datos (en este ejemplo el MainActivity) y declarar un objeto del tipo Dialogo (la clase donde está definida la función) y dentro de instancias al mismo tiempo que se da valor al objeto, se define el comportamiento del la función nula.
 
 ```java
-package com.develop.dialogos
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -937,6 +874,6 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-# Comunicación de activity a diálogo
+## Comunicación de activity a diálogo
 
 Sería el caso contrario al anterior. Si se quiere pasar un dato desde la pantalle al cuadro de diálogo es necesario utilizar un constructor estático, lo que se conoce con el nombre de newInstance
