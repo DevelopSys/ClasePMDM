@@ -10,7 +10,7 @@ Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen 
 
 # Índice
 
-1. [Menus] (#menus)
+1. [Menus] (#menús)
    1. [Creación](#creación-de-un-menu-de-opciones)
    2. [Configurar](#configurar-menu-en-la-activity)
    3. [Pulsación](#configurar-las-pulsaciones-dentro-de-un-menu)
@@ -22,7 +22,8 @@ Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen 
    2. [Crear notificacion](#crear-y-lanzar-una-notificación)
 
 
-# Menús
+# Menús 
+[Volver arriba](#índice)
 
 Como ya se ha dicho los menus son las herramientas por defecto que permiten añadir funcionalidad extra en un solo sitio, siendo de primeras invisibles. Es importante saber que cada pantalla puede tener asignado un menú diferente
 
@@ -197,6 +198,7 @@ El igual que vimos en los menus normales, utilizando el menuinflater podemos aso
 ```
 
 # Toolbar
+[Volver arriba](#índice)
 
 Todo lo explicado anteriormente es válido, pero sin embargo existe una posibilidad cada vez más utilizada que es la de sustituir la parte superior por la de Toolbar. Esto otorgará al programador muchas más posibilidades de funcionalidad además de las que ya tiene el ActionBar. En el caso de querer utilizar un elemento de tipo ToolBar lo primero necesario es quitar el ya existente, ya que sino se duplicaría en espacio. Para ello, dentro de los estilos debemos seleccionar un estilo hijo de NoActionBar
 
@@ -293,6 +295,7 @@ startActivity(intent)
 ```
 
 # Notificaciones de barra
+[Volver arriba](#índice)
 
 Otro de los elementos que permiten gestión de la información que de inicio están ocultos, son las notificaciones de barra de estado. Estas notificaciones permiten mostrar un globo con conctenido en momentos concretos de la aplicación. Si bien es cierto que cuando trabajamos con una aplicación que tienen conexión de red este tipo de notificaciones cobran mucho más sentido, también pueden ser útiles cuando trabajamos con una aplicación local. Para poder crear este tipo de notificaciones es necesario cumplir dos pasos: crear el canal de notificaciones y crear/lanzar la propia notificación
 
