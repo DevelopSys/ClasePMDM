@@ -1,18 +1,7 @@
-# Objetivos
-
-- Conocer el concepto de menus y sus posibilidades
-- Entender la diferencia entre Toolbar y ActionBar
-- Conocer como funcionan las notificaciones
-
-# Contenidos
-
-Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen la posibilidad de crear y gestionar acciones desde un mismo sitio colocado en la barra superior (de forma general) o de forma contextual desde cualquier elemento de la interfaz. Estos menús desde la version de android 3.0 se sitúan en la parte superior también llamada ActioBar, pero se pueden cambiar a un elemento llamado ToolBar la cual nos otorgará un control mucho mayor de los elementos que se pueden ejecutar. Por último, en este tema veremos las notificaciones emergentes, que aunque tienen mucho sentido cuando trabajamos con una aplicación con conexión en red, pueden ser útiles en alguno de los escenarios locales.
-
 # Índice
-
+- [Índice](#índice)
 - [Objetivos](#objetivos)
 - [Contenidos](#contenidos)
-- [Índice](#índice)
 - [Menús](#menús)
   - [Creación de un menu de opciones](#creación-de-un-menu-de-opciones)
   - [Configurar menu en la activity](#configurar-menu-en-la-activity)
@@ -24,6 +13,17 @@ Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen 
   - [Crear un canal de notificaciones](#crear-un-canal-de-notificaciones)
   - [Crear y lanzar una notificación](#crear-y-lanzar-una-notificación)
 
+
+# Objetivos
+
+- Conocer el concepto de menus y sus posibilidades
+- Entender la diferencia entre Toolbar y ActionBar
+- Conocer como funcionan las notificaciones
+
+# Contenidos
+[Volver arriba](#índice)
+
+Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen la posibilidad de crear y gestionar acciones desde un mismo sitio colocado en la barra superior (de forma general) o de forma contextual desde cualquier elemento de la interfaz. Estos menús desde la version de android 3.0 se sitúan en la parte superior también llamada ActioBar, pero se pueden cambiar a un elemento llamado ToolBar la cual nos otorgará un control mucho mayor de los elementos que se pueden ejecutar. Por último, en este tema veremos las notificaciones emergentes, que aunque tienen mucho sentido cuando trabajamos con una aplicación con conexión en red, pueden ser útiles en alguno de los escenarios locales.
 
 # Menús 
 [Volver arriba](#índice)
