@@ -10,16 +10,19 @@ Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen 
 
 # Índice
 
-1. [Menus] (#menús)
-   1. [Creación](#creación-de-un-menu-de-opciones)
-   2. [Configurar](#configurar-menu-en-la-activity)
-   3. [Pulsación](#configurar-las-pulsaciones-dentro-de-un-menu)
-   4. [Contextuales](#creación-de-menus-contextuales)
-2. [Toolbar](#toolbar)
-   1. [Configurar home](#configurar-el-botón-home-de-la-barra-superior)
-3. [Notifiaciones de barra](#notificaciones-de-barra)
-   1. [Crear canal](#crear-un-canal-de-notificaciones)
-   2. [Crear notificacion](#crear-y-lanzar-una-notificación)
+- [Objetivos](#objetivos)
+- [Contenidos](#contenidos)
+- [Índice](#índice)
+- [Menús](#menús)
+  - [Creación de un menu de opciones](#creación-de-un-menu-de-opciones)
+  - [Configurar menu en la activity](#configurar-menu-en-la-activity)
+  - [Configurar las pulsaciones dentro de un menu](#configurar-las-pulsaciones-dentro-de-un-menu)
+  - [Creación de menus contextuales](#creación-de-menus-contextuales)
+- [Toolbar](#toolbar)
+  - [Configurar el botón home de la barra superior](#configurar-el-botón-home-de-la-barra-superior)
+- [Notificaciones de barra](#notificaciones-de-barra)
+  - [Crear un canal de notificaciones](#crear-un-canal-de-notificaciones)
+  - [Crear y lanzar una notificación](#crear-y-lanzar-una-notificación)
 
 
 # Menús 
