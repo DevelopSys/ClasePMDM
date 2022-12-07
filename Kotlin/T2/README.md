@@ -39,7 +39,7 @@ Como ya se ha explicado en el punto anterior una pantalla (activity) en android 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-La parte lógica se representa con un fichero kt, donde se definen las operaciones, gestión de datos, etc. Se trata de una clase que extiende de Activity (ahora AppCompactActivity). Por herencia obtiene todos los métodos asociados a una activity, siendo el único obligatorio y escrito incialmente `onCreate(Bundel)`
+La parte lógica se representa con un fichero kt, donde se definen las operaciones, gestión de datos, etc. Se trata de una clase que extiende de Activity (ahora AppCompactActivity). Por herencia obtiene todos los métodos asociados a una activity, siendo el único obligatorio y escrito inicialmente `onCreate(Bundel)`
 
 ```java
 class MainActivity : AppCompatActivity() {
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Si recordamos el ciclo de vida de una aplicación, el método se ejecuta justo antes de que esta comience a ser visible. Precisamente de esto es de lo que se encarga el método, de asociar la parte gráfica a la parte lógcica, siendo el método setContentView el encargado de ello. Para ello el método recibe como parámetros el nombre del layout que se asociará, siendo accedido a través de la clase R (la cual guarda todos los recursos de la aplicación). Una vez ejecutado este método todos los elementos gráficos podrán ser accesibles desde el código y tener una referencia de ellos para poder utilizarlo. Para poder ver esto vamos a realizar el siguiente ejemplo: una parte gráfica donde exista un botón y justo debajo una etiqueta con el texto `Primera aplicación Android`. Para ello lo primero que debemos hacer es modificar la parte gráfica (el fichero xml) localizado dentro de la carpeta src - layouts - activity_main.xml. Inicialmente está configurado con un elemento root como `ConstraintLayout` el cual se explicará más adelante pero para poder realizar este ejemplo diremos que este tipo de layout pone los elementos con respecto a otros. Por eso el elemento `TextView`que aparece inicialmente está en el medio de la pantalla ya que tiene una dependencia con los ejes x e y de la pantalla. En este fichero vamos a sustituir el elemento TextView por un elemento llamado Button el cual representa un botón clickable. Adicionalmente a las propiedades que tiene configurada vamos a poner la propiedad id, la cual no permitirá referenciar el elemento desde el código. Esta propiedad no es obligatoria como si lo son la de width y height (y las de constraint en el caso del layout actual) pero su es muy recomentable ya que sin ella es complicado referenciar el elemento en el código .kt (en el caso de hacerlo con el editor gráfico el id se pondrá solo, siendo muy recomendable cambiarlo ya que pone id por defecto y eso puede llevar a errores). El fichero quedará de la siguiente forma 
+Si recordamos el ciclo de vida de una aplicación, el método se ejecuta justo antes de que esta comience a ser visible. Precisamente de esto es de lo que se encarga el método, de asociar la parte gráfica a la parte lógica, siendo el método setContentView el encargado de ello. Para ello el método recibe como parámetros el nombre del layout que se asociará, siendo accedido a través de la clase R (la cual guarda todos los recursos de la aplicación). Una vez ejecutado este método todos los elementos gráficos podrán ser accesibles desde el código y tener una referencia de ellos para poder utilizarlo. Para poder ver esto vamos a realizar el siguiente ejemplo: una parte gráfica donde exista un botón y justo debajo una etiqueta con el texto `Primera aplicación Android`. Para ello lo primero que debemos hacer es modificar la parte gráfica (el fichero xml) localizado dentro de la carpeta src - layouts - activity_main.xml. Inicialmente está configurado con un elemento root como `ConstraintLayout` el cual se explicará más adelante pero para poder realizar este ejemplo diremos que este tipo de layout pone los elementos con respecto a otros. Por eso el elemento `TextView`que aparece inicialmente está en el medio de la pantalla ya que tiene una dependencia con los ejes x e y de la pantalla. En este fichero vamos a sustituir el elemento TextView por un elemento llamado Button el cual representa un botón clickable. Adicionalmente a las propiedades que tiene configurada vamos a poner la propiedad id, la cual no permitirá referenciar el elemento desde el código. Esta propiedad no es obligatoria como si lo son la de width y height (y las de constraint en el caso del layout actual) pero su es muy recomendable ya que sin ella es complicado referenciar el elemento en el código .kt (en el caso de hacerlo con el editor gráfico el id se pondrá solo, siendo muy recomendable cambiarlo ya que pone id por defecto y eso puede llevar a errores). El fichero quedará de la siguiente forma 
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -100,16 +100,9 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Para ello se crean dos variables con un ámbito de clase con un nombre resperesntativo (no tiene porque ser el mísmo que se ha dado al id del archivo xml). Estas variables serán las referencias de los elementos gráficos, por lo que es necesario utilizar el id otorgado en el archivo anterior para poder juntarlas. Para ello, **y siempre después del método setContentView** se igualan estas variables a las del archivo utilizando el método `findViewById` el cual permite hacer esta asociación gracias a que la activity tiene puesto un layout. Es muy importante hacerlo despues ya que de hacerlo antes sería imposible encontrar las vistas al no haber parte gráfica asociada. Si se quiere, para poder hacerlo más organizado, se podría crear un método llamado instancias en el cual se realizarán todoas las inicializaciones de las variables 
+Para ello se crean dos variables con un ámbito de clase con un nombre representativo (no tiene porque ser el mismo que se ha dado al id del archivo xml). Estas variables serán las referencias de los elementos gráficos, por lo que es necesario utilizar el id otorgado en el archivo anterior para poder juntarlas. Para ello, **y siempre después del método setContentView** se igualan estas variables a las del archivo utilizando el método `findViewById` el cual permite hacer esta asociación gracias a que la activity tiene puesto un layout. Es muy importante hacerlo después ya que de hacerlo antes sería imposible encontrar las vistas al no haber parte gráfica asociada. Si se quiere, para poder hacerlo más organizado, se podría crear un método llamado instancias en el cual se realizarán todas las inicializaciones de las variables 
 
 ```java
-package com.develop.inicio
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-
 class MainActivity : AppCompatActivity() {
 
     private var botonPulsar: Button? = null
@@ -127,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Es importante ver que las dos variables tienen asignado el caracter ?, ya que de inicio no están inicializadas por lo que son nulas (recordad el null safety de java). De esta forma se puede acceder a todas aquellas variables gráficas desde la parte lógica. Además de hacerlo de esta forma, también se podrían declarar como lateinit y así evitariamos poner el ? de safetynull. El inconveniente de esto reside en el momento en el que el número de variables que se quieren acceder son muy grandes. Para ello existe otra forma mediante la cual obtendremos una referencia a todos los elementos del layout. Para ello debemos activar esta característica en el archivo `build.gradle` con el siguiente código
+Es importante ver que las dos variables tienen asignado el carácter ?, ya que de inicio no están inicializadas por lo que son nulas (recordad el null safety de java). De esta forma se puede acceder a todas aquellas variables gráficas desde la parte lógica. Además de hacerlo de esta forma, también se podrían declarar como lateinit y así evitaríamos poner el ? de safetynull. El inconveniente de esto reside en el momento en el que el número de variables que se quieren acceder son muy grandes. Para ello existe otra forma mediante la cual obtendremos una referencia a todos los elementos del layout. Para ello debemos activar esta característica en el archivo `build.gradle` con el siguiente código
 
 ```java
 viewBinding{
@@ -135,13 +128,13 @@ viewBinding{
     }
 ```
 
-Esto activará la carateristica de binding directo y creará clases adicionales de bindind. Si en nuestre ejemplo tenenmos un layout llamad activity_main, se creará una clase adicional llamada ActivityMainBinding. Para poder utilizar este binding es necesario crear una variable de dicho tipo que será inicializada a posteriori
+Esto activará la característica de binding directo y creará clases adicionales de bindind. Si en nuestro ejemplo tenemos un layout llamad activity_main, se creará una clase adicional llamada ActivityMainBinding. Para poder utilizar este binding es necesario crear una variable de dicho tipo que será inicializada a posteriori
 
 ```java
 private lateinit var binding: ActivityMainBinding
 ```
 
-A la hora de inicializarlo sería necesario acceder al método `inlafte` de la clase generada y pasando como parámentros layoutInflater, el cual representa un acceso al layout que está ligado. Además se creará una variable no mutable de tipo view que será la que se pase por parámetro al método setContentView. 
+A la hora de inicializarlo sería necesario acceder al método `inlafte` de la clase generada y pasando como parámetros layoutInflater, el cual representa un acceso al layout que está ligado. Además se creará una variable no mutable de tipo view que será la que se pase por parámetro al método setContentView. 
 
 ```java
 override fun onCreate(savedInstanceState: Bundle?) {
@@ -153,7 +146,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 
-A partir de este momento, la variable binding tendrá el conjunto de todas las variables que tiene el layout, representadas por el id que se le dió en el fichero xml. En nuestro ejemplo se dio los id boton_pulsar y texto_cambiar, por lo que la variable binding tendrá los elementos botonPulsar y textoCambiar ya inicializados directemante
+A partir de este momento, la variable binding tendrá el conjunto de todas las variables que tiene el layout, representadas por el id que se le dió en el fichero xml. En nuestro ejemplo se dio los id boton_pulsar y texto_cambiar, por lo que la variable binding tendrá los elementos botonPulsar y textoCambiar ya inicializados directamente
 
 ```java
 // elemento que hace referencia al TextView
@@ -162,17 +155,9 @@ binding.textoCambiar
 binding.botonPulsar
 ```
 
-Por lo tanto en este caso el método instancias no sería necesario ya que las variables son accesibles direcamente desde binding directamente. Una vez se tienen referenciadas en el código lógico, tan solo sería necesario utilizar alguno de sus métodos para poder utilizarlos en el proceso lógico. Por ejemplo si se quiere cambiar el texto del TextView de forma directa, tan solo sería necesario ejecutar el método setText() pasando como parámetros el nuevo texto que se quiere pober en la etiqueta
+Por lo tanto en este caso el método instancias no sería necesario ya que las variables son accesibles direcamente desde binding directamente. Una vez se tienen referenciadas en el código lógico, tan solo sería necesario utilizar alguno de sus métodos para poder utilizarlos en el proceso lógico. Por ejemplo si se quiere cambiar el texto del TextView de forma directa, tan solo sería necesario ejecutar el método setText() pasando como parámetros el nuevo texto que se quiere poner en la etiqueta
 
 ```java
-package com.develop.inicio
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import com.develop.inicio.databinding.ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
 
     //var botonPulsar: Button? = null
@@ -193,7 +178,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Otra de las acciones muy comunes dentro de la gestión de elementos en android, es el tratamiento de eventos. Se define evento como la acción que dispara una ejecución. Para ello, al elemento que se quiera controlar (aquel que dispare la acción cuando se produzca algo sobre el, como por ejemplo una pulsación) se le debe ejecutar el metodo setNombreDelEventoListener, admitiendo como parámetros un objeto dela interfaz que tiene el evento. Depende de la  interfaz tiene como parámetro se tendrá un objeto de tipo View y diferentes elementos (el IDE lo marcará para que la construcción se más sencilla). Como java cuenta con las llamadas funciones lambda, la construcción para controlar cuando un botón es pulsado sería la siguiente:
+Otra de las acciones muy comunes dentro de la gestión de elementos en android, es el tratamiento de eventos. Se define evento como la acción que dispara una ejecución. Para ello, al elemento que se quiera controlar (aquel que dispare la acción cuando se produzca algo sobre el, como por ejemplo una pulsación) se le debe ejecutar el método setNombreDelEventoListener, admitiendo como parámetros un objeto dela interfaz que tiene el evento. Depende de la  interfaz tiene como parámetro se tendrá un objeto de tipo View y diferentes elementos (el IDE lo marcará para que la construcción se más sencilla). Como java cuenta con las llamadas funciones lambda, la construcción para controlar cuando un botón es pulsado sería la siguiente:
 
 ```java
     private fun acciones() {
@@ -236,7 +221,7 @@ En este caso el método OnClickListener tan solo admite un parámetros, por lo q
     }
 ```
 
-Como se puede ver tras la pulsación del botón, se evalúa si el texto capturado es vacío. En caso afirmativo se mostrará en la etiqueta mietras que si el texto recogido es vacío aparecerá una notificación en forma de snackbar avisando del fallo. En el caso de querer darle una acción a la snackbar se podría con el método setAction
+Como se puede ver tras la pulsación del botón, se evalúa si el texto capturado es vacío. En caso afirmativo se mostrará en la etiqueta mientras que si el texto recogido es vacío aparecerá una notificación en forma de snackbar avisando del fallo. En el caso de querer darle una acción a la snackbar se podría con el método setAction
 
 ```java
     private fun acciones() {
@@ -253,7 +238,7 @@ Como se puede ver tras la pulsación del botón, se evalúa si el texto capturad
     }
 ```
 
-El método setAction admite como parámetros dos elementos, un tecto que será el que aparezca dentro de la notificación y una función que admite como parámetros una vista. En este caso al pulsar el texto de la notificación la snackbar desaparecerá ya que se ejecuta el método `dismiss` (por eso se ha guardado la snackbar en una variable). En el caso de tener dos o más elementos sobre los que se quiere controlar una misma acción sería necesario utilizar el argumento `View` de la función de flecha (en el ejemplo anterior es el declarado como v, pero también podría haber sido obviado al ser solo uno y llamado como it). Para poder ver esto, vamos ver esta funcionalidad, al ejemplo anterior vamos a agregarle un botón al ya creado. El primero de los botones realizará el setText en la etiqueta del texto puesto en el edit, mientras que el nuevo botón pondrá `texto por defecto` en la etiqueta. Para ello tendrémos que seguir los siguientes pasos
+El método setAction admite como parámetros dos elementos, un texto que será el que aparezca dentro de la notificación y una función que admite como parámetros una vista. En este caso al pulsar el texto de la notificación la snackbar desaparecerá ya que se ejecuta el método `dismiss` (por eso se ha guardado la snackbar en una variable). En el caso de tener dos o más elementos sobre los que se quiere controlar una misma acción sería necesario utilizar el argumento `View` de la función de flecha (en el ejemplo anterior es el declarado como v, pero también podría haber sido obviado al ser solo uno y llamado como it). Para poder ver esto, vamos ver esta funcionalidad, al ejemplo anterior vamos a agregarle un botón al ya creado. El primero de los botones realizará el setText en la etiqueta del texto puesto en el edit, mientras que el nuevo botón pondrá `texto por defecto` en la etiqueta. Para ello tendremos que seguir los siguientes pasos
 
 1. Modificar el archivo xml e incorporar un botón nuevo con el id boton_saludar. Para poder colocar el botón al lado del otro, se ha incorporado un LineaLayout que ayuda a poner ambos botones uno a la izquierda del otro
 
@@ -381,9 +366,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 Como se puede ver se ha implementado la interfaz OnClickListener, lo que ha obligado a escribir el método onClick cuyo parámetro es la vista que ha generado el evento. Dependiendo del id (con el estamento when) de la vista que ha generado el evento se realizará una cosa u otra. Por último a ambos botones se pasa como parámetro this como referencia de la clase (ya que ha implementado la interfaz)
 
-Estos son los fundamentos del trabajo en Android Studio. En el siguiente tema se verán el manejo y gestion de los principales elementos de interfaces gráficas y aprenderemos a crearlas con gestores del espacion como son los layouts. 
+Estos son los fundamentos del trabajo en Android Studio. En el siguiente tema se verán el manejo y gestión de los principales elementos de interfaces gráficas y aprenderemos a crearlas con gestores del espacio como son los layouts. 
 
-Antes de dar por cerrado el tema, vamos a ver el acceso a recursos varios (como los String) y la internacionalizacón. En el punto de creación de un proyecto, se ha comentado que en todo proyecto android se crea por defecto una carpeta llamada res. En ella se ubican todos los recursos de la actividad, y en concreto hay una carpeta donde se guardan los xml asociados a los recursos que forman parte de la aplicación. Esta carpeta es la de res/values y en concreto el fichero string.xml guarda todas las palabras que son susceptibles de ser accedidas desde código. Inicalmente el contenido del archivo es el siguiente:
+Antes de dar por cerrado el tema, vamos a ver el acceso a recursos varios (como los String) y la internacionalización. En el punto de creación de un proyecto, se ha comentado que en todo proyecto android se crea por defecto una carpeta llamada res. En ella se ubican todos los recursos de la actividad, y en concreto hay una carpeta donde se guardan los xml asociados a los recursos que forman parte de la aplicación. Esta carpeta es la de res/values y en concreto el fichero string.xml guarda todas las palabras que son susceptibles de ser accedidas desde código. Inicialmente el contenido del archivo es el siguiente:
 
 ```xml
 <resources>
@@ -432,7 +417,7 @@ Una vez está declarado en el fichero, se puede acceder a ellos a traves tanto d
     app:layout_constraintTop_toTopOf="parent" />
 ```
 
-Como desde el fichereo MainActivity.kt mediante R.strin.texto_defecto (nombre dado en el fichero)
+Como desde el fichero MainActivity.kt mediante R.string.texto_defecto (nombre dado en el fichero)
 
 ```java
 override fun onClick(p0: View?) {
@@ -461,7 +446,7 @@ En algunas ocasiones es posible que sea necesario acceder mediante el siguiente 
 binding.textoCambiar.setText(getString(R.string.texto_defecto))
 ```
 
-Una vez hecho esto, es posible añadir tantos string como sean necesarios y a la hora de utilizarlos tan solo sería necesario referenciarlos de las dos formas mostradas. Uno de los principales motivos de realizar esto es que si se quiere cambiar la misma palabra que aparece en el mismo sitio, tan solo sería necesario cambiarlo en el archivo string.xml. Otro de los grandes motivos es el de la internacionalización. Cuando se está realizando una aplicación, lo normal es que esta creación se independiente del idioma del dispositivo. Esto quiere decir que si el dispositivo está configurado en inglés el texto debería aparecer en dicho idioma, y si está en español automáticamente el texto debería cambiar. Para ello es necesario realizar una copia exacta del fichero string cualificado, agregandole un _en o _fr (dependiendo del lenguaje que se quiera utilizar). Para poder hacer una copia del fichero, es necesario crear un nuevo fichero en la carpeta values -> new value resource file -> configurar con el nombre strings.xml (exactamente igual que el nombre del fichero que ya existe) -> en la parte inferior sería necesario agregar un cualificador de Locale y seleccionar el idioma al que se quiere tradudir. Toda esta acción creará un fichero llamado strings_en.xml donde es necesario poner el mismo contenido que el fichero strings.xml por defecto, pero con las palabras traducidas.
+Una vez hecho esto, es posible añadir tantos string como sean necesarios y a la hora de utilizarlos tan solo sería necesario referenciarlos de las dos formas mostradas. Uno de los principales motivos de realizar esto es que si se quiere cambiar la misma palabra que aparece en el mismo sitio, tan solo sería necesario cambiarlo en el archivo string.xml. Otro de los grandes motivos es el de la internacionalización. Cuando se está realizando una aplicación, lo normal es que esta creación se independiente del idioma del dispositivo. Esto quiere decir que si el dispositivo está configurado en inglés el texto debería aparecer en dicho idioma, y si está en español automáticamente el texto debería cambiar. Para ello es necesario realizar una copia exacta del fichero string cualificado, agregándole un _en o _fr (dependiendo del lenguaje que se quiera utilizar). Para poder hacer una copia del fichero, es necesario crear un nuevo fichero en la carpeta values -> new value resource file -> configurar con el nombre strings.xml (exactamente igual que el nombre del fichero que ya existe) -> en la parte inferior sería necesario agregar un cualificador de Locale y seleccionar el idioma al que se quiere traducir. Toda esta acción creará un fichero llamado strings_en.xml donde es necesario poner el mismo contenido que el fichero strings.xml por defecto, pero con las palabras traducidas.
 
 ```xml
 <!--Fichero strings_en.xml-->
@@ -489,11 +474,11 @@ Una vez hecho esto, es posible añadir tantos string como sean necesarios y a la
 
 #Intents
 
-Otro de los elementos básicos de una aplicación android son los intents. Este tipo de objeto permite desde código realizar tareas como navegar entre pantallas, lanzas aplicaciones del sistema como el navegador, mapas, camara, etc... en resumen una acción que puede ser definida por el usuario o definida en la URI con la que se configura el intent. Antes de empezar a ver las opciones de este tipo de objetos, comentar que su creación y lanzamiento se puede realizar de forma explicita (creando el objeto y sus datos en la parte lógica con el constructor del intent) o implícitos (definiendo sus accionez en el fichero AndroidManifest.xml o desde la URI que define la accion). A continuación vamos a ver los principales usos que tiene este tipo de objetos
+Otro de los elementos básicos de una aplicación android son los intents. Este tipo de objeto permite desde código realizar tareas como navegar entre pantallas, lanzas aplicaciones del sistema como el navegador, mapas, cámara, etc... en resumen una acción que puede ser definida por el usuario o definida en la URI con la que se configura el intent. Antes de empezar a ver las opciones de este tipo de objetos, comentar que su creación y lanzamiento se puede realizar de forma explicita (creando el objeto y sus datos en la parte lógica con el constructor del intent) o implícitos (definiendo sus acciones en el fichero AndroidManifest.xml o desde la URI que define la acción). A continuación vamos a ver los principales usos que tiene este tipo de objetos
 
 ## Navegar a una segunda actividad
 
-Uno de los principales usos de los intents es el de navegar a otra actividad, con o sin aatos asociados. Para ello se va a crear un proyecto que conste de dos actividades, cada una de las cuales tendrá los siguientes elementos:
+Uno de los principales usos de los intents es el de navegar a otra actividad, con o sin datos asociados. Para ello se va a crear un proyecto que conste de dos actividades, cada una de las cuales tendrá los siguientes elementos:
 
 - MainActivity: constará de un botón en el centro de la pantalla con el texto Pasar pantalla.
 
@@ -523,11 +508,6 @@ Uno de los principales usos de los intents es el de navegar a otra actividad, co
 
 ```java
 // MainActivity.kt
-package com.develop.intents
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -567,7 +547,7 @@ class MainActivity : AppCompatActivity() {
 </manifest>
 ```
 
-Una vez hecho esto ya podemos empezar a crear el paso de pantallas. En el caso de querer hacer un cambio de pantalla explicito sería necesario crear una variable de tipo Intent y pasarle como parámetros el origen (la clase donde estamos - this - y el destino - la clase a la que queremos pasar-). Una vez creado este objeto para poder realziar el cambio de pantalla se utiliza el método `startActivity`
+Una vez hecho esto ya podemos empezar a crear el paso de pantallas. En el caso de querer hacer un cambio de pantalla explicito sería necesario crear una variable de tipo Intent y pasarle como parámetros el origen (la clase donde estamos - this - y el destino - la clase a la que queremos pasar-). Una vez creado este objeto para poder realizar el cambio de pantalla se utiliza el método `startActivity`
 
 ```java
 // el this se podría poner como this@MainActivity, para poder definir que hacemos referencia al ámbito de la clase entera
@@ -578,14 +558,6 @@ startActivity(intent)
 Ejecutando este código la segunda pantalla (en este caso SecondActivity) pasaría a primer plano y la activity actual (MainActivity) pasaría a segundo plano. Con el ejemplo que hemos empezado, podríamos configurar el botón para que al ser pulsado se realice el cambio de pantalla
 
 ```java
-package com.develop.intents
-
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import com.develop.intents.databinding.ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -606,7 +578,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-En el caso de querer realizar un intent implícito, es el sistema el que se encrga de decidir que pantalla es la que se tiene que hacer. Generalmente, el sistema realiza esto dependiendo de la acción que se indique y de la URI (Universal Resource Identifier) configurada. Para ellos y al igual que se ha hecho antes es necesario crear una variable de tipo intent, indicando en el constructor la acción (Action_View es la más genérica). Además de esto es necesario indicar los datos que acompañarán a la petición (ya que al abrir una pantalla como por ejemplo el navegador, es necesario indicar la página que será mostrada)
+En el caso de querer realizar un intent implícito, es el sistema el que se encarga de decidir que pantalla es la que se tiene que hacer. Generalmente, el sistema realiza esto dependiendo de la acción que se indique y de la URI (Universal Resource Identifier) configurada. Para ellos y al igual que se ha hecho antes es necesario crear una variable de tipo intent, indicando en el constructor la acción (Action_View es la más genérica). Además de esto es necesario indicar los datos que acompañarán a la petición (ya que al abrir una pantalla como por ejemplo el navegador, es necesario indicar la página que será mostrada)
 
 ```java
 val intent: Intent = Intent(Intent.ACTION_VIEW);
@@ -617,15 +589,6 @@ startActivity(intent)
 Al igual que antes si se quiere realizar con la pulsación del botón se realizará mediante el siguiente código
 
 ```java
-package com.develop.intents
-
-import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import com.develop.intents.databinding.ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -661,7 +624,7 @@ En el caso de que el método resolveActivity responda con un objeto diferente de
 
 Las principales acciones asociadas a los intents son:
 
-Como se ha indicado antes, por defecto el sistema es capaz de detectar la aplicación con la que se abrirá el intent, pero en el caso de querer indicar al usuario un mensaje para que el usuario seleccione con que aplicación quere abrirlo se podrñia hacer mediante un objeto de tipo IntentChooser, el cual recibe por parámentros el intent con la acción que se quiere realizar y el texto que aparecerá con el selector de aplicaciones
+Como se ha indicado antes, por defecto el sistema es capaz de detectar la aplicación con la que se abrirá el intent, pero en el caso de querer indicar al usuario un mensaje para que el usuario seleccione con que aplicación quiere abrirlo se podría hacer mediante un objeto de tipo IntentChooser, el cual recibe por paramentos el intent con la acción que se quiere realizar y el texto que aparecerá con el selector de aplicaciones
 
 ```java
 val intent = Intent(Intent.ACTION_VIEW);
@@ -674,7 +637,7 @@ if (intent.resolveActivity(packageManager)!=null){
 
 ## Pasar de activity con parámetros
 
-Otra de las funcionalidades que es muy utilizada en los intents es la de arrancar una nueva actividad pero además de realizar ese cambio de pantalla, también pasar una serie de datos. Esto es posible si al intent utilizar para pasar de pantalla se se agregan los datos utilizando el método putExtra(), identificando los datos con un par clave valor al igual que en un Map. A la hora de recuperarlo se utilizará el método getExtra(), indicando la clave con la que se ha asociado el dato.Para poder explicar esto nos vamos a basar en el ejemplo que se ha utilizado anteriormente del paso de dos pantallas. Si recordamos lo visto anterioremente, lo que has ha haecho ha sido crear un Intent donde en constructor se ha declarado origen y destino, y una vez se tiene construido se ha utilizado el método startActivity(). Si seguimos el mismo ejemplo, imageniemos que en en la primera pantalla (MainActivity) se quiere capturar uno o varios datos desde un editText y al pulsar un botón pasarlo a la segunda pantalla para que esta lo recupere los datos y sean mostrados. Para ello poder hacer esto vamos a seguir los siguientes pasos:
+Otra de las funcionalidades que es muy utilizada en los intents es la de arrancar una nueva actividad pero además de realizar ese cambio de pantalla, también pasar una serie de datos. Esto es posible si al intent utilizar para pasar de pantalla se se agregan los datos utilizando el método putExtra(), identificando los datos con un par clave valor al igual que en un Map. A la hora de recuperarlo se utilizará el método getExtra(), indicando la clave con la que se ha asociado el dato.Para poder explicar esto nos vamos a basar en el ejemplo que se ha utilizado anteriormente del paso de dos pantallas. Si recordamos lo visto anteriormente, lo que has ha hecho ha sido crear un Intent donde en constructor se ha declarado origen y destino, y una vez se tiene construido se ha utilizado el método startActivity(). Si seguimos el mismo ejemplo, imaginemos que en en la primera pantalla (MainActivity) se quiere capturar uno o varios datos desde un editText y al pulsar un botón pasarlo a la segunda pantalla para que esta lo recupere los datos y sean mostrados. Para ello poder hacer esto vamos a seguir los siguientes pasos:
 
 1. En el archivo activity_main donde definimos la ui de la primera pantalla se va a incluir un editText con el id editNombre
 
@@ -710,7 +673,7 @@ Otra de las funcionalidades que es muy utilizada en los intents es la de arranca
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-2. En la parte lógica de la pantalla (el archivo MainActivity.kt) cuando el botón se pulsado se va a recojer el dato del editText y se va a pasar junto con el intent creado en el ejemplo anterior utiizando el método putExtra()
+2. En la parte lógica de la pantalla (el archivo MainActivity.kt) cuando el botón se pulsado se va a recoger el dato del editText y se va a pasar junto con el intent creado en el ejemplo anterior utilizando el método putExtra()
 
 ```java
 val intent = Intent(this, SecondActivity::class.java)
@@ -720,7 +683,7 @@ startActivity(intent)
 
 Con este nuevo intent, además de la acción de pasar entre pantalla, se ha agregado un dato que tiene como clave asociada la palabra nombre. Esta clave será utilizada en la pantalla destino para poder capturar el dato. 
 
-3. En el archivo second_activity.xml se va a crear un teextView donde se mostrará el dato pasado desde la primera pantalla.
+3. En el archivo second_activity.xml se va a crear un textView donde se mostrará el dato pasado desde la primera pantalla.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -741,13 +704,13 @@ Con este nuevo intent, además de la acción de pasar entre pantalla, se ha agre
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
-3. Una vez se tiene el elemento premarado, en la segunda pantalla se podrá capturar mediante el intent que ha arrancado la pantalla y el método getExtra, indicando la clave del dato que se quiere recuperar
+3. Una vez se tiene el elemento preparado, en la segunda pantalla se podrá capturar mediante el intent que ha arrancado la pantalla y el método getExtra, indicando la clave del dato que se quiere recuperar
 
 ```java
 intent.extras?.getString("nombre").toString();
 ```
 
-En este caso la ejecucion de extras está declarado como null safety ya que es posible que se declara como null. Una vez el dato sea recibido, se puede utilizar para poder ponerlo dentro de la etiqueta declarada en el centro de la pantalla
+En este caso la ejecución de extras está declarado como null safety ya que es posible que se declara como null. Una vez el dato sea recibido, se puede utilizar para poder ponerlo dentro de la etiqueta declarada en el centro de la pantalla
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -770,14 +733,6 @@ En este caso la ejecucion de extras está declarado como null safety ya que es p
 ```
 
 ```java
-package com.develop.intents
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import com.develop.intents.databinding.ActivityMainBinding
-import com.develop.intents.databinding.ActivitySecondBinding
-
 class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecondBinding
@@ -806,10 +761,10 @@ class SecondActivity : AppCompatActivity() {
 ```
 ## Arrancar actividad esperando respuesta
 
-Otra de las posibilidades que dan los intents es la de, además de arrancar una segunda pantalla, esperar obtener un resultado. Un ejemplo claro de esto es arrancar la camara para poder hacer una foto, y volver a la pantalla anterior para poder mostrarla. El flujo sería el siguiente
+Otra de las posibilidades que dan los intents es la de, además de arrancar una segunda pantalla, esperar obtener un resultado. Un ejemplo claro de esto es arrancar la cámara para poder hacer una foto, y volver a la pantalla anterior para poder mostrarla. El flujo sería el siguiente
 
-1. Desde MainActivity (con un imageView y un botón) se pulsa un boton y se abre la camara con un intent
-2. Con la camara se hace una foto y al hacerla se vuelve a la pantalla inicial
+1. Desde MainActivity (con un imageView y un botón) se pulsa un boton y se abre la cámara con un intent
+2. Con la cámara se hace una foto y al hacerla se vuelve a la pantalla inicial
 3. Una vez estamos en MainActivity, esta se encargará de recibir el dato (en este caso la foto) y ponerla dentro del image view
 
 Para hacer este ejemplo seguiremos los siguientes pasos

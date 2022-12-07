@@ -35,7 +35,7 @@ Para poder definir variables en kotlin se utiliza el nombre: tipo = valor
 var numero: Int = 0;
 ```
 
-En muchas ocasiones el tipo se puede obviar, ya que el compilador otrorgará el tipo más adecuado.
+En muchas ocasiones el tipo se puede obviar, ya que el compilador otorgará el tipo más adecuado.
 
 En cuanto a los tipos de variables que pueden existir en kotlin, son principalmente dos las que nos podemos encontrar: var y val. Var se trata de una variable "normal", la cual puede alterar su valor a lo largo del programa, mientras que val se trata de una variable constante que no puede cambiar su valor una vez ha sido asignado
 
@@ -53,13 +53,13 @@ fun main(arg: Array<String>) {
 }
 ```
 
-A la hora de declarar variables, kotlin tiene un mecanismo para evitar las excepciones de nullpointer. Se conoce como null safety y permite asignar un posible valor nulo a una variable sin que al utilizarlo se rompa la ejecución. Para ello se utiliza el símbolo de ? despues del tipo de la variable;
+A la hora de declarar variables, kotlin tiene un mecanismo para evitar las excepciones de nullpointer. Se conoce como null safety y permite asignar un posible valor nulo a una variable sin que al utilizarlo se rompa la ejecución. Para ello se utiliza el símbolo de ? después del tipo de la variable;
 
 ```java
 var nombre: String? = null
 ```
 
-Esto indica que la variable tiene asignada un valor de null. Con esta declaración cada vez que se quiera utilizar la variable se tendrá que indicar la posibiidad de obtener un null en la ejecución
+Esto indica que la variable tiene asignada un valor de null. Con esta declaración cada vez que se quiera utilizar la variable se tendrá que indicar la posibilidad de obtener un null en la ejecución
 
 ```java
 var nombre: String? = null
@@ -71,7 +71,7 @@ SALIDA
 null
 ```
 
-Hay en otros casos que no se puede obviar el fallo por uso de null. En estos casos es necesario indicar al compilador que si se encuentra con un elemento null que continue con la ejecuci´pon normal
+Hay en otros casos que no se puede obviar el fallo por uso de null. En estos casos es necesario indicar al compilador que si se encuentra con un elemento null que continue con la ejecución normal
 
 ```java
 var totalFacturado: Int? = null
@@ -82,7 +82,7 @@ fun main(arg: Array<String>) {
 }
 ```
 
-En el caso de querer utilizar el null safety indicado anteriormente tambien se podría, siempre teniendo que llamar a una funcion despues de la variable que puede ser nula
+En el caso de querer utilizar el null safety indicado anteriormente también se podría, siempre teniendo que llamar a una función después de la variable que puede ser nula
 
 ```java
 fun main(arg: Array<String>) {
@@ -98,7 +98,7 @@ En algunas ocasiones puede ser muy interesante sustituir el valor del posible nu
 totalFacturado?.compareTo(0) ?: -1
 ```
 
-En este caso se está intentando utilizar el método comparteTo de la variable totalFacturado y comparandolo con 0. En el caso en el que la variable sea null, el valor se sustituirá por -1. Un ejemplo con un estamento completo sería el siguiente
+En este caso se está intentando utilizar el método comparteTo de la variable totalFacturado y comparándolo con 0. En el caso en el que la variable sea null, el valor se sustituirá por -1. Un ejemplo con un estamento completo sería el siguiente
 
 ```java
 var totalFacturado: Int? = null;
@@ -121,7 +121,7 @@ fun main(arg: Array<String>) {
 El valor es nulo
 ```
 
-Las propiedades son elementos que quedan declarados y se puede acceder a ellos gracias a sus métodos get y set. Para declarar esos métodos se hace justo despues de crear la propiedad y se definen como un método normal. Hay que tiener en cuenta que el uso de la palabra reservada field hace referncia al apropio valor
+Las propiedades son elementos que quedan declarados y se puede acceder a ellos gracias a sus métodos get y set. Para declarar esos métodos se hace justo después de crear la propiedad y se definen como un método normal. Hay que tener en cuenta que el uso de la palabra reservada field hace referencia al apropio valor
 
 ```java
 
@@ -141,7 +141,7 @@ fun main(arg: Array<String>) {
 }
 ```
 
-En el ejemplo la variablo propiedad tiene declarado dos métodos (get y set) el primero de los cuales al tener solo una linea se hace con una funcion de linea
+En el ejemplo la variablo propiedad tiene declarado dos métodos (get y set) el primero de los cuales al tener solo una linea se hace con una función de linea
 
 # Sentencias de control
 
@@ -149,7 +149,7 @@ Las sentencias de control permiten maneja el flujo del programa de forma que el 
 
 ## if
 
-Esta estructura en kotlin es exactamente igual que en java, no existe diferenciañ
+Esta estructura en kotlin es exactamente igual que en java, no existe diferencia
 
 ```java
 fun main(arguments: Array<String>){
@@ -183,7 +183,7 @@ fun main(arg: Array<String>){
 }
 ```
 
-Como veremos más adelante, kotlin cuenta con un mecanismo de null safety para poder garantizar que no se utiliza ninguna variable que pueda ser nula. De ahí el caracter ? y el caracter !!. Lo veremos más adelante pero para que podamos entender el código el ? indica que la variable puede ser nula y !! indica que se garantiza que la variable nunca va a ser nula. En el caso de estar declarada como posible nula, si se quiere utilizar se tiene que garantizar su no nulo
+Como veremos más adelante, kotlin cuenta con un mecanismo de null safety para poder garantizar que no se utiliza ninguna variable que pueda ser nula. De ahí el carácter ? y el carácter !!. Lo veremos más adelante pero para que podamos entender el código el ? indica que la variable puede ser nula y !! indica que se garantiza que la variable nunca va a ser nula. En el caso de estar declarada como posible nula, si se quiere utilizar se tiene que garantizar su no nulo
 
 ```java
     if (nombre?.length!! <= 0){
@@ -193,10 +193,10 @@ Como veremos más adelante, kotlin cuenta con un mecanismo de null safety para p
 
 ## when
 
-En kotlin no existe el uso de la sentencia de control swith. Esta ha sido sustituida por el uso de la sentencia when. El uso es muy parecido, cambiando la forma de escribirlo. Para poder utilarlo se utiliza la siguiente constucción:
+En kotlin no existe el uso de la sentencia de control swith. Esta ha sido sustituida por el uso de la sentencia when. El uso es muy parecido, cambiando la forma de escribirlo. Para poder utilizarlo se utiliza la siguiente construcción:
 
 ```java
-when(condicion){
+when(condición){
     caso -> {ejecuciones}
     else -> {ejecuciones}
 }
@@ -249,7 +249,7 @@ fun calcularMedia(nota: Int): Int{
 
 ## for
 
-La estructura de repeticion for permite realizar una tarea repetitiva un número de veces indicadas y/o recorrer una colección completa o en un rango específico. Para ello existen las siguientes estructuras
+La estructura de repetición for permite realizar una tarea repetitiva un número de veces indicadas y/o recorrer una colección completa o en un rango específico. Para ello existen las siguientes estructuras
 
 - for en un rango concreto creciente
 
@@ -285,7 +285,7 @@ Existe la posibilidad de indicar un numero determinado de paso (cantidad de incr
 20
 ```
 
-- for en un rango concreto decreciente: es necesario indicar downTo para decir hasta que numero es necesario llege
+- for en un rango concreto decreciente: es necesario indicar downTo para decir hasta que numero es necesario llegue
 
 ```java
     
@@ -324,7 +324,7 @@ Al igual que en el caso anterior también es posible configurar la cantidad de p
     15
 ```
 
-- Foreach. Se trata de una función de iteración dentro de una colección. El método nativo tan solo obtiene como parámetro el dato que se está iterando. En el caso de necesaitar el índice, es necesario utilizar la funcion foreachIndexed
+- Foreach. Se trata de una función de iteración dentro de una colección. El método nativo tan solo obtiene como parámetro el dato que se está iterando. En el caso de necesitar el índice, es necesario utilizar la función foreachIndexed
 
 ```java
 (1..5).forEach({ item ->
@@ -361,12 +361,12 @@ modificar el ejercicio anterior para que antes de empezar:
 
 - pida la edad y compruebe si esta es mayor que 18. En caso de ser así ejecutará lo anterior. En caso de no ser mayor de 18 saltará un aviso de que no se puede ejecutar
 
-2. Crea un programa que pida al usuario que indique cuantas palabras desea meter en un array. Tras introducirlo, el sitema pedirá al usuario tantas palabras como se hayan indicado. Una vez hecho esto se pide que se cree un menú con las siguientes opciones:
+2. Crea un programa que pida al usuario que indique cuantas palabras desea meter en un array. Tras introducirlo, el sistema pedirá al usuario tantas palabras como se hayan indicado. Una vez hecho esto se pide que se cree un menú con las siguientes opciones:
 
     - 1. Listar todas las palabras
     - 2. Listar las de las posiciones pares
     - 3. Listar las de las posiciones impares
-    - 4. Listar las de una longitud concreta, donde se peditá al usuario la longitud y se mostrarán todas las palabras que cumplan dicha condicion
+    - 4. Listar las de una longitud concreta, donde se pedirá al usuario la longitud y se mostrarán todas las palabras que cumplan dicha condición
     - 5. Salir
 
 # Funciones
@@ -379,14 +379,14 @@ Las funciones en kotlin se declaran con la palabra reservada `fun`
 fun nombreFuncion(){}
 ```
 
-La pruncipal función y que es el punto de entrada de ejecucion es la función main
+La pruncipal función y que es el punto de entrada de ejecución es la función main
 
 ```kotlin
 fun main(arguments: Array<String>) {
 }
 ```
 
-Para poder declarar parámetros dentro de una funcion se definen con un nombre y el tipo del mismo
+Para poder declarar parámetros dentro de una función se definen con un nombre y el tipo del mismo
 
 ```kotlin
 fun funcionParamentros(arg1: String, arg2: Int){
@@ -435,7 +435,7 @@ fun main(){
 10
 ```
 
-Si no se define que una función tenga un retorno concreto, este será Unit (es lo mismo que void en Java). En el caso de querer un retorno específico, se defe definir despues de los parámetros de la función y antes del cuerpo
+Si no se define que una función tenga un retorno concreto, este será Unit (es lo mismo que void en Java). En el caso de querer un retorno específico, se define después de los parámetros de la función y antes del cuerpo
 
 ```kotlin
 fun declaracionFuncion(): String{
@@ -484,7 +484,7 @@ var funcionLambdaNormal: ((Int) -> Int) = { argumento1: Int ->
 }
 ```
 
-Algun ejemplo de funciónlambda con diferentes configuraciones es:
+Algún ejemplo de funciónlambda con diferentes configuraciones es:
 
 ```kotlin
 // función lambda que tiene un parámetro obligatorio y que puede retornar nulo
@@ -493,7 +493,7 @@ var funcionLambdaNull: ((Int)->Int?) = {argumento1: Int-> if (argumento1>0) 6 el
 // función lambda que tiene un parámetro obligatorio y que puede ser nula la funcion entera
 var funcionLambdaNullEntera: ((Int)->Int)? = {argumento1: Int-> if (argumento1>0) 6 else 7}
 
-// en el caso de funcion nula completa hay que utilizar inovke para llamarlo
+// en el caso de funcion nula completa hay que utilizar invoke para llamarlo
 
 fun main(arguments: Array<String>) {
     //println(funcionLambdaNull(0))
@@ -549,7 +549,7 @@ arrayNumeros.forEachIndexed({index: Int, it:Int->println("$index - $it")})
 
 ## Operaciones de busqueda en arrays
 
-Cuando se quiere buscar elementos dentro de un array, en java se tiene que recorrer el array de forma completa. Sin embargo en kotlin existen una serie de métodos que realizan todo el trabajo de búsqueda de firma directa. El primero de ellos es el método find. Este método retorna el primer elemento del array que se encuentre con la condición indicada, para lo que se itiliza un argumento dentro de la función lambda
+Cuando se quiere buscar elementos dentro de un array, en java se tiene que recorrer el array de forma completa. Sin embargo en kotlin existen una serie de métodos que realizan todo el trabajo de búsqueda de firma directa. El primero de ellos es el método find. Este método retorna el primer elemento del array que se encuentre con la condición indicada, para lo que se utiliza un argumento dentro de la función lambda
 
 ```kotlin
 var lenguajes = arrayOf("Java", "Kotlin", "C#", "Python", "JavaScript", "PowerScript");
@@ -560,7 +560,7 @@ println(encontrado)
 JavaScript
 ```
 
-El otro método que permite realizar una busqueda es filter. En este caso el retorno del método es un array con los elementos que cumplen la condicion indicada en el predicado
+El otro método que permite realizar una búsqueda es filter. En este caso el retorno del método es un array con los elementos que cumplen la condición indicada en el predicado
 
 ```kotlin
 var busqueda = lenguajes.filter { elemento -> elemento.length> 5 }
@@ -572,8 +572,8 @@ Python
 JavaScript
 PowerScript
 ```
-# Coleecciones
-Al igual que pasa en java, los arrays pueden quedar algo cortos debido a su poca mutabilidad. Esto quiere decir que en el caso de tern un array con 5 posiciones, este no puede crecer y tan solo podría ser modificados los valores que están guardados en las posiciones. Para poder paliar este tipo de carencia, existe lo que se conoce como colecciones o listas mutables. En este apartedo veremos el usao de los ArrayList
+# Colecciones
+Al igual que pasa en java, los arrays pueden quedar algo cortos debido a su poca mutabilidad. Esto quiere decir que en el caso de tern un array con 5 posiciones, este no puede crecer y tan solo podría ser modificados los valores que están guardados en las posiciones. Para poder paliar este tipo de carencia, existe lo que se conoce como colecciones o listas mutables. En este apartado veremos el uso de los ArrayList
 
 Para poder crear un arraylist, no es necesario indicar cual es el tamaño inicial, ni siquiera que elementos forman parte del mismo. Basta con crear el objecto con su constructor
 
@@ -663,7 +663,7 @@ class ClaseA (var nombre: String){
 }
 ```
 
-Si se quisieran tener constructores secundarios, si sería necesario utlizar la palabra reservada `constructor`. Hay que recordad que si se utiliza un constructor con parámetros, el constructor por defecto desparecería. Adicionalmente a esto si se utilizan constructores adicionales es necesario que estos devuelven el primer construcotr definido
+Si se quisieran tener constructores secundarios, si sería necesario utilizar la palabra reservada `constructor`. Hay que recordad que si se utiliza un constructor con parámetros, el constructor por defecto desparecería. Adicionalmente a esto si se utilizan constructores adicionales es necesario que estos devuelven el primer constructor definido
 
 ```kotlin
 
@@ -685,7 +685,7 @@ class Lenguaje{
 
 ```
 
-En este primer ejemplo se tiene una clase llamada Lenguaje que para poder crearla se necesita un contructor con tres parámetros que son obligatorios: nombre, plataforma y versión. Sin embargo si se quieren utilizar constructores múltiples se puede pasando por parámetros aquellos que se necesiten, pero teniendo en cuenta que aquellas propiedades que no estén incluidas deberán estar configuradas como null safety
+En este primer ejemplo se tiene una clase llamada Lenguaje que para poder crearla se necesita un constructor con tres parámetros que son obligatorios: nombre, plataforma y versión. Sin embargo si se quieren utilizar constructores múltiples se puede pasando por parámetros aquellos que se necesiten, pero teniendo en cuenta que aquellas propiedades que no estén incluidas deberán estar configuradas como null safety
 
 ```kotlin
 class Lenguaje{
@@ -718,7 +718,7 @@ null
 
 En este ejemplo se ha creado un segundo lenguaje de programación llamado kotlin con el constructor que admite dor parámetros. En este caso la versión es null ya que no se ha especificado. (se ha utilizado la creación del objeto nombrando las variables a modo de prueba para ver más opciones de creación de objetos)
 
-Otra de las posibilidades a la hora de crear varios constructores es la de tener uno base, sobre el cual el resto depende. Para ello se utiliza la notación corta para el constructor "base" y la palabra constructor para el resto de constructores, teniendo en cuenta que todos deberán de devolver un objeto de la clase. En este ejemplo se creará un constructor base que recibe un parámetro String que representará el nombre. Adicionalmente se utilizarán dos constructures, uno que además aportará la plaraforma, y otro que aportará la plataforma y la versión
+Otra de las posibilidades a la hora de crear varios constructores es la de tener uno base, sobre el cual el resto depende. Para ello se utiliza la notación corta para el constructor "base" y la palabra constructor para el resto de constructores, teniendo en cuenta que todos deberán de devolver un objeto de la clase. En este ejemplo se creará un constructor base que recibe un parámetro String que representará el nombre. Adicionalmente se utilizarán dos constructores, uno que además aportará la plataforma, y otro que aportará la plataforma y la versión
 
 ```kotlin
 fun main(arg: Array<String>) {
@@ -747,10 +747,10 @@ class Lenguaje (var nombre: String){
 
 En este caso como se ha utilizado un constructor base ocurren dos cosas:
 
-- Todas las propiedades de la case se tienen que inicializar con un valor (existe la posicbilidad de utilizar lateinit que se verá más adelante)
+- Todas las propiedades de la case se tienen que inicializar con un valor (existe la posibilidad de utilizar lateinit que se verá más adelante)
 - Todos los constructores adicionales tienen que devolver el constructor base, y que además realizarán las acciones que hayan definido en su definición
 
-Al igual que se pueden crear constructores, tambien se pueden crear tantas funciones como sean necesarias dentro de una clase, para así poder utilizarlo
+Al igual que se pueden crear constructores, también se pueden crear tantas funciones como sean necesarias dentro de una clase, para así poder utilizarlo
 
 ```kotlin
 fun main(arg: Array<String>) {
@@ -804,9 +804,9 @@ Plaraforma no definida
 Versión no definida
 ```
 
-En este ejemplo, en el método clasficar se evalua que el nombre del lenguaje sea java. En caso de serlo, si la version es iferior a 14 se mostrará el mensaje de "versión obsoleta". En esta construcción como la propiedad versión se ha inicializado a null (por obligación al utilizar constructores sencundarios) se ha realizado una sustitución de en el caso de ser nula se sustituirá por el número 12. Lo mismo pasa en el método mostrarDatos. Como las propiedades plataforma y versión pueden ser nulas, en el caso de serlo se sustituirán por la palabra "no definida"
+En este ejemplo, en el método clasificar se evalúa que el nombre del lenguaje sea java. En caso de serlo, si la version es inferior a 14 se mostrará el mensaje de "versión obsoleta". En esta construcción como la propiedad versión se ha inicializado a null (por obligación al utilizar constructores secundarios) se ha realizado una sustitución de en el caso de ser nula se sustituirá por el número 12. Lo mismo pasa en el método mostrarDatos. Como las propiedades plataforma y versión pueden ser nulas, en el caso de serlo se sustituirán por la palabra "no definida"
 
-Por último, existe la posibilidad de inicializar las variables de porfa postergada, no en el constructor. Para ello se utiliza la palabra reservada `lateinit`. En el ejemplo de la clase Lenguaje, imaginemos que existe una propiedad llamada propietario, la cual no se quiere inicializar en el constructor ya que no solo no es obligatoria, sino que en necesario que el lenguaje de programacion exista para que una vez esté creado tenga un propietario. Para ello se crea la propiedad y se declara como lateinit
+Por último, existe la posibilidad de inicializar las variables de forma postergada, no en el constructor. Para ello se utiliza la palabra reservada `lateinit`. En el ejemplo de la clase Lenguaje, imaginemos que existe una propiedad llamada propietario, la cual no se quiere inicializar en el constructor ya que no solo no es obligatoria, sino que en necesario que el lenguaje de programación exista para que una vez esté creado tenga un propietario. Para ello se crea la propiedad y se declara como lateinit
 
 ```kotlin
 class Lenguaje (var nombre: String){
@@ -966,7 +966,7 @@ Propietario din definir
 
 En este ejemplo, se han utilizado tanto constructores primarios como constructores secundario. Los tres utilizados han realizado la inicialización de variables y el bloque `init` se ha encargado de inicializar la variable `lateinit propietario`, por lo que al ejecutar el método mostrarDatos no ha dado ninguna excepción (sin la necesidad de llamar al método asignarPropietario)
 
-Hay otra posibilidad de crear clases. Aquella que solo tienen datos y no funciones y demas pueden ser declaradas como data
+Hay otra posibilidad de crear clases. Aquella que solo tienen datos y no funciones y demás pueden ser declaradas como data
 
 ```kotlin
 data class PersonaData(val nombre : String, val apellido : String)
@@ -1027,7 +1027,7 @@ open class Persona (var nombre: String) {
 }
 ```
 
-En este caso se ha creado una clase llamada Persona con un constructor base llamado nombre y dos constructores adicionales, uno que es el vacío con un dato por defecto y otro que admite un apellido y un dni. Adicionalmente se identificado que la clase es `open` para que esta pueda ser superclase de otra. El siguiente paso será crear una clase que herede de esta. Para ello se utiliza el operados `:`seguido del nomnmbre de la clase de la que se quiere heredar en un archivo nuevo
+En este caso se ha creado una clase llamada Persona con un constructor base llamado nombre y dos constructores adicionales, uno que es el vacío con un dato por defecto y otro que admite un apellido y un dni. Adicionalmente se identificado que la clase es `open` para que esta pueda ser superclase de otra. El siguiente paso será crear una clase que herede de esta. Para ello se utiliza el operados `:`seguido del nombre de la clase de la que se quiere heredar en un archivo nuevo
 
 ```kotlin
 class Trabajador: Persona() {
@@ -1057,7 +1057,7 @@ class Trabajador : Persona  {
 }
 ```
 
-En este caso tan solo se sobreescribe el conctructore que admite tres parámetros, al cual se le ha añadido el de la nueva propiedad incluida en la clase. Si se quieren cambiar la definición de algún método de los definicids en superclases es necesario dos cosas:
+En este caso tan solo se sobreescribe el conctructores que admite tres parámetros, al cual se le ha añadido el de la nueva propiedad incluida en la clase. Si se quieren cambiar la definición de algún método de los creados en superclases es necesario dos cosas:
 
 - Que el método cuando se define tenga la palabra reservada `open` (obligatorio aunque la clase sea `open`)
 - En el método que se quiera sobreescribir utilizar la palabra reservada override antes de la definición de la función
@@ -1110,7 +1110,7 @@ fun main(arg: Array<String>){
 }
 ```
 
-En muchas ocasiones no interesa tener una clase para que pueda ser creada como objeto, sino que se necesita como la base para el resto de subclases que irán por debajo en la linea de herencia. Para ello existe el concepto de clase abstracta, la cual puede tener entre 0 y n métodos abstractos (solo con firma y sin definición). Para poder crear una clase abstractra se debe utilizar antes del nombre de la clase la palabra reservada `abstract`, siendo open por defecto. En el caso de tener un método abstracto se utilizar la misma palabra reservada antes de la declaración del método
+En muchas ocasiones no interesa tener una clase para que pueda ser creada como objeto, sino que se necesita como la base para el resto de subclases que irán por debajo en la linea de herencia. Para ello existe el concepto de clase abstracta, la cual puede tener entre 0 y n métodos abstractos (solo con firma y sin definición). Para poder crear una clase abstracta se debe utilizar antes del nombre de la clase la palabra reservada `abstract`, siendo open por defecto. En el caso de tener un método abstracto se utilizar la misma palabra reservada antes de la declaración del método
 
 ```kotlin
 // Archivo diferente
@@ -1148,13 +1148,13 @@ class Trabajador : Persona  {
 
 ```
 
-En este ejemplo la clase persona se ha marcado como abstracta, donde se cuenta con un método abstracto que no tiene definición. En el caso de querer crerar un objeto de tipo Persona no se podría al ser abstracta. La clase trabajador extiende de persona y tiene la obligación de sobrescribir el método mostrarDatos ya que en la clase Persona es abstracto.
+En este ejemplo la clase persona se ha marcado como abstracta, donde se cuenta con un método abstracto que no tiene definición. En el caso de querer crear un objeto de tipo Persona no se podría al ser abstracta. La clase trabajador extiende de persona y tiene la obligación de sobrescribir el método mostrarDatos ya que en la clase Persona es abstracto.
 
 ## Interfaces
 
 **Referencia documentación oficial:** https://kotlinlang.org/docs/reference/interfaces.html
 
-Uno de los puntos que no permite kotlin (al igual que java) es la herencia múltiple. Para paliar esta desventaja existe el concepto de interfaz, utilizando la palabra reservada `interface` en vez del de `class`. Hay que recordad que una interfaz tienen un conjunto de métodos no definidos (por edefecto abstractos) que serán declarados en aquellas clases donde sean utilizadas las interfaces.
+Uno de los puntos que no permite kotlin (al igual que java) es la herencia múltiple. Para paliar esta desventaja existe el concepto de interfaz, utilizando la palabra reservada `interface` en vez del de `class`. Hay que recordad que una interfaz tienen un conjunto de métodos no definidos (por defecto abstractos) que serán declarados en aquellas clases donde sean utilizadas las interfaces.
 
 ```kotlin
 interface Directivo {
@@ -1163,7 +1163,7 @@ interface Directivo {
 }
 ```
 
-Una vez se tiene declarada la interfaz, en el caso de querer utilizarla se pone detras de los : que se utiliza para la herencia.
+Una vez se tiene declarada la interfaz, en el caso de querer utilizarla se pone detrás de los : que se utiliza para la herencia.
 
 ```kotlin
 package herencia_trabajadores

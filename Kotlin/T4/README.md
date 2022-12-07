@@ -19,7 +19,7 @@ Lo primero que tenemos que tener en cuenta es que cuando estamos hablando de Rec
 
 Para poder mostrar el uso de los recycler vamos a realizar un ejemplo donde se mostrará una lista de lenguajes de programación con su logo y su nombre. Al pulsar en cada uno de ellos aparecerá un snackbar con la versión actual y si se pulsa ok en el snack se mostrará el detalle en otra activity
 
-Lo primero que debemos comprobar es si el elemento RecyclerView está disponible en la parte de diseño del archivo activity_main creado. En versiones antiguas del IDE hay que importarlo como librería dentro del archivo build.gradle, sin embargo en las últimas versiones ya viene invcluido en la libreria de material. Por lo tanto lo que realizaremos es en el archivo activity_main.xml utilizar el elemento directamente.
+Lo primero que debemos comprobar es si el elemento RecyclerView está disponible en la parte de diseño del archivo activity_main creado. En versiones antiguas del IDE hay que importarlo como librería dentro del archivo build.gradle, sin embargo en las últimas versiones ya viene incluido en la librería de material. Por lo tanto lo que realizaremos es en el archivo activity_main.xml utilizar el elemento directamente.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -50,7 +50,7 @@ Una vez hecho esto es necesario crear la clase que representa el tipo de objeto 
 data class Lenguaje (var nombre: String, var version: Int, var detalle: Int, var imagen: Int)
 ```
 
-Como se trata de una clase que tan solo tiene datos y no es necesario tener métodos asociados se puede crear de tipo data. Con el tipo de dato creado vamos a ir a la parte lógica de la activity para poder empezar a trabajar. Lo primero que tendremos que tener es el conjunto de datos a represenetar. Para ello será necesario crear un ArrayList con todos los lenguajes que queramos mostrar dentro del recyclerview. Esto lo podrémos hacer con el siguiente código
+Como se trata de una clase que tan solo tiene datos y no es necesario tener métodos asociados se puede crear de tipo data. Con el tipo de dato creado vamos a ir a la parte lógica de la activity para poder empezar a trabajar. Lo primero que tendremos que tener es el conjunto de datos a representar. Para ello será necesario crear un ArrayList con todos los lenguajes que queramos mostrar dentro del recyclerview. Esto lo podremos hacer con el siguiente código
 
 ```java
 class MainActivity : AppCompatActivity() {
@@ -79,9 +79,9 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Hay que recordar que las imágenes de los logos deben estar metidas dentro de la carpeta drawable y por lo tanto son accesibles a traves de la clase R. Es por esto que la clase lenguaje el atributo imagen es de tipo Int ya que android trata a todos los recuros como números. Una ves hecho esto todos los datos estarían metidos dentro de la lista. Hay que tener en cuenta que esta lista de inicio es así, pero modría ir modificandose con la ejecución del programa e ir mostrándose de forma dinámica en la aplicación.
+Hay que recordar que las imágenes de los logos deben estar metidas dentro de la carpeta drawable y por lo tanto son accesibles a traves de la clase R. Es por esto que la clase lenguaje el atributo imagen es de tipo Int ya que android trata a todos los recursos como números. Una ves hecho esto todos los datos estarían metidos dentro de la lista. Hay que tener en cuenta que esta lista de inicio es así, pero podría ir modificándose con la ejecución del programa e ir mostrándose de forma dinámica en la aplicación.
 
-El siguiente paso una ves se tienen los datos que se quieren mostrar, es crear un adaptador. Este objeto actua como intermediario entre la parte gráfica (el recyclerView que está en el MainActivity) y el conjunto de datos que se quiere representar (el array que acabamos de crear). Para ello lo primero es crear un fichero xml dentro de la carpeta res/layout con el aspecto que se quiere de cada una de las filas (sería impensable crear un fichero con todas las filas que tendrá la lista), el cual será repetido por el adaptador hasta representar todos los datos. Este fichero lo llamaremos fila_recycler y tendrá el siguiente código
+El siguiente paso una ves se tienen los datos que se quieren mostrar, es crear un adaptador. Este objeto actúa como intermediario entre la parte gráfica (el recyclerView que está en el MainActivity) y el conjunto de datos que se quiere representar (el array que acabamos de crear). Para ello lo primero es crear un fichero xml dentro de la carpeta res/layout con el aspecto que se quiere de cada una de las filas (sería impensable crear un fichero con todas las filas que tendrá la lista), el cual será repetido por el adaptador hasta representar todos los datos. Este fichero lo llamaremos fila_recycler y tendrá el siguiente código
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -117,22 +117,12 @@ El siguiente paso una ves se tienen los datos que se quieren mostrar, es crear u
 
 Se trata de un archivo muy simple con una imagen y un texto pero es reseñable dos cosas:
 
-1. El constraint layout tiene como configuración en alto (android:layout_height) wrap_content. Esto se debe a que el tamaño de cada fila será el que se necestie y no más. En el caso de dejarlo como match_parent cada fila ocuparia una pantalla entera
+1. El constraint layout tiene como configuración en alto (android:layout_height) wrap_content. Esto se debe a que el tamaño de cada fila será el que se necesite y no más. En el caso de dejarlo como match_parent cada fila ocuparía una pantalla entera
 2. El constraint layout tiene un atributo de padding configurado a 10dp. Esto se debe a que es necesario que exista un espacio entre cada una de las filas del recycler. De no ponerlo todas las filas estarían juntas.
 
-Una vez se tiene el aspecto gráfico de las filas (sin estar personalizado con los datos) el siguiente paso será crear la clase adaptador que actue como intermediario entre los datos y el listado. Para ello en un paquete llamado adapters creamos un fichero llamado AdaptadorLenguajes.kt
+Una vez se tiene el aspecto gráfico de las filas (sin estar personalizado con los datos) el siguiente paso será crear la clase adaptador que actué como intermediario entre los datos y el listado. Para ello en un paquete llamado adapters creamos un fichero llamado AdaptadorLenguajes.kt
 
 ```java
-package com.develop.listasrecycler.adapters
-
-import android.content.Context
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.develop.listasrecycler.R
-
 class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>):
     RecyclerView.Adapter<AdaptadorLenguajes.MyHolder>() {
 
@@ -164,7 +154,7 @@ class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>):
 }
 ```
 
-Expliquemos este archivo por partes. Lo primero que vemos es que la clase AdaptadorLenguajes pide en constructor dos elementos: el contexo donde se ejecutará (será la activity donde se va a declarar) y la lista de datos que debe motrar.
+Expliquemos este archivo por partes. Lo primero que vemos es que la clase AdaptadorLenguajes pide en constructor dos elementos: el contexto donde se ejecutará (será la activity donde se va a declarar) y la lista de datos que debe mostrar.
 
 ```java
 class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>)
@@ -177,7 +167,7 @@ class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>):
     RecyclerView.Adapter<AdaptadorLenguajes.MyHolder>() {
 ```
 
-Esta clase anidada que actua como holder (o elemento en bruto) es la que permite manejar gran cantidad de datos, ya que permite "cachear" la infromación gráfica. Por ello esta clase extiende de ReciclerView.Holder, en constructor necesita una vista (que será el item fila creado anteriormente) y en el inicio postergado (init) inicia cada uno de los elementos de la fila
+Esta clase anidada que actúa como holder (o elemento en bruto) es la que permite manejar gran cantidad de datos, ya que permite "cachear" la información gráfica. Por ello esta clase extiende de ReciclerView.Holder, en constructor necesita una vista (que será el item fila creado anteriormente) y en el inicio postergado (init) inicia cada uno de los elementos de la fila
 
 ```java
     class MyHolder ( var view: View): RecyclerView.ViewHolder(view) {
@@ -197,12 +187,12 @@ Esta clase anidada que actua como holder (o elemento en bruto) es la que permite
 Por último, al haber implementado una interfaz, la clase está obligada a utilizar todos los métodos que no tienen definición que son los siguientes:
 
 1. getItemCount(): encargado de retornar cuantos elementos se deben pintar dentro de la lista. Por defecto se retornará el tamaño de la lista pasada en constructor, ya que son los datos que se quieren representar
-2. onCreateViewHolder(): es el método encargado de crear un objeto de la clase anidada, pasándole por constructor la vista o xml que tendrá la fila. Este retorno será el que utilice el método siguiente para poder pintar cada uno de los objetos correspondientes.
+2. onCreateViewHolder(): es el método encargado de crear un objeto de la clase anidada, pasando por constructor la vista o xml que tendrá la fila. Este retorno será el que utilice el método siguiente para poder pintar cada uno de los objetos correspondientes.
 3. onBindViewHolder(): encargado de representar en cada una de las filas obtenidas del método anterior (holder) el objeto que corresponda.
 
 Vamos a ir rellenando cada uno de los métodos comentados.
 
-En el primero de los casos el getItemCount es el más facil de todos, ya que no recibe nada por parámetros y se encarga de retornar el tamaño de la lista de datos (la cual ha sido pasada por constructor)
+En el primero de los casos el getItemCount es el más fácil de todos, ya que no recibe nada por parámetros y se encarga de retornar el tamaño de la lista de datos (la cual ha sido pasada por constructor)
 
 ```java
     override fun getItemCount(): Int {
@@ -210,7 +200,7 @@ En el primero de los casos el getItemCount es el más facil de todos, ya que no 
     }
 ```
 
-El segundo de los métodos recibe por parámetros un ViewGroup (que es el congunto de vistas donde se representarán los elementos) y un viewType (por si hay diferentes tipos de vistas). Deberá retornar un objeto de la clase anidada, para lo cual necesita la vista que se creo anteriormente y para lo cual se utiliza un objeto de tipo LayoutInflater para podre obtenerla
+El segundo de los métodos recibe por parámetros un ViewGroup (que es el conjunto de vistas donde se representarán los elementos) y un viewType (por si hay diferentes tipos de vistas). Deberá retornar un objeto de la clase anidada, para lo cual necesita la vista que se creo anteriormente y para lo cual se utiliza un objeto de tipo LayoutInflater para podre obtenerla
 
 ```java
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
@@ -219,7 +209,7 @@ El segundo de los métodos recibe por parámetros un ViewGroup (que es el congun
     }
 ```
 
-Por último, el método onBindViewHolder se encarga de juntar la parte que obtiene del método anterior con el objeto que le correponde en la posición determinada. Es por ello que recibe un objeto de tipo Holder (del método anterior) y un Int (la posición).
+Por último, el método onBindViewHolder se encarga de juntar la parte que obtiene del método anterior con el objeto que le corresponde en la posición determinada. Es por ello que recibe un objeto de tipo Holder (del método anterior) y un Int (la posición).
 
 ```java
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
@@ -229,21 +219,9 @@ Por último, el método onBindViewHolder se encarga de juntar la parte que obtie
     }
 ```
 
-Para poder crear un adaptadór básico con esto sería suficiente. El código de la clase completo quedaría de la siguiente forma
+Para poder crear un adaptador básico con esto sería suficiente. El código de la clase completo quedaría de la siguiente forma
 
 ```java
-package com.develop.listasrecycler.adapters
-
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.develop.listasrecycler.R
-import com.develop.listasrecycler.model.Lenguaje
-
 class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>):
     RecyclerView.Adapter<AdaptadorLenguajes.MyHolder>() {
 
@@ -309,7 +287,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Por último para poder asociar adaptadro con recycler se debe utilizar el método setAdapter (para indicar el adaptador) y el método setLayout (para indicar como se muestran los datos)
+Por último para poder asociar adaptador con recycler se debe utilizar el método setAdapter (para indicar el adaptador) y el método setLayout (para indicar como se muestran los datos)
 
 ```java
     private fun configurarRecycler() {
@@ -321,15 +299,6 @@ Por último para poder asociar adaptadro con recycler se debe utilizar el métod
 El código completo de la actividad sería el siguiente
 
 ```java
-package com.develop.listasrecycler
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.develop.listasrecycler.adapters.AdaptadorLenguajes
-import com.develop.listasrecycler.model.Lenguaje
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var arrayLenguajes: ArrayList<Lenguaje>
@@ -366,9 +335,9 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-En el ejemplo se a seteado el layout con linearlayout, indicando el contexto, que la disposicion de los elements debe ser horizontal (también podría ser vertical) y que no es reversible (en el caso de indicar true el último elemento será el que se muestre el primero). Además de un linear layout que muestra las cosas en horizontal o en vertical también se podría haber configurado:
+En el ejemplo se a seteado el layout con linearlayout, indicando el contexto, que la disposición de los elements debe ser horizontal (también podría ser vertical) y que no es reversible (en el caso de indicar true el último elemento será el que se muestre el primero). Además de un linear layout que muestra las cosas en horizontal o en vertical también se podría haber configurado:
 
-- GridLayout: inica que los elementos se verán en formato cuadrícula, indicando el número de columnas que se quieren utilizar
+- GridLayout: única que los elementos se verán en formato cuadrícula, indicando el número de columnas que se quieren utilizar
 
 ```java
 recycler.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
@@ -382,7 +351,7 @@ En este caso se ha indicado que se mostrarán dos columnas en formato vertical y
 recycler.layoutManager = StaggeredGridLayoutManager(2,GridLayoutManager.VERTICAL)
 ```
 
-En este caso se indica el número de columnas que se quieren utilizar y la orientación que tendrá. Otra de las cosas que se pueden configrar dentro del aspecto gráfico de un recycler es el decorador (elemento que se situa entre dos filas). Si no configuramos nada el decorador aparecerá en blanco, pero si se quiere utilizar uno sería necesario utilizar el método addItemDecoration
+En este caso se indica el número de columnas que se quieren utilizar y la orientación que tendrá. Otra de las cosas que se pueden configurar dentro del aspecto gráfico de un recycler es el decorador (elemento que se sitúa entre dos filas). Si no configuramos nada el decorador aparecerá en blanco, pero si se quiere utilizar uno sería necesario utilizar el método addItemDecoration
 
 ```java
 recycler.addItemDecoration(
@@ -401,7 +370,7 @@ recycler.itemAnimator = DefaultItemAnimator()
 
 ## Gestión de evento en un Recycler
 
-Con todos estos pasos la aplicación queda lista para que aparezca un listado con todos los lenguajes de programación, el siguiente paso es la gestión de las pulsaciones el un elemento de la lista. Desafortunadamente los recycler no cuentan con un listener tipo onclick que recibe como parámetros la posición pulsada (del estilo del visto con los spinner), en este caso los eventos se gestionan directamente desde la clase adaptador, en concreto desde el método onBindViewHolder ya que es ahí donde se personaliza la vista y se hace realizar. Esto otorhga mucha flexibilidad ya que no tiene porque ser la pulsación en toda la fila, sino en una parte concreta de la fila, por ejemplo en un botón de ver detalle. Por lo tanto si se quiere configurar que al pulsar en la imagen del lenguaje salte un snackbar se tendría que poner un escuchador al elemento ubicado en la clase AdaptadorLenguajes
+Con todos estos pasos la aplicación queda lista para que aparezca un listado con todos los lenguajes de programación, el siguiente paso es la gestión de las pulsaciones el un elemento de la lista. Desafortunadamente los recycler no cuentan con un listener tipo onclick que recibe como parámetros la posición pulsada (del estilo del visto con los spinner), en este caso los eventos se gestionan directamente desde la clase adaptador, en concreto desde el método onBindViewHolder ya que es ahí donde se personaliza la vista y se hace realizar. Esto otorga mucha flexibilidad ya que no tiene porque ser la pulsación en toda la fila, sino en una parte concreta de la fila, por ejemplo en un botón de ver detalle. Por lo tanto si se quiere configurar que al pulsar en la imagen del lenguaje salte un snackbar se tendría que poner un escuchador al elemento ubicado en la clase AdaptadorLenguajes
 
 ```java
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
@@ -424,19 +393,6 @@ En este método si se cuenta con un parámetro que indica la posición del item 
 1. En el fichero adaptador (origen de los datos) es necesario crear una interfaz con un método que reciba por parámetros el dato que se quiere enviar a la activity. En este caso será OnLenguajeListener
 
 ```java
-package com.develop.listasrecycler.adapters
-
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.develop.listasrecycler.R
-import com.develop.listasrecycler.model.Lenguaje
-import com.google.android.material.snackbar.Snackbar
-
 class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>) :
     RecyclerView.Adapter<AdaptadorLenguajes.MyHolder>() {
 
@@ -489,25 +445,11 @@ Esta interfaz representará el evento que queremos lanzar con la pulsación de l
         }
 ```
 
-Esta igualdad es posible porque en los siguientes pasos se va a implementar la interfaz en la activity, por lo que serían del mismo tipo gracias al polimormismo
+Esta igualdad es posible porque en los siguientes pasos se va a implementar la interfaz en la activity, por lo que serían del mismo tipo gracias al polimorfismo
 
 Por último antes de acabar este paso se tendría que configurar el listener en la imagen, para que cuando sea pulsada se ejecute el método de la interfaz, pasando por parámetros los datos que se quiere comunicar. Esto se puede hacer tanto en el método onBindViewHolder como en el método init
 
 ```java
-
-package com.develop.listasrecycler.adapters
-
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.develop.listasrecycler.R
-import com.develop.listasrecycler.model.Lenguaje
-import com.google.android.material.snackbar.Snackbar
-
 class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>) :
     RecyclerView.Adapter<AdaptadorLenguajes.MyHolder>() {
 
@@ -553,22 +495,11 @@ class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>) :
 }
 ```
 
-En este caso y como es una acción muy repetitiba que no aporta nada diferente de pendiendo del lenguaje es recomendable hacerlo en el método init
+En este caso y como es una acción muy repetitiva que no aporta nada diferente de pendiendo del lenguaje es recomendable hacerlo en el método init
 
 2. Por último se implementa la interfaz en la activity (destino de los datos, obligando así a tener que sobreescribir el método en dicha clase y por lo tanto el item que se ha pulsado estará disponible en la clase destino
 
 ```java
-package com.develop.listasrecycler
-
-import android.icu.lang.UCharacter
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.*
-import com.develop.listasrecycler.adapters.AdaptadorLenguajes
-import com.develop.listasrecycler.model.Lenguaje
-import com.google.android.material.snackbar.Snackbar
-
 class MainActivity : AppCompatActivity(), AdaptadorLenguajes.OnLenguajeListener{
 
     private lateinit var arrayLenguajes: ArrayList<Lenguaje>
@@ -628,22 +559,9 @@ class MainActivity : AppCompatActivity(), AdaptadorLenguajes.OnLenguajeListener{
 
 Otra forma de hacerlo también es declarando una función en vez de una interfaz en el adaptador, de forma que estará disponible desde el objeto adaptador de la clase MainActivity. Para ello lo que habría que hacer es lo siguiente:
 
-1. En el Adaptador se declara una funcion que se inicia como null y se le da valor en el método init
+1. En el Adaptador se declara una función que se inicia como null y se le da valor en el método init
 
 ```java
-package com.develop.listasrecycler.adapters
-
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.develop.listasrecycler.R
-import com.develop.listasrecycler.model.Lenguaje
-import com.google.android.material.snackbar.Snackbar
-
 class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>) :
     RecyclerView.Adapter<AdaptadorLenguajes.MyHolder>() {
 
@@ -687,22 +605,11 @@ class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>) :
 }
 ```
 
-Como se puede ver, en la creación de la variable lenguajeClick se define que es de tipo funcion, recibiendo por parámetros un objeto de tipo Lenguaje y no devolviendo nada (Unit). Más adelante en el método init se configura un listener de click a la imagen y se utiliza el método invoke (ya que se ha declarado como null, recordad el nullsafaty) y se pasa como parámetro el lenguaje que está en la posición que indica el adapador
+Como se puede ver, en la creación de la variable lenguajeClick se define que es de tipo función, recibiendo por parámetros un objeto de tipo Lenguaje y no devolviendo nada (Unit). Más adelante en el método init se configura un listener de click a la imagen y se utiliza el método invoke (ya que se ha declarado como null, recordad el nullsafaty) y se pasa como parámetro el lenguaje que está en la posición que indica el adaptador
 
 2. Por último en el MainActivity no sería necesario implementar nada ya que no hemos creado una interfaz sino que hemos realizado una función, la cual es llamada desde otra función.
 
 ```java
-package com.develop.listasrecycler
-
-import android.icu.lang.UCharacter
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.*
-import com.develop.listasrecycler.adapters.AdaptadorLenguajes
-import com.develop.listasrecycler.model.Lenguaje
-import com.google.android.material.snackbar.Snackbar
-
 class MainActivity : AppCompatActivity(){
 
     private lateinit var arrayLenguajes: ArrayList<Lenguaje>
@@ -830,13 +737,9 @@ El código sería el siguiente
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-El siguiente punto es pasa el lenguaje entre pantallas tras la pulsción del elemento. Para ello se va a utilizar el putExtra que ya vismos en las primeras unidades, pero teniendo en cuenta que ahora vamos a pasar un objeto completo, no una serie de datos. Es por ello que antes de empezar la clase Lenguaje tiene que implementar la interfaz Serializable
+El siguiente punto es pasa el lenguaje entre pantallas tras la pulsación del elemento. Para ello se va a utilizar el putExtra que ya vimos en las primeras unidades, pero teniendo en cuenta que ahora vamos a pasar un objeto completo, no una serie de datos. Es por ello que antes de empezar la clase Lenguaje tiene que implementar la interfaz Serializable
 
 ```java
-package com.develop.listasrecycler.model
-
-import java.io.Serializable
-
 data class Lenguaje (var nombre: String, var version: Double, var detalle: String, var imagen: Int) : Serializable
 ```
 
@@ -871,7 +774,7 @@ Como se puede ver en el ejemplo, como dentro del adaptador la pulsación del mé
             })
 ```
 
-Así se pasará a la activity DetailActivity el lenguaje que está como parámetro en la función decladara. El siguiente paso será recepcionar este objeto en la sengunda pantalla. Para eso es necesario acceder a los extas del intent que ha arrancado la actividad y al metodo getSerializable, pasando por parámetros la clave con la que ha sido pasada el lenguaje
+Así se pasará a la activity DetailActivity el lenguaje que está como parámetro en la función declarara. El siguiente paso será recepcionar este objeto en la segunda pantalla. Para eso es necesario acceder a los extras del intent que ha arrancado la actividad y al método getSerializable, pasando por parámetros la clave con la que ha sido pasada el lenguaje
 
 ```java
         lenguajeRecuperado = intent.extras?.getSerializable("lenguaje") as Lenguaje;
@@ -881,13 +784,6 @@ Así se pasará a la activity DetailActivity el lenguaje que está como parámet
 Una vez hecho esto tan solo sería necesario ir accediendo a cada uno de los elementos de la interfaz y poner el dato correspondiente al lenguaje recuperado. El código completo de la actividad detalle es el siguiente:
 
 ```java
-package com.develop.listasrecycler
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.develop.listasrecycler.databinding.ActivityDetailBinding
-import com.develop.listasrecycler.model.Lenguaje
-
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var lenguajeRecuperado: Lenguaje;
@@ -911,9 +807,9 @@ class DetailActivity : AppCompatActivity() {
 }
 ```
 
-Hasta este punto se han cubierto todas las necesidades de creeación de un recycler con la interacción de sus elementos. Ahora vamos a ver como poder modificar la lista de datos, agregando o eliminando un elemento de la lista. Para ello vamos a realizar el siguiente ejemplo: basándonos en la aplicación de los lenguajes que ya tenemos, vamos a incorporar dos funcionalidades:
+Hasta este punto se han cubierto todas las necesidades de creación de un recycler con la interacción de sus elementos. Ahora vamos a ver como poder modificar la lista de datos, agregando o eliminando un elemento de la lista. Para ello vamos a realizar el siguiente ejemplo: basándonos en la aplicación de los lenguajes que ya tenemos, vamos a incorporar dos funcionalidades:
 
-1. Un boton en MainActivity que al ser pulsado agregará un lenguaje por defecto a la lista de ya existentes (y por lo tanto se agregará al recycler)
+1. Un botón en MainActivity que al ser pulsado agregará un lenguaje por defecto a la lista de ya existentes (y por lo tanto se agregará al recycler)
 2. Que tras una pulsación larga en el nombre del lenguaje de la lista, aparezca una snackbar preguntando si queremos eliminar el lenguaje de la lista.
 
 Lo primero que vamos hacer es incorporar un botón en MainActivity en la parte infoerior con el id button_agregar
@@ -1000,7 +896,7 @@ De momento lo único que se ha hecho ha sido agregar el botón mediante el findV
         }
 ```
 
-Con esto sería suficiente para poder añadir elementos al recyclerview. Sin ambargo el método notifyDataSetChanged es demasiado potente, ya que notifica un cambio Eestructural de todos los elementos. Podríamos detectar la posición del cambio e indicar al método que elemento ha cambiado, siendo esta caso el último
+Con esto sería suficiente para poder añadir elementos al recyclerview. Sin embargo el método notifyDataSetChanged es demasiado potente, ya que notifica un cambio estructural de todos los elementos. Podríamos detectar la posición del cambio e indicar al método que elemento ha cambiado, siendo esta caso el último
 
 ```java
         boton.setOnClickListener {
@@ -1014,7 +910,7 @@ Con esto sería suficiente para poder añadir elementos al recyclerview. Sin amb
 
 En este caso se ha hecho desde la clase MainActivity, pero también se podría haber hecho un método en el adaptador y ser llamado desde la clase MainActivity
 
-De esta forma solo notifica cambios en la posición indicada. El otro punto a trabajar es el borrado de los datos. PAra ello en el ejemplo que vamos hacer se necesita una pulsación larga en el nombre del lenguaje. Al igual que pasaba en el caso de la seleccioón, se va a crear una funcion null en el adaptador que reciba una posición y luego será llamada y definida desde el MainActivity.
+De esta forma solo notifica cambios en la posición indicada. El otro punto a trabajar es el borrado de los datos. PAra ello en el ejemplo que vamos hacer se necesita una pulsación larga en el nombre del lenguaje. Al igual que pasaba en el caso de la selección, se va a crear una función null en el adaptador que reciba una posición y luego será llamada y definida desde el MainActivity.
 
 ```java
 // creación de la variable función
@@ -1032,19 +928,6 @@ nombre.setOnLongClickListener({ view: View ->
 El código completo del adaptador es el siguiente
 
 ```java
-package com.develop.listasrecycler.adapters
-
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.develop.listasrecycler.R
-import com.develop.listasrecycler.model.Lenguaje
-import com.google.android.material.snackbar.Snackbar
-
 class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>) :
     RecyclerView.Adapter<AdaptadorLenguajes.MyHolder>() {
 
@@ -1091,7 +974,7 @@ class AdaptadorLenguajes(var contexto: Context, var listaDatos: List<*>) :
 }
 ```
 
-En este caso en el método init la pulsación larga del nombre hace una llamada al método onNombreLongClick, pasando como parámetro la posición pulsada. Es imporante ver que la llamada del listener onLongClick tiene que retornar en este caso un booleano. Una vez hecho esto en el MáinActivity tan solo es necesario llamar al método desde el adaptador y configurar la función onNombreLongClick, realizando el borrado del elemento de la posicion inicada. Es imporatnte que una bez se realize el borrado hay que notificar al adaptador un cambio en los datos
+En este caso en el método init la pulsación larga del nombre hace una llamada al método onNombreLongClick, pasando como parámetro la posición pulsada. Es importante ver que la llamada del listener onLongClick tiene que retornar en este caso un booleano. Una vez hecho esto en el MainActivity tan solo es necesario llamar al método desde el adaptador y configurar la función onNombreLongClick, realizando el borrado del elemento de la posición indicada. Es importante que una bez se realize el borrado hay que notificar al adaptador un cambio en los datos
 
 ```java
         adaptadorLenguaje.onNombreLongClick = { posicion ->
@@ -1102,7 +985,7 @@ En este caso en el método init la pulsación larga del nombre hace una llamada 
 
 # ListView
 
-Como se ha dicho antes, los recyclerview son las listas que más se utilizan en android por su eficiencia a la hora de mostrar los datos. Pero tambien existen otro tipo de listas que también se pueden utilizar. En este caso estaríamos hablando de listas que no muestran una cantidad de datos grandes ya que su capacidad de carga no es muy buena. A diferencia de los recycler, este tipo de listas pueden mostrar datos sin necesidad de un adaptador complejo (como el que creamos en un archivo aparte). Para poder mostrar el uso de los ListView vamos a realizar el ejemento realizado en el punto anterior. Lo primero que vamos hacer es crear una activity nueva llamado ListadoActivity, junto con un xml que tan solo tenga un objeto de tipo ListView con el id listview_lenguajes
+Como se ha dicho antes, los recyclerview son las listas que más se utilizan en android por su eficiencia a la hora de mostrar los datos. Pero también existen otro tipo de listas que también se pueden utilizar. En este caso estaríamos hablando de listas que no muestran una cantidad de datos grandes ya que su capacidad de carga no es muy buena. A diferencia de los recycler, este tipo de listas pueden mostrar datos sin necesidad de un adaptador complejo (como el que creamos en un archivo aparte). Para poder mostrar el uso de los ListView vamos a realizar el ejemplo realizado en el punto anterior. Lo primero que vamos hacer es crear una activity nueva llamado ListadoActivity, junto con un xml que tan solo tenga un objeto de tipo ListView con el id listview_lenguajes
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1164,7 +1047,7 @@ class ListadoActivity : AppCompatActivity() {
 }
 ```
 
-Hasta este momento la diferencia no ha sido ninguna, ya que tan solo se ha creado el arraylist y se ha rellenado con una serie de datos. La diferencia viene a la hora de asociar los datos (parte lógica) con la lista (parte gráfica). Cuando trabajamos con un recyclerview teniamos que crear un adaptador con la creación de una clase que implementase la interfaz RecyclerView.Adapter, pero en el caso del listView existe un adaptador ya creado que puede servir como base, no teniendo la necesidad de crear una clase nueva. Este adaptador es de tipo ArrayAdapter y ya lo vimos cuando el tema anterior hablamos de los spinner. PAra crearlo es necesario indicar el contexto, un layout que nos da android y la lista de datos que se quieren representar
+Hasta este momento la diferencia no ha sido ninguna, ya que tan solo se ha creado el arraylist y se ha rellenado con una serie de datos. La diferencia viene a la hora de asociar los datos (parte lógica) con la lista (parte gráfica). Cuando trabajamos con un recyclerview teníamos que crear un adaptador con la creación de una clase que implementase la interfaz RecyclerView.Adapter, pero en el caso del listView existe un adaptador ya creado que puede servir como base, no teniendo la necesidad de crear una clase nueva. Este adaptador es de tipo ArrayAdapter y ya lo vimos cuando el tema anterior hablamos de los spinner. PAra crearlo es necesario indicar el contexto, un layout que nos da android y la lista de datos que se quieren representar
 
 ```java
 
@@ -1178,13 +1061,9 @@ Hasta este momento la diferencia no ha sido ninguna, ya que tan solo se ha cread
     }
 ```
 
-Si incluimos ese código en la actividad, obtendremos una lista de datos pero en cada uno de los item no aparecerá el nombre, sino que aparecerá el elemento - objeto completo por lo que no nos serviría. Para poder representarlo bien tendríamos que sobreescribir el método toString en la clase Lenguaje. Al tratarse de una clase de datos (ya que así lo representamos para poder ahorra coódigo), el código en una clase normal debería ser el siguiente
+Si incluimos ese código en la actividad, obtendremos una lista de datos pero en cada uno de los item no aparecerá el nombre, sino que aparecerá el elemento - objeto completo por lo que no nos serviría. Para poder representarlo bien tendríamos que sobreescribir el método toString en la clase Lenguaje. Al tratarse de una clase de datos (ya que así lo representamos para poder ahorra código), el código en una clase normal debería ser el siguiente
 
 ```java
-package com.develop.listasrecycler.model
-
-import java.io.Serializable
-
 class Lenguaje (var nombre: String, var version: Double, var detalle: String, var imagen: Int) : Serializable {
     override fun toString(): String {
         return nombre
@@ -1195,15 +1074,6 @@ class Lenguaje (var nombre: String, var version: Double, var detalle: String, va
 Esto representará cada uno de los item distribuidos en filas. Sin embargo este tipo de adaptador no es muy personalizable, ya que tan solo se puede utilizar un item con un elemento. En código completo de la actividad es el siguiente:
 
 ```java
-package com.develop.listasrecycler
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
-import com.develop.listasrecycler.databinding.ActivityListadoBinding
-import com.develop.listasrecycler.model.Lenguaje
-
 class ListadoActivity : AppCompatActivity() {
 
     private lateinit var listaLenguajes: ArrayList<Lenguaje>
@@ -1286,7 +1156,7 @@ Con este archivo representando el elemento de la lista, el siguiente paso es cre
 
 Sin embargo este tipo de adaptador también se queda muy corto ya que tan solo se puede poner uno de los datos. En el caso de querer hacer un adaptador personalizado, es necesario crear una clase adicional que extienda de la clase ArrayAdapter o BaseAdaper. Esta implementación obligará a escribir los siguientes métodos
 
-- getCount: método que será el encargado de indicar el número de elementos que tendra la lista
+- getCount: método que será el encargado de indicar el número de elementos que tendrá la lista
 - getItem: método encargado de retornar el elemento de la posición indicada como parámetro
 - getItemId: método encargado de retornar el id del elemento de la posición indicada como parámetro
 - getView: método encargado de traer el layout que se quiera utilizar y rellenar las filas con cada uno de los datos.
@@ -1294,19 +1164,6 @@ Sin embargo este tipo de adaptador también se queda muy corto ya que tan solo s
 Para el ejemplo de la lista de lenguajes la clase quedará de la siguiente forma
 
 ```java
-package com.develop.listasrecycler.adapters
-
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
-import com.develop.listasrecycler.R
-import com.develop.listasrecycler.model.Lenguaje
-import org.w3c.dom.Text
-
 class AdaptadorLenguajesLista(var lista: List<Lenguaje>, var context: Context): BaseAdapter() {
 
     override fun getCount(): Int {
@@ -1335,16 +1192,6 @@ class AdaptadorLenguajesLista(var lista: List<Lenguaje>, var context: Context): 
 Una vez creado el adaptador será necesario crearlo y setearlo dentro de la activity mediante el método setAdapter
 
 ```java
-package com.develop.listasrecycler
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
-import com.develop.listasrecycler.adapters.AdaptadorLenguajesLista
-import com.develop.listasrecycler.databinding.ActivityListadoBinding
-import com.develop.listasrecycler.model.Lenguaje
-
 class ListadoActivity : AppCompatActivity() {
 
     private lateinit var adaptadorLenguajesLista: AdaptadorLenguajesLista;
@@ -1381,22 +1228,9 @@ class ListadoActivity : AppCompatActivity() {
 
 ## Manejo de eventos en las listas
 
-Otra de las grandes diferencias entre las listas y los recycler es el manejo de eventos. Si recordáis cuando creamos los recycler, para que pudiesemos tratar el item pulsado era necesario declarar unafuncion nula que más tarde era llamada desde la clase de la activity y declarada al mismo tiempo, donde obteniamos como parámetro el dato que queriamos tratar. Esto no pasa en las listas, ya que se puede hacer directamente gracias a su listener onItemCliclListener. Este recibe como parámetros la vista que ha generado el evento (en este caso la lista), la posición del item pulsado y el id del item pulsado (fijaros que son todos los datos que hemos sobreescrito cuando se ha creado el adaptador presonalizado)
+Otra de las grandes diferencias entre las listas y los recycler es el manejo de eventos. Si recordáis cuando creamos los recycler, para que pudiésemos tratar el item pulsado era necesario declarar una función nula que más tarde era llamada desde la clase de la activity y declarada al mismo tiempo, donde obteníamos como parámetro el dato que queríamos tratar. Esto no pasa en las listas, ya que se puede hacer directamente gracias a su listener onItemCliclListener. Este recibe como parámetros la vista que ha generado el evento (en este caso la lista), la posición del item pulsado y el id del item pulsado (fijaros que son todos los datos que hemos sobreescrito cuando se ha creado el adaptador personalizado)
 
 ```java
-package com.develop.listasrecycler
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
-import com.develop.listasrecycler.adapters.AdaptadorLenguajesLista
-import com.develop.listasrecycler.databinding.ActivityListadoBinding
-import com.develop.listasrecycler.model.Lenguaje
-
 class ListadoActivity : AppCompatActivity() {
 
     private lateinit var listaLenguajes: ArrayList<Lenguaje>
@@ -1447,4 +1281,4 @@ class ListadoActivity : AppCompatActivity() {
 
 # Ejercicios propuestos.
 
-1. Realiza una modificacion del ejercicio anterior para incluir un formulario en la MainActivity en la parte inferior, de modo que se puedan recoger los datos, incluyendo campos para dar la posibilidad al usuario de agregar los datos al final o en una posición que se debe indicar. El botón agregar lenguaje agregará un lenguaje nuevo al recyclerview e nla posición indicada. La aplicación deberá ser configurada para verse bien tanto en vertical como en horizontal
+1. Realiza una modificación del ejercicio anterior para incluir un formulario en la MainActivity en la parte inferior, de modo que se puedan recoger los datos, incluyendo campos para dar la posibilidad al usuario de agregar los datos al final o en una posición que se debe indicar. El botón agregar lenguaje agregará un lenguaje nuevo al recyclerview e nla posición indicada. La aplicación deberá ser configurada para verse bien tanto en vertical como en horizontal
