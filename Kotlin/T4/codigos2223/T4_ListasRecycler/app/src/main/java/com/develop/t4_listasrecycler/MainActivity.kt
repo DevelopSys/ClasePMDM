@@ -2,6 +2,10 @@ package com.develop.t4_listasrecycler
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.develop.t4_listasrecycler.adapters.AdaptadorUsuarios
 import com.develop.t4_listasrecycler.databinding.ActivityMainBinding
 import com.develop.t4_listasrecycler.model.Usuario
 
@@ -9,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var listaUsuarios: ArrayList<Usuario>
+    private lateinit var adaptadorUsuarios: AdaptadorUsuarios;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,11 +21,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         instancias()
-        // poner un adaptador dentro del recycler
+        configurarRecycler()
+        acciones()
+    }
 
-        // poner un layout dentro del recycler --> Linear Grid
+    private fun acciones() {
 
-        binding.listaRecycler
+    }
+
+    private fun configurarRecycler() {
+        // 2. poner un adaptador dentro del recycler
+        binding.listaRecycler.adapter = adaptadorUsuarios;
+        // 3. poner un layout dentro del recycler --> Linear Grid
+        binding.listaRecycler.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        //binding.listaRecycler.layoutManager = GridLayoutManager(this,2)
+
     }
 
     private fun instancias() {
@@ -30,5 +45,13 @@ class MainActivity : AppCompatActivity() {
         listaUsuarios.add(Usuario("Celia", "Martin",2345,R.drawable.female))
         listaUsuarios.add(Usuario("Julia", "Gomez",3456,R.drawable.female))
         listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        listaUsuarios.add(Usuario("Carlos", "Frances",4567,R.drawable.male))
+        adaptadorUsuarios = AdaptadorUsuarios(listaUsuarios, this);
     }
 }
