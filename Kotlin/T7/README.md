@@ -24,7 +24,7 @@ Como se ha comentado antes, los fragments son elementos que permiten la modulaci
 
 Como se verá más adelante, los fragments son partes de la interfaz que tienen la capacidad de aparecer / desaparecer dependiendo de multitud de factores como pueden ser interacción con el usuario, configuraciones de la pantalla, etc... Muchos de los métodos son compartidos con las activitys, existiendo diferencia con los elementos que asocian / eliminan el fragment con la pantalla. El ciclo de vida comparado con el de las pantallas es el siguiente: 
 
-[Ciclo vida fragments](../images/t7_ciclovida_fragments.png)
+![Ciclo vida fragments](../images/t7_ciclovida_fragments.png)
 
 
 ## Creación de fragments
