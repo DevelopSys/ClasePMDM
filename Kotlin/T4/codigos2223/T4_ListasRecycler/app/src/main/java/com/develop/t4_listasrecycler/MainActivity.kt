@@ -14,10 +14,12 @@ class MainActivity : AppCompatActivity(), AdaptadorUsuarios.OnRecyclerUsuarioLis
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var listaUsuarios: ArrayList<Usuario>
+    private lateinit var listaUsuariosFiltrada: ArrayList<Usuario>
     private lateinit var adaptadorUsuarios: AdaptadorUsuarios;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

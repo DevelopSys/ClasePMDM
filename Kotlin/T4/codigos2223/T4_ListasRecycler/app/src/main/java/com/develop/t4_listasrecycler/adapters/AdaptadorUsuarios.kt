@@ -24,6 +24,8 @@ class AdaptadorUsuarios(var lista: ArrayList<Usuario>, var contexto: Context) :
         listener = contexto as OnRecyclerUsuarioListener
     }
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         var vista: View = LayoutInflater.from(contexto).inflate(
             R.layout.item_recycler, parent,
