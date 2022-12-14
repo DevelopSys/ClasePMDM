@@ -20,6 +20,12 @@ import com.develop.t4_coches.model.Coche
 class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
     RecyclerView.Adapter<AdapterCoche.MyHolder>() {
 
+    // TODO 2. Creo variable de la interfaz
+    // private lateinit var listener: TIPO DE LA INTERFAZ
+
+    // TODO 4. Inicializar el objeto de la interfaz en el init listener = contexto as INTERFAZ
+
+
     inner class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var imagen: ImageView
@@ -43,7 +49,9 @@ class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
         holder.modelo.text = coche.modelo
         holder.imagen.setImageResource(coche.imagen)
         holder.boton.setOnClickListener {
-        // comunicacion el coche seleccionado a la activity
+            // comunicacion el coche seleccionado a la activity
+            // TODO 2. utilizo el metodo de la interfaz onMetodoSelected(dato a comunicar)
+
         }
     }
 
@@ -51,5 +59,5 @@ class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
         return lista.size
     }
 
-    // 1. Creo interfaz con metodo onMetodoSelected(dato a comunicar)
+    // TODO 1. Creo interfaz con metodo onMetodoSelected(dato a comunicar)
 }

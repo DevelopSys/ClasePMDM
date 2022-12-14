@@ -10,6 +10,9 @@ import com.develop.t4_coches.adaptapters.AdapterCoche
 import com.develop.t4_coches.databinding.ActivityMainBinding
 import com.develop.t4_coches.model.Coche
 
+
+// TODO 3. IMPLEMENTO la interfaz --> escribiendo los metodos de comunicacion
+// TODO 5. Utilizo el dato comunicado como me interese en el metodo implementado --> coche comunicado
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -19,11 +22,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // si el movil está en port --> LINEAR
-        // si el movil está en land --> GRID (2)
 
-        resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-        resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // si el movil está en port --> LINEAR
+
+        } else if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+            // si el movil está en land --> GRID (2)
+        }
+
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -54,9 +61,11 @@ class MainActivity : AppCompatActivity() {
 
         adapterCoche = AdapterCoche(this, coches)
         binding.recycler.adapter = adapterCoche;
-        binding.recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        //binding.recycler.layoutManager = GridLayoutManager(this, 2);
+        //binding.recycler.layoutManager =
+        //    LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.recycler.layoutManager = GridLayoutManager(this, 2);
+
+
 
 
         binding.spinnerMarca.adapter = ArrayAdapter.createFromResource(
