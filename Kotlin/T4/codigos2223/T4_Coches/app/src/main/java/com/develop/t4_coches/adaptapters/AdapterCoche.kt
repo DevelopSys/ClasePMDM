@@ -39,6 +39,11 @@ class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
         }
     }
 
+    fun setFiltrada(listaFiltrada: ArrayList<Coche>){
+        this.lista = listaFiltrada;
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.item_recycler, parent, false)
         return MyHolder(view)
