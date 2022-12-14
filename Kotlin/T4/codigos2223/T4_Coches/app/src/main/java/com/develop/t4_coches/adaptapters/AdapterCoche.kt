@@ -41,6 +41,10 @@ class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
         val coche = lista.get(position)
         holder.modelo.text = coche.modelo
         holder.imagen.setImageResource(coche.imagen)
+        holder.boton.setOnClickListener {
+        // comunicacion
+
+        }
 
     }
 

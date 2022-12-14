@@ -1,7 +1,9 @@
 package com.develop.t4_coches
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.develop.t4_coches.adaptapters.AdapterCoche
 import com.develop.t4_coches.databinding.ActivityMainBinding
@@ -15,6 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // si el movil está en port --> LINEAR
+        // si el movil está en land --> GRID (2)
+
+        resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         adapterCoche = AdapterCoche(this, coches)
         binding.recycler.adapter = adapterCoche;
         binding.recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        //binding.recycler.layoutManager = GridLayoutManager(this, 2);
 
 
     }
