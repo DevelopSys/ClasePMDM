@@ -3,6 +3,7 @@ package com.develop.t4_coches
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.develop.t4_coches.adaptapters.AdapterCoche
@@ -30,22 +31,47 @@ class MainActivity : AppCompatActivity() {
 
         coches = ArrayList();
 
-        coches.add(Coche("Mercedes","AMG GT",500,200000,"Deportivo", R.drawable.amggt))
-        coches.add(Coche("Bentley","Continental",400,300000,"Berlina deportivo", R.drawable.continental))
-        coches.add(Coche("Jaguar","FType",300,150000,"Deportivo", R.drawable.ftype))
-        coches.add(Coche("Ford","GT40",500,300000,"Deportivo clasico", R.drawable.gt40))
-        coches.add(Coche("Nissan","GTR",300,200000,"Deportivo", R.drawable.gtr))
-        coches.add(Coche("Porche","Huayara",600,400000,"Deportivo", R.drawable.huayra))
-        coches.add(Coche("Lexus","LC",200,100000,"Deportivo", R.drawable.lc))
-        coches.add(Coche("Ferrari","Le ferrari",600,500000,"Deportivo", R.drawable.leferrari))
-        coches.add(Coche("McLaren","MC600",500,450000,"Deportivo", R.drawable.mc600))
-        coches.add(Coche("Toyota","Supra",300,150000,"Deportivo", R.drawable.supra))
-        coches.add(Coche("Porche","Taycan",350,250000,"Deportivo", R.drawable.taycan))
+        coches.add(Coche("Mercedes", "AMG GT", 500, 200000, "Deportivo", R.drawable.amggt))
+        coches.add(
+            Coche(
+                "Bentley",
+                "Continental",
+                400,
+                300000,
+                "Berlina deportivo",
+                R.drawable.continental
+            )
+        )
+        coches.add(Coche("Jaguar", "FType", 300, 150000, "Deportivo", R.drawable.ftype))
+        coches.add(Coche("Ford", "GT40", 500, 300000, "Deportivo clasico", R.drawable.gt40))
+        coches.add(Coche("Nissan", "GTR", 300, 200000, "Deportivo", R.drawable.gtr))
+        coches.add(Coche("Porche", "Huayara", 600, 400000, "Deportivo", R.drawable.huayra))
+        coches.add(Coche("Lexus", "LC", 200, 100000, "Deportivo", R.drawable.lc))
+        coches.add(Coche("Ferrari", "Le ferrari", 600, 500000, "Deportivo", R.drawable.leferrari))
+        coches.add(Coche("McLaren", "MC600", 500, 450000, "Deportivo", R.drawable.mc600))
+        coches.add(Coche("Toyota", "Supra", 300, 150000, "Deportivo", R.drawable.supra))
+        coches.add(Coche("Porche", "Taycan", 350, 250000, "Deportivo", R.drawable.taycan))
 
         adapterCoche = AdapterCoche(this, coches)
         binding.recycler.adapter = adapterCoche;
-        binding.recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        binding.recycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         //binding.recycler.layoutManager = GridLayoutManager(this, 2);
+
+
+        binding.spinnerMarca.adapter = ArrayAdapter.createFromResource(
+            applicationContext,
+            R.array.lista_marcas, android.R.layout.simple_spinner_item
+        )
+        (binding.spinnerMarca.adapter as ArrayAdapter<CharSequence>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.spinnerPrecio.adapter = ArrayAdapter.createFromResource(
+            applicationContext,
+            R.array.lista_precios, android.R.layout.simple_spinner_item
+        )
+        (binding.spinnerPrecio.adapter as ArrayAdapter<CharSequence>).setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
 
 
     }

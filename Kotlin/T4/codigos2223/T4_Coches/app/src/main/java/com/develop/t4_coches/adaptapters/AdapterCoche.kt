@@ -1,6 +1,7 @@
 package com.develop.t4_coches.adaptapters
 
 import android.content.Context
+import android.content.Intent
 import android.renderscript.ScriptGroup.Binding
 import android.view.LayoutInflater
 import android.view.View
@@ -42,13 +43,13 @@ class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
         holder.modelo.text = coche.modelo
         holder.imagen.setImageResource(coche.imagen)
         holder.boton.setOnClickListener {
-        // comunicacion
-
+        // comunicacion el coche seleccionado a la activity
         }
-
     }
 
     override fun getItemCount(): Int {
         return lista.size
     }
+
+    // 1. Creo interfaz con metodo onMetodoSelected(dato a comunicar)
 }
