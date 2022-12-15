@@ -23,9 +23,6 @@ class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
     // TODO 2. Creo variable de la interfaz
     // private lateinit var listener: TIPO DE LA INTERFAZ
 
-    // TODO 4. Inicializar el objeto de la interfaz en el init listener = contexto as INTERFAZ
-
-
     inner class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var imagen: ImageView
