@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">T4_Coches</string>
+    <string-array name="lista_marcas">
+        <item>Todos</item>
+        <item>Mercedes</item>
+        <item>Ford</item>
+        <item>Ferrari</item>
+        <item>Nissan</item>
+        <item>Porche</item>
+        <item>Jaguar</item>
+        <item>Lexus</item>
+    </string-array>
+    <string-array name="lista_precios">
+        <item>Todos</item>
+        <item>Hasta 100.000</item>
+        <item>Hasta 200.000</item>
+        <item>Hasta 300.000</item>
+        <item>Hasta 400.000</item>
+        <item>Mas de 500.000</item>
+    </string-array>
+</resources>
