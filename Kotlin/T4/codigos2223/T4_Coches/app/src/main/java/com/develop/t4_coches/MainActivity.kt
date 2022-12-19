@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var coches: ArrayList<Coche>
-    private lateinit var cochesFiltrada: ArrayList<Coche>
     private lateinit var adapterCoche: AdapterCoche
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,8 +64,7 @@ class MainActivity : AppCompatActivity() {
         coches.add(Coche("McLaren", "MC600", 500, 450000, "Deportivo", R.drawable.mc600))
         coches.add(Coche("Toyota", "Supra", 300, 150000, "Deportivo", R.drawable.supra))
         coches.add(Coche("Porche", "Taycan", 350, 250000, "Deportivo", R.drawable.taycan))
-        cochesFiltrada = coches;
-        adapterCoche = AdapterCoche(this, cochesFiltrada)
+        adapterCoche = AdapterCoche(this, coches)
         binding.recycler.adapter = adapterCoche;
         //binding.recycler.layoutManager =
         //    LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
