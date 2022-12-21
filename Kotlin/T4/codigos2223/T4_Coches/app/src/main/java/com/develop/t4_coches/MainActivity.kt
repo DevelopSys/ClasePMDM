@@ -17,7 +17,6 @@ import com.google.android.material.snackbar.Snackbar
 
 
 // TODO 3. IMPLEMENTO la interfaz --> escribiendo los metodos de comunicacion
-// TODO 5. Utilizo el dato comunicado como me interese en el metodo implementado --> coche comunicado
 
 class MainActivity : AppCompatActivity(), OnItemSelectedListener {
 
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // TODO 5. Utilizo el dato comunicado como me interese en el metodo implementado --> coche comunicado
 
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
 
             // si el movil está en land --> GRID (2)
         }
-
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -67,6 +65,8 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
         coches.add(Coche("Toyota", "Supra", 300, 150000, "Deportivo", R.drawable.supra))
         coches.add(Coche("Porche", "Taycan", 350, 250000, "Deportivo", R.drawable.taycan))
         adapterCoche = AdapterCoche(this, coches)
+        adapterCoche.funcionComunicar =
+            { Snackbar.make(binding.root, it.precio.toString(), Snackbar.LENGTH_SHORT).show() }
         binding.recycler.adapter = adapterCoche;
         binding.recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -105,22 +105,22 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
                     1 -> {
                         // hasta 100000
                         // de la lista de coche que esta en el spinner saco los que valen hasta 100mil
-                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio<=100000 } as ArrayList<Coche>)
+                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio <= 100000 } as ArrayList<Coche>)
                     }
                     2 -> {
-                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio<=200000 } as ArrayList<Coche>)
+                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio <= 200000 } as ArrayList<Coche>)
 
                     }
                     3 -> {
-                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio<=300000 } as ArrayList<Coche>)
+                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio <= 300000 } as ArrayList<Coche>)
 
                     }
                     4 -> {
-                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio<=400000 } as ArrayList<Coche>)
+                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio <= 400000 } as ArrayList<Coche>)
 
                     }
                     5 -> {
-                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio>=500000 } as ArrayList<Coche>)
+                        adapterCoche.cambiarLista(adapterCoche.lista.filter { it.precio >= 500000 } as ArrayList<Coche>)
 
                     }
                 }

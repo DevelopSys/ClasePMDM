@@ -20,6 +20,9 @@ import com.develop.t4_coches.model.Coche
 class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
     RecyclerView.Adapter<AdapterCoche.MyHolder>() {
 
+    // 1. Funciones vacías: en el origen de los datos crear una variable de tipo funcion
+    var funcionComunicar: ((coche: Coche)->Unit)? = null
+
     // TODO 2. Creo variable de la interfaz
     // private lateinit var listener: TIPO DE LA INTERFAZ
 
@@ -52,7 +55,9 @@ class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
         holder.modelo.text = coche.modelo
         holder.imagen.setImageResource(coche.imagen)
         holder.boton.setOnClickListener {
-            // comunicacion el coche seleccionado a la activity
+            // Funcion vacia:  comunicacion el coche seleccionado a la activity
+            funcionComunicar?.invoke(coche)
+
             // TODO 2. utilizo el metodo de la interfaz onMetodoSelected(dato a comunicar)
 
         }
