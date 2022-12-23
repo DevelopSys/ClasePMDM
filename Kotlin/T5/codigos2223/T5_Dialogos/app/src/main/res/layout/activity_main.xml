@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        android:text="Diálogos"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Confirmación"
+            android:id="@+id/boton_confirmacion"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"            android:layout_height="wrap_content"
+            android:text="Contestacion"
+            android:gravity="center"
+            android:id="@+id/texto_confirmacion"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Lista"
+            android:id="@+id/boton_lista"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"            android:layout_height="wrap_content"
+            android:text="Contestacion"
+            android:gravity="center"
+            android:id="@+id/lista_confirmacion"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Lista simple"
+            android:id="@+id/boton_lista_simple"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"            android:layout_height="wrap_content"
+            android:text="Contestacion"
+            android:gravity="center"
+            android:id="@+id/lista_simple_confirmacion"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Lista Multiple"
+            android:id="@+id/boton_lista_multiple"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"            android:layout_height="wrap_content"
+            android:text="Contestacion"
+            android:gravity="center"
+            android:id="@+id/texto_lista_multiple"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Personalizado"
+            android:id="@+id/boton_personalizado"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"            android:layout_height="wrap_content"
+            android:text="Contestacion"
+            android:gravity="center"
+            android:id="@+id/texto_personalizado"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

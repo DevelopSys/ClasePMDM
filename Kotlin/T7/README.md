@@ -1,391 +1,88 @@
 # Índice
-- [Índice](#índice)
-- [Objetivos](#objetivos)
-- [Contenidos](#contenidos)
-- [Menús](#menús)
-  - [Creación de un menu de opciones](#creación-de-un-menu-de-opciones)
-  - [Configurar menu en la activity](#configurar-menu-en-la-activity)
-  - [Configurar las pulsaciones dentro de un menu](#configurar-las-pulsaciones-dentro-de-un-menu)
-  - [Creación de menus contextuales](#creación-de-menus-contextuales)
-- [Toolbar](#toolbar)
-  - [Configurar el botón home de la barra superior](#configurar-el-botón-home-de-la-barra-superior)
-- [Notificaciones de barra](#notificaciones-de-barra)
-  - [Crear un canal de notificaciones](#crear-un-canal-de-notificaciones)
-  - [Crear y lanzar una notificación](#crear-y-lanzar-una-notificación)
+
 
 
 # Objetivos
 
-- Conocer el concepto de menus y sus posibilidades
-- Entender la diferencia entre Toolbar y ActionBar
+- Conocer el concepto de fragments y los diferentes tipos
+- Entender el ciclo de vida de un fragments
+- Utilizar fragments, creación, modificación y remplazo
+- Comunicar fragments entre activity y otros fragments
 - Conocer como funcionan las notificaciones
 
 # Contenidos
 [Volver arriba](#índice)
+HAsta este punto se ha visto como poder manejar pantallas dentro de una aplicación mediante Activitys comunicadas con Intents. Sin embargo este tipo de diseño imposibilita la modularidad, ya que cada elemento es individual y no tiene mucha relación con el resto más allá de los intents que puedan compartir. Desde la versión 3.0 se introduce el concepto de fragments, los cuales favorecen dicha modularidad. Podemos definir un fragment como una parte de la pantalla que puede ser reutilizada en varias sitios, teniendo un ciclo de vida propio. Una de las grandes capacidades de los fragments es el de permitir que para dispositivos grandes se puedan visualizar elementos de diferente que para dispositivos pequeños. El ejemplo más claro de esto es que una aplicación no debería verse igual en un móvil de 5 pulgadas que en una tablet de 11 pulgadas. Con los fragmentes tendremos la posibilidad de modular la pantalla y decidir que partes se muestran dependiendo del tamaño de la pantalla, siempre mostrando la misma activity pero con diferentes contenido (fragments)
 
-Una de la parte dentro del desarrollo móvil es la de los menús ya que ofrecen la posibilidad de crear y gestionar acciones desde un mismo sitio colocado en la barra superior (de forma general) o de forma contextual desde cualquier elemento de la interfaz. Estos menús desde la version de android 3.0 se sitúan en la parte superior también llamada ActioBar, pero se pueden cambiar a un elemento llamado ToolBar la cual nos otorgará un control mucho mayor de los elementos que se pueden ejecutar. Por último, en este tema veremos las notificaciones emergentes, que aunque tienen mucho sentido cuando trabajamos con una aplicación con conexión en red, pueden ser útiles en alguno de los escenarios locales.
 
-# Menús 
+# Fragments 
 [Volver arriba](#índice)
 
-Como ya se ha dicho los menus son las herramientas por defecto que permiten añadir funcionalidad extra en un solo sitio, siendo de primeras invisibles. Es importante saber que cada pantalla puede tener asignado un menú diferente
+Como se ha comentado antes, los fragments son elementos que permiten la modulación dentro de la pantalla. A grandes rasgos, un fragment es un elemento individual (con xml propio) que se incorpora dentro de una activity. Esta incorporación puede ser de dos tipos: estática (se declara el elemento en el xml de la pantalla) o dinámica (no se declara el elemento, sino que puede ser cambiante). Dependiendo de cual sea el uso que se quiera dar, utilizaremos uno u otro. Por ejemplo si todas las pantallas de nuestra aplicación tienen la misma cabecera, podremos crear un fragment estático para agregarlo en cada una de las pantallas
 
-## Creación de un menu de opciones
+## Ciclo de vida de los fragments
 
-Para poder trabajar con un menu de opciones, lo primero necesario es crearlos. Se puede crear programaticamente o como recurso. En este caso lo vamos a ver como recurso, ya que de esta forma el menu puede estar disponible para diferentes sitios. Para ello lo primero necesario es crear una carpeta dentro de res donde se vayan a alojar los recurso, por lo que con el botón derecho ya pulsado seleccionamos new --> android resource directory indicando como nombre menu y como tipo menu. Una vez hecho esto se crea una carpeta dentro de res con el nombre indicado. Es aquí donde se van a ubicar todos los recursos de tipo menu. Para poder crear un recurso de tipo menu, seleccionaremos con botón derecho crear un nuevo recurso de menu al cual se indicaremos el nombre, en este caso menu_principal. Esta acción crea un xml con el recurso del menu y si lo abrimos podemos tratarlo tanto gráficamente como por código. Mediante código nos encontraremos con los siguiente:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-</menu>
-```
-Dentro de la etiquete menu tendremos que indicar todas las opciones que queramos que tenga nuestro menu, creando un elemento de tipo item para cada una de ellas
-
-```xml
-    <item android:title="Información"
-        android:id="@+id/menu_informacion"
-        />
-```
-
-El atributo title es el único obligatorio y es el que recoge el string que aparecerá asociado al elemento (puede estar declarado dentro de string.xml). Ek id es muy recomendable ya que será la forma de asociarlo a la pulsación desde la parte lógica. Además de estas opciones se pueden poner algunas adicionales: 
-
-```xml
-    <item android:title="Agregar dato"
-        android:id="@+id/menu_agregar"
-        android:icon="@android:drawable/ic_dialog_info"
-        app:showAsAction="always"
-        android:checkable="false"
-        />
-```
-
-De estas opciones destacar showAsAction que permite poder indicar que la opción aparecerá como icono en la barra superior (las posibles configuraciones son always (siempre) ifRoom (solo si hay espacio) never (nunca)) y la de checkable la cual indica si la opción aparecerá como una opción con estilo RadioButton. Además de esto podemos tener submenus, para lo cual es necesario no autocerrar el item sino dejarlo abierto y meter un elemento de tipo menu dentro. Un ejemplo completo podría ser el siguiente
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item
-        android:id="@+id/menu_agregar"
-        android:checkable="false"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:title="Agregar dato"
-        app:showAsAction="always" />
-    <item android:title="Navegación">
-        <menu>
-            <item
-                android:id="@+id/menu_navegacion_1"
-                android:title="Ir a la pantalla 1"
-                />
-            <item
-                android:id="@+id/menu_navegacion_2"
-                android:title="Ir a la pantalla 2"
-                />
-        </menu>
-    </item>
-    <item
-        android:id="@+id/menu_salir"
-        android:title="Salir" />
+Como se verá más adelante, los fragments son partes de la interfaz que tienen la capacidad de aparecer / desaparecer dependiendo de multitud de factores como pueden ser interacción con el usuario, configuraciones de la pantalla, etc... Muchos de los métodos son compartidos con las activitys, existiendo diferencia con los elementos que asocian / eliminan el fragment con la pantalla. El ciclo de vida comparado con el de las pantallas es el siguiente: 
 
 
-</menu>
-```
+<img src="../images/t7_ciclovida_fragments.png" alt="drawing" width="400"/>
 
-## Configurar menu en la activity
+Dentro del ciclo de vida, cabe destacar los siguientes métodos: 
 
-Con el recurso creado el siguiente paso sería la configuración dentro de la aplicación del mismo. Para ello existen varias posibilidades, siempre dependiendo del tipo de barra superior con el que cuente la activity. Como se ha dicho el principio, por defecto la barra con la que se cuenta es una barra de ActioBar, la cual tienen una configuración muy sencilla pero tiene una personalización muy baja. Para poder poner un menú dentro de este tipo de barras basta con sobreescribir el método onCreateOptionMenu
+- onAttach: el fragment se vincula con la actividad. Se suele utilizar para poder trabajar con el contexto, ya que es parámetro dentro del método
+- onCreate: el fragmento y está asociado pero cuenta con interfaz gráfica. Se suele utilizar para poder intanciar elementos lógicos
+- onCreateView: el fragmento se asocia a la parte gráfica
+- onActivityCreated: el fragmento ya está disponible y empieza a ser visto
+
+La misma metodología se produce cuando el fragment deja de ser visto. Para ello existen los métodoso onDestroyView, onDestroy, onDetach
+
+## Creación de fragments
+
+Los fragments, al igual que las activitys están representados por una clase separada, la cual extiende de Fragments. Al ser un elemento lógico, no es necesario declararlo en el AndroidManifest.xml, pero si es necesario que tenga una parte gráfica por lo que los elementos que forman un Fragment son:
+
+- fragment_layout.xml: fichero que representa la parte lógica del fragment 
+- MainFragment.kt: fichero que representa la parte lógica del fragment
+
+Para poder crear uno, teniendo en cuenta las dependecias de archivos que acabamos de comentar quedaría de la siguiente forma:
 
 ```java
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return super.onCreateOptionsMenu(menu)
+class BlankFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+      
+        return inflater.inflate(R.layout.fragment_blank, container, false)
     }
+    
+}
 ```
+Como se puede ver en el código anterior, la clase extiende de Fragment y trae por defecto un método (el único obligatorio) que es el onCreateView (muy similar al método onCreate de las activitys). Esté método se encarga de asocias la parte lógica con la parte gráfica. Además de este método, se pueden utilizar métodos del ciclo de vida del fragment al igual que pasaba en las activtys, poniendo especial interés en el método onAttach() y onDetach(). Ambos métodos se ejecutan cuando el fragment se asocia a la parte de la pantalla que se quiere y cuando se desasocia (recordad que los fragments son partes de la pantalla que pueden aparecer y desaparecer)
 
-Este método tiene como parámetro un objeto de tipo menu, el cual es el menu que toda barra tiene, pero que solo es visible cuando se le pone algo. En el momento en el que se le pone el recurso que creamos en el punto anterior directamente aparecerá como menu de la aplicación. Para poder ponerlo, lo primero que se debe hacer es acceder al recurso mediante un objeto de tipo MenuInflater (muy similar al layout inflater que utilizamos constantemente en con binding) e indicar mediante el método inflate lo que queremos inflar (nuestro xml) y donde lo queremos poner (el menu que nos dan como parámetro)
+## Añadir un fragmento a una actividad
 
-```java
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_principal,menu)
-        return true
-    }
-```
-Como se pude ver en la firma del método el método debe devolver true si se quiere mostrar el menu
+Una vez el fragment está creado, es necesario agregarlo a una activity. Para ello dependeré del tipo de fragment que queramos agregar, ya que agregarlo a la pantalla no se realiza de la misma forma
 
-Más delante veremos como poder configurar los menus y sus funcionalidades dentro de un Toolbar
+### Fragment estáticos
 
-## Configurar las pulsaciones dentro de un menu
-
-Para poder configurar las pulsaciones tendremos que sobreescribir el método onOptionsItemSelected
-
-```java
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-```
-
-Dicho método tiene como parámetro un objeto de tipo menuItem, que será el elemento seleccionado dentro del menu que previamente hemos rellenado con el método el punto anterior. Al igual que hacemos con la evaluación de la pulsación de un menu, en este caso evaluaremos el id del menuItem pulsado, para así poder decidir que acción es la que queremos ejecutar
-
-```java
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        
-        when(item.itemId){
-            R.id.menu_salir->{
-                // accion para el menu salir
-            }
-            R.id.menu_navegacion_1->{
-                // accion para el menu nav1
-            }
-            R.id.menu_navegacion_2->{
-                // accion para el menu nav2
-            }
-            R.id.menu_salir->{
-                // accion para el menu salir
-            }
-        }
-        
-        return true
-    }
-```
-En cada una de las acciones podemos configurar diferentes acciones, como por ejemplo salir de la aplicación, saltar diálogos, navegar a diferentes pantallas, etc...
-
-## Creación de menus contextuales 
-
-Los menus contextuales son aquellos que aparecen tras la pulsación larga de una vista. En ocasiones pueden ser útiles siempre y cuando cada vista esté vinculada a acciones separadas. Sin embargo su uso puede resultar confuso, ya que el usuario puede no saber de su existencia. Para poder utilizarlo, hay que tener en cuenta que cada menú contextual va asociado a una vista en concreto, y esta asociación es necesaria hacerla en el método onCreate. Imaginemos que tenemos un botón en nuestra interfaz y queremos que al pulsarlo aparezca un menú contextual con varias opciones. Lo primero que debemos hacer es tener creado el xml donde dejamos reflejado el propio menú
+Son aquellos que se agregan directamente al xml de la actividad sobre la cual queremos poner el elemento. Es muy importante saber que si se realiza este tipo de añadido, el fragment no se podrá modificar en tiempo de ejecución, ya que siempre aparecerá el mismo. Para poder hacer esto, primero tendremos creada una clase como la que se ha mostrado antes. El nombre de la clase es muy importante ya que será lo que utilizaremos para poder indicar el fragment que se quiere mostrar. En el xml de la activity donde se quiere agregar el fragment, se utiliza la etiqueta <fragment> indicando en el atributo name la clase del fragment que se quiere mostar
 
 ```xml
-// menu_contextual.xml
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:title="Opcion 1"
-        android:id="@+id/menu_context_1"/>
-
-    <item android:title="Opcion 2"
-        android:id="@+id/menu_context_2"/>
-
-</menu>
-```
-
-Este archivo representa el menu, por lo que el siguiente paso es asociarlo a una vista en concreto. Para ello ejecutamos el método registerForContextMenu sobre la vista que queramos en el método onCreate
-
-```java
-registerForContextMenu(binding.botonContextual)
-```
-Una vez hecho esto tan solo falta por indicar que menu es el que tiene que sacar. Para ello se sobreescribe el método onCreateContextMenu, el cual recibe como parámetros el menu que será el que se muestre, la vista que ha generado la pulsación para sacar el menu y la información del mismo
-
-```java
-    override fun onCreateContextMenu(
-        menu: ContextMenu?,
-        v: View?,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        when(v!!.id){
-            R.id.boton_contextual->{
-                menuInflater.inflate(R.menu.menu_contextual,menu)
-            }
-        }
-    }
-```
-
-El igual que vimos en los menus normales, utilizando el menuinflater podemos asociar el archivo que se ha creado con el menú donde se mostrará. Por último, para poder evaluar la pulsación de la opción del menú contextual se sobreescribe el método onContextItemSelected evaluando el id del menu seleccionado
-
-```java
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.menu_context_1->{}
-            R.id.menu_context_2->{}
-        }
-        return true
-    }
-```
-
-# Toolbar
-[Volver arriba](#índice)
-
-Todo lo explicado anteriormente es válido, pero sin embargo existe una posibilidad cada vez más utilizada que es la de sustituir la parte superior por la de Toolbar. Esto otorgará al programador muchas más posibilidades de funcionalidad además de las que ya tiene el ActionBar. En el caso de querer utilizar un elemento de tipo ToolBar lo primero necesario es quitar el ya existente, ya que sino se duplicaría en espacio. Para ello, dentro de los estilos debemos seleccionar un estilo hijo de NoActionBar
-
-```xml
-<style name="Theme.Menus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-```
-
-A partir de este momento nuestra pantalla no mostrará una parte superior. Para incluir un toolbar es necesario agregarlo como elemento gráfico (en el xml), por lo que el layout de la actividad quedará de la siguiente forma
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:name="com.develop.t7_fragments.fragments.BlankFragment"
+        />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pulsar"
-        android:id="@+id/boton_contextual"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 ```
 
-Hay que tener en cuenta que dependiendo del layout que utilicemos esta disposición puede cambiar. También es posible incluirlo dentro de un fichero separado e incrustarlo dentro del layout con la etiqueta include (para así poder reutilizarlo). Una vez hecho esto tan solo falta setear esta toolbar como elemento que actúe como parte superior. Para ello es necesario ejecutar el siguiente código
-
-```java
-setSupportActionBar(binding.toolbar)
-```
-
-Tras la ejecución de este código podremos agregar tantas características y elementos a la barra superior, ya que siempre estaremos haciendo referencia a la parte superior de la activity
-
-```java
-setSupportActionBar(binding.toolbar)
-```
-
-A partir de este momento, todos lo métodos se creación de menú y gestión de la pulsación de los elementos del menú ser realiza automáticamente, por lo que tendríamos que aplicar los métodos vistos en los puntos anteiores
-
-## Configurar el botón home de la barra superior
-
-Toda action bar tiene por defecto un título que viene puesto por defecto con el nombre del proyecto, un espacio reservado para el menu que hemos utilizado en el punto anterior, y un botón de home para que al ser pulsado realice una acción específica (de forma genérica es volver a la pantalla que ha sido marcada como main). Para poder activar dicho botón es necesario ejecutar el siguiente código
-
-```java
-supportActionBar?.setDisplayHomeAsUpEnabled(true)
-```
-
-La variable actionBar viene creada por defecto y apunta al action bar de la pantalla. Es necesario indicar que es posible nulo ya que en algunas ocasiones puede no estar presente si el programador la ha quitado intencionadamente. Por último, para poder evaluar su pulsación es necesario indicar un caso dentro del método onOptionsItemSelected, utilizando el id que ofrece Android para poder evaluar su pulsación
-
-```java
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-
-            android.R.id.home ->{
-                Snackbar.make(binding.root, "Pulsado boton home", Snackbar.LENGTH_SHORT).show()
-            }
-        }
-    }
-```
-
-En el caso de que queramos que la acción correspondiente se la de ir a una actividad padre, es necesario marcar cual es dentro del manifest.
-
-```xml
-    <activity
-        android:name=".SecondActivity"
-        android:label="@string/title_activity"
-        android:parentActivityName="com.example.MainActivity" />
-```
-
-Una vez hecho esto no sería necesario recoger la pulsación dentro del método onOptionsItemSelected. En el caso de querer hacerlo con pulsación, el código del caso sería el siguiente
-
-```java
-var intent = Intent(this, MainActivity::class.java)
-intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-startActivity(intent)
-```
-
-# Notificaciones de barra
-[Volver arriba](#índice)
-
-Otro de los elementos que permiten gestión de la información que de inicio están ocultos, son las notificaciones de barra de estado. Estas notificaciones permiten mostrar un globo con conctenido en momentos concretos de la aplicación. Si bien es cierto que cuando trabajamos con una aplicación que tienen conexión de red este tipo de notificaciones cobran mucho más sentido, también pueden ser útiles cuando trabajamos con una aplicación local. Para poder crear este tipo de notificaciones es necesario cumplir dos pasos: crear el canal de notificaciones y crear/lanzar la propia notificación
-
-## Crear un canal de notificaciones
-
-Desde android 8.0 es obligatorio crear y registrar el canal de notificaciones antes de poder lanzarla. Este canal de notificaciones representa el sitio donde las notificaciones serán mostradas, por lo tanto sin su existencia es literalmente imposible utilizarlas. Para crearlas se utiliza un objeto de tipo NotificationChannel
-
-```java
-val canal = NotificationChannel("mi_canal","canal1",NotificationManager.IMPORTANCE_DEFAULT)
-```
-
-Los parámetros que admite este constructor son:
-- id: nombre sobre el cual luego podremos lanzar las notificaciones
-- nombre: nombre que obtendrá el canal
-- nivel prioridad: para poder gestionar varios canales en el caso de que están activos al mismo tiempo
-
-Como esto es obligatorio desde la version Android Oreo, es necesario hacer una evaluación antes de crear el canal.
-
-```java
-    fun createChannel(): Unit {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val canal = NotificationChannel("mi_canal","canal1",NotificationManager.IMPORTANCE_DEFAULT)
-            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(canal)
-        }
-    }
-```
-El registro se hace a traves del sistema de notificaciones del sistema operativo. Este método creado se tendrá que ejecutar en el método onCreate para que el canal esté disponible nada más arrancar la aplicación (en el caso de que así se quiera)
-
-## Crear y lanzar una notificación
-
-Una vez está el canal creado y activado, tan solo falta crear la notificación y lanzarla sobre el canal que se quiera. Para ello es necesario utilizar un objeto NotificationManager.Builder
-
-```java
-val notificacion =  NotificationCompat.Builder(this, "mi_canal");
-```
-
-Para poder crearla es necesario indicar el contexto y el id del canal a traves del cual se mostrará la notificación. Una vez creada se pueden utilizar numerosos métodos para configurarla, donde destacan
-
-- setContentTitle: pone el título 
-- setContentText: pone el contenido del texto 
-- setSmallIcon: pone el icono 
-- priority: indica la prioridad
-- setContentIntent: pone la acción a realizar al pulsar la notificación. Se hace a través de un objeto de tipo pendingIntent
-
-```java
-val notificacion =  NotificationCompat.Builder(this, "mi_canal");
-notificacion.setContentTitle("Notificación general")
-notificacion.setContentText("Cuerpo de la notificación")
-notificacion.setSmallIcon(R.drawable.challenge)
-notificacion.priority = NotificationManager.IMPORTANCE_HIGH
-val intent = Intent(applicationContext, MainActivity::class.java)
-val pedingIntent = PendingIntent.getActivity(this, 0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
-notificacion.setContentIntent(pedingIntent)
-```
-
-Una vez la notificación se crea, tan solo falta lanzarla mediante un objeto de tipo NotificationManager y el método notify
-
-```java
-val notificationManager = NotificationManagerCompat.from(this)
-notificationManager.notify(1,notificacion.build())
-```
-
-Los parámetros del método notify son un ID para poder gestionar varios tipos de notificaciones y la creación de la propia notificación. Un ejemplo completo de lanzamiento de notificación desde la pulsación de un elemento de menu contextuales el siguiente:
-
-```java
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.menu_context_1->{
-                val notificacion =  NotificationCompat.Builder(this, "mi_canal");
-                notificacion.setContentTitle("Notificación general")
-                notificacion.setContentText("Cuerpo de la notificación")
-                notificacion.setSmallIcon(R.drawable.challenge)
-                notificacion.priority = NotificationManager.IMPORTANCE_HIGH
-                val intent = Intent(applicationContext, MainActivity::class.java)
-                val pedingIntent = PendingIntent.getActivity(this, 0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
-                notificacion.setContentIntent(pedingIntent)
-                lanzarNotificacion(notificacion)
-            }
-            R.id.menu_context_2->{}
-        }
-        return true
-    }
-
-    fun lanzarNotificacion(notificacion: NotificationCompat.Builder): Unit {
-        val notificationManager = NotificationManagerCompat.from(this)
-        notificationManager.notify(1,notificacion.build())
-    }
-```
-
+Es importante ver que dependiendo de cual sea el tamaño que se indique así se mostrará. En este ejemplo, al mostrarse con un tamaño de wrap_content en alto, ocupará lo que indique el xml asociado en el fragment
