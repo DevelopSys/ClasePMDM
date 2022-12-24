@@ -11,6 +11,10 @@
     - [Fragments dinámicos](#fragments-dinámicos)
   - [Transición entre fragments](#transición-entre-fragments)
     - [Gestionar el estado de la pila](#gestionar-el-estado-de-la-pila)
+    - [Animar la transición entre fragments](#animar-la-transición-entre-fragments)
+  - [Utilizar los elementos internos de un fragment](#utilizar-los-elementos-internos-de-un-fragment)
+  - [Comunicación entre fragments](#comunicación-entre-fragments)
+    - [Fragment - Activity](#fragment---activity)
 
 
 # Objetivos
@@ -383,3 +387,304 @@ binding.botonF1.id ->{
 ```
 
 Con la búsqueda del fragment se obtendrá true si se encuentra dentro de la pila. En el caso de ser null se cargará dentro de la pila de estados. en caso contrario simplemente se hará un replace sin hacer ninguna carga
+
+### Animar la transición entre fragments
+
+Como se ha visto en el ejemplo anterior, al pulsar cada uno de los botones, los fragments van apareciendo en la pantalla pero de forma directa. Si le queremos dar una vuelta a esto y hacerlo más visible podemos animar tanto la entrada como la salida de los elementos. Para ello se ejecuta el método setCustomAnimation, donde es necesario indicar cual es la animación de salida y de entrada.
+
+```java
+fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right);
+```
+
+En este caso se están utilizando animaciones propias de android, pero nos podríamos declarar nuestras propias animaciones dentro de un xml y aplicarla. Esto lo veremos en temas más adelante.
+
+## Utilizar los elementos internos de un fragment
+
+Hasta este punto hemos visto como poder cambiar fragments que están puestos en la pantalla mediante pulsaciones de botones (podría ser cualquier otra acción) pero no hemos visto como poder utilizar los elementos que pertenecen al fragment como tal (listas, botones, etc...). Para ello nos vamos a centrar en la clase que representa el fragment. Si recordamos teníamos tres fragments con únicamente un botón y un texto. Vamos a modificar el primero de los fragments para que tenga un campo de texto, un spinner y un botón. El xml quedaría de la siguiente forma
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="50dp">
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/texto_fragment"
+        android:text="FRAGMENT INICIAL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_fragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/texto_fragment"
+        app:layout_constraintStart_toStartOf="@+id/texto_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/texto_fragment" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/edit_fragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_fragment"
+        app:layout_constraintStart_toStartOf="@+id/spinner_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_fragment" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/boton_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar"
+        app:layout_constraintEnd_toEndOf="@+id/texto_fragment"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/texto_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/edit_fragment" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+Con todos los elementos del fragment declarados vamos a la clase lógica del mismo.
+
+```java
+class FragmentInicial : Fragment() {
+
+    private lateinit var binding: InicialFragmentBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = InicialFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+
+    }
+
+}
+```
+
+Gracias al binding, el fragment ya tiene todos los elemento gráficos instanciados, por lo que tan solo sería necesario utilizarlos. Lo más importante de esto es que no pueden ser utilizados antes de asocias la vista (y por lo tanto ejecutar el método OnCreateView), por lo que se recomiendo trabajar con el método onViewCreated
+
+```java
+class FragmentInicial : Fragment() {
+
+    private lateinit var binding: InicialFragmentBinding
+    private lateinit var arrayLenguajes: Array<String>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        arrayLenguajes = arrayOf("Kotlin", "Java", "Python", "JS", "C#")
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = InicialFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.spinnerFragment.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, arrayLenguajes)
+        (binding.spinnerFragment.adapter as ArrayAdapter<String>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.botonFragment.setOnClickListener {
+            if (!binding.editFragment.text.isEmpty()){
+                val lenguaje = binding.spinnerFragment.selectedItem
+                Snackbar.make(binding.root,"Lenguaje seleccionado ${lenguaje}",Snackbar.LENGTH_SHORT).show()
+
+            }
+
+        }
+    }
+
+}
+```
+
+## Comunicación entre fragments
+
+### Fragment - Activity
+
+Al igual que hacíamos en los cuadros de diálogo o en los recycler view, la comunicación de los fragments con la activity es mediante interfaces de callback o mediante funciones vacías. En este caso, y al no definir los fragments como objetos dentro de la activiy, se va a optar por la primera opción al mejorar mucho el rendimiento. Si recordamos de temas anteriores, el proceso requería de los siguientes pasos:
+
+1. Declarar una interfaz en el origen de los datos (en este caso el fragment) desde el cual se quiere lanzar la comunicación. En esta interfaz es necesario crear tantos métodos como sean necesarios para hacer la comunicación. Para explicar esto vamos a seguir el ejemplo empezar en el punto anterior, donde en el fragment inicial teníamos que seleccionar un lenguaje en el spinner del fragment y teníamos un edit texto para poder un comentario. Estos dos datos serán los que se comunicarán a la activity
+
+```java
+interface OnLenguajeListener{
+        fun onLenguajeSelected(lenguaje: String)
+    }
+```
+
+Con la interfaz creada es necesario utilizar el método cuando se quiera realizar la comunicación, por lo que tendremos que crear un objeto del tipo de la interfaz y llamar el método cuando se pulse el botón del fragment
+
+```java
+    private lateinit var listener: OnLenguajeListener
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.spinnerFragment.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, arrayLenguajes)
+        (binding.spinnerFragment.adapter as ArrayAdapter<String>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.botonFragment.setOnClickListener {
+            if (!binding.editFragment.text.isEmpty()){
+                val lenguaje = binding.spinnerFragment.selectedItem.toString()
+                val comentario = binding.editFragment.text.toString()
+                listener.onLenguajeSelected(lenguaje,comentario)
+            }
+
+        }
+    }
+
+```
+
+2. Para que el objeto pueda ser llamado, es necesario que tenga valor ya que en el caso de ser nulo provocaría un fallo. Para darle valor es necesario igualar la variable al contexto (que será la clase desde donde se llama al fragment), casteándola al tipo de la interfaz. Para ello se utiliza el método onAttach ya que tiene el contexto como parámetro
+
+```java
+    private lateinit var listener: OnLenguajeListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        arrayLenguajes = arrayOf("Kotlin", "Java", "Python", "JS", "C#")
+        try {
+            listener = context as OnLenguajeListener    
+        } catch (e: java.lang.ClassCastException){
+            Log.v("conversion", "error de conversion en el tipo")
+        }
+        
+    }
+```
+
+Para que esta igualdad tenga sentido, es necesario implementar en el destino de la comunicación (en nuestro caso el activity) la interfaz, de forma que sea obligatorio la escritura de cada uno de los métodos
+
+```java
+class MainActivity : AppCompatActivity(), OnClickListener, FragmentInicial.OnLenguajeListener {
+
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.botonF1.setOnClickListener(this)
+        binding.botonF2.setOnClickListener(this)
+        binding.botonF3.setOnClickListener(this)
+
+    }
+
+    override fun onClick(p0: View?) {
+        var fragmentTransaction = supportFragmentManager.beginTransaction()
+
+        when(p0!!.id){
+            binding.botonF1.id ->{
+                fragmentTransaction.replace(binding.ubicacionFragments.id, FragmentInicial())
+                fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right);
+                if(supportFragmentManager.findFragmentById(binding.ubicacionFragments.id) as? FragmentInicial == null){
+                    fragmentTransaction.addToBackStack("f1_top")
+                }
+
+            }
+            binding.botonF2.id ->{
+                fragmentTransaction.replace(binding.ubicacionFragments.id, FragmentSecond())
+                fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right);
+                fragmentTransaction.addToBackStack("f2_top")
+            }
+            binding.botonF3.id ->{
+
+                fragmentTransaction.replace(binding.ubicacionFragments.id, FragmentThird())
+                fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right);
+                fragmentTransaction.addToBackStack("f3_top")
+
+            }
+        }
+
+        fragmentTransaction.commit();
+       
+
+    }
+
+    override fun onLenguajeSelected(lenguaje: String, comentario: String) {
+        TODO("Not yet implemented")
+    }
+}
+```
+
+Una vez hecho esto tan solo quedaría utilizar los método tal y como indique la lógica de la aplicación, ya que en la activity se tendrían todos los datos comunicados. En este ejemplo sacaremos un Snackbar con los datos seleccionados.
+
+```java
+  override fun onLenguajeSelected(lenguaje: String, comentario: String) {
+        Snackbar.make(
+            binding.root,
+            "El lenguaje seleccionado es ${lenguaje} con los siguientes comentarios: ${comentario}",
+            Snackbar.LENGTH_SHORT
+        ).show()
+    }
+```
+
+El código completo del fragment sería el siguiente:
+
+```java
+class FragmentInicial : Fragment() {
+
+    private lateinit var binding: InicialFragmentBinding
+    private lateinit var arrayLenguajes: Array<String>
+    private lateinit var listener: OnLenguajeListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        arrayLenguajes = arrayOf("Kotlin", "Java", "Python", "JS", "C#")
+        try {
+            listener = context as OnLenguajeListener
+        } catch (e: java.lang.ClassCastException){
+            Log.v("conversion", "error de conversion en el tipo")
+        }
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = InicialFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.spinnerFragment.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, arrayLenguajes)
+        (binding.spinnerFragment.adapter as ArrayAdapter<String>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.botonFragment.setOnClickListener {
+            if (!binding.editFragment.text.isEmpty()){
+                val lenguaje = binding.spinnerFragment.selectedItem.toString()
+                val comentario = binding.editFragment.text.toString()
+                listener.onLenguajeSelected(lenguaje,comentario)
+            }
+
+        }
+    }
+
+    interface OnLenguajeListener{
+        fun onLenguajeSelected(lenguaje: String, comentario: String)
+    }
+}
+```
+
+En el siguiente punto veremos como poder pasar los datos de la activity a un fragment. 
