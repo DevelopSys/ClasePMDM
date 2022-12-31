@@ -17,8 +17,7 @@ import com.develop.t4_coches.databinding.ActivityMainBinding.inflate
 import com.develop.t4_coches.databinding.ItemRecyclerBinding
 import com.develop.t4_coches.model.Coche
 
-class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) :
-    RecyclerView.Adapter<AdapterCoche.MyHolder>() {
+class AdapterCoche(var context: Context, var lista: ArrayList<Coche>) : RecyclerView.Adapter<AdapterCoche.MyHolder>() {
 
     // 1. Funciones vacías: en el origen de los datos crear una variable de tipo funcion
     var funcionComunicar: ((coche: Coche)->Unit)? = null

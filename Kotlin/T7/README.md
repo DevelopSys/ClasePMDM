@@ -934,123 +934,113 @@ En lo que a manejo de fragment se supone, el componente en cuestión es el Navig
 Antes de empezar con la implementación de la solución propuesta, es necesario traer todas las librerias necesarias para poder funcionar. Por ello se implementarán las siguientes
 
 ````
-    implementation 'androidx.navigation:navigation-fragment:2.3.5'
-    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3"
 ````
 
 Ambas librerías permiten tener disponible todos los elementos que son necesarios para realizar la navegación. 
 
-Para este ejemplo se realizará una aplicación simple de navegación entre 3 fragments y un cuadre de diálogo. Para ello se cuenta con:
+Para este ejemplo se realizará una aplicación simple de navegación entre 3 fragments. Para ello se cuenta con:
 
 - MainActivity que servirá de base para mostrar los fragments declarados en el gráfico
 - HomeFragment: fragment que se mostrará al inicio de la aplicación
-- LogInFragmnet: fragment que se mostrará si el usuario pulsa la opción de LogIn en el fragment de Home
-- RegisterFragment: fragment que se mostrará si el usuario pulsa la opción de SignIn en el fragment de Home
+- LogInFragment: fragment que se mostrará si el usuario pulsa la opción de LogIn en el fragment de Home
+- SigInFragment: fragment que se mostrará si el usuario pulsa la opción de SignIn en el fragment de Home
 - MainFragment: fragment que se mostrará si el usuario ha metido bien las credenciales en el fragment de LogIn
-- DialogUser: dialogFragment que será lanzado solo desde si el usuario ha accedido a la aplicación
 
 Para poder empezar, es necesario plantear cual es la navegación que se quiere dentro de la aplicación. En este caso será la siguiente:
 
-![navigation flow](./images/navigation.png)
+![navigation flow](./images/navegacion.png)
 
 Una vez se tiene claro cual es el flujo de navegación los pasos a seguir son los siguientes
 
-** Para poder realizar todo esto es recomendable que los fragmnents ya estén creados previamente en su parte gráfica ya que la parte lógica se realizará más adelante.
+** Para poder realizar todo esto es recomendable que los fragments ya estén creados previamente en su parte gráfica ya que la parte lógica se realizará más adelante.
 
 
 1. Crear el navigation graph
 
 Dentro de la carpeta res se crea un directorio de tipo navegación y dentro de este un archivo de navegación llamado nav_graph. Este archivo tendrá todos los fragment que serán cargados y tendrán la posibilidad de ser navegados desde la activity donde se aplique. Una vez creado el archivo XML se crean lo que se llaman Destination, que son los fragments que se quieren relacionar en un mismo espacio. Cada uno de los fragments creará una etiqueta donde se indica el id del fragment, la etiqueta que se utiliza, el layout que se le aplica y las acciones que se dan. Inicialmente el archivo queda de la siguiente forma
 
-````
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/navegacion_general"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.navegacionapp.fragments.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
+        android:name="com.example.navegacin.fragments.HomeFragment"
+        android:label="HomeFragment" >
+       
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.navegacionapp.fragments.LogInFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:name="com.example.navegacin.fragments.LogInFragment"
+        android:label="LogInFragment" >
+        
     </fragment>
     <fragment
-        android:id="@+id/sigInFragment"
-        android:name="com.example.navegacionapp.fragments.SigInFragment"
-        android:label="fragment_signin"
-        tools:layout="@layout/fragment_signin" >
+        android:id="@+id/siginFragment"
+        android:name="com.example.navegacin.fragments.SiginFragment"
+        android:label="SiginFragment" >
+       
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.navegacionapp.fragments.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        android:name="com.example.navegacin.fragments.MainFragment"
+        android:label="MainFragment" />
 </navigation>
-````
+```
 
 Una vez esto está creado, es necesario crear ahora las relaciones entre pantallas. Para ello basta con seleccionar el origen y el destino. En el XML se creará una acción por cada transición con una id (muy importante). El archivo quedará de la siguiente forma
 
-![navigation flow](./images/graph.png)
-
-````
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/navegacion_general"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.navegacionapp.fragments.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
+        android:name="com.example.navegacin.fragments.HomeFragment"
+        android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_sigInFragment"
-            app:destination="@id/sigInFragment" />
+            android:id="@+id/action_homeFragment_to_siginFragment"
+            app:destination="@id/siginFragment" />
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.navegacionapp.fragments.LogInFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:name="com.example.navegacin.fragments.LogInFragment"
+        android:label="LogInFragment" >
         <action
             android:id="@+id/action_logInFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/sigInFragment"
-        android:name="com.example.navegacionapp.fragments.SigInFragment"
-        android:label="fragment_signin"
-        tools:layout="@layout/fragment_signin" >
+        android:id="@+id/siginFragment"
+        android:name="com.example.navegacin.fragments.SiginFragment"
+        android:label="SiginFragment" >
         <action
-            android:id="@+id/action_sigInFragment_to_logInFragment"
+            android:id="@+id/action_siginFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.navegacionapp.fragments.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        android:name="com.example.navegacin.fragments.MainFragment"
+        android:label="MainFragment" />
 </navigation>
-````
+```
 
-2. Crear la dependencia en la activity
+1. Crear la dependencia en la activity
 
 En el XML de la Activity donde se van a mostrar los fragments, es necesario montar el sistema que permite mostrarlos  con la posibilidad de navegación que se ha configurado en el nav_graph. Para ello es necesario incluir un elemento de tipo NavHost. En realidad este elemento es una etiqueta fragment que tiene como tipo un NavigationHostFragment. El layout de la activity quedaría de la siguiente forma
 
-````
+````xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -1067,7 +1057,7 @@ En el XML de la Activity donde se van a mostrar los fragments, es necesario mont
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
+        app:navGraph="@navigation/navegacion_general"  />
     
 </LinearLayout>
 ````
@@ -1083,47 +1073,36 @@ Es importante resaltar varias cosas:
 
 Para ello es necesario inicializar cada uno de los botones de los fragments (o los elementos necesarios) para que se puedan dar las acciones. En el caso del fragment home será de la siguiente forma:
 
-````
-    public HomeFragment() {
-        // Required empty public constructor
+```` java
+class HomeFragment: Fragment(){
+
+private lateinit var binding: FragmentHomeBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        bLogin = view.findViewById(R.id.boton_login_home);
-        bSigIn = view.findViewById(R.id.boton_sigin_home);
-        bLogin.setOnClickListener(this);
-        bSigIn.setOnClickListener(this);
-
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.boton_login_home:
-                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_logInFragment);
-                break;
-
-            case R.id.boton_sigin_home:
-                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_sigInFragment);
-                break;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.botonLogIn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_logInFragment)
+        }
+        binding.botonLogIn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_logInFragment)
         }
     }
+
 }
 ```` 
 
 Lo más destacable de este código es la parte de las acciones OnClick. Para poder navegar simplemente es necesario acceder al componente NavController mediante 
 
-````
+````java
  Navigation.findNavController(view)
 ````
 
@@ -1131,7 +1110,7 @@ A este método es necesario pasar la vista. En este caso al tratarse de un fragm
 
 Por último tan solo quedaría completar el resto de botones y sus acciones en el resto de fragments
 
-````
+```` java
 FragmnetLogIn
 
     @Override
@@ -1147,7 +1126,7 @@ FragmnetLogIn
     }
 ````
 
-````
+```` java
 FragmentSignIn
 
     @Override
@@ -1178,7 +1157,7 @@ Además de este manejo de estado de la pila, se puede controlar las animaciones 
 
 A la hora de realizar el paso de parámetros es muy similar a como se realiza mediante el método tradicional. La diferencia está en que el número de parámetros y el tipo de los mismos debe ir marcado en el gráfico de navegación. En cada acción se identifican cuales son los argumentos y de que tipo son. 
 
-````
+````xml
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.navegacionapp.fragments.MainFragment"
@@ -1195,7 +1174,7 @@ A la hora de realizar el paso de parámetros es muy similar a como se realiza me
 
 Un cosa importante es que siempre se definen dentro del fragment destino. En el caso de poder obtener valores nulos también se puede indicar. En la acción se puede indicar valores por defecto en el caso en el que no se pase nada por parámetros. Una vez configurado esto, en el orinen se debe crear un objeto de tipo Bundle donde se incrustan los argumentos con un par clave - valor como ya se explicó en el paso de parámetros tradicional. Por último este objeto de tipo Bundle se incluye en la navegación:
 
-````
+```` java
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -1218,7 +1197,7 @@ Un cosa importante es que siempre se definen dentro del fragment destino. En el 
 
 Para poder recuperar los elementos en destino y utilizarlos como se quiera, es necesario acceder a los argumentos tal y como se hace de la forma tradicional
 
-````
+```` java
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -1235,7 +1214,7 @@ Adicionalmente, Jetpack ofrece la posibilidad de pasar argumentos de forma más 
 
 1. Aplicar el plugin save args dentro del gradle de módulo. Para ello es necesario incluir las siguientes lineas:
 
-````
+````xml
 apply plugin: "androidx.navigation.safeargs"
 ````
 
@@ -1243,7 +1222,7 @@ apply plugin: "androidx.navigation.safeargs"
 
 3. En la pantalla desde la que se quieren enviar parámetros es necesario utilizar las clases del punto anterior. En este ejemplo se pasan parámetros desde el Fragment LogIn hasta el Fragment Main
 
-````
+```` java
  blogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1265,7 +1244,7 @@ Las lineas anteriores realizan el paso de parámetros indicando los elementos qu
 
 4. Para poder capturar los parámetros en el Fragment destino basta con acceder a la clase Arg creada, mediante el siguiente código:
 
-````
+```` java
    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

@@ -57,8 +57,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.O
                 /*Snackbar.make(p0, toggleEstado.isChecked.toString(),
                     Snackbar.LENGTH_SHORT).show()*/
                 // obtener el radio seleccionado
-                /*lateinit var radioSeleccioando: RadioButton;
-                // INT --> id ----> View
+                lateinit var radioSeleccioando: RadioButton;
                 radioSeleccioando = findViewById(grupoRadios.checkedRadioButtonId);
                 if (grupoRadios.checkedRadioButtonId >= 0) {
                    Snackbar.make(p0, radioSeleccioando.text, Snackbar.LENGTH_SHORT).show()
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CompoundButton.O
                         R.id.radio_dos->{}
                         R.id.radio_tres->{}
                     }
-                }*/
+                }
             }
         }
     }

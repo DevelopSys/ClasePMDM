@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
         coches.add(Coche("McLaren", "MC600", 500, 450000, "Deportivo", R.drawable.mc600))
         coches.add(Coche("Toyota", "Supra", 300, 150000, "Deportivo", R.drawable.supra))
         coches.add(Coche("Porche", "Taycan", 350, 250000, "Deportivo", R.drawable.taycan))
-        adapterCoche = AdapterCoche(this, coches)
+        var adapterCoche = AdapterCoche(this, coches)
         adapterCoche.funcionComunicar =
             { Snackbar.make(binding.root, it.precio.toString(), Snackbar.LENGTH_SHORT).show() }
         binding.recycler.adapter = adapterCoche;
