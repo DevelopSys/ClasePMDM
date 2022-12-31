@@ -134,7 +134,7 @@ database.usuarioDAO().insert(Usuario(1,"Borja", "Martin", "developandsys@gmail.c
 
 Esta forma de creación es válida, sin embargo no es la mejor. Al tratarse de un objeto complejo (abrir una base de datos requiere de mucho procesamiento), es recomendable utilizar un patrón singleton, el cual indica que en las sucesivas veces que la base de datos sea llamada, no es necesaria su carga sino que tan solo recupera una variable donde ha sido guardada
 
-´´´java
+```java
 @Database (entities = [Usuario::class], version = 1, exportSchema = false)
 abstract class UsuariosBD: RoomDatabase(){
     abstract fun usuarioDAO(): UsuarioDAO
@@ -154,7 +154,7 @@ abstract class UsuariosBD: RoomDatabase(){
     }
 
 }
-´´´
+```
 
 Como se puede ver, este patrón crea una variable de tipo de la base de datos. La función getInstance, en el caso de ser esta variable null la creará mediante la ejecución del método buildRoomDB, el cual ejecuta el método que habíamos utilizado hasta este momento. En el caso de ser diferente de null (porque ya se haya llamado en algún momento), se devolverá la propia variable. Una vez creado este patrón, para poder obtener una instancia de la base de datos basta con llamar al método getInstance(), el cual devolverá una instancia nueva de la BD o una ya existente
 
