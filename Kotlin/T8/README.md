@@ -20,6 +20,7 @@
     - [Escribir nodos en la base de datos](#escribir-nodos-en-la-base-de-datos)
     - [Modificar nodos en la base de datos](#modificar-nodos-en-la-base-de-datos)
     - [Selección de datos](#selección-de-datos)
+    - [Cargar datos en un recyclerview](#cargar-datos-en-un-recyclerview)
 
 
 # Objetivos
@@ -572,7 +573,7 @@ Si bien con el punto anterior podemos hacer tanto inserciones como borrados (pon
 Para poder hacer selecciones en firebase se utiliza una clase especial llamada Query. Aunque el nombre es común a una base de datos SQL, la sentencia no tiene nada que ver, ya que se escribe de forma totalmente diferente. Antes de hacer una query, hay que aplicar dos pasos:
 
 - Ordenar los datos: esto permite indicar mediante que elemento los datos van a quedar ordenados. Se puede hacer por child, por key o por value
-- Filtrar los datos: una vez los datos están ordenados el siguiente paso es filtrarlos, indicando alguna característica de los elementos ordenados que cumpla la condición que se desea
+- Filtrar los datos: una vez los datos están ordenados el siguiente paso es filtrarlos, indicando alguna característica de los elementos ordenados que cumpla la condición que se desea. Los filtros que se pueden aplicar son: equal, limitToFirst, limitToLast, startAt, startAfter, endAt, endBefore
 
 Para poder hacer ejemplos sobre búsquedas vamos a utilizar un json que guardaremos en la base de datos. Los datos que se utilizarán son los siguientes: https://github.com/annexare/Countries/blob/master/data/countries.json
 
@@ -650,3 +651,190 @@ En el caso de querer cambiar el valor de alguna parte del snapshot, es necesario
                     }
 ````
 
+Como se ha visto, en el caso de querer hacer una selección de datos, para poder obtener el valor es necesario acceder al value del hijo/os del snaptshot. Se ha comentado en muchas ocasiones que estos datos pueden ser de muy diferentes tipos. En concreto, si el tipo de dato que tiene un hijo representa un objeto, en vez de recuperar característica a característica y luego crear el objeto, se puede igualar directamente. En el ejemplo de los países un pais consta de los siguientes datos: 
+
+- "name": "Andorra",
+- "native": "Andorra"
+- "phone": [376]
+- "continent": "EU"
+- "capital": "Andorra la Vella"
+- "currency": ["EUR"]
+- "languages": ["ca"]
+
+Todas estas características son las que componen cada uno de los nodos, por lo que representar las propiedades del objeto que se quiere recuperar. Para poder hacerlo de golpe, primero es necesario tener una clase con las mismas características donde cada uno de los atributos está inicializado como null o como dato por defecto en caso de los Int, Double, Bool, etc...
+
+````java
+data class Pais(
+    var name: String? = null,
+    var native: String? = null,
+    var phone: Array<String>? = null,
+    var continent: String? = null,
+    var currency: Array<String>? = null,
+    var languages: Array<String>? = null,
+)
+````
+
+Como se puede ver, la clase Pais es el punto de acceso para que Firebase pueda hacer la traducción entre el contenido del nodo y el elemento que se creará en código. Para poder obtener esta traducción, basta con ejecutar el método getValue() indicando como parámetro la clase que realizará la conversión
+
+```` java
+val database =
+                Firebase.database("https://fir-develop-2730d-default-rtdb.europe-west1.firebasedatabase.app/")
+            database.getReference("países").orderByChild("name").equalTo("Andorra").addListenerForSingleValueEvent(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        for (i in snapshot.children){
+                            val pais = i.getValue(Pais::class.java)
+                            Log.v("pais",pais?.name!!)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+````
+
+** En el caso de haber quitado el equalTo hubiesen salido todos los países **
+
+### Cargar datos en un recyclerview
+
+Para poder cargar los datos dentro de un recycler utilizando firebase tan solo tendríamos que realizar la consulta que hemos hecho en el método anterior y además ir rellenando la lista con los datos que se van obteniendo. El siguiente ejemplo muestra un recycler de todos los paises con sus respectivas capitales.
+
+1. Crear el xml que representará el item de las filas
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="Nombre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_pais"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/textview1"
+            app:layout_constraintTop_toTopOf="@+id/textview1" />
+
+        <TextView
+            android:id="@+id/textview2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Capital"
+            app:layout_constraintStart_toStartOf="@+id/textview1"
+            app:layout_constraintTop_toBottomOf="@+id/textview1" />
+
+        <TextView
+            android:id="@+id/text_capital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/text_pais"
+            app:layout_constraintTop_toTopOf="@+id/textview2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
+```
+
+2. Crear un adaptador para poder ponerlo dentro del recycler. En este caso tan solo pedirá como parámetro una lista. Además de los métodos implementados tendrá un método adicional que permitirá agregar un pais de forma individual
+
+```java
+class AdapterPais(var listado: List<Pais>) : RecyclerView.Adapter<AdapterPais.MyHolder>() {
+
+    inner class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var textoPais: TextView
+        var textoCapital: TextView
+
+        init {
+            textoPais = itemView.findViewById(R.id.text_pais)
+            textoCapital = itemView.findViewById(R.id.text_capital)
+        }
+    }
+
+    fun addaPais(pais: Pais){
+        (listado as ArrayList<Pais>).add(pais)
+        notifyItemInserted(listado.size -1)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_recycler, parent, false)
+        return MyHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: MyHolder, position: Int) {
+        val pais = listado[position]
+        holder.textoPais.text = pais.name
+        holder.textoCapital.text = pais.capital
+    }
+
+    override fun getItemCount(): Int {
+        return listado.size
+    }
+}
+```
+
+3. Además de poner el adaptador dentro de un recycler, cuando se hacen las consultas a los nodos es necesario además de obtener el objeto de tipo país pasárselo al adaptador mediante el método que acabamos de mencionar en el paso anterior.
+
+```java
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapterPais: AdapterPais
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        adapterPais = AdapterPais(ArrayList<Pais>())
+        binding.recyclerPaises.adapter = adapterPais
+        binding.recyclerPaises.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+
+
+    override fun onResume() {
+        super.onResume()
+
+        val database =
+            Firebase.database("https://fir-develop-2730d-default-rtdb.europe-west1.firebasedatabase.app/")
+        database.getReference("países").orderByChild("name").addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    for (i in snapshot.children){
+                        adapterPais.addaPais(i.getValue(Pais::class.java) as Pais)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+}
+
+```
