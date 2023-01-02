@@ -567,5 +567,19 @@ Si bien con el punto anterior podemos hacer tanto inserciones como borrados (pon
             ref.child("develop_gmail_com").child("edad").setValue(39);
 ````
 
-
 ### Selección de datos
+
+Para poder hacer selecciones en firebase se utiliza una clase especial llamada Query. Aunque el nombre es común a una base de datos SQL, la sentencia no tiene nada que ver, ya que se escribe de forma totalmente diferente. Antes de hacer una query, hay que aplicar dos pasos:
+
+- Ordenar los datos: esto permite indicar mediante que elemento los datos van a quedar ordenados. Se puede hacer por child, por key o por value
+- Filtrar los datos: una vez los datos están ordenados el siguiente paso es filtrarlos, indicando alguna característica de los elementos ordenados que cumpla la condición que se desea
+
+Para poder hacer ejemplos sobre búsquedas vamos a utilizar un json que guardaremos en la base de datos. Los datos que se utilizarán son los siguientes: https://github.com/annexare/Countries/blob/master/data/countries.json
+
+![Utilización de la base de datos](./images/paises.png)
+
+Como se puede ver en la imagen, la estructura de la base de datos tienen un nodo general que se llama países del cual penden todos. En el caso de querer buscar un país con una siglas concretas (imaginemos que las ha introducido el usuario en un edit) se utilizaría el siguiente código
+
+````java
+````
+
