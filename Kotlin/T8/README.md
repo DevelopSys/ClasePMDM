@@ -18,6 +18,8 @@
   - [RealTime Database](#realtime-database)
     - [Utilizar una acceso a la base de datos](#utilizar-una-acceso-a-la-base-de-datos)
     - [Escribir nodos en la base de datos](#escribir-nodos-en-la-base-de-datos)
+    - [Modificar nodos en la base de datos](#modificar-nodos-en-la-base-de-datos)
+    - [Selección de datos](#selección-de-datos)
 
 
 # Objetivos
@@ -545,3 +547,25 @@ val database = Firebase.database("https://fir-develop-2730d-default-rtdb.europe-
 val ref = database.getReference("usuario")
 ref.setValue(Usuario("Borja", "Martin","develop@gmail.com",38))        
 ```
+
+En el caso de querer situar el elemento en otro nodo y este no exista, se crea. Para poder hacer esto utilizaríamos el método child
+
+```java
+val database = Firebase.database("https://fir-develop-2730d-default-rtdb.europe-west1.firebasedatabase.app/")
+val ref = database.getReference("datos_app")
+val usuario = Usuario("Borja", "Martin","develop@gmail.com",38)
+val correo =usuario.correo.replace("@","_").replace(".","_")
+ref.child(correo).setValue(Usuario("Borja", "Martin","develop@gmail.com",38))
+```
+
+### Modificar nodos en la base de datos
+
+Si bien con el punto anterior podemos hacer tanto inserciones como borrados (poner el valor a null), hacer modificaciones tiene la misma metodología. En el caso de apuntar a un nodo que ya exista, el valor que se indique se sustituirá por el que esté guardado dentro de la base de datos, así en el ejemplo que teníamos del punto anterior, podríamos modificar el nodo edad simplemente apuntando a su key
+
+````java
+            ref = database.getReference("datos_app");
+            ref.child("develop_gmail_com").child("edad").setValue(39);
+````
+
+
+### Selección de datos
