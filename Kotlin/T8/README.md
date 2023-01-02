@@ -581,5 +581,72 @@ Para poder hacer ejemplos sobre búsquedas vamos a utilizar un json que guardare
 Como se puede ver en la imagen, la estructura de la base de datos tienen un nodo general que se llama países del cual penden todos. En el caso de querer buscar un país con una siglas concretas (imaginemos que las ha introducido el usuario en un edit) se utilizaría el siguiente código
 
 ````java
+val database =
+                Firebase.database("https://fir-develop-2730d-default-rtdb.europe-west1.firebasedatabase.app/")
+                database.getReference("países").orderByChild("name").equalTo("Andorra").addListenerForSingleValueEvent(object:ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            /*for (i in snapshot.children) {
+                                Log.v("pais", i.value.toString())
+
+                            }*/
+                            snapshot.
+                        }
+                        else {
+                            Log.v("pais", "sin resultados")
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                    }
+                })
+
+// la salida sería la siguiente --> {continent=EU, capital=Andorra la Vella, languages=[ca], native=Andorra, phone=[376], name=Andorra, currency=[EUR]}
+
+````
+
+En este caso se ha utilizado el métpdp orderByChild, el cual obtiene un child cuyo nombre es el indicado (name) y sonre este busca aquel que tiene como valor Andorra. Una vez encontrado se evalúa el valor del nodo encontrado. Para ello mediante un objeto de tipo ValueEventListener se obtiene el DataSnapshot, que es el nodo encontrado. En el caso de querer recorrer cada uno de los nodos internos sería de la siguiente forma
+
+````java
+                database.getReference("países").orderByChild("name").equalTo("Andorra").addListenerForSingleValueEvent(object:ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            /*for (i in snapshot.children) {
+                                Log.v("pais", i.value.toString())
+                            }*/
+                            for (i in snapshot.children){
+                                for (j in i.children){
+                                    Log.v("pais", j.value.toString())
+                                }
+                            }
+                        }
+                        else {
+                            Log.v("pais", "sin resultados")
+                        }
+                    }
+
+````
+
+En el caso de querer cambiar el valor de alguna parte del snapshot, es necesario obtener primero su referencia
+
+````java
+            val database =
+                Firebase.database("https://fir-develop-2730d-default-rtdb.europe-west1.firebasedatabase.app/")
+            database.getReference("países").orderByChild("name").equalTo("Andorra")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                           for (i in snapshot.children) {
+                                for (j in i.children) {
+                                    if (j.key.toString() == "capital") {
+                                        Log.v("pais", j.value.toString())
+                                        j.ref.setValue("LA VELLA")
+                                    }
+                                }
+                            }
+                        } else {
+                            Log.v("pais", "sin resultados")
+                        }
+                    }
 ````
 
