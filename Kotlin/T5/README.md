@@ -14,7 +14,7 @@
 - [Comunicación en los cuadros de diálogo](#comunicación-en-los-cuadros-de-diálogo)
   - [Comunicación diálogo - activity](#comunicación-diálogo---activity)
   - [Comunicación de activity a diálogo](#comunicación-de-activity-a-diálogo)
-- [Cuandro de diálogo del sistema](#cuandro-de-diálogo-del-sistema)
+- [Cuadro de diálogo del sistema](#cuadro-de-diálogo-del-sistema)
   - [Cuadro de diálogo de fecha](#cuadro-de-diálogo-de-fecha)
   - [Cuadro de diálogo de hora](#cuadro-de-diálogo-de-hora)
   - [Personalización de los cuadros](#personalización-de-los-cuadros)
@@ -996,7 +996,7 @@ Por últmimo es necesario llamar el método show para mostrar el cuadro de diál
         }
 ```
 
-# Cuandro de diálogo del sistema
+# Cuadro de diálogo del sistema
 
 Existe una última posibilidad de utiliza un par de cuadros de diálogo que ya están definidos dentro del sistema. Se trata de cuadros de diálogo de fecha y hora, donde al seleccionar fecha / hora respectivamente se obtienen los datos de la selección. Ambos ejemplos son cuadros de diálogo de tipo DialogFragment pero que ya tienen todas las interfaces de callback y personalización grafica creada. 
 
