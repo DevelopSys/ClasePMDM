@@ -14,6 +14,10 @@
 - [Comunicación en los cuadros de diálogo](#comunicación-en-los-cuadros-de-diálogo)
   - [Comunicación diálogo - activity](#comunicación-diálogo---activity)
   - [Comunicación de activity a diálogo](#comunicación-de-activity-a-diálogo)
+- [Cuandro de diálogo del sistema](#cuandro-de-diálogo-del-sistema)
+  - [Cuadro de diálogo de fecha](#cuadro-de-diálogo-de-fecha)
+  - [Cuadro de diálogo de hora](#cuadro-de-diálogo-de-hora)
+  - [Personalización de los cuadros](#personalización-de-los-cuadros)
 
 # Objetivos
 
@@ -886,4 +890,218 @@ class MainActivity : AppCompatActivity() {
 ## Comunicación de activity a diálogo
 [volver arriba](#índice)
 
-Sería el caso contrario al anterior. Si se quiere pasar un dato desde la pantalla al cuadro de diálogo es necesario utilizar un constructor estático, lo que se conoce con el nombre de newInstance
+Sería el caso contrario al anterior. Si se quiere pasar un dato desde la pantalla al cuadro de diálogo es necesario utilizar un constructor estático, lo que se conoce con el nombre de newInstance. En el caso de kotlin, no existen los métodos estáticos que quedan sustituidos por los objetos de tipo companion. Para poder crear un objeto de este tipo basta con ponerlo en la definición
+
+```java
+    companion object{
+        
+    }
+```
+
+Todos los elementos declarados dentro de la definición del objeto companion se podrán ejecutar como static de forma directa. Para poder pasar parámetros desde la activity a la pantalla es necesario un método dentro del companion que llamaremos newInstance. Este método admitirá como parámetros todos aquellos elementos que queremos comunicarle al cuadro de diálogo. En nuestro caso se le comunicará un título y un mensaje, por lo que el código quedará de la siguiente forma: 
+
+```java
+class DialogoComunica: DialogFragment() {
+
+
+    companion object{
+        fun newInstance(titulo: String, mensaje: String): DialogoComunica {
+
+        }
+    }
+
+}
+```
+
+Es importante que este método devuelve un objeto del tipo que se quiere crear, en este caso un DialogoComunica. Este método es el que se utilizará desde la activity para poder arrancar el diálogo. 
+
+Una vez se tiene el método, el siguiente paso es agregar los elementos dentro del diálogo. Para ello se utiliza el concepto de argumentos. Este conceto es muy similar al bundle de los intents, ya que nos permite agregar datos que acompañan al diálogo. Estos argumentos se utilizan mediante el método setArguments, pasando como parámetros un objeto de tipo Bundle el cual tiene puestos todos aquellos datos que se queren hacer parte del diálogo (en nuestro caso los datos pasados por contructor)
+
+```java
+class DialogoComunica: DialogFragment() {
+
+    companion object{
+        fun newInstance(titulo: String, mensaje: String): DialogoComunica {
+
+
+            val args = Bundle()
+            args.putString("dato1", titulo)
+            args.putString("dato2", mensaje)
+            val fragment = DialogoComunica()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+}
+```
+
+El método newInstance devuelve un objeto de tipo cuadro de diálogo con los datos ya puestos como argumentos, por lo que el siguiente paso será recuperarlos tras la creación del cuadro de diálogo. Hay que tener en cuente que cuando el método newInstance devuelve el objeto, comienza el ciclo de vida (onAttach, onCreateDialog, onCreateView....)
+
+```java
+class DialogoComunica: DialogFragment() {
+
+
+    companion object{
+        fun newInstance(titulo: String, mensaje: String): DialogoComunica {
+
+
+            val args = Bundle()
+            args.putString("dato1", titulo)
+            args.putString("dato2", mensaje)
+            val fragment = DialogoComunica()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        // ejecutado tras la devolución del cuadro de diálogo por parte del método newInstance
+    }
+
+}
+```
+
+Dentro del método de ciclo de vida que queramos recuperaremos los argumentos y los utilizaremos en el sitio que sea necesario
+
+```java
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        var builder = AlertDialog.Builder(requireActivity())
+        var dato1 = this.arguments?.get("dato1")
+        var dato2 = this.arguments?.get("dato2")
+        builder.setTitle(dato1.toString())
+        builder.setMessage(dato2.toString())
+        return builder.create()
+    }
+```
+
+Como se puede ver para poder recuperarlo, se utiliza el método getArguments (arguments) y sobre este el método get, indicando la clave necesaria para capturar el dato. Una vez los datos son capturados, se pueden utilizar donde se quiera.
+
+Por último, para poder crear el cúadro de diálogo con la comunicación que se quiera hacer utilizamos el método newInstance. Ya que este método está dentro de un objeto companion, puede ser llamado directamente sin necesidad de una instancia del objeto. 
+
+```java
+        binding.botonDialogoComunica.setOnClickListener { 
+            val dialogo = DialogoComunica.newInstance("dato1 comunica", "dato2 comunica")
+        }
+
+```
+
+Por últmimo es necesario llamar el método show para mostrar el cuadro de diálogo con los datos que se quiere pasar
+
+```java
+        binding.botonDialogoComunica.setOnClickListener { 
+            val dialogo = DialogoComunica.newInstance("dato1 comunica", "dato2 comunica")
+            dialogo.show()
+        }
+```
+
+# Cuandro de diálogo del sistema
+
+Existe una última posibilidad de utiliza un par de cuadros de diálogo que ya están definidos dentro del sistema. Se trata de cuadros de diálogo de fecha y hora, donde al seleccionar fecha / hora respectivamente se obtienen los datos de la selección. Ambos ejemplos son cuadros de diálogo de tipo DialogFragment pero que ya tienen todas las interfaces de callback y personalización grafica creada. 
+
+## Cuadro de diálogo de fecha
+
+El cuadro de diálogo de fechas se basa en una clase llamada DatePickerDialog, la cual tiene configurada una interfaz de callback llamada onDateSet que obtiene como parámetros el día, mes y año seleccionado. 
+
+Para poder crear un cuadro de diálogo de fecha, en la clase que representa el cuadro de diálogo es necesario sobreescribir el método onCreateDialogo, retornando un objeto de tipo DatePickerDialog
+
+```java
+class DialogoFecha: DialogFragment() {
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialogoHora = DatePickerDialog(requireContext(),activity as OnDateSetListener,2020,10,10)
+        return dialogoHora
+    }
+}
+```
+Como parámetros el constructor tiene el contexto donde se ejecuta, el listener que maneja la accion (la activity desde donde se lanza debe implementarla, el año que se quiere mostrar de inicio, mes y día). En el caso de querer utilizar la fecha actual se puede utilizar desde una variable de tipo Calendar
+
+```java
+val anio = Calendar.getInstance().get(Calendar.YEAR)
+val mes = Calendar.getInstance().get(Calendar.MONTH)
+val day = Calendar.getInstance().get(Calendar.DATE)
+```
+
+Para que todo esto funcione, como se ha dicho, es necesario que la clase que lanza el diálogo implemente la interfaz 
+
+```java
+class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var dialogo: DialogoPerso
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
+    }
+
+    override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
+        Snackbar.make(binding.root, " ${p1} ${p2} ${p3}",Snackbar.LENGTH_SHORT ).show()
+    }
+
+
+}
+```
+
+## Cuadro de diálogo de hora
+
+El cuadro de diálogo de hora se basa en una clase llamada TimePickerDialog, la cual tiene configurada una interfaz de callback llamada onTimeSet que obtiene como parámetros la hora y minutos seleccionados. 
+
+Para poder crear un cuadro de diálogo de hora, en la clase que representa el cuadro de diálogo es necesario sobreescribir el método onCreateDialogo, retornando un objeto de tipo TimePickerDialog
+
+```java
+class DialogoHora: DialogFragment() {
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialogo = TimePickerDialog(context, activity as OnTimeSetListener, 0,0,false)
+        return dialogo
+    }
+}
+```
+Como parámetros el constructor tiene el contexto donde se ejecuta, el listener que maneja la accion (la activity desde donde se lanza debe implementarla, el año que se quiere mostrar de inicio, mes y día). En el caso de querer utilizar la fecha actual se puede utilizar desde una variable de tipo Calendar
+
+```java
+val anio = Calendar.getInstance().get(Calendar.HOUR)
+val mes = Calendar.getInstance().get(Calendar.MINUTE)
+```
+
+Para que todo esto funcione, como se ha dicho, es necesario que la clase que lanza el diálogo implemente la interfaz 
+
+```java
+class MainActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var dialogo: DialogoPerso
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
+    }
+
+    override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+        Snackbar.make(binding.root, "${p1}: ${p2}",Snackbar.LENGTH_SHORT ).show()
+    }
+}
+```
+
+## Personalización de los cuadros
+
+En ambos casos, los cuádros de diálogo se pueden personalizar en cuanto a colores. Para ello es necesario crear un estilo nuevo que herede de Theme.Material3.Light.Dialog y modificar los colores para que aparezcan los que quieramos
+
+```xml
+    <style name="DialogoColores" parent="Theme.Material3.Light.Dialog">
+        <item name="colorAccent">
+            @color/purple_500
+        </item>
+    </style>
+```
+
+Para poder aplicar este estilo, en el constructor del cuadro de diálogo es necesario llamarlo como segundo parámetro
+
+```java
+val dialogoHora = DatePickerDialog(requireContext(), R.style.DialogoColores,activity as OnDateSetListener,2020,10,10)
+
+```
