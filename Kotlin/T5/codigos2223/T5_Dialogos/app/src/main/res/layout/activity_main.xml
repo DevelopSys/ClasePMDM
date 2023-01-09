@@ -4,135 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="20dp">
 
     <TextView
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:textSize="30sp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Diálogos"
-        />
+        android:textSize="30sp" />
 
     <LinearLayout
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:text="Confirmación"
             android:id="@+id/boton_confirmacion"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Confirmación" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"            android:layout_height="wrap_content"
-            android:text="Contestacion"
-            android:gravity="center"
             android:id="@+id/texto_confirmacion"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Contestacion" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:text="Lista"
             android:id="@+id/boton_lista"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Lista" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"            android:layout_height="wrap_content"
-            android:text="Contestacion"
-            android:gravity="center"
             android:id="@+id/lista_confirmacion"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Contestacion" />
 
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:text="Lista simple"
             android:id="@+id/boton_lista_simple"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Lista simple" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"            android:layout_height="wrap_content"
-            android:text="Contestacion"
-            android:gravity="center"
             android:id="@+id/lista_simple_confirmacion"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Contestacion" />
 
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:text="Lista Multiple"
             android:id="@+id/boton_lista_multiple"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Lista Multiple" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"            android:layout_height="wrap_content"
-            android:text="Contestacion"
-            android:gravity="center"
             android:id="@+id/texto_lista_multiple"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Contestacion" />
 
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:text="Personalizado"
             android:id="@+id/boton_personalizado"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Personalizado" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"            android:layout_height="wrap_content"
-            android:text="Contestacion"
-            android:gravity="center"
             android:id="@+id/texto_personalizado"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Contestacion" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

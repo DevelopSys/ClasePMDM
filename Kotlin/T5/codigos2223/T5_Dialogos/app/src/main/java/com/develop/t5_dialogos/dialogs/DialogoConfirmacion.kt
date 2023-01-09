@@ -10,18 +10,22 @@ import androidx.fragment.app.DialogFragment
 import com.develop.t5_dialogos.R
 import com.google.android.material.snackbar.Snackbar
 
-class DialogoConfirmacion: DialogFragment() {
+class DialogoConfirmacion : DialogFragment() {
 
     // crear interfaz
     // crear objeto de interfaz
     // inicializo el objeto --> listener =
-        // llamo al método desde la pulsacion o accion que quiera
+    // llamo al método desde la pulsacion o accion que quiera
     // implementarla en el destino
     // utilizo los métodos implementados
+
+    private lateinit var listener: OnDialogoConfirmListener;
+    var funcionNula: ((Boolean) -> Unit)? = null
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        listener = context as OnDialogoConfirmListener
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -38,11 +42,15 @@ class DialogoConfirmacion: DialogFragment() {
         builder.setMessage("¿Estás seguro que quieres continuar el proceso?")
 
         // botones
-        builder.setPositiveButton("OK"){ dialogInterface, i ->
-            Toast.makeText(requireContext(),"Pulsado positivo",Toast.LENGTH_SHORT).show()
+        builder.setPositiveButton("OK") { dialogInterface, i ->
+            funcionNula?.invoke(true)
+            //listener.onDialogoSelected(true)
+            //Toast.makeText(requireContext(),"Pulsado positivo",Toast.LENGTH_SHORT).show()
         }
-        builder.setNegativeButton("CANCELAR"){ dialogInterface, i ->
-            Toast.makeText(requireContext(),"Pulsado negativo",Toast.LENGTH_SHORT).show()
+        builder.setNegativeButton("CANCELAR") { dialogInterface, i ->
+            funcionNula?.invoke(false)
+            //listener.onDialogoSelected(false)
+            //Toast.makeText(requireContext(),"Pulsado negativo",Toast.LENGTH_SHORT).show()
         }
 
         return builder.create()
@@ -50,6 +58,10 @@ class DialogoConfirmacion: DialogFragment() {
 
     override fun onDetach() {
         super.onDetach()
+    }
+
+    interface OnDialogoConfirmListener {
+        fun onDialogoSelected(seleccionado: Boolean)
     }
 
     // dependiendo de la pulsacion se contesta a la activity el resultado
