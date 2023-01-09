@@ -9,10 +9,11 @@ import android.widget.Toast
 import com.develop.t5_dialogos.databinding.ActivityMainBinding
 import com.develop.t5_dialogos.dialogs.DialogoConfirmacion
 import com.develop.t5_dialogos.dialogs.DialogoLista
+import com.develop.t5_dialogos.dialogs.DialogoListaSimple
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener,
-    DialogoConfirmacion.OnDialogoConfirmListener {
+    DialogoConfirmacion.OnDialogoConfirmListener, DialogoLista.OnListaListener, DialogoListaSimple.OnListaSimpleListener {
 
     private lateinit var binding: ActivityMainBinding
     private var dialogoConfirm: DialogoConfirmacion;
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity(), OnClickListener,
     private fun acciones() {
         binding.botonConfirmacion.setOnClickListener(this)
         binding.botonLista.setOnClickListener(this)
+        binding.botonListaSimple.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -52,6 +54,9 @@ class MainActivity : AppCompatActivity(), OnClickListener,
             binding.botonLista.id ->{
                 DialogoLista().show(supportFragmentManager,"")
             }
+            binding.botonListaSimple.id ->{
+                DialogoListaSimple().show(supportFragmentManager,"")
+            }
         }
     }
 
@@ -61,5 +66,13 @@ class MainActivity : AppCompatActivity(), OnClickListener,
         } else {
             Snackbar.make(binding.root, "Seleccionado false", Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onElementoListaSelected(elemento: String) {
+        binding.listaConfirmacion.text = elemento
+    }
+
+    override fun onListaSelected(elemento: String?) {
+        binding.botonListaSimple.text = elemento?:"Sin comunicacion"
     }
 }
