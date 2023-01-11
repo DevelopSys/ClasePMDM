@@ -21,8 +21,8 @@ class DialogoListaSimple: DialogFragment() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         val elementos = arrayOf("Opcion 1", "Opcion 2", "Opcion 3")
         builder.setTitle("Titulo de lista")
-        builder.setSingleChoiceItems(elementos, 0,
-            DialogInterface.OnClickListener { dialogInterface, i ->
+        builder.setSingleChoiceItems(elementos, -1,
+            DialogInterface.OnClickListener { _, i ->
                 elementoSeleccionado = elementos[i]
             })
         builder.setPositiveButton("Aceptar", DialogInterface.OnClickListener { dialogInterface, i ->
@@ -42,8 +42,4 @@ class DialogoListaSimple: DialogFragment() {
     interface OnListaSimpleListener{
         fun onListaSelected(elemento: String?)
     }
-
-
-
-
 }
