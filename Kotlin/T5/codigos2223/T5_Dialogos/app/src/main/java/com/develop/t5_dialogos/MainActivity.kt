@@ -7,10 +7,7 @@ import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.Toast
 import com.develop.t5_dialogos.databinding.ActivityMainBinding
-import com.develop.t5_dialogos.dialogs.DialogoConfirmacion
-import com.develop.t5_dialogos.dialogs.DialogoLista
-import com.develop.t5_dialogos.dialogs.DialogoListaSimple
-import com.develop.t5_dialogos.dialogs.DialogoMultiple
+import com.develop.t5_dialogos.dialogs.*
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener,
@@ -44,6 +41,7 @@ class MainActivity : AppCompatActivity(), OnClickListener,
         binding.botonLista.setOnClickListener(this)
         binding.botonListaSimple.setOnClickListener(this)
         binding.botonListaMultiple.setOnClickListener(this)
+        binding.botonPersonalizado.setOnClickListener(this)
 
     }
 
@@ -63,6 +61,9 @@ class MainActivity : AppCompatActivity(), OnClickListener,
             }
             binding.botonListaMultiple.id ->{
                 DialogoMultiple().show(supportFragmentManager,"")
+            }
+            binding.botonPersonalizado.id -> {
+                DialogoPersonalizado().show(supportFragmentManager,"")
             }
         }
     }
