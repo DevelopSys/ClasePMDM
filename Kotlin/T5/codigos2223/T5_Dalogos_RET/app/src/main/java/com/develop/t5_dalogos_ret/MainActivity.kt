@@ -6,9 +6,12 @@ import android.view.View
 import android.view.View.OnClickListener
 import com.develop.t5_dalogos_ret.databinding.ActivityMainBinding
 import com.develop.t5_dalogos_ret.dialogs.DialogoConfirmacion
+import com.develop.t5_dalogos_ret.dialogs.DialogoSeleccion
+import com.develop.t5_dalogos_ret.dialogs.DialogoSimple
 import kotlin.concurrent.fixedRateTimer
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class MainActivity : AppCompatActivity(), OnClickListener,
+    DialogoConfirmacion.OnDialogoConfirmListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -17,6 +20,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.dialogoConfirmacion.setOnClickListener(this)
+        binding.dialogoListas.setOnClickListener(this)
+        binding.dialogoSimple.setOnClickListener(this)
 
     }
 
@@ -27,8 +32,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 // show
                 DialogoConfirmacion().show(supportFragmentManager,null)
             }
+            binding.dialogoListas.id ->{
+                DialogoSeleccion().show(supportFragmentManager,null)
+            }
+            binding.dialogoSimple.id ->{
+                DialogoSimple().show(supportFragmentManager,null)
+            }
         }
     }
 
-    // TODO 
+    override fun onDialogoSelected(comunicacion: String) {
+        binding.respuestaConfirmacion.text = comunicacion
+    }
+
 }

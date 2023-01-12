@@ -12,10 +12,12 @@ import com.develop.t5_dalogos_ret.R
 class DialogoConfirmacion : DialogFragment() {
 
     private lateinit var contexto: Context
+    private lateinit var listener: OnDialogoConfirmListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.contexto = context
+        this.listener = context as OnDialogoConfirmListener
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -30,15 +32,21 @@ class DialogoConfirmacion : DialogFragment() {
         // botones -- Positivo negativo neutral
         builder.setPositiveButton("OK", DialogInterface.OnClickListener { _,_ ->
             Log.v("dialogo","PULSADO OK")
+            listener.onDialogoSelected("Seleccionado OK")
         })
 
         builder.setNegativeButton("CANCEL", DialogInterface.OnClickListener { _,_ ->
             Log.v("dialogo","PULSADO CANCELAR")
+            listener.onDialogoSelected("Seleccionado CANCEL")
         })
 
         builder.setNeutralButton("SALIR", DialogInterface.OnClickListener { _,_ ->
             Log.v("dialogo","PULSADO SALIR")
         })
         return builder.create()
+    }
+
+    interface OnDialogoConfirmListener{
+        fun onDialogoSelected(comunicacion: String)
     }
 }
