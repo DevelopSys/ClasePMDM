@@ -16,7 +16,7 @@ class DialogoSimple: DialogFragment() {
         builder.setTitle("Selecciona una opcion")
         builder.setSingleChoiceItems(elementos,-1)
         { _, i ->  }
-        builder.setPositiveButton()
+        //builder.setPositiveButton()
 
 
 
