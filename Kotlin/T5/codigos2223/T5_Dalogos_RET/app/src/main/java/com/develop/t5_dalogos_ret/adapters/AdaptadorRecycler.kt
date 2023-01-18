@@ -42,4 +42,9 @@ class AdaptadorRecycler(var contexto: Context, var lista: ArrayList<Usuario>) :
         return lista.size
     }
 
+    fun addUser(usuario: Usuario){
+        this.lista.add(usuario)
+        notifyItemInserted(lista.size-1)
+    }
+
 }

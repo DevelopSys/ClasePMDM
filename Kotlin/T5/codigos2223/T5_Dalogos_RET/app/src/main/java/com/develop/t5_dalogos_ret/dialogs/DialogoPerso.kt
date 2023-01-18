@@ -13,6 +13,7 @@ import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.develop.t5_dalogos_ret.R
+import com.develop.t5_dalogos_ret.model.Usuario
 
 class DialogoPerso: DialogFragment() {
 
@@ -22,9 +23,11 @@ class DialogoPerso: DialogFragment() {
     private lateinit var checkRecordad: CheckBox
     private lateinit var botonLogin: Button
     private lateinit var spinnerDpt: Spinner
+    private lateinit var listener: OnRecyclerUsuariosListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        listener = context as OnRecyclerUsuariosListener
         vista = LayoutInflater.from(context).inflate(R.layout.dialogo_login,null)
     }
 
@@ -54,7 +57,16 @@ class DialogoPerso: DialogFragment() {
         botonLogin.setOnClickListener {
             // capturo lo que hay en los edit
             // ejecuto interfaz de callback y llevo los datos a la activty
+            listener.usuarioSelected(Usuario(editNombre.text.toString()
+                ,editPass.text.toString()
+                ,spinnerDpt.selectedItem.toString()
+                ,checkRecordad.isChecked))
+            dismiss()
         }
+    }
+
+    interface  OnRecyclerUsuariosListener{
+        fun usuarioSelected(usuario: Usuario);
     }
 
 }
