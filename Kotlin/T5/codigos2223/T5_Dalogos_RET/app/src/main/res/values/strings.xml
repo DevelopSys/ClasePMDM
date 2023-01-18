@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">T5_Dalogos_RET</string>
     <string name="titulo_dialogo_confirm">Continuar</string>
+    <string-array name="departamentos">
+        <item>Comercial</item>
+        <item>Ventas</item>
+        <item>Marketing</item>
+        <item>IT</item>
+        <item>Soporte</item>
+    </string-array>
 </resources>

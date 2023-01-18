@@ -5,9 +5,11 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.develop.t5_dalogos_ret.R
@@ -19,6 +21,7 @@ class DialogoPerso: DialogFragment() {
     private lateinit var editPass: EditText
     private lateinit var checkRecordad: CheckBox
     private lateinit var botonLogin: Button
+    private lateinit var spinnerDpt: Spinner
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -38,6 +41,12 @@ class DialogoPerso: DialogFragment() {
         editPass = vista.findViewById(R.id.edit_pass)
         botonLogin = vista.findViewById(R.id.boton_login)
         checkRecordad = vista.findViewById(R.id.check_recordad)
+        spinnerDpt = vista.findViewById(R.id.spinner_departamento)
+        spinnerDpt.adapter = ArrayAdapter
+            .createFromResource(requireContext(),R.array.departamentos,android.R.layout.simple_spinner_item)
+        (spinnerDpt.adapter as ArrayAdapter<CharSequence>)
+            .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
     }
 
     override fun onResume() {
