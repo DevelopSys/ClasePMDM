@@ -28,12 +28,14 @@ class AdaptadorRecycler(var contexto: Context, var lista: ArrayList<Usuario>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val vista: View = LayoutInflater.from(contexto)
-            .inflate(R.layout.item_recycler,parent,false)
-        return  MyHolder()
+            .inflate(R.layout.item_recycler, parent, false)
+        return MyHolder(vista)
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        TODO("Not yet implemented")
+        val usuario = lista[position]
+        holder.textoNombre.text = usuario.nombre
+        holder.textoDept.text = usuario.departamento
     }
 
     override fun getItemCount(): Int {

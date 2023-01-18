@@ -4,22 +4,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
+import com.develop.t5_dalogos_ret.adapters.AdaptadorRecycler
 import com.develop.t5_dalogos_ret.databinding.ActivityMainBinding
 import com.develop.t5_dalogos_ret.dialogs.DialogoConfirmacion
 import com.develop.t5_dalogos_ret.dialogs.DialogoPerso
 import com.develop.t5_dalogos_ret.dialogs.DialogoSeleccion
 import com.develop.t5_dalogos_ret.dialogs.DialogoSimple
+import com.develop.t5_dalogos_ret.model.Usuario
 import kotlin.concurrent.fixedRateTimer
 
 class MainActivity : AppCompatActivity(), OnClickListener,
     DialogoConfirmacion.OnDialogoConfirmListener {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapterRecycler: AdaptadorRecycler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        adapterRecycler = AdaptadorRecycler(applicationContext,ArrayList<Usuario>())
+
+
         binding.dialogoConfirmacion.setOnClickListener(this)
         binding.dialogoListas.setOnClickListener(this)
         binding.dialogoSimple.setOnClickListener(this)
