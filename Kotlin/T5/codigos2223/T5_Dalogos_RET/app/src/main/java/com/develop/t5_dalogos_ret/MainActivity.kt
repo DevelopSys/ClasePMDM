@@ -40,6 +40,7 @@ AdaptadorRecycler.OnRecyclerListener{
         binding.dialogoPersonalizado.setOnClickListener(this)
         binding.dialogoMultiple.setOnClickListener(this)
         binding.dialogoHora.setOnClickListener(this)
+        binding.dialogoComunica.setOnClickListener(this)
 
     }
 
@@ -49,6 +50,10 @@ AdaptadorRecycler.OnRecyclerListener{
                 // objeto del dialogo --> la clase
                 // show
                 DialogoConfirmacion().show(supportFragmentManager, null)
+            }
+            binding.dialogoComunica.id -> {
+                DialogoComunica.newInstance("Borja","Martin").show(supportFragmentManager,"")
+                //DialogoComunica().show(supportFragmentManager,"")
             }
             binding.dialogoMultiple.id -> {
                 DialogoMultiple().show(supportFragmentManager, null)

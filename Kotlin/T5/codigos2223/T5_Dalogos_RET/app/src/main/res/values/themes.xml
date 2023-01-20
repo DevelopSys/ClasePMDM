@@ -13,4 +13,9 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="CuadroColor" parent="Theme.Material3.Light.Dialog" >
+        <item name="colorAccent">@color/propio</item>
+    </style>
+    
 </resources>

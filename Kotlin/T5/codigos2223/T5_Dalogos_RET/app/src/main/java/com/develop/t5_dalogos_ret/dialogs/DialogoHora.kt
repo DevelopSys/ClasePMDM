@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.develop.t5_dalogos_ret.R
 import java.util.Calendar
 
 class DialogoHora: DialogFragment() {
@@ -18,6 +19,8 @@ class DialogoHora: DialogFragment() {
         val minutos = calendario.get(Calendar.MINUTE)
 
         val dialogoHora = TimePickerDialog(requireContext(),requireContext() as OnTimeSetListener,hora,minutos,true)
+        TimePickerDialog(requireContext(),
+            R.style.CuadroColor,requireContext() as OnTimeSetListener,hora,minutos,true)
 
         return dialogoHora
     }
