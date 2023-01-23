@@ -14,6 +14,19 @@
         app:showAsAction="ifRoom"
         />
 
+    <item
+        android:title="No id 1"
+        android:id="@+id/menu_noid_1"
+        android:icon="@android:drawable/ic_delete"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:title="No id 2"
+        android:id="@+id/menu_noid_2"
+        android:icon="@android:drawable/ic_menu_agenda"
+        app:showAsAction="ifRoom"
+        />
+
     <item android:title="Elementos add">
         <menu>
             <item android:title="Submenu 1.1"
