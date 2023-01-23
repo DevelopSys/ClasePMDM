@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/menu_op_1"
+        android:id="@+id/menu_op1"
+        />
+
+    <item
+        android:title="Opcion 2"
+        android:id="@+id/menu_op2"
+        android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="ifRoom"
+        />
+
+    <item android:title="Elementos add">
+        <menu>
+            <item android:title="Submenu 1.1"
+                android:id="@+id/menu_op1_1"/>
+            <item android:title="Submenu 1.2"
+                android:id="@+id/menu_op1_2"
+                />
+        </menu>
+    </item>
+
+</menu>
