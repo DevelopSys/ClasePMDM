@@ -18,7 +18,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setSupportActionBar(binding.toolbar)
+        // cambios en el toolbar
+        supportActionBar?.title = "Cambio en el titulo"
         adaptador = AdaptadorAsignaturas(ArrayList<String>(),this)
 
         binding.recyclerAsignaturas.adapter = adaptador;

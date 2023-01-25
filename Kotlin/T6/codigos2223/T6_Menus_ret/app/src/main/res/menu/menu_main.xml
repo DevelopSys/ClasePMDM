@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="@string/menu_uno"
+        android:id="@+id/menu_op_uno"
+        />
+    <item android:title="Opcion 2"
+        android:id="@+id/menu_op_dos"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="ifRoom"
+        />
+    <item android:title="Opcion 3"
+        android:id="@+id/menu_op_tres"
+        android:icon="@android:drawable/ic_menu_agenda"
+        app:showAsAction="ifRoom"
+        />
+    <item android:title="Opcion 4"
+        android:id="@+id/menu_op_cuatro"
+        android:icon="@android:drawable/ic_delete"
+        app:showAsAction="ifRoom"
+        />
+    <item android:title="submenu">
+        <menu>
+            <item android:title="Opcion 1_1"
+                android:id="@+id/menu_op_uno_uno" />
+            <item android:title="Opcion 1_2"
+                android:id="@+id/menu_op_uno_dos"/>
+        </menu>
+
+    </item>
+
+
+</menu>
