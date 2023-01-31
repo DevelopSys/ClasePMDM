@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.develop.t6_menus_ret.databinding.ActivityMainBinding
+import com.develop.t6_menus_ret.model.Asignatura
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -20,11 +21,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.title = "Elemento cambiado"
+        setSupportActionBar(binding.toolbar)
         adaptadorAsignaturas = AdaptadorAsignaturas(ArrayList(),this)
         binding.recyclerAsignaturas.adapter = adaptadorAsignaturas
 
         binding.recyclerAsignaturas.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
+
+
 
         // binding.recyclerAsignaturas
         // adaptador
@@ -40,10 +44,11 @@ class MainActivity : AppCompatActivity() {
         when(item.itemId){
 
            R.id.menu_agregar->{
-               adaptadorAsignaturas.agregarDato("prueba")
+               adaptadorAsignaturas.agregarDato(Asignatura("PMDM","Borja",6,"DAM",2, R.drawable.android))
            }
            R.id.menu_vaciar->{
-               adaptadorAsignaturas.vaciarLista()
+               //adaptadorAsignaturas.vaciarLista()
+               adaptadorAsignaturas.agregarDato(Asignatura("DI","Borja",6,"DAM",2, R.drawable.angular))
            }
         }
 

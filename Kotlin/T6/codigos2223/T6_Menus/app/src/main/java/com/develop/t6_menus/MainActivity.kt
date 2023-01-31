@@ -7,9 +7,12 @@ import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.develop.t6_menus.adapter.AdaptadorAsignaturas
 import com.develop.t6_menus.databinding.ActivityMainBinding
+import com.develop.t6_menus.dialogs.DialogoAdd
+import com.develop.t6_menus.dialogs.DialogoDetalle
+import com.develop.t6_menus.model.Asignatura
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DialogoAdd.OnDialogoAdd, AdaptadorAsignaturas.OnRecyclerAsignaturaListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adaptador: AdaptadorAsignaturas
@@ -21,8 +24,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         // cambios en el toolbar
         supportActionBar?.title = "Cambio en el titulo"
-        adaptador = AdaptadorAsignaturas(ArrayList<String>(),this)
+        adaptador = AdaptadorAsignaturas(ArrayList<Asignatura>(),this)
 
+        // binding.recyclerAsignaturas --> grafico
+        // Adapter
         binding.recyclerAsignaturas.adapter = adaptador;
         binding.recyclerAsignaturas.layoutManager = LinearLayoutManager(applicationContext,
             LinearLayoutManager.VERTICAL,false)
@@ -36,15 +41,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-
-
         when (item.itemId) {
             R.id.menu_add -> {
+                DialogoAdd().show(supportFragmentManager,"")
                 // agregar algo al recycler --> adaptador
-                adaptador.addAsignatura("Prueba")
+                // adaptador.addAsignatura("Prueba")
             }
             R.id.menu_clear -> {
-                adaptador.clearAsignaturas()
+                // adaptador.clearAsignaturas()
             }
         }
 
@@ -52,6 +56,15 @@ class MainActivity : AppCompatActivity() {
 
 
         return true
+    }
+
+    override fun onAsignaturaSelected(asignatura: Asignatura) {
+        adaptador.addAsignatura(asignatura)
+    }
+
+    override fun onAsignaturaRecyclerSelected(asignatura: Asignatura) {
+
+        DialogoDetalle.newInstance(asignatura).show(supportFragmentManager,"")
     }
 
 
