@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <fragment
@@ -13,6 +14,40 @@
         android:name="com.example.iniciofragments.fragments.FragmentHeader"
         android:tag="estatico_cabecera"
         android:id="@+id/fragment_estatico"
+        tools:layout="@layout/fragment_header" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:id="@+id/boton_f1"
+            android:text="F1"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:id="@+id/boton_f2"
+            android:text="F2"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:id="@+id/boton_f3"
+            android:text="F3"
+            />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sitio_fragments"
         />
 
 
