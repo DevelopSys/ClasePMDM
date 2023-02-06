@@ -49,6 +49,8 @@ class AdaptadorAsignaturas(var listaDatos: ArrayList<Asignatura>, var context: C
         holder.imagenAsignatura.setImageResource(asignatura.imagen)
         holder.toolbarDetalle.setTitle(asignatura.nombre)
 
+        
+
         holder.toolbarDetalle.setOnMenuItemClickListener {
 
             when(it.itemId){
