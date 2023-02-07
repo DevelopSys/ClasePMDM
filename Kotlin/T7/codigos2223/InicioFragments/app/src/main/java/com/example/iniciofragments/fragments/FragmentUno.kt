@@ -1,5 +1,6 @@
 package com.example.iniciofragments.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,14 @@ import com.google.android.material.snackbar.Snackbar
 class FragmentUno: Fragment() {
 
     private lateinit var binding: FragmentUnoBinding
+    // TODO 2. creo un objeto de la interfaz
+    private lateinit var listener: OnFragmentNombreListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // TODO 3. inicio el objeto de la interfaz, pasada a la interfaz
+        listener = context as OnFragmentNombreListener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,11 +40,16 @@ class FragmentUno: Fragment() {
             if (binding.editNombreF1.text.isEmpty()){
                 Snackbar.make(binding.root, "No hay nombre a mostrar",Snackbar.LENGTH_SHORT).show()
             } else {
-                Snackbar.make(binding.root, binding.editNombreF1.text.toString(),Snackbar.LENGTH_SHORT).show()
+                // pasar la informacion a la activity!
+                // Snackbar.make(binding.root, binding.editNombreF1.text.toString(),Snackbar.LENGTH_SHORT).show()
+                listener.onNombreSelected(binding.editNombreF1.text.toString())
             }
-
         }
     }
 
+    //TODO 1. interfaz en el origen
+    interface OnFragmentNombreListener{
+        fun onNombreSelected(nombre: String)
+    }
 
 }
