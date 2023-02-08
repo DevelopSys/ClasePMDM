@@ -4,13 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@android:color/holo_orange_light"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FRAGMENT1"
-        android:textSize="30sp" />
+        android:text="FRAGMENT NOMBRE"
+        android:textSize="30sp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_nombre"
+        android:layout_marginBottom="20dp"
+        android:hint="Por favor introduce tu nombre"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_nombre"
+        android:text="Pasar nombre"
+        android:layout_marginBottom="20dp"
+        />
+
+
 
 </LinearLayout>
