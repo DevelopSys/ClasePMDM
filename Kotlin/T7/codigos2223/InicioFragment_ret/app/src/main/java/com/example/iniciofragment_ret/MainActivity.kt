@@ -6,6 +6,8 @@ import android.view.View
 import android.view.View.OnClickListener
 import com.example.iniciofragment_ret.databinding.ActivityMainBinding
 import com.example.iniciofragment_ret.fragments.FragmentBanner
+import com.example.iniciofragment_ret.fragments.FragmentDetalle
+import com.example.iniciofragment_ret.fragments.FragmentNombre
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -21,18 +23,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onClick(p0: View?) {
+        val ft = supportFragmentManager.beginTransaction()
+        ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
         when(p0!!.id){
             binding.botonF1.id ->{
-                val fm = supportFragmentManager
-                val ft = fm.beginTransaction();
-
-                ft.replace(binding.sitioFragments.id,FragmentBanner())
-                ft.addToBackStack("")
+                ft.replace(binding.sitioFragments.id, FragmentNombre())
                 ft.commit()
 
             }
             binding.botonF2.id ->{
-
+                ft.replace(binding.sitioFragments.id, FragmentDetalle())
+                ft.commit()
             }
             binding.botonF3.id ->{}
         }
