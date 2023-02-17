@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_thirdFragment"
+            app:destination="@id/thirdFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -36,5 +39,16 @@
         <action
             android:id="@+id/action_thirdFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <argument
+            android:name="nombre"
+            app:argType="string"
+            android:defaultValue='defecto' />
+        <argument
+            android:name="edad"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="correo"
+            app:argType="string" />
     </fragment>
 </navigation>

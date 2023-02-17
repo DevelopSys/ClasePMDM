@@ -33,7 +33,17 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
+
+
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        binding.buttonSecond.setOnClickListener{
+            val bundle: Bundle = Bundle()
+            bundle.putString("nombre","Borja")
+            bundle.putString("correo","bmartin@gmail")
+            bundle.putInt("edad",38)
+            findNavController().navigate(R.id.action_FirstFragment_to_thirdFragment,bundle)
         }
     }
 
