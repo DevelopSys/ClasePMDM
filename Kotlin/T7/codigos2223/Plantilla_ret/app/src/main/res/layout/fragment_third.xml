@@ -35,6 +35,14 @@
         android:layout_height="wrap_content"
         android:text="Ir al inicio (F1)"
         android:id="@+id/boton_fragment_uno"
+        android:textDirection="firstStrong"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="qwertyuio"
+        android:layoutDirection="rtl"
         />
 
 </LinearLayout>
