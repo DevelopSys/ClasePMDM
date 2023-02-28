@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginFragment"
+    android:padding="16dp"
+    android:gravity="center"
+    >
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        android:layout_marginBottom="40dp"
+
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:id="@+id/imagen_login"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+
+    <EditText
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/user_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginBottom="16dp"
+        android:hint="introduce nombre"
+        android:id="@+id/edit_nombre"
+        />
+
+    <EditText
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/pass_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp"
+        android:hint="introduce pass"
+        android:id="@+id/edit_pass"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar datos"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="end"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/boton_login"
+        android:text="Login"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_register"
+        android:text="Resgistrar"/>
+
+
+
+</LinearLayout>
