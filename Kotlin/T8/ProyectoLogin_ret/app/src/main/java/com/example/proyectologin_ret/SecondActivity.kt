@@ -24,6 +24,8 @@ class SecondActivity : AppCompatActivity() {
             val referencia = dataBase.getReference("usuarios").child("usuario2")
             referencia.child("dni").setValue("12312312")
             referencia.child("experiencia").setValue(false)
+            referencia.child("experiencia").setValue(false)
+
         }
     }
 }
