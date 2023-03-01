@@ -52,6 +52,7 @@ class LoginFragment : Fragment() {
                         val bundle = Bundle();
                         bundle.putString("nombre",nombre)
                         bundle.putString("uid",auth.currentUser!!.uid)
+                        bundle.putInt("edad",-1)
                         findNavController().navigate(R.id.action_FirstFragment_to_secondActivity,bundle)
                     } else {
                         Snackbar.make(binding.botonLogin, "Datos incorrectos",Snackbar.LENGTH_SHORT).show()
