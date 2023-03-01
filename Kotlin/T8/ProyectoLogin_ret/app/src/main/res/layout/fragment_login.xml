@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".LoginFragment">
+
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="50dp"
+        app:cardElevation="50dp"
+        android:layout_marginBottom="40dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/log_back"
+            android:scaleType="center"
+
+            />
+    </androidx.cardview.widget.CardView>
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce nombre"
+        android:drawableLeft="@drawable/user_1"
+        android:drawablePadding="16dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/edit_nombre"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce pass"
+        android:inputType="textPassword"
+        android:drawableLeft="@drawable/pass_1"
+        android:drawablePadding="16dp"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/edit_pass"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_login"
+        android:text="Login"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton_register"
+        android:text="Rwgistrar"
+        />
+
+</LinearLayout>

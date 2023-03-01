@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.proyectologin_ret.LoginFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_secondActivity"
+            app:destination="@id/secondActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.example.proyectologin_ret.RegisterFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_SecondFragment_to_secondActivity"
+            app:destination="@id/secondActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/secondActivity"
+        android:name="com.example.proyectologin_ret.SecondActivity"
+        android:label="activity_second"
+        tools:layout="@layout/activity_second" >
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+        <argument
+            android:name="edad"
+            app:argType="integer" />
+        <argument
+            android:name="uid"
+            app:argType="string" />
+    </activity>
+</navigation>
