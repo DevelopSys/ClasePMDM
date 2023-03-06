@@ -86,7 +86,6 @@ class SecondActivity : AppCompatActivity() {
 
 
     }
-
     private fun initGUI() {
         nombre = intent.extras!!.getString("nombre")
         uid = intent.extras!!.getString("uid")
