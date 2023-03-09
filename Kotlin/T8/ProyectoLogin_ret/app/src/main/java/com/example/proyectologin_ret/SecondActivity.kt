@@ -3,6 +3,8 @@ package com.example.proyectologin_ret
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyectologin_ret.adapter.AdaptadorProductos
 import com.example.proyectologin_ret.databinding.ActivitySecondBinding
 import com.example.proyectologin_ret.model.Producto
 import com.google.firebase.database.DataSnapshot
@@ -15,12 +17,19 @@ class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecondBinding
     private lateinit var dataBase: FirebaseDatabase
+    private lateinit var adaptadorProductos: AdaptadorProductos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBase =
             FirebaseDatabase.getInstance("https://fir-ces2023-bmh-default-rtdb.firebaseio.com/")
         binding = ActivitySecondBinding.inflate(layoutInflater)
+        adaptadorProductos = AdaptadorProductos(applicationContext)
+
+        binding.reyclerProductos.adapter = adaptadorProductos
+        binding.reyclerProductos.layoutManager =
+            LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
+
         val uid = intent.extras!!.getString("uid")
         val nombre = intent.extras!!.getString("nombre")
         val edad = intent.extras!!.getInt("edad")
@@ -46,9 +55,11 @@ class SecondActivity : AppCompatActivity() {
         binding.botonConsultar.setOnClickListener {
             referencia.child("productos").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    adaptadorProductos.vaciarLista()
                     for (item in snapshot.children) {
 
                         val producto = item.getValue(Producto::class.java)
+                        adaptadorProductos.agregarProducto(producto!!)
                         Log.v("base_datos", "Producto ${producto!!.nombre} ${producto!!.cv}")
 
                     }
