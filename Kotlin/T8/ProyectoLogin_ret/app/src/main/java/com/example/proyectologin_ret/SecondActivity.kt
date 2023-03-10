@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.database.ktx.snapshots
 
 class SecondActivity : AppCompatActivity() {
 
@@ -33,12 +34,32 @@ class SecondActivity : AppCompatActivity() {
         val uid = intent.extras!!.getString("uid")
         val nombre = intent.extras!!.getString("nombre")
         val edad = intent.extras!!.getInt("edad")
+        // escribo o no la edad
 
         val referencia = dataBase.getReference("usuarios").child(uid!!)
+        // si en bd la edad es -1 --> pones
+        referencia.child("datos").child("edad").addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+
+                    if (snapshot.value != -1){
+
+                    }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        // si bd la edad es != -1 --> no la pones
+
         referencia.child("datos").child("nombre").setValue(nombre)
         referencia.child("datos").child("edad").setValue(edad)
 
         setContentView(binding.root)
+
 
         binding.botonAgregar.setOnClickListener {
 
@@ -46,6 +67,8 @@ class SecondActivity : AppCompatActivity() {
             //referenciaProductos.child("telefono").child("nombre").setValue("iphone")
             //referenciaProductos.child("telefono").child("valor").setValue(230)
             referenciaProductos.child("coche").setValue(Producto("coche", 10000))
+
+
 
             // agregar datos a la base de datos
             //val referencia = dataBase.getReference("usuarios").child("usuario2")
