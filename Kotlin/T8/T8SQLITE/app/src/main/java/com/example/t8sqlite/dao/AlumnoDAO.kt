@@ -7,7 +7,6 @@ import com.example.t8sqlite.model.Alumno
 
 @Dao
 interface AlumnoDAO {
-
     @Query("SELECT * FROM Alumno")
     fun getAlumnos(): List<Alumno>
 
