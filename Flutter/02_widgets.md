@@ -1,0 +1,1 @@
+Para poder entender un proyecto Flutter, lo primero que hay que hablar es de la composición de una aplicación. Hay un concepto básico en flutter que todo gira alrededor de el, que son los widgets. Se dice que en flutter todos son widgets y en realidad es así. Un widget es 
