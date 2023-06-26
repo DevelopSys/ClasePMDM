@@ -1,12 +1,18 @@
 # Índice
 
-- [Tipos de datos](#tipos-de-datos)
+- [Índice](#índice)
+- [tipos de datos](#tipos-de-datos)
+- [Variables](#variables)
 - [Funciones](#funciones)
 - [Listas](#listas)
+  - [Listas dinámicos](#listas-dinámicos)
+  - [Maps](#maps)
 - [Clases](#clases)
 - [Herencia](#herencia)
 - [Mixins](#mixins)
-- [Asincronía](#asincronía---future)
+- [Asincronía - Future](#asincronía---future)
+  - [Future](#future)
+  - [Async y Await](#async-y-await)
 
 Flutter se base en un lenguaje de programación llamado Dart desarrollado por Google. Se trata de un lenguaje de ejecucion y codificación rápida, que mezcla características de muchos de los lenguajes de programación existentes a día de hoy
 
