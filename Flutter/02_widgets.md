@@ -265,7 +265,7 @@ El body se ha configurado con un contenedor Center, el cual tiene un atributo ch
 
 El árbol de widget de esta primera aplicación quedaría de la siguiente forma
 
-[<img src="./images/esquema1.png" width="50%x"/>]
+[<img src="./images/esquema1.png" width="50%"/>]
 
 # Widgets
 
@@ -318,11 +318,11 @@ Se trata de un widget parecido al anterior, pero con la capacidad de personaliza
 ```
 Con las características configuradas, la colocacion del texto quedaría de la siguiente forma
 
-[<img src="./images/container1.png" width="50%x"/>]
+[<img src="./images/container1.png" width="50%"/>]
 
 Dentro de las características mostradas, además de las que son sencillas de interpretar, existe la de aligment la cual marcará en que posición se pone el child indicado. En el caso de no configurar las características de width y heigth el tamaño que tendrá el widget será el máximo posible, siendo en este caso la apariencia la siguiente
 
-[<img src="./images/container2.png" width="50%x"/>]
+[<img src="./images/container2.png" width="50%"/>]
 
 ### Row - Column
 
@@ -443,9 +443,9 @@ body: Column(
       ),
 ```
 
-Con este resultado
+Con el siguiente resultado
 
-[<img src="./images/rowcol1.png" width="50%x"/>]
+[<img src="./images/rowcol1.png" width="50%"/>]
 
 
 ## Widgets gráficos
