@@ -10,11 +10,11 @@ class FormPage extends StatelessWidget {
           "Formulario de inputs",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: const Color(0xFF1B6B93),
         centerTitle: true,
       ),
-      backgroundColor: Colors.blue,
-      body: FormWidget(),
+      backgroundColor: const Color(0xFF4FC0D0),
+      body: SafeArea(child: FormWidget()),
     );
   }
 }
@@ -32,10 +32,13 @@ class _FormStateWodget extends State<FormWidget> {
   TextEditingController _controllerPass = TextEditingController();
   TextEditingController _controllerPhone = TextEditingController();
   TextEditingController _controllerSurname = TextEditingController();
+  TextEditingController _controllerMail = TextEditingController();
+  bool mailExist = false;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SingleChildScrollView(
@@ -49,7 +52,7 @@ class _FormStateWodget extends State<FormWidget> {
               padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.),
+                  color: const Color(0xFFA2FF86)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,7 +78,6 @@ class _FormStateWodget extends State<FormWidget> {
                     controller: _controllerSurname,
                     cursorColor: Colors.blue,
                     decoration: const InputDecoration(
-
                         filled: true,
                         fillColor: Colors.white,
                         label: Text("Introduce tu apellido"),
@@ -102,7 +104,6 @@ class _FormStateWodget extends State<FormWidget> {
                     controller: _controllerPass,
                     cursorColor: Colors.blue,
                     decoration: const InputDecoration(
-
                         filled: true,
                         fillColor: Colors.white,
                         label: Text("Introduce tu password"),
@@ -111,14 +112,38 @@ class _FormStateWodget extends State<FormWidget> {
                     obscureText: true,
                   ),
                   Padding(padding: EdgeInsets.only(top: 10.0)),
+                  TextField(
+                    enabled: mailExist,
+                    controller: _controllerMail,
+                    cursorColor: Colors.blue,
+                    decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        label: Text("Introduce tu correo"),
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.mail)),
+                    obscureText: true,
+                  ),
+                  Row(
+                    children: [
+                      Text("¿Tienes mail?"),
+                      Checkbox(
+                        value: mailExist,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            mailExist = value!;
+                          });
+                        },
+                      )
+                    ],
+                  ),
                   ElevatedButton.icon(
                     onPressed: () {
                       sendData();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Color(0xFF4FC0D0),
                       foregroundColor: Colors.white,
-                      side: BorderSide(color: Colors.blueGrey, width: 5),
                     ),
                     label: Text("Enviar"),
                     icon: Icon(Icons.send),

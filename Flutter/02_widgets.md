@@ -21,6 +21,7 @@
         - [Acciones](#acciones-1)
       - [FloatingActionButton (FBA)](#floatingactionbutton-fba)
     - [Radio Button](#radio-button)
+    - [CheckBox](#checkbox)
     - [TextInput](#textinput)
       - [Acciones](#acciones-2)
 
@@ -916,6 +917,26 @@ class _RadioGruopState extends State<RadioGroupComplete> {
 }
 ```
 
+### CheckBox
+
+Los checkbox tienen un comportamiento muy similar a los radios explicados en el punto anterior, siendo la diferencia el que normalmente suelen actuar de forma individual, es decir que no van en un grupo de opciones donde si se selecciona una se deselecciona otra. Para poder utilzarlo, hay que tener en cuenta que hablamos de un widget que necesita un estado para poder guardar la selección (en este caso verdadero o falso)
+
+```dart
+Row(
+children: [
+  Text("¿Tienes mail?"),
+  Checkbox(
+    value: mailExist,
+    onChanged: (bool? value) {
+      setState(() {
+        mailExist = value!;
+      });
+    },
+  )],
+),
+```
+De las cosas que hay que tener en cuenta es que tan solo son dos las propiedades que son requeridas: value y onChanged. La primera de ellas es necesario asociarla a una variable booleana (el estado que se comentaba antes), para cuando el valor de esta variable cambie, también cambie el estado y opor lo tanto su aspecto grñafico
+
 ### TextInput
 
 Otro de los elementos más importantes de la UI son los inputs o elementos de entrada de texto, los cuales permiten a los usuarios introducir datos para que estos puedan ser procesados. Los text inputs son utilizados en los formularios y al ser elementos de los cuales se quieren guardar su contenido están asociados a un estado para poder tratarlo. Además de esto, cuando se trabaja con TextInput, para poder recoger el estado del elemento se utiliza un objeto de tipo TextEditingController y se asocia al TextInput dentro de la característica controller. Para este ejemplo vamos a realizar un formulario donde el usuario puede introducir nombre, apellido y correo. 
@@ -1184,7 +1205,8 @@ En el caso de querer darle un aspecto gráfico más trabajado, con elementos com
               padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.lightBlue),
+                  color: const Color(0xFFA2FF86)
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -1251,9 +1273,9 @@ En el caso de querer darle un aspecto gráfico más trabajado, con elementos com
                       sendData();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Color(0xFF4FC0D0),
                       foregroundColor: Colors.white,
-                      side: BorderSide(color: Colors.blueGrey, width: 5),
+
                     ),
                     label: Text("Enviar"),
                     icon: Icon(Icons.send),
@@ -1272,4 +1294,4 @@ La diferencia entre ambas pantallas es la siguiente
 
 |                  Sin formato                 |              Con formato              |
 | :---------------------------------------------: | :---------------------------------------------: |
-| ![alt-text-1](./images/fields1.png "title-1") | ![alt-text-2](./images/fields1.png "title-2") |
+| ![alt-text-1](./images/fields1.png "title-1") | ![alt-text-2](./images/field2.png "title-2") |
