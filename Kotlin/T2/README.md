@@ -18,7 +18,7 @@
 
 Como ya se ha explicado en el punto anterior una pantalla (activity) en android consta principalmente de dos cosas: parte gráfica y parte lógica. La parte gráfica está representada por ficheros xml donde se definen Views (layouts, botones, listas, fragments, etc.). Cada elemento tiene sus propiedades (width y heigth son básicas, id muy recomendable) y se organizan mediante layouts.
 
-```java
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -311,18 +311,6 @@ binding.botonSaludar.setOnClickListener { binding.textoCambiar.setText("Texto po
 En este caso no se hace ninguna comprobación, ya que tan solo se quiere cambiar el texto que aparece. Si nos fijamos hay partes del código que se repiten, que es toda la función lambda, por lo que podríamos implementar la interfaz y a ambas acciones pasarles como parámetros this
 
 ```java
-package com.develop.inicio
-
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import com.develop.inicio.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
-
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 

@@ -935,7 +935,22 @@ children: [
   )],
 ),
 ```
-De las cosas que hay que tener en cuenta es que tan solo son dos las propiedades que son requeridas: value y onChanged. La primera de ellas es necesario asociarla a una variable booleana (el estado que se comentaba antes), para cuando el valor de esta variable cambie, también cambie el estado y opor lo tanto su aspecto grñafico
+De las cosas que hay que tener en cuenta es que tan solo son dos las propiedades que son requeridas: value y onChanged. La primera de ellas es necesario asociarla a una variable booleana (el estado que se comentaba antes), para cuando el valor de esta variable cambie, también cambie el estado y opor lo tanto su aspecto gráfico. Además, guardando el como parte del estado el check del widget, podríamos asociarlo a un textfield indicando si su estado activado o desactivado
+
+```dart
+TextField(
+  enabled: mailExist,
+  controller: _controllerMail,
+  cursorColor: Colors.blue,
+  decoration: const InputDecoration(
+    filled: true,
+    fillColor: Colors.white,
+    label: Text("Introduce tu correo"),
+    border: OutlineInputBorder(),
+    prefixIcon: Icon(Icons.mail)),
+  obscureText: true,
+)
+```
 
 ### TextInput
 
