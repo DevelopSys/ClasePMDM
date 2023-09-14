@@ -3,7 +3,7 @@ import java.util.Objects
 // mutables
 var nombre: String = "Borja"
     get() {
-        if (field.length>0){
+        if (field.length > 0) {
             return field
         }
         return "vacio"
@@ -13,12 +13,17 @@ var edad: Int = 39
     set(value) {
         field += value;
     }
-var direccion: String? = "Pozuelo"
+var direccion: String? = null
+
 var cosa: Any = "asd";
+
 // no mutable
 val DNI: String = "0987654A"
 
 fun main() {
+    //setEdad(40)
+    edad = 40;
+    direccion?.length ?: 0
 
     println("Ejecucion del primer programa en kotlin")
     println("El valor del nombre es: $nombre")

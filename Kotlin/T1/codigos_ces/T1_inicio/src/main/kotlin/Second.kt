@@ -54,7 +54,8 @@ fun estructuraFor(): Unit {
 }
 
 fun main(args: Array<String>) {
-    estructuraFor()
+
+    //estructuraFor()
     //estructuraWhen()
     //edad = 1
     //println("El nombre guarado es $nombre $edad")
