@@ -70,14 +70,17 @@ fun aleatorios() {
     var opcion = 0
     do {
 
-        var aleatorio = (nInferior..nSuperior).random()
-        if (aleatorio > maximo) {
-            maximo = aleatorio
+        (1..nNumeros).forEach {
+            var aleatorio = (nInferior..nSuperior).random()
+            if (aleatorio > maximo) {
+                maximo = aleatorio
+            }
+            if (aleatorio < minimo) {
+                minimo = aleatorio
+            }
+            sumatorio += aleatorio
         }
-        if (aleatorio < minimo) {
-            minimo = aleatorio
-        }
-        sumatorio += aleatorio
+
         println("1. Ver maximos")
         println("2. Ver minimos")
         println("3. Ver sumatorio")
