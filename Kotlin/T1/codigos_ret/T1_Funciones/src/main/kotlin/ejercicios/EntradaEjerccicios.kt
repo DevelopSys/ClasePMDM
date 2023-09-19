@@ -1,0 +1,5 @@
+package ejercicios
+
+fun main() {
+
+}
