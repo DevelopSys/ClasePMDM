@@ -1,45 +1,41 @@
 package model
 
-open class Usuario(var nombre: String, var apellido: String) {
+abstract class Trabajador(var nombre: String, var apellido: String, var salario: Double) {
 
     /*
-    * TrabajadorAsalariado: numeroPagas, salario
-    *   - calcularSueldoNetoMes -> salario - 0.21 / meses
+    * Asalariado: numeroPagas, salario
+    *   - calcularSueldoNetoMes -> salario - 0.21 / numeroPagas
     *   - mostrarDatos -> overide
-    * TrabajadorAutonomo: cuotaSS, salario
+    * Autonomo: cuotaSS, salario
     *   - calcularSueldoNetoMes -> salario - (12*coutaSS) / meses
     *   - mostrarDatos -> overide
-    * Director: %beneficios, indiceResponsabilidad
+    * Director: %beneficios, indiceResponsabilidad, salario
     *   - mostrarDatos -> overide
+    *   - calcularSueldoNetoMes -> salario - 0.21 / meses
     * */
-
 
     // public Usuario(String nombre){
     // this.nombre = nombre
     // }
-    lateinit var correo: String
-
-    init {
-        println("Este es un bloque init")
-        this.correo = "correo_defecto"
-    }
-
+    var correo: String?=null;
     var pass: String? = null
     var telefono: Int? = null
 
-    constructor(nombre: String, apellido: String, pass: String, correo: String) : this(nombre, apellido) {
+    constructor(nombre: String, apellido: String, sueldo: Double, pass: String, correo: String) : this(nombre, apellido,sueldo) {
         this.pass = pass
         this.correo = correo
     }
-     constructor(nombre: String, apellido: String, pass: String, correo: String, telefono: Int): this(nombre, apellido){
+     constructor(nombre: String, apellido: String, sueldo: Double,pass: String, correo: String, telefono: Int): this(nombre, apellido, sueldo){
          this.pass = pass
          this.correo = correo
          this.telefono = telefono
      }
 
+    abstract fun calcularSueldoNetoMes()
     open fun mostrarDatos(): Unit {
         println("Nombre $nombre")
         println("Apellido $apellido")
+        println("Salario $salario")
         println("Telefono ${telefono ?: "sin datos"}")
         println("Pass ${pass ?: "sin datos"}")
         println("Correo ${correo ?: "sin datos"}")
