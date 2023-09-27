@@ -2,7 +2,7 @@ package model
 
 import data.Constantes
 
-class Asalariado(
+class Autonomo(
     dni: String,
     nombre: String,
     apellido: String,
@@ -10,16 +10,17 @@ class Asalariado(
     pass: String,
     correo: String,
     telefono: Int,
-    var numeroPagas: Int=12
+    var coutaSS: Int
 ) :
     Trabajador(dni,nombre, apellido, sueldo, pass, correo, telefono) {
     override fun calcularSueldoNetoMes() {
-        val salarioNeto = (salario - (salario * Constantes.RETENCION)) / numeroPagas
-        println("El salario neto mensual es de $salarioNeto")
+        var salarioMes = (salario - (coutaSS * Constantes.MESES)).toDouble()/Constantes.MESES
+        println("El salario del autonomo es: $salarioMes")
     }
 
     override fun mostrarDatos() {
         super.mostrarDatos()
-        println("Nº pagas $numeroPagas")
+        println("Coute SS: $coutaSS")
+
     }
 }

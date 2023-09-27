@@ -1,6 +1,6 @@
 package model
 
-abstract class Trabajador(var nombre: String, var apellido: String, var salario: Double) {
+abstract class Trabajador(var dni: String, var nombre: String, var apellido: String, var salario: Double) {
 
     /*
     * Asalariado: numeroPagas, salario
@@ -21,11 +21,11 @@ abstract class Trabajador(var nombre: String, var apellido: String, var salario:
     var pass: String? = null
     var telefono: Int? = null
 
-    constructor(nombre: String, apellido: String, sueldo: Double, pass: String, correo: String) : this(nombre, apellido,sueldo) {
+    constructor(dni: String, nombre: String, apellido: String, sueldo: Double, pass: String, correo: String) : this(dni, nombre, apellido,sueldo) {
         this.pass = pass
         this.correo = correo
     }
-     constructor(nombre: String, apellido: String, sueldo: Double,pass: String, correo: String, telefono: Int): this(nombre, apellido, sueldo){
+     constructor(dni: String,nombre: String, apellido: String, sueldo: Double,pass: String, correo: String, telefono: Int): this(dni,nombre, apellido, sueldo){
          this.pass = pass
          this.correo = correo
          this.telefono = telefono
