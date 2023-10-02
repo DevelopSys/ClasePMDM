@@ -1,7 +1,9 @@
 package model
 
-class Directivo: Accionista {
+class Directivo(dni: String, nombre: String, apellido: String) :
+    Accionista, Persona(dni, nombre, apellido) {
     override fun emitirVotacion(voto: Int): Double {
-        TODO("Not yet implemented")
+        println("Registrando voto del directivo por valor de $voto")
+        return voto * 0.75;
     }
 }

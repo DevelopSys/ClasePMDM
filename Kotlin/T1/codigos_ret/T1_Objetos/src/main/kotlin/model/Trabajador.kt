@@ -1,6 +1,7 @@
 package model
 
-abstract class Trabajador(var dni: String, var nombre: String, var apellido: String, var salario: Double) {
+abstract class Trabajador(dni: String, nombre: String, apellido: String, var salario: Double) :
+    Persona(dni, nombre, apellido) {
 
     /*
     * Asalariado: numeroPagas, salario
@@ -17,24 +18,37 @@ abstract class Trabajador(var dni: String, var nombre: String, var apellido: Str
     // public Usuario(String nombre){
     // this.nombre = nombre
     // }
-    var correo: String?=null;
+    var correo: String? = null;
     var pass: String? = null
     var telefono: Int? = null
 
-    constructor(dni: String, nombre: String, apellido: String, sueldo: Double, pass: String, correo: String) : this(dni, nombre, apellido,sueldo) {
+    constructor(dni: String, nombre: String, apellido: String, sueldo: Double, pass: String, correo: String) : this(
+        dni,
+        nombre,
+        apellido,
+        sueldo
+    ) {
         this.pass = pass
         this.correo = correo
     }
-     constructor(dni: String,nombre: String, apellido: String, sueldo: Double,pass: String, correo: String, telefono: Int): this(dni,nombre, apellido, sueldo){
-         this.pass = pass
-         this.correo = correo
-         this.telefono = telefono
-     }
+
+    constructor(
+        dni: String,
+        nombre: String,
+        apellido: String,
+        sueldo: Double,
+        pass: String,
+        correo: String,
+        telefono: Int
+    ) : this(dni, nombre, apellido, sueldo) {
+        this.pass = pass
+        this.correo = correo
+        this.telefono = telefono
+    }
 
     abstract fun calcularSueldoNetoMes()
-    open fun mostrarDatos(): Unit {
-        println("Nombre $nombre")
-        println("Apellido $apellido")
+    override fun mostrarDatos(): Unit {
+        super.mostrarDatos()
         println("Salario $salario")
         println("Telefono ${telefono ?: "sin datos"}")
         println("Pass ${pass ?: "sin datos"}")
