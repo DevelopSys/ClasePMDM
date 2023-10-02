@@ -27,12 +27,8 @@ class Empresa {
         } else {
             println("No se puede agregar")
         }
-
-
         // agregar un trabajador a la lista, siempre y cuando no exista
         // un trabajador con ese DNI ya agregado
-
-
     }
 
 
