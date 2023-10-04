@@ -64,14 +64,22 @@ fun main() {
 
                 var integrante: Alumno?;
                 var numeroIntegrantes = 0;
+                var opcionIntegrante: String = "";
                 do {
                     println("Intro dni del integrante")
                     dni = readln();
                     integrante = ciclo.getAlumno(dni)
                     if (integrante != null) {
                         numeroIntegrantes++
+                        println("Quieres add mas integrantes (S/N)")
+                        opcionIntegrante = readln();
+                        if (opcionIntegrante == "S") {
+                            integrante = null;
+                        }
                     }
-                } while (integrante == null || numeroIntegrantes == 3)
+
+                } while (numeroIntegrantes < 3 || integrante == null
+                )
 
 
 
