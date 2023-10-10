@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <
+    <dimen name="padding_general">20dp</dimen>
+    <dimen name="margin_elementos_form">20dp</dimen>
+    <dimen name="margin_form">30dp</dimen>
+    <dimen name="paddin_edit_drawable">10dp</dimen>
 </resources>

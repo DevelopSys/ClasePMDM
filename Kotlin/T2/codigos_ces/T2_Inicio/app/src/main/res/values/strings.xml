@@ -2,5 +2,9 @@
     <string name="app_name">T2_Inicio</string>
     <string name="hello_tag">Primera app android</string>
     <string name="text_pulsar">Pulsar</string>
-    <string name="text_superada">Perfecto, prueba superada</string>
+    <string name="text_superada">Perfecto</string>
+    <string name="text_superada_dos">¿quieres continuar?</string>
+    <string name="hint_edit_name">Por favor introeuce tu nombre</string>
+    <string name="hint_edit_phone">Por favor introeuce tu telefono</string>
+    <string name="text_vaciar">Vaciar</string>
 </resources>
