@@ -2,6 +2,8 @@
     <string name="app_name">T2 Estructura</string>
     <string name="texto_intro">Primera App Android</string>
     <string name="texto_pulsar">Pulsar</string>
+    <string name="texto_vaciar">Vaciar</string>
     <string name="texto_saludo">Perfecto, prueba superada</string>
     <string name="hint_edit_nombre">por favor introduce tu nombre</string>
+    <string name="hint_edit_telefono">por favor introduce tu telefono</string>
 </resources>
