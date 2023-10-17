@@ -14,13 +14,21 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
     private lateinit var textoContador: AppCompatTextView
+    private var contador: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        contador = savedInstanceState?.getInt("contador") ?:0
         instancias()
+        textoContador.text = contador.toString();
         acciones()
         Log.v("ciclo_vida", "ejecutando metodo onCreate")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("contador",contador)
     }
 
     private fun acciones() {
@@ -65,15 +73,22 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.boton_suma->{
+
+        // cuando llego a 15 pulsaciones
+            // aviso: "Limite alcanzado    Resetear"
+            // si le doy a resetear-> contador pasa a ser 0
+
+        when (v!!.id) {
+            R.id.boton_suma -> {
                 // incrementara contador
+                contador++;
             }
-            R.id.boton_resta->{
+            R.id.boton_resta -> {
                 // decrementara contador
+                contador--;
             }
         }
+
+        textoContador.text = contador.toString()
     }
-
-
 }

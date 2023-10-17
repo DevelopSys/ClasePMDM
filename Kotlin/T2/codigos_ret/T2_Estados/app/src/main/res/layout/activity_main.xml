@@ -13,8 +13,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.33"
         android:textSize="50sp"
-        android:id="@+id/texto_contador"
-        android:text="0" />
+        android:id="@+id/texto_contador" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
