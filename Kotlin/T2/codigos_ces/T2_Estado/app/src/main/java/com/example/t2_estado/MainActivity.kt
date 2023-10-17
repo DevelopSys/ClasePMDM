@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -19,7 +20,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        instacias()
+
+        contador = savedInstanceState?.getInt("contador") ?: 0;
+
+        instancias()
+        textoContador.setText(contador.toString())
         acciones()
         Log.v("ciclo_vida", "ejecutado metodo onCreate")
     }
@@ -27,10 +32,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private fun acciones() {
         botonDecremento.setOnClickListener(this)
         botonIncremento.setOnClickListener(this)
+        //application.applicationContext. si estoy land -->accion
     }
 
-    private fun instacias() {
-        contador = 0;
+    private fun instancias() {
         textoContador = findViewById(R.id.texto_contador)
         botonDecremento = findViewById(R.id.boton_resta)
         botonIncremento = findViewById(R.id.boton_suma)
@@ -63,18 +68,45 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when (p0!!.id) {
-            R.id.boton_suma -> {
-                Log.v("contador", "pulsado suma")
-                contador = contador!! + 1;
+
+        if (contador!! < 15) {
+            when (p0!!.id) {
+                R.id.boton_suma -> {
+                    Log.v("contador", "pulsado suma")
+                    contador = contador!! + 1;
+                }
+
+                R.id.boton_resta -> {
+                    Log.v("contador", "pulsado resta")
+                    contador = contador!! - 1;
+                }
             }
 
-            R.id.boton_resta -> {
-                Log.v("contador", "pulsado resta")
-                contador = contador!! - 1;
-            }
         }
 
-        textoContador.setText(contador.toString())
+        if (!comprobarLimite(p0!!)) {
+            textoContador.setText(contador.toString())
+        }
+    }
+
+    fun comprobarLimite(view: View): Boolean {
+        if (contador == 15) {
+
+            Snackbar.make(view, "Limite alcanzado", Snackbar.LENGTH_LONG)
+                .setAction("Resetear") {
+                    contador = 0
+                    textoContador.setText(contador!!.toString())
+                }
+                .show()
+
+            return true;
+        }
+
+        return false
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("contador", contador!!)
     }
 }
