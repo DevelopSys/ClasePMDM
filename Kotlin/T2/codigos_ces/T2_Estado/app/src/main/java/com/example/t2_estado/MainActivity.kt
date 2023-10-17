@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
     private lateinit var textoContador: AppCompatTextView
+    private var contador: Int? = null;
 
     // juntar parte grafica parte logica
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun instacias() {
+        contador = 0;
         textoContador = findViewById(R.id.texto_contador)
         botonDecremento = findViewById(R.id.boton_resta)
         botonIncremento = findViewById(R.id.boton_suma)
@@ -64,10 +66,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         when (p0!!.id) {
             R.id.boton_suma -> {
                 Log.v("contador", "pulsado suma")
+                contador = contador!! + 1;
             }
+
             R.id.boton_resta -> {
                 Log.v("contador", "pulsado resta")
+                contador = contador!! - 1;
             }
         }
+
+        textoContador.setText(contador.toString())
     }
 }
