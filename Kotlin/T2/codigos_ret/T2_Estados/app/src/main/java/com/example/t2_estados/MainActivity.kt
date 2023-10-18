@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
-    private  var botonCambio: AppCompatButton? = null
+    private var botonCambio: AppCompatButton? = null
     private lateinit var textoContador: AppCompatTextView
     private var contador: Int = 0;
 
@@ -90,10 +90,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         // aviso: "Limite alcanzado    Resetear"
         // si le doy a resetear-> contador pasa a ser 0
 
-        when(v!!.id){
-            R.id.boton_cambio->{
-                val intent = Intent(applicationContext,SecondActivity::class.java)
-                startActivity(intent)
+        when (v!!.id) {
+            R.id.boton_cambio -> {
+                val intent = Intent(applicationContext, SecondActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("contador", contador)
+                startActivity(intent,bundle)
             }
         }
 

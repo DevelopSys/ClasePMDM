@@ -5,13 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".SecondActivity">
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Segunda pantalla"
         android:textSize="50sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        tools:text="valor contador"
+        android:id="@+id/texto_contador_comunicado"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/imagen"
         />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
