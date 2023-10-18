@@ -8,6 +8,7 @@ import android.view.View.OnClickListener
 import android.widget.Button
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var botonDecremento: AppCompatButton
     private lateinit var textoContador: AppCompatTextView
     private var contador: Int = 0;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,19 +78,40 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         // cuando llego a 15 pulsaciones
             // aviso: "Limite alcanzado    Resetear"
-            // si le doy a resetear-> contador pasa a ser 0
+         // si le doy a resetear-> contador pasa a ser 0
 
-        when (v!!.id) {
-            R.id.boton_suma -> {
-                // incrementara contador
-                contador++;
+
+        if (contador<15){
+            when (v!!.id) {
+                R.id.boton_suma -> {
+                    // incrementara contador
+                    contador++;
+                }
+                R.id.boton_resta -> {
+                    // decrementara contador
+                    contador--;
+                }
             }
-            R.id.boton_resta -> {
-                // decrementara contador
-                contador--;
-            }
+            textoContador.text = contador.toString()
         }
 
-        textoContador.text = contador.toString()
+        comprobarEstado(v!!);
+
+    }
+
+    fun comprobarEstado(view: View): Boolean {
+
+        if (contador==15){
+            Snackbar.make(view,"Limite alcanzado",Snackbar.LENGTH_LONG)
+                .setAction("Resetear"){
+                    contador = 0
+                    textoContador.text = contador.toString()
+                }
+                .show()
+
+            return true
+        }
+
+        return false
     }
 }
