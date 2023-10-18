@@ -1,11 +1,16 @@
 package com.example.t2_estados
 
+import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.drawable.GradientDrawable.Orientation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.LayoutDirection
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.snackbar.Snackbar
@@ -14,6 +19,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
+    private  var botonCambio: AppCompatButton? = null
     private lateinit var textoContador: AppCompatTextView
     private var contador: Int = 0;
 
@@ -21,7 +27,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        contador = savedInstanceState?.getInt("contador") ?:0
+        contador = savedInstanceState?.getInt("contador") ?: 0
         instancias()
         textoContador.text = contador.toString();
         acciones()
@@ -30,18 +36,22 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("contador",contador)
+        outState.putInt("contador", contador)
     }
 
     private fun acciones() {
         botonIncremento.setOnClickListener(this)
         botonDecremento.setOnClickListener(this)
+        // cuando estoy en land
+        botonCambio?.setOnClickListener(this)
     }
 
     private fun instancias() {
         botonIncremento = findViewById(R.id.boton_suma)
         botonDecremento = findViewById(R.id.boton_resta)
         textoContador = findViewById(R.id.texto_contador)
+        // cuando estoy en land
+        botonCambio = findViewById(R.id.boton_cambio)
     }
 
     override fun onStart() {
@@ -77,16 +87,23 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onClick(v: View?) {
 
         // cuando llego a 15 pulsaciones
-            // aviso: "Limite alcanzado    Resetear"
-         // si le doy a resetear-> contador pasa a ser 0
+        // aviso: "Limite alcanzado    Resetear"
+        // si le doy a resetear-> contador pasa a ser 0
 
+        when(v!!.id){
+            R.id.boton_cambio->{
+                val intent = Intent(applicationContext,SecondActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
-        if (contador<15){
+        if (contador < 15) {
             when (v!!.id) {
                 R.id.boton_suma -> {
                     // incrementara contador
                     contador++;
                 }
+
                 R.id.boton_resta -> {
                     // decrementara contador
                     contador--;
@@ -101,9 +118,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     fun comprobarEstado(view: View): Boolean {
 
-        if (contador==15){
-            Snackbar.make(view,"Limite alcanzado",Snackbar.LENGTH_LONG)
-                .setAction("Resetear"){
+        if (contador == 15) {
+            Snackbar.make(view, resources.getString(R.string.limit), Snackbar.LENGTH_LONG)
+                .setAction(resources.getString(R.string.reset)) {
                     contador = 0
                     textoContador.text = contador.toString()
                 }

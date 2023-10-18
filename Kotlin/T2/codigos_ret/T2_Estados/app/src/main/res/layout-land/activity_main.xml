@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.33"
             android:textSize="50sp"
             android:text="+1"
             android:id="@+id/boton_suma"
@@ -26,10 +26,19 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.33"
             android:textSize="50sp"
             android:text="-1"
             android:id="@+id/boton_resta"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:textSize="50sp"
+            android:text="@string/change"
+            android:id="@+id/boton_cambio"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
