@@ -12,6 +12,7 @@ import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.snackbar.Snackbar
 
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
-    private var botonCambio: AppCompatButton? = null
+    private var botonCambio: AppCompatImageButton? = null
     private lateinit var textoContador: AppCompatTextView
     private var contador: Int = 0;
 
@@ -93,8 +94,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         when (v!!.id) {
             R.id.boton_cambio -> {
                 val intent = Intent(applicationContext, SecondActivity::class.java)
-                val bundle = Bundle()
-                bundle.putInt("contador", contador)
+                //val bundle = Bundle()
+                //bundle.putInt("contador", contador)
+                intent.putExtra("contador",contador)
                 startActivity(intent)
             }
         }

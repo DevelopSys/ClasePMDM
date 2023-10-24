@@ -32,23 +32,41 @@
             android:id="@+id/boton_resta"
             />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.33"
             android:textSize="50sp"
             android:text="@string/change"
             android:id="@+id/boton_cambio"
+            android:src="@drawable/fondo_boton"
+            android:background="@android:color/transparent"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:gravity="center"
+
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_weight="0.5"
-        android:layout_height="match_parent"
-        android:textSize="50sp"
-        android:text="2"
-        android:id="@+id/texto_contador" />
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/back"
+            android:scaleType="fitXY"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="50sp"
+            android:text="2"
+            android:id="@+id/texto_contador" />
+
+    </FrameLayout>
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>

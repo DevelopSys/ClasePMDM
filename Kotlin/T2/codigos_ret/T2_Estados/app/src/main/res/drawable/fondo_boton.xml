@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--dos imagenes-->
+    <!--cuando el estado es presionado-->
+    <item android:drawable="@drawable/boton" android:state_pressed="false"/>
+    <!--cuando el estado es no presionado-->
+    <item android:drawable="@drawable/boton_press" android:state_pressed="true"/>
+
+
+</selector>
