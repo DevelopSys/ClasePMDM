@@ -1,4 +1,4 @@
-package com.example.t2_estado
+package com.example.t2_estado.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import com.example.t2_estado.R
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
     private lateinit var textoContador: AppCompatTextView
+    private var botonAdicional: AppCompatButton? = null
+
     private var contador: Int? = null;
 
     // juntar parte grafica parte logica
@@ -32,10 +35,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private fun acciones() {
         botonDecremento.setOnClickListener(this)
         botonIncremento.setOnClickListener(this)
+        botonAdicional?.setOnClickListener(this)
         //application.applicationContext. si estoy land -->accion
     }
 
     private fun instancias() {
+        botonAdicional = findViewById(R.id.boton_adicional)
         textoContador = findViewById(R.id.texto_contador)
         botonDecremento = findViewById(R.id.boton_resta)
         botonIncremento = findViewById(R.id.boton_suma)
@@ -79,6 +84,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 R.id.boton_resta -> {
                     Log.v("contador", "pulsado resta")
                     contador = contador!! - 1;
+                }
+                R.id.boton_adicional -> {
+                    Log.v("contador", "pulsado resta")
+                    contador = 0
                 }
             }
 

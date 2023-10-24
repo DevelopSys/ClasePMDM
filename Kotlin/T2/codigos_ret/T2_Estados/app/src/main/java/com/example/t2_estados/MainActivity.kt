@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 val intent = Intent(applicationContext, SecondActivity::class.java)
                 val bundle = Bundle()
                 bundle.putInt("contador", contador)
-                startActivity(intent,bundle)
+                startActivity(intent)
             }
         }
 

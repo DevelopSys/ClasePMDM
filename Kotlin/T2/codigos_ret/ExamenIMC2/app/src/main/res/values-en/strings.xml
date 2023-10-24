@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ExamenIMC</string>
+    <string name="hint_altura">Introduce altura INGLES</string>
+    <string name="hint_peso">Introduce peso INGLES</string>
+    <string name="aviso_datos">Lo siento, faltan datos INGLES</string>
+    <string name="aviso_imc">Perfecto tu estado fisico es INGLES</string>
+</resources>
