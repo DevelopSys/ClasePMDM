@@ -32,13 +32,15 @@
             android:id="@+id/boton_resta"
             />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
             android:textSize="50sp"
             android:text="R"
             android:id="@+id/boton_adicional"
+            android:background="@drawable/fondo_boton"
+            android:scaleType="fitXY"
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

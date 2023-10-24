@@ -1,11 +1,13 @@
 package com.example.t2_estado.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.t2_estado.R
 import com.google.android.material.snackbar.Snackbar
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
     private lateinit var textoContador: AppCompatTextView
-    private var botonAdicional: AppCompatButton? = null
+    private var botonAdicional: AppCompatImageButton? = null
 
     private var contador: Int? = null;
 
@@ -87,7 +89,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 }
                 R.id.boton_adicional -> {
                     Log.v("contador", "pulsado resta")
-                    contador = 0
+                    //contador = 0
+                    val intent = Intent(applicationContext, SecondActivity::class.java)
+                    //intent.putExtra("contador",contador)
+                    startActivity(intent)
+
                 }
             }
 
