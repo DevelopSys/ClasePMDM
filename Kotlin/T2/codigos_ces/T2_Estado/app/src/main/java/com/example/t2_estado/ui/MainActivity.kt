@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
@@ -47,11 +48,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun instancias() {
+
+        Toast.makeText(applicationContext,"asdads",Toast.LENGTH_SHORT).show()
         botonAdicional=findViewById(R.id.boton_adicional)
         textoContador = findViewById(R.id.texto_contador)
         botonDecremento = findViewById(R.id.boton_resta)
         botonIncremento = findViewById(R.id.boton_suma)
         imagenFondo = findViewById(R.id.imagen_fondo)
+        
     }
 
     override fun onStart() {
