@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
@@ -16,8 +17,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var botonIncremento: AppCompatButton
     private lateinit var botonDecremento: AppCompatButton
+    private var botonImagen: AppCompatButton?=null
+    private var imagenFondo: ImageView?=null
     private lateinit var textoContador: AppCompatTextView
     private var botonAdicional: AppCompatImageButton? = null
+
 
     private var contador: Int? = null;
 
@@ -38,14 +42,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         botonDecremento.setOnClickListener(this)
         botonIncremento.setOnClickListener(this)
         botonAdicional?.setOnClickListener(this)
+        botonImagen?.setOnClickListener(this)
         //application.applicationContext. si estoy land -->accion
     }
 
     private fun instancias() {
-        botonAdicional = findViewById(R.id.boton_adicional)
+        botonAdicional=findViewById(R.id.boton_adicional)
         textoContador = findViewById(R.id.texto_contador)
         botonDecremento = findViewById(R.id.boton_resta)
         botonIncremento = findViewById(R.id.boton_suma)
+        imagenFondo = findViewById(R.id.imagen_fondo)
     }
 
     override fun onStart() {
@@ -81,6 +87,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 R.id.boton_suma -> {
                     Log.v("contador", "pulsado suma")
                     contador = contador!! + 1;
+                }
+
+                R.id.boton_imagen -> {
+                    imagenFondo?.setImageResource(R.drawable.fondo);
                 }
 
                 R.id.boton_resta -> {

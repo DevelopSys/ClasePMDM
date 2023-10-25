@@ -45,15 +45,48 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:gravity="center"
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_weight="0.5"
-        android:layout_height="match_parent"
-        android:textSize="50sp"
-        android:text="0"
-        android:id="@+id/texto_contador"/>
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/fondo"
+            android:scaleType="fitXY"
+            android:id="@+id/imagen_fondo"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:textSize="50sp"
+            android:text="0"
+            android:layout_gravity="center"
+            android:id="@+id/texto_contador"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_gravity="top|center_horizontal"
+            android:text="Cambiar"
+            android:id="@+id/boton_imagen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Modificar"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+
+
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
