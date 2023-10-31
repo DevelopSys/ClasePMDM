@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <ImageView
+        android:id="@+id/imagen_perfil"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:src="@drawable/profile"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/edit_nombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/imagen_perfil"
+        app:layout_constraintStart_toStartOf="@+id/imagen_perfil"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+
+    <EditText
+        android:id="@+id/edit_correo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_nombre"
+        app:layout_constraintStart_toStartOf="@+id/edit_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/edit_nombre" />
+
+    <EditText
+        android:id="@+id/edit_pass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_correo"
+        app:layout_constraintStart_toStartOf="@+id/edit_correo"
+        app:layout_constraintTop_toBottomOf="@+id/edit_correo" />
+
+    <Spinner
+        android:id="@+id/spinner_perfil"
+        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/edit_pass"
+        app:layout_constraintStart_toStartOf="@+id/edit_pass"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pass" />
+
+
+    <RadioGroup
+        android:gravity="center"
+        android:id="@+id/grupo_tipo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_perfil"
+        app:layout_constraintStart_toStartOf="@+id/spinner_perfil"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_perfil">
+
+        <RadioButton
+            android:id="@+id/radio_anual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="Anual" />
+
+        <RadioButton
+            android:id="@+id/radio_mensual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mensual" />
+
+    </RadioGroup>
+
+
+    <CheckBox
+        android:layout_marginTop="20dp"
+        android:id="@+id/check_recordad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recordad datos"
+        app:layout_constraintEnd_toEndOf="@+id/grupo_tipo"
+        app:layout_constraintTop_toBottomOf="@+id/grupo_tipo" />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/check_recordad"
+        app:layout_constraintStart_toStartOf="@+id/spinner_perfil"
+        app:layout_constraintTop_toBottomOf="@+id/check_recordad">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Limpiar"
+            android:id="@+id/boton_limpiar"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Registrar"
+            android:id="@+id/boton_registrar"
+            />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
