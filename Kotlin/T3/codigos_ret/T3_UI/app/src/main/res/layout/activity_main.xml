@@ -48,7 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_nombre" />
 
     <Spinner
-        android:entries="@array/perfiles"
         android:id="@+id/spinner_tipo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
