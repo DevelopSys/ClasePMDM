@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:padding="20dp"
     android:orientation="vertical"
     tools:context=".SecondActivity">
 
-    <TextView
-        android:id="@+id/texto_nombre"
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:src="@drawable/logout"
+        android:id="@+id/boton_salir"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        tools:text="Prueba" />
+        android:scaleType="fitCenter"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/texto_pass"
+        android:id="@+id/texto_nombre_usuario"
+        android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        tools:text="Prueba" />
+        app:layout_constraintBottom_toBottomOf="@+id/boton_salir"
+        app:layout_constraintEnd_toStartOf="@+id/boton_salir"
+        app:layout_constraintTop_toTopOf="@+id/boton_salir"
+        tools:text="Nombre usuario" />
 
-    <TextView
-        android:id="@+id/texto_tipo"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinner_marcas"
+        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        tools:text="Prueba" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boton_salir" />
 
-    <TextView
-        android:id="@+id/texto_periodo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        tools:text="Prueba" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
