@@ -21,6 +21,7 @@
 
     <TextView
         android:id="@+id/texto_nombre_usuario"
+        android:textSize="20sp"
         android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,6 +39,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boton_salir" />
 
+    <Spinner
+        android:id="@+id/spinner_modelos"
+        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_marcas" />
+    
+    <TextView
+        android:id="@+id/texto_valoracion"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        tools:text="4.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imagen_marca"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/mercedes"
+        app:layout_constraintBottom_toTopOf="@+id/texto_valoracion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_modelos" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
