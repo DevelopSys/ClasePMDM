@@ -7,12 +7,15 @@ import android.view.View.OnClickListener
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.RadioGroup.OnCheckedChangeListener
 import android.widget.Toast
 import com.example.t3_ui.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class MainActivity : AppCompatActivity(), OnClickListener{
 
 
     private lateinit var binding: ActivityMainBinding
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         setContentView(binding.root)
         binding.botonLimpiar.setOnClickListener(this)
         binding.botonRegistrar.setOnClickListener(this)
+        binding.checkRecordad.setOnCheckedChangeListener { _, isChecked ->  }
         binding.grupoTipo.setOnCheckedChangeListener { _, checkedId ->
             val seleccion = (this.findViewById<RadioButton>(checkedId)).text
             Snackbar.make(binding.root, seleccion, Snackbar.LENGTH_SHORT).show()
@@ -61,4 +65,5 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
         }
     }
+
 }
