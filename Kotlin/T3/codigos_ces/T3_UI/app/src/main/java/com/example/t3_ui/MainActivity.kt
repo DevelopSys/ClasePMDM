@@ -1,5 +1,6 @@
 package com.example.t3_ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import android.widget.RadioGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
 import android.widget.Toast
 import com.example.t3_ui.databinding.ActivityMainBinding
+import com.example.t3_ui.model.Usuario
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener{
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity(), OnClickListener{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var perfil: String;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +89,19 @@ class MainActivity : AppCompatActivity(), OnClickListener{
                     && !binding.editPass.text.isEmpty()
                     && (!perfil.equals("invitado") && binding.grupoTipo.checkedRadioButtonId>-1)
                 ){
+
+                    val intent = Intent(applicationContext,SecondActivity::class.java)
+                    val usuario = Usuario(
+                        nombre = binding.editNombre.text.toString(),
+                        recordar = binding.checkRecordad.isChecked,
+                        periodo = (findViewById<RadioButton>(binding.grupoTipo.checkedRadioButtonId))
+                            .text.toString(),
+                        perfil = binding.spinnerPerfil.selectedItem.toString(),
+                        pass = binding.editPass.text.toString(),
+                        correo =binding.editCorreo.text.toString(),
+                    )
+                    intent.putExtra("usuario",usuario)
+                    startActivity(intent)
 
                 } else {
                     Snackbar.make(binding.root, "Faltan datos por rellenar", Snackbar.LENGTH_SHORT).show()
