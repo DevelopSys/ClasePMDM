@@ -82,6 +82,18 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         when(parent?.id){
             binding.spinnerMarcas.id->{
                val marca = binding.spinnerMarcas.selectedItem as Marca
+                var lista: ArrayList<Modelo> = ArrayList();
+                if (marca.marca.equals("Mercedes")){
+                    lista.add(Modelo("C220","Mercedes",200,50000,"Deportivo",R.drawable.mercedes220))
+                    lista.add(Modelo("C Coupe","Mercedes",300,60000,"Deportivo",R.drawable.mercedesc))
+                } else if (marca.marca.equals("Audi")){
+                    lista.add(Modelo("Etron","Audi",300,70000,"Electrico",R.drawable.audietron))
+                    lista.add(Modelo("RS6","Audi",400,80000,"Deportivo",R.drawable.audirs6))
+                } else if (marca.marca.equals("Ford")){
+                    lista.add(Modelo("Etron","Audi",300,70000,"Electrico",R.drawable.audietron))
+                    lista.add(Modelo("RS6","Audi",400,80000,"Deportivo",R.drawable.audirs6))
+                }
+                adaptadorModelos.setLista(lista)
                 binding.logoMarca.setImageResource(marca.imagen)
                 binding.textoInfo.text = marca.valoracion.toString()
             }

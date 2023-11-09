@@ -33,6 +33,12 @@ class AdaptadorModelos(var listaModelos: ArrayList<Modelo>, var contexto: Contex
         notifyDataSetChanged()
     }
 
+    fun setLista(lista: ArrayList<Modelo>) {
+        listaModelos.clear()
+        listaModelos.addAll(lista)
+        notifyDataSetChanged()
+    }
+
     // rellenar la fila con los datos que le corresponden
     override fun getView(position: Int, convertView: View?,
                          parent: ViewGroup?): View {
