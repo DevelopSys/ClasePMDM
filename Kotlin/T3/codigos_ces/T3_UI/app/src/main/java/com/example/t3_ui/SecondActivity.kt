@@ -94,8 +94,6 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                     lista.add(Modelo("RS6","Audi",400,80000,"Deportivo",R.drawable.audirs6))
                 }
                 adaptadorModelos.setLista(lista)
-                binding.logoMarca.setImageResource(marca.imagen)
-                binding.textoInfo.text = marca.valoracion.toString()
             }
             binding.spinnerModelos.id->{
                 val modelo = binding.spinnerModelos.selectedItem as Modelo

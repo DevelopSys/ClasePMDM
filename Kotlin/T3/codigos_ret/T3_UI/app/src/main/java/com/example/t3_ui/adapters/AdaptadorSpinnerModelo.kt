@@ -28,6 +28,17 @@ class AdaptadorSpinnerModelo(var lista: ArrayList<Modelo>, var contexto: Context
         return position.toLong()
     }
 
+    fun addModelo(modelo: Modelo) {
+        lista.add(modelo)
+        notifyDataSetChanged()
+    }
+
+    // quitar los modelos anterios y poner los nuevos
+    fun cambiarListaModelos(listaNueva: ArrayList<Modelo>) {
+        lista.clear()
+        lista.addAll(listaNueva)
+        notifyDataSetChanged()
+    }
 
     // renderizar cada una de las filas (con los datos que le toquen)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?):
@@ -41,7 +52,7 @@ class AdaptadorSpinnerModelo(var lista: ArrayList<Modelo>, var contexto: Context
         val modelo = lista[position]
         val textoModelo = vista.findViewById<TextView>(R.id.texto_modelo)
         val imagenModelo = vista.findViewById<ImageView>(R.id.imagen_modelo)
-        textoModelo.text =  modelo.nombre
+        textoModelo.text = modelo.nombre
         imagenModelo.setImageResource(modelo.imagen)
 
         // relleno la vista

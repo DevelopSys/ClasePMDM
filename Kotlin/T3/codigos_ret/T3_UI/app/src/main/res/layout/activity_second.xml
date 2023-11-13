@@ -10,6 +10,16 @@
     tools:context=".SecondActivity">
 
     <ImageButton
+        android:id="@+id/boton_add"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/texto_nombre_usuario"
+        app:layout_constraintStart_toStartOf="@+id/spinner_marcas"
+        app:layout_constraintTop_toTopOf="@+id/texto_nombre_usuario" />
+
+    <ImageButton
         android:background="@android:color/transparent"
         android:src="@drawable/logout"
         android:id="@+id/boton_salir"
@@ -47,28 +57,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_marcas" />
-    
-    <TextView
-        android:id="@+id/texto_valoracion"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginBottom="20dp"
+        android:id="@+id/recycler_modelos"
+        android:layout_marginTop="20dp"
         android:layout_width="0dp"
-        android:gravity="center"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/boton_filtrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_modelos"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/boton_filtrar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        tools:text="4.6"
+        android:text="Filtrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/imagen_marca"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/mercedes"
-        app:layout_constraintBottom_toTopOf="@+id/texto_valoracion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_modelos" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,10 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.t3_ui.adapters.AdaptadorRecycler
 import com.example.t3_ui.adapters.AdaptadorSpinnerModelo
+import com.example.t3_ui.data.DataSet
 import com.example.t3_ui.databinding.ActivitySecondBinding
 import com.example.t3_ui.model.Marca
 import com.example.t3_ui.model.Modelo
@@ -18,12 +21,17 @@ import com.example.t3_ui.model.Usuario
 class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListener {
 
 
+        // cuando se cambie el spinner -> OnItemSelected
+        // filter
+        // adaptador
+
     private var usuario: Usuario? = null;
     // inicializo los textViews????
     private lateinit var binding: ActivitySecondBinding
     private lateinit var adaptadorMarcas: ArrayAdapter<Marca>
     private lateinit var listaMarcas: ArrayList<Marca>
-
+    private lateinit var adaptadorRecycler: AdaptadorRecycler
+    private lateinit var listaModelosRecycler: ArrayList<Modelo>
     private lateinit var adaptadorModelos: AdaptadorSpinnerModelo
     private lateinit var listaModelos: ArrayList<Modelo>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +49,9 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         listaModelos.add(Modelo("GT40", "Ford",100000,300,R.drawable.fordgt))
         listaModelos.add(Modelo("Mustang", "Ford",60000,250,R.drawable.fordmustang))
         adaptadorModelos = AdaptadorSpinnerModelo(listaModelos,applicationContext)
+
+        listaModelosRecycler = DataSet.obtenerListaCompleta();
+        adaptadorRecycler = AdaptadorRecycler(listaModelosRecycler)
     }
 
     override fun onStart() {
@@ -49,11 +60,14 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         binding.spinnerMarcas.adapter = adaptadorMarcas
         adaptadorMarcas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerModelos.adapter = adaptadorModelos
+        binding.recyclerModelos.adapter = adaptadorRecycler
+        binding.recyclerModelos.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
     }
     override fun onResume() {
         super.onResume()
         // acciones
         binding.botonSalir.setOnClickListener(this)
+        binding.botonAdd.setOnClickListener(this)
         // al cambiar de seleccion cambie imagen y valoracion
         binding.spinnerMarcas.onItemSelectedListener = this
         binding.spinnerModelos.onItemSelectedListener = this
@@ -61,6 +75,10 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
 
     override fun onClick(v: View?) {
         when(v?.id){
+            binding.botonAdd.id->{
+                // añadir un modelo nuevo al adaptador
+                adaptadorModelos.addModelo(Modelo("Ejemplo","Ejemplo",12,123,R.drawable.audirs6))
+            }
             binding.botonSalir.id->{
                 finish()
             }
@@ -74,13 +92,23 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                 // sacar la marca seleccinada y de ahi sacar imagen y la val
                 //binding.spinnerMarcas.selectedItem
 
-                val marca = parent.adapter.getItem(position) as Marca
-                binding.imagenMarca.setImageResource(marca.imagen)
-                binding.textoValoracion.text = marca.calificacion.toString()
+                // TODO 1. saber que marca tengo seleccionada
+                val marcaSeleccionada = parent.adapter.getItem(position) as Marca
+
+                // TODO 2. sacar los modelos de la marca del paso 1
+                val listaFiltrada: ArrayList<Modelo> = DataSet.obtenerListaCompleta()
+                    .filter { it.marca.equals(marcaSeleccionada.nombre,true) } as ArrayList<Modelo>
+
+
+                // TODO 3. cambiar los modelos del spinner a los obtenidos en el paso 2
+                adaptadorModelos.cambiarListaModelos(listaFiltrada)
+
+                // cambiar la lista del apadaptar de los modelos
+                //binding.imagenMarca.setImageResource(marca.imagen)
+                //binding.textoValoracion.text = marca.calificacion.toString()
             }
             binding.spinnerModelos.id->{
                 val modelo = parent.adapter.getItem(position) as Modelo
-                binding.imagenMarca.setImageResource(modelo.imagen)
             }
         }
     }
