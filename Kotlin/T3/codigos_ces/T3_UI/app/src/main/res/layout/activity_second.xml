@@ -49,26 +49,6 @@
         app:layout_constraintStart_toStartOf="@id/spinner_marcas"
         app:layout_constraintTop_toBottomOf="@+id/spinner_marcas" />
 
-    <TextView
-        android:id="@+id/texto_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/spinner_modelos"
-        app:layout_constraintStart_toStartOf="@+id/spinner_modelos"
-        tools:text="INFORMACION" />
-
-    <ImageView
-
-        android:id="@+id/logo_marca"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/mercedes"
-        app:layout_constraintBottom_toTopOf="@+id/texto_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_modelos" />
-
 
     <ImageButton
         android:background="@android:color/transparent"
@@ -79,5 +59,25 @@
         app:layout_constraintBottom_toBottomOf="@+id/imagen_logout"
         app:layout_constraintStart_toStartOf="@+id/spinner_marcas"
         app:layout_constraintTop_toTopOf="@+id/imagen_logout" />
+
+    <Button
+        android:id="@+id/boton_filtrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_modelos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/boton_filtrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_modelos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

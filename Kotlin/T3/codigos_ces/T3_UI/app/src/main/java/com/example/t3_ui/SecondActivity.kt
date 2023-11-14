@@ -2,16 +2,19 @@ package com.example.t3_ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import com.example.t3_ui.adapters.AdaptadorModelos
+import com.example.t3_ui.data.DataSet
 import com.example.t3_ui.databinding.ActivitySecondBinding
 import com.example.t3_ui.model.Marca
 import com.example.t3_ui.model.Modelo
 import com.example.t3_ui.model.Usuario
+import com.google.android.material.snackbar.Snackbar
 
 class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListener {
 
@@ -37,6 +40,11 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         listaModelos = ArrayList()
         adaptadorModelos = AdaptadorModelos(listaModelos,applicationContext)
 
+
+        binding.recyclerModelos
+
+
+
     }
 
     override fun onStart() {
@@ -55,6 +63,9 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         listaModelos.add(Modelo("GT40","Ford",300,100000,"Clasico", R.drawable.fordgt))
         listaModelos.add(Modelo("Mustang","Ford",400,50000,"Deportivo", R.drawable.fordmustang))
         binding.spinnerModelos.adapter = adaptadorModelos
+
+        DataSet.getListaModelos()
+
     }
 
     override fun onResume() {
@@ -84,6 +95,10 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                val marca = binding.spinnerMarcas.selectedItem as Marca
                 var lista: ArrayList<Modelo> = ArrayList();
                 if (marca.marca.equals("Mercedes")){
+
+                    // los modelos de mercedes
+                    //DataSet.getListaModelos().filter { it.marca.equals("mercedes",true) } as ArrayList<Modelo>
+
                     lista.add(Modelo("C220","Mercedes",200,50000,"Deportivo",R.drawable.mercedes220))
                     lista.add(Modelo("C Coupe","Mercedes",300,60000,"Deportivo",R.drawable.mercedesc))
                 } else if (marca.marca.equals("Audi")){
@@ -97,8 +112,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
             }
             binding.spinnerModelos.id->{
                 val modelo = binding.spinnerModelos.selectedItem as Modelo
-                binding.logoMarca.setImageResource(modelo.imagen)
-                binding.textoInfo.text = modelo.precio.toString()
+
             }
         }
     }
