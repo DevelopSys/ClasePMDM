@@ -8,7 +8,11 @@ import android.view.View.OnClickListener
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.Button
+import androidx.core.view.children
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.t3_ui.adapters.AdaptadorModelos
+import com.example.t3_ui.adapters.AdaptadorRecycler
 import com.example.t3_ui.data.DataSet
 import com.example.t3_ui.databinding.ActivitySecondBinding
 import com.example.t3_ui.model.Marca
@@ -25,6 +29,8 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
     private lateinit var listaModelos: ArrayList<Modelo>
     private lateinit var adaptadorMarcas: ArrayAdapter<Marca>
     private lateinit var adaptadorModelos: AdaptadorModelos
+    private lateinit var adaptadorRecycler: AdaptadorRecycler
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +42,9 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
 
         adaptadorMarcas = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item,
             listaMarcas)
-
         listaModelos = ArrayList()
         adaptadorModelos = AdaptadorModelos(listaModelos,applicationContext)
-
-
-        binding.recyclerModelos
-
-
-
+        adaptadorRecycler = AdaptadorRecycler(DataSet.getListaModelos(),applicationContext);
     }
 
     override fun onStart() {
@@ -64,7 +64,11 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         listaModelos.add(Modelo("Mustang","Ford",400,50000,"Deportivo", R.drawable.fordmustang))
         binding.spinnerModelos.adapter = adaptadorModelos
 
-        DataSet.getListaModelos()
+        binding.recyclerModelos.adapter = adaptadorRecycler
+        binding.recyclerModelos.layoutManager =
+            LinearLayoutManager(applicationContext,
+                LinearLayoutManager.VERTICAL
+            , false)
 
     }
 
@@ -95,10 +99,6 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                val marca = binding.spinnerMarcas.selectedItem as Marca
                 var lista: ArrayList<Modelo> = ArrayList();
                 if (marca.marca.equals("Mercedes")){
-
-                    // los modelos de mercedes
-                    //DataSet.getListaModelos().filter { it.marca.equals("mercedes",true) } as ArrayList<Modelo>
-
                     lista.add(Modelo("C220","Mercedes",200,50000,"Deportivo",R.drawable.mercedes220))
                     lista.add(Modelo("C Coupe","Mercedes",300,60000,"Deportivo",R.drawable.mercedesc))
                 } else if (marca.marca.equals("Audi")){
