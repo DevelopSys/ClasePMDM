@@ -1,12 +1,14 @@
 package com.example.t3_ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.t3_ui.R
@@ -55,6 +57,12 @@ class AdaptadorRecycler(
         holder.nombre.text = item.nombre
         holder.precio.text = item.precio.toString()
         holder.boton.setOnClickListener {
+
+
+            val intent: Intent = Intent();
+            contexto.startActivity(intent)
+
+
             Snackbar.make(
                 holder.boton, "El coche tiene ${item.cv}",
                 Snackbar.LENGTH_SHORT

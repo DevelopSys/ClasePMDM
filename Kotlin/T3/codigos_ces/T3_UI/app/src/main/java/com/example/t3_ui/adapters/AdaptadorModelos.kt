@@ -1,12 +1,14 @@
 package com.example.t3_ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.t3_ui.R
 import com.example.t3_ui.model.Modelo
 
@@ -55,6 +57,7 @@ class AdaptadorModelos(var listaModelos: ArrayList<Modelo>, var contexto: Contex
 
         imageView.setImageResource(modelo.imagen)
         nombreText.text = modelo.nombre
+
 
         return vista
 
