@@ -46,12 +46,12 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         adaptadorMarcas = ArrayAdapter(applicationContext,android.R.layout.simple_spinner_item,
             listaMarcas)
         listaModelos = ArrayList()
-        listaModelos.add(Modelo("GT40", "Ford",100000,300,R.drawable.fordgt))
-        listaModelos.add(Modelo("Mustang", "Ford",60000,250,R.drawable.fordmustang))
+        listaModelos.add(Modelo("GT40", Marca("Ford",4.0,R.drawable.ford),100000,300,R.drawable.fordgt))
+        listaModelos.add(Modelo("Mustang", Marca("Ford",4.0,R.drawable.ford),60000,250,R.drawable.fordmustang))
         adaptadorModelos = AdaptadorSpinnerModelo(listaModelos,applicationContext)
 
-        listaModelosRecycler = DataSet.obtenerListaCompleta();
-        adaptadorRecycler = AdaptadorRecycler(listaModelosRecycler)
+        listaModelosRecycler = DataSet.obtenerListaCompleta().filter { it.nombre.equals("gt40",true) } as ArrayList<Modelo>;
+        adaptadorRecycler = AdaptadorRecycler(listaModelosRecycler, applicationContext)
     }
 
     override fun onStart() {
@@ -77,7 +77,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         when(v?.id){
             binding.botonAdd.id->{
                 // añadir un modelo nuevo al adaptador
-                adaptadorModelos.addModelo(Modelo("Ejemplo","Ejemplo",12,123,R.drawable.audirs6))
+                adaptadorModelos.addModelo(Modelo("Ejemplo",Marca("Ford",4.0,R.drawable.ford),12,123,R.drawable.audirs6))
             }
             binding.botonSalir.id->{
                 finish()
@@ -97,7 +97,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
 
                 // TODO 2. sacar los modelos de la marca del paso 1
                 val listaFiltrada: ArrayList<Modelo> = DataSet.obtenerListaCompleta()
-                    .filter { it.marca.equals(marcaSeleccionada.nombre,true) } as ArrayList<Modelo>
+                    .filter { it.marca.equals(marcaSeleccionada.nombre) } as ArrayList<Modelo>
 
 
                 // TODO 3. cambiar los modelos del spinner a los obtenidos en el paso 2
@@ -108,7 +108,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                 //binding.textoValoracion.text = marca.calificacion.toString()
             }
             binding.spinnerModelos.id->{
-                val modelo = parent.adapter.getItem(position) as Modelo
+                //val modelo = parent.adapter.getItem(position) as Modelo
             }
         }
     }

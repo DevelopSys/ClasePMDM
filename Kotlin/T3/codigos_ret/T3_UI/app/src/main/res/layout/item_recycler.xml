@@ -41,7 +41,7 @@
     <Button
         android:layout_marginTop="10dp"
         android:id="@+id/boton_detalles"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ver detalle"
         app:layout_constraintEnd_toEndOf="parent"

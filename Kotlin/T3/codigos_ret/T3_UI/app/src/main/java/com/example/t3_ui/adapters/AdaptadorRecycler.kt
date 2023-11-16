@@ -1,5 +1,7 @@
 package com.example.t3_ui.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +9,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.t3_ui.DetailActivity
+import com.example.t3_ui.MainActivity
 import com.example.t3_ui.R
 import com.example.t3_ui.model.Modelo
 import com.google.android.material.snackbar.Snackbar
 
-class AdaptadorRecycler(var lista: ArrayList<Modelo>) :
+class AdaptadorRecycler(var lista: ArrayList<Modelo>, var contexto: Context) :
     RecyclerView.Adapter<AdaptadorRecycler.MyHolder>() {
 
     class MyHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -39,15 +43,29 @@ class AdaptadorRecycler(var lista: ArrayList<Modelo>) :
 
     // asocia elementos en una posicion al patron que le pasa el metodo
     // anterior
-    override fun onBindViewHolder(holder: MyHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyHolder,
+                                  position: Int) {
 
         val item = lista[position]
         holder.imagen.setImageResource(item.imagen)
+        holder.imagen.setOnLongClickListener {
+            lista.remove(item)
+            //notifyDataSetChanged()
+            return@setOnLongClickListener true
+        }
         holder.nombreModelo.text = item.nombre
+        holder.nombreModelo.setOnClickListener {
+            notifyItemMoved(position, position-1)
+        }
         holder.valoracionModelo.text = item.valoracion.toString()
         holder.boton.setOnClickListener {
-            Snackbar.make(holder.boton, item.marca, Snackbar.LENGTH_SHORT).show()
+            //Snackbar.make(holder.boton, item.marca, Snackbar.LENGTH_SHORT).show()
+            val intent = Intent(contexto, DetailActivity::class.java)
+            intent.putExtra("modelo",item)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            contexto.startActivity(intent)
         }
+
 
     }
 
