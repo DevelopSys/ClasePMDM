@@ -20,7 +20,8 @@ import com.example.t3_ui.model.Modelo
 import com.example.t3_ui.model.Usuario
 import com.google.android.material.snackbar.Snackbar
 
-class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListener {
+class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListener,
+    AdaptadorRecycler.OnModeloListener {
 
 
     private lateinit var binding: ActivitySecondBinding
@@ -30,6 +31,8 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
     private lateinit var adaptadorMarcas: ArrayAdapter<Marca>
     private lateinit var adaptadorModelos: AdaptadorModelos
     private lateinit var adaptadorRecycler: AdaptadorRecycler
+    private var modelo1: Modelo? = null;
+    private var modelo2: Modelo? = null;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,35 +43,56 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         usuario = intent.extras?.getSerializable("usuario") as Usuario
         listaMarcas = ArrayList();
 
-        adaptadorMarcas = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item,
-            listaMarcas)
+        adaptadorMarcas = ArrayAdapter(
+            applicationContext, android.R.layout.simple_spinner_item,
+            listaMarcas
+        )
         listaModelos = ArrayList()
-        adaptadorModelos = AdaptadorModelos(listaModelos,applicationContext)
-        adaptadorRecycler = AdaptadorRecycler(DataSet.getListaModelos(),applicationContext);
+        adaptadorModelos = AdaptadorModelos(listaModelos, applicationContext)
+        adaptadorRecycler = AdaptadorRecycler(DataSet.getListaModelos(), this);
     }
 
     override fun onStart() {
         super.onStart()
         // cambios graficos
         // poner el correo en su sitio
-        listaMarcas.add(Marca("Mercedes",4.9,R.drawable.mercedes))
-        listaMarcas.add(Marca("Audi",4.9,R.drawable.audi))
-        listaMarcas.add(Marca("Ford",4.9,R.drawable.ford))
+        listaMarcas.add(Marca("Mercedes", 4.9, R.drawable.mercedes))
+        listaMarcas.add(Marca("Audi", 4.9, R.drawable.audi))
+        listaMarcas.add(Marca("Ford", 4.9, R.drawable.ford))
 
         binding.spinnerMarcas.adapter = adaptadorMarcas
         adaptadorMarcas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.nombreUsuario.text = usuario?.correo ?: "Invitado"
 
 
-        listaModelos.add(Modelo("GT40","Ford",300,100000,"Clasico", R.drawable.fordgt))
-        listaModelos.add(Modelo("Mustang","Ford",400,50000,"Deportivo", R.drawable.fordmustang))
+        listaModelos.add(
+            Modelo(
+                "GT40",
+                Marca("Ford", 4.0, R.drawable.ford),
+                300,
+                100000,
+                "Clasico",
+                R.drawable.fordgt
+            )
+        )
+        listaModelos.add(
+            Modelo(
+                "Mustang",
+                Marca("Ford", 4.0, R.drawable.ford),
+                400,
+                50000,
+                "Deportivo",
+                R.drawable.fordmustang
+            )
+        )
         binding.spinnerModelos.adapter = adaptadorModelos
 
         binding.recyclerModelos.adapter = adaptadorRecycler
         binding.recyclerModelos.layoutManager =
-            LinearLayoutManager(applicationContext,
-                LinearLayoutManager.VERTICAL
-            , false)
+            LinearLayoutManager(
+                applicationContext,
+                LinearLayoutManager.VERTICAL, false
+            )
 
     }
 
@@ -82,35 +106,100 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            binding.imagenLogout.id ->{
-               finish()
+        when (v?.id) {
+            binding.imagenLogout.id -> {
+                finish()
             }
-            binding.botonAdd.id ->{
+
+            binding.botonAdd.id -> {
                 // añadir un modelo -> adaptador
-                adaptadorModelos.addModelo(Modelo("E-tron", "Mercedes",400,150000,"Electrico", R.drawable.audietron))
+                adaptadorModelos.addModelo(
+                    Modelo(
+                        "E-tron",
+                        Marca("Audi", 4.0, R.drawable.audi),
+                        400,
+                        150000,
+                        "Electrico",
+                        R.drawable.audietron
+                    )
+                )
             }
         }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        when(parent?.id){
-            binding.spinnerMarcas.id->{
-               val marca = binding.spinnerMarcas.selectedItem as Marca
+        when (parent?.id) {
+            binding.spinnerMarcas.id -> {
+                val marca = binding.spinnerMarcas.selectedItem as Marca
                 var lista: ArrayList<Modelo> = ArrayList();
-                if (marca.marca.equals("Mercedes")){
-                    lista.add(Modelo("C220","Mercedes",200,50000,"Deportivo",R.drawable.mercedes220))
-                    lista.add(Modelo("C Coupe","Mercedes",300,60000,"Deportivo",R.drawable.mercedesc))
-                } else if (marca.marca.equals("Audi")){
-                    lista.add(Modelo("Etron","Audi",300,70000,"Electrico",R.drawable.audietron))
-                    lista.add(Modelo("RS6","Audi",400,80000,"Deportivo",R.drawable.audirs6))
-                } else if (marca.marca.equals("Ford")){
-                    lista.add(Modelo("Etron","Audi",300,70000,"Electrico",R.drawable.audietron))
-                    lista.add(Modelo("RS6","Audi",400,80000,"Deportivo",R.drawable.audirs6))
+                if (marca.marca.equals("Mercedes")) {
+                    lista.add(
+                        Modelo(
+                            "C220",
+                            Marca("Audi", 4.0, R.drawable.audi),
+                            200,
+                            50000,
+                            "Deportivo",
+                            R.drawable.mercedes220
+                        )
+                    )
+                    lista.add(
+                        Modelo(
+                            "C Coupe",
+                            Marca("Audi", 4.0, R.drawable.audi),
+                            300,
+                            60000,
+                            "Deportivo",
+                            R.drawable.mercedesc
+                        )
+                    )
+                } else if (marca.marca.equals("Audi")) {
+                    lista.add(
+                        Modelo(
+                            "Etron",
+                            Marca("Audi", 4.0, R.drawable.audi),
+                            300,
+                            70000,
+                            "Electrico",
+                            R.drawable.audietron
+                        )
+                    )
+                    lista.add(
+                        Modelo(
+                            "RS6",
+                            Marca("Audi", 4.0, R.drawable.audi),
+                            400,
+                            80000,
+                            "Deportivo",
+                            R.drawable.audirs6
+                        )
+                    )
+                } else if (marca.marca.equals("Ford")) {
+                    lista.add(
+                        Modelo(
+                            "Etron",
+                            Marca("Audi", 4.0, R.drawable.audi),
+                            300,
+                            70000,
+                            "Electrico",
+                            R.drawable.audietron
+                        )
+                    )
+                    lista.add(
+                        Modelo(
+                            "RS6",
+                            Marca("Audi", 4.0, R.drawable.audi),
+                            400,
+                             80000,
+                            "Deportivo",
+                            R.drawable.audirs6
+                        )
+                    )
                 }
                 adaptadorModelos.setLista(lista)
             }
-            binding.spinnerModelos.id->{
+
+            binding.spinnerModelos.id -> {
                 val modelo = binding.spinnerModelos.selectedItem as Modelo
 
             }
@@ -119,5 +208,22 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         parent?.adapter?.getItem(binding.spinnerModelos.selectedItemPosition)
+    }
+
+    override fun onModeloSelected(modelo: Modelo) {
+
+        if (modelo1==null){
+            binding.imagenComparar1.setImageResource((modelo.imagen))
+            modelo1 = modelo
+        }
+        else if (modelo1 != null && modelo2 == null) {
+            binding.imagenComparar2.setImageResource((modelo.imagen))
+            modelo2 = modelo
+        } else {
+            modelo1 = modelo2
+            binding.imagenComparar1.setImageResource((modelo1!!.imagen))
+            modelo2 = modelo
+            binding.imagenComparar2.setImageResource((modelo.imagen))
+        }
     }
 }

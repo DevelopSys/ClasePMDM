@@ -15,20 +15,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/boton_detalle"
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ver detalle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/imagen_modelo" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/boton_detalle"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Detalle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imagen_modelo" />
+        <Button
+            android:id="@+id/boton_comparar"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:text="Comparar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imagen_modelo" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/nombre_modelo"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imagen_modelo"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:id="@+id/precio_modelo"
-        app:layout_constraintBottom_toTopOf="@+id/boton_detalle"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imagen_modelo"
         tools:text="Precio" />

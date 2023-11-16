@@ -9,8 +9,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.ContentInfoCompat.Flags
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.t3_ui.DetailActivity
 import com.example.t3_ui.R
 import com.example.t3_ui.model.Modelo
 import com.google.android.material.snackbar.Snackbar
@@ -20,18 +22,28 @@ class AdaptadorRecycler(
     var contexto: Context
 ) : RecyclerView.Adapter<AdaptadorRecycler.MyHolder>() {
 
+    private lateinit var listener: OnModeloListener
+
+
+    init {
+        listener = contexto as OnModeloListener
+    }
+
     class MyHolder(item: View) : ViewHolder(item) {
         // elementos
         var imagen: ImageView
         var nombre: TextView
         var precio: TextView
-        var boton: Button
+        var botonDetalle: Button
+        var botonComparar: Button
 
         init {
             imagen = item.findViewById(R.id.imagen_modelo)
             nombre = item.findViewById(R.id.nombre_modelo)
             precio = item.findViewById(R.id.precio_modelo)
-            boton = item.findViewById(R.id.boton_detalle)
+            botonDetalle = item.findViewById(R.id.boton_detalle)
+            botonComparar = item.findViewById(R.id.boton_comparar)
+
         }
     }
 
@@ -56,24 +68,37 @@ class AdaptadorRecycler(
         holder.imagen.setImageResource(item.imagen)
         holder.nombre.text = item.nombre
         holder.precio.text = item.precio.toString()
-        holder.boton.setOnClickListener {
+        holder.botonDetalle.setOnClickListener {
 
 
-            val intent: Intent = Intent();
+            val intent: Intent = Intent(contexto, DetailActivity::class.java);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("modelo",item)
             contexto.startActivity(intent)
 
 
-            Snackbar.make(
+            /*Snackbar.make(
                 holder.boton, "El coche tiene ${item.cv}",
                 Snackbar.LENGTH_SHORT
-            ).show()
+            ).show()*/
         }
         holder.imagen.setOnLongClickListener {
+            notifyItemRemoved(position)
             lista.removeAt(position)
-            //notifyItemRemoved()
-            notifyDataSetChanged()
+            //notifyDataSetChanged()
 
             return@setOnLongClickListener true
         }
+        holder.botonComparar.setOnClickListener {
+            listener.onModeloSelected(item)
+        }
     }
+
+
+    interface OnModeloListener{
+
+        fun onModeloSelected(modelo: Modelo)
+
+    }
+
 }
