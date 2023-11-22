@@ -29,11 +29,20 @@
 
             <TextView
                 android:id="@+id/nombre_producto"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_marginLeft="20dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="NOMBRE"
                 android:textSize="20dp"
+                />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/boton_comprar"
+                android:src="@android:drawable/ic_input_add"
+                android:background="@android:color/transparent"
                 />
         </LinearLayout>
 
