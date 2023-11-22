@@ -10,6 +10,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SnapHelper
 import com.example.t3_ui.adapters.AdaptadorRecycler
 import com.example.t3_ui.adapters.AdaptadorSpinnerModelo
 import com.example.t3_ui.data.DataSet
@@ -17,15 +18,17 @@ import com.example.t3_ui.databinding.ActivitySecondBinding
 import com.example.t3_ui.model.Marca
 import com.example.t3_ui.model.Modelo
 import com.example.t3_ui.model.Usuario
+import com.google.android.material.snackbar.Snackbar
 
-class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListener {
+class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListener,
+    AdaptadorRecycler.OnRecyclerModeloListener {
 
-
-        // cuando se cambie el spinner -> OnItemSelected
-        // filter
-        // adaptador
+    // cuando se cambie el spinner -> OnItemSelected
+    // filter
+    // adaptador
 
     private var usuario: Usuario? = null;
+
     // inicializo los textViews????
     private lateinit var binding: ActivitySecondBinding
     private lateinit var adaptadorMarcas: ArrayAdapter<Marca>
@@ -38,20 +41,39 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        usuario = intent.extras?.getSerializable("objeto" ) as Usuario?
+        usuario = intent.extras?.getSerializable("objeto") as Usuario?
         listaMarcas = ArrayList();
-        listaMarcas.add(Marca("Mercedes",4.5,R.drawable.mercedes))
-        listaMarcas.add(Marca("Audi",4.3,R.drawable.audi))
-        listaMarcas.add(Marca("Ford",4.1,R.drawable.ford))
-        adaptadorMarcas = ArrayAdapter(applicationContext,android.R.layout.simple_spinner_item,
-            listaMarcas)
+        listaMarcas.add(Marca("Mercedes", 4.5, R.drawable.mercedes))
+        listaMarcas.add(Marca("Audi", 4.3, R.drawable.audi))
+        listaMarcas.add(Marca("Ford", 4.1, R.drawable.ford))
+        adaptadorMarcas = ArrayAdapter(
+            applicationContext, android.R.layout.simple_spinner_item,
+            listaMarcas
+        )
         listaModelos = ArrayList()
-        listaModelos.add(Modelo("GT40", Marca("Ford",4.0,R.drawable.ford),100000,300,R.drawable.fordgt))
-        listaModelos.add(Modelo("Mustang", Marca("Ford",4.0,R.drawable.ford),60000,250,R.drawable.fordmustang))
-        adaptadorModelos = AdaptadorSpinnerModelo(listaModelos,applicationContext)
+        listaModelos.add(
+            Modelo(
+                "GT40",
+                Marca("Ford", 4.0, R.drawable.ford),
+                100000,
+                300,
+                R.drawable.fordgt
+            )
+        )
+        listaModelos.add(
+            Modelo(
+                "Mustang",
+                Marca("Ford", 4.0, R.drawable.ford),
+                60000,
+                250,
+                R.drawable.fordmustang
+            )
+        )
+        adaptadorModelos = AdaptadorSpinnerModelo(listaModelos, applicationContext)
 
-        listaModelosRecycler = DataSet.obtenerListaCompleta().filter { it.nombre.equals("gt40",true) } as ArrayList<Modelo>;
-        adaptadorRecycler = AdaptadorRecycler(listaModelosRecycler, applicationContext)
+        listaModelosRecycler = DataSet.obtenerListaCompleta()
+            .filter { it.nombre.equals("gt40", true) } as ArrayList<Modelo>;
+        adaptadorRecycler = AdaptadorRecycler(listaModelosRecycler, this)
     }
 
     override fun onStart() {
@@ -61,8 +83,10 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         adaptadorMarcas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerModelos.adapter = adaptadorModelos
         binding.recyclerModelos.adapter = adaptadorRecycler
-        binding.recyclerModelos.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
+        binding.recyclerModelos.layoutManager =
+            LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
     }
+
     override fun onResume() {
         super.onResume()
         // acciones
@@ -74,21 +98,30 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            binding.botonAdd.id->{
+        when (v?.id) {
+            binding.botonAdd.id -> {
                 // añadir un modelo nuevo al adaptador
-                adaptadorModelos.addModelo(Modelo("Ejemplo",Marca("Ford",4.0,R.drawable.ford),12,123,R.drawable.audirs6))
+                adaptadorModelos.addModelo(
+                    Modelo(
+                        "Ejemplo",
+                        Marca("Ford", 4.0, R.drawable.ford),
+                        12,
+                        123,
+                        R.drawable.audirs6
+                    )
+                )
             }
-            binding.botonSalir.id->{
+
+            binding.botonSalir.id -> {
                 finish()
             }
         }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-       // quien ha generado el evento when(parent.id)
-        when(parent?.id){
-            binding.spinnerMarcas.id->{
+        // quien ha generado el evento when(parent.id)
+        when (parent?.id) {
+            binding.spinnerMarcas.id -> {
                 // sacar la marca seleccinada y de ahi sacar imagen y la val
                 //binding.spinnerMarcas.selectedItem
 
@@ -107,7 +140,8 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                 //binding.imagenMarca.setImageResource(marca.imagen)
                 //binding.textoValoracion.text = marca.calificacion.toString()
             }
-            binding.spinnerModelos.id->{
+
+            binding.spinnerModelos.id -> {
                 //val modelo = parent.adapter.getItem(position) as Modelo
             }
         }
@@ -115,6 +149,13 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
 
+    }
+
+    override fun onModeloSelected(modelo: Modelo) {
+        Snackbar.make(
+            binding.root,
+            "Los datos han llegado ${modelo.nombre}", Snackbar.LENGTH_SHORT
+        ).show()
     }
 
 

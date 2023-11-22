@@ -38,15 +38,29 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         tools:text="VALORACION" />
 
-    <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/boton_detalles"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ver detalle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagen_modelo" />
+        app:layout_constraintTop_toBottomOf="@+id/imagen_modelo">
+
+        <Button
+            android:id="@+id/boton_detalles"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Ver detalle"/>
+
+        <Button
+            android:id="@+id/boton_comparar"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Comparar"/>
+
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

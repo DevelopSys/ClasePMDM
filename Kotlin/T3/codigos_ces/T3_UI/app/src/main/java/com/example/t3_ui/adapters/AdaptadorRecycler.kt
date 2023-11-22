@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ContentInfoCompat.Flags
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.example.t3_ui.DetailActivity
 import com.example.t3_ui.R
 import com.example.t3_ui.model.Modelo
@@ -65,7 +66,8 @@ class AdaptadorRecycler(
     // juntar el patron con los datos
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val item: Modelo = lista[position]
-        holder.imagen.setImageResource(item.imagen)
+        //holder.imagen.setImageResource(item.imagen)
+        Glide.with(contexto).load(item.imagenURL).placeholder(R.drawable.generico).into(holder.imagen)
         holder.nombre.text = item.nombre
         holder.precio.text = item.precio.toString()
         holder.botonDetalle.setOnClickListener {

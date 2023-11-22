@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.t3_ui'
+    namespace 'com.example.t3_listaproductos'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.t3_ui"
+        applicationId "com.example.t3_listaproductos"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -32,7 +32,7 @@ android {
     }
 
     viewBinding{
-        enable = true
+        enabled = true
     }
 }
 

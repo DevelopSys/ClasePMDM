@@ -40,6 +40,13 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // instancias
+        modelo1 = savedInstanceState?.getSerializable("modelo1") as Modelo?
+        modelo2 = savedInstanceState?.getSerializable("modelo2") as Modelo?
+
+        modelo1?.let { binding.imagenComparar1.setImageResource(it.imagen) }
+        modelo2?.let { binding.imagenComparar2.setImageResource(it.imagen) }
+
+
         usuario = intent.extras?.getSerializable("usuario") as Usuario
         listaMarcas = ArrayList();
 
@@ -72,7 +79,8 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                 300,
                 100000,
                 "Clasico",
-                R.drawable.fordgt
+                R.drawable.fordgt,
+                "https://cdn.motor1.com/images/mgl/BzERe/s3/ford-gt40-p-1075-toolroom-copy.jpg"
             )
         )
         listaModelos.add(
@@ -82,7 +90,8 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                 400,
                 50000,
                 "Deportivo",
-                R.drawable.fordmustang
+                R.drawable.fordmustang,
+                "https://s03.s3c.es/imag/_v0/770x420/1/d/8/MUSTANG-GRANDE.jpg"
             )
         )
         binding.spinnerModelos.adapter = adaptadorModelos
@@ -113,16 +122,15 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
 
             binding.botonAdd.id -> {
                 // añadir un modelo -> adaptador
-                adaptadorModelos.addModelo(
-                    Modelo(
-                        "E-tron",
-                        Marca("Audi", 4.0, R.drawable.audi),
-                        400,
-                        150000,
-                        "Electrico",
-                        R.drawable.audietron
-                    )
-                )
+                // sacar un snackbar inciadno que modelo es mas caro
+                lateinit var modeloCaro: Modelo
+                if (modelo1!!.precio > modelo2!!.precio){
+                    modeloCaro = modelo1!!
+                }else if (modelo1!!.precio < modelo2!!.precio){
+                    modeloCaro = modelo2!!
+                }
+                Snackbar.make(binding.root, "El modelo mas caro es ${modeloCaro.nombre}",
+                    Snackbar.LENGTH_SHORT).show()
             }
         }
     }
@@ -140,7 +148,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                             200,
                             50000,
                             "Deportivo",
-                            R.drawable.mercedes220
+                            R.drawable.mercedes220,""
                         )
                     )
                     lista.add(
@@ -150,7 +158,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                             300,
                             60000,
                             "Deportivo",
-                            R.drawable.mercedesc
+                            R.drawable.mercedesc,""
                         )
                     )
                 } else if (marca.marca.equals("Audi")) {
@@ -161,7 +169,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                             300,
                             70000,
                             "Electrico",
-                            R.drawable.audietron
+                            R.drawable.audietron,""
                         )
                     )
                     lista.add(
@@ -171,7 +179,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                             400,
                             80000,
                             "Deportivo",
-                            R.drawable.audirs6
+                            R.drawable.audirs6,""
                         )
                     )
                 } else if (marca.marca.equals("Ford")) {
@@ -182,7 +190,7 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                             300,
                             70000,
                             "Electrico",
-                            R.drawable.audietron
+                            R.drawable.audietron,""
                         )
                     )
                     lista.add(
@@ -190,9 +198,9 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
                             "RS6",
                             Marca("Audi", 4.0, R.drawable.audi),
                             400,
-                             80000,
+                            80000,
                             "Deportivo",
-                            R.drawable.audirs6
+                            R.drawable.audirs6,""
                         )
                     )
                 }
@@ -212,11 +220,10 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
 
     override fun onModeloSelected(modelo: Modelo) {
 
-        if (modelo1==null){
+        if (modelo1 == null) {
             binding.imagenComparar1.setImageResource((modelo.imagen))
             modelo1 = modelo
-        }
-        else if (modelo1 != null && modelo2 == null) {
+        } else if (modelo1 != null && modelo2 == null) {
             binding.imagenComparar2.setImageResource((modelo.imagen))
             modelo2 = modelo
         } else {
@@ -225,5 +232,11 @@ class SecondActivity : AppCompatActivity(), OnClickListener, OnItemSelectedListe
             modelo2 = modelo
             binding.imagenComparar2.setImageResource((modelo.imagen))
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("modelo1",modelo1)
+        outState.putSerializable("modelo2",modelo2)
     }
 }

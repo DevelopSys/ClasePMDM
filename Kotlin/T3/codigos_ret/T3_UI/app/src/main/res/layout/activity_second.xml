@@ -59,25 +59,41 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner_marcas" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/recycler_modelos"
-        android:layout_marginTop="20dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/boton_filtrar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_modelos"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linear_comparacion"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_modelos" />
 
-    <Button
-        android:id="@+id/boton_filtrar"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/linear_comparacion"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Filtrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="75dp"
+            android:id="@+id/imagen_comparar1"
+            />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="75dp"
+            android:id="@+id/imagen_comparar2"
+            />
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
