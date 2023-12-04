@@ -87,6 +87,12 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
         when (item.itemId) {
             R.id.menu_reset -> {
                 // resetea la peticion ->
+                /*numeroSeleccionado=50
+                generoSeleccionado="All"
+                val url = "https://randomuser.me/api/?gender=${generoSeleccionado.toLowerCase()}&results=${numeroSeleccionado}"
+                addPetion(url)*/
+                binding.spinnerGenero.setSelection(0)
+                binding.spinnerResultados.setSelection(49)
             }
             R.id.menu_filtros -> {}
         }
@@ -131,8 +137,6 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
         when (parent!!.id) {
             binding.spinnerResultados.id -> {
                 numeroSeleccionado = parent.adapter.getItem(position).toString().toInt()
-
-
             }
 
             binding.spinnerGenero.id -> {
