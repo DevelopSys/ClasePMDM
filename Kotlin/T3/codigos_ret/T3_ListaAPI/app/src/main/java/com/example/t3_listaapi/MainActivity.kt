@@ -3,10 +3,14 @@ package com.example.t3_listaapi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request.Method
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
+import com.example.t3_listaapi.adapter.UsuariosAdapter
+import com.example.t3_listaapi.databinding.ActivityMainBinding
 import com.example.t3_listaapi.model.Direccion
 import com.example.t3_listaapi.model.Usuario
 import org.json.JSONArray
@@ -15,10 +19,18 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
 
     private lateinit var listaUsuario: ArrayList<Usuario>;
+    private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         listaUsuario = ArrayList();
+        adaptadoUsuariosAdapter = UsuariosAdapter(listaUsuario,this)
+        binding.recyclerUsuarios.adapter = adaptadoUsuariosAdapter;
+        binding.recyclerUsuarios.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
+
+
         val url = "https://randomuser.me/api/?results=50"
         // JSONRequest = ctx, url, meth, json, respuesta ok, respuesta err
         val jsonRequest = JsonObjectRequest(url,
@@ -45,6 +57,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun precesarResponse(response: JSONObject): Unit {
+
+
+
             val results = response.getJSONArray("results")
             for (i in 0..results.length()-1){
                 val usuario = results.getJSONObject(i)
@@ -64,7 +79,8 @@ class MainActivity : AppCompatActivity() {
                 val ciudad: String = usuario.getJSONObject("location").getString("city")
                 listaUsuario.add(Usuario(nombre,apellido,
                     Direccion(pais,ciudad),telefono,mail, imagen))
-                Log.v("conexion", listaUsuario.size.toString()+"${listaUsuario[i].nombre}")
+                //adaptadoUsuariosAdapter.notifyDataSetChanged()
+                adaptadoUsuariosAdapter.notifyItemInserted(listaUsuario.size-1)
             }
     }
 }

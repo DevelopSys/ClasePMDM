@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.t3_listaapi'
+    namespace 'com.example.t3_listajson'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.t3_listaapi"
+        applicationId "com.example.t3_listajson"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -30,15 +30,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    viewBinding{
-        enable true
-    }
 }
 
 dependencies {
 
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
