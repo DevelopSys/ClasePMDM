@@ -3,6 +3,7 @@ package com.example.t3_listajson
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request.Method
 import com.android.volley.Response
@@ -18,11 +19,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listaUsuario: ArrayList<User>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adaptadorResultados: ArrayAdapter<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+        adaptadorResultados = ArrayAdapter(applicationContext,
+            android.R.layout.simple_spinner_item,(1..100).toList())
+        adaptadorResultados.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerResultados.adapter = adaptadorResultados
 
         listaUsuario = ArrayList();
         adaptadoUsuariosAdapter = UsuariosAdapter(listaUsuario, this)
@@ -61,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             listaUsuario.add(
                 usuario
             )
-            adaptadoUsuariosAdapter.notifyItemInserted(listaUsuario.size-1)
+            adaptadoUsuariosAdapter.notifyItemInserted(listaUsuario.size - 1)
         }
         // nombre, apellido, telefono, pais, ciudad, codigo postal, mail
 
