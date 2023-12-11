@@ -18,9 +18,10 @@ import com.example.t3_listaapi.databinding.ActivityMainBinding
 import com.example.t3_listaapi.model.Direccion
 import com.example.t3_listaapi.model.Usuario
 import com.example.t3_listaapi.ui.dialog.CreditosDialog
+import com.example.t3_listaapi.ui.dialog.GeneroDialog
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity(), OnItemSelectedListener {
+class MainActivity : AppCompatActivity(), OnItemSelectedListener{
 
     private lateinit var listaUsuario: ArrayList<Usuario>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -92,7 +93,10 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
                 binding.spinnerGenero.setSelection(0)
                 binding.spinnerResultados.setSelection(49)
             }
-            R.id.menu_filtros -> {}
+            R.id.menu_filtros -> {
+                val dialogo = GeneroDialog()
+                dialogo.show(supportFragmentManager,null)
+            }
             R.id.menu_creditos->{
                 val dialogo = CreditosDialog();
                 dialogo.show(supportFragmentManager,null)
