@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">T4 ListaAPI</string>
+
+    <string name="titulo_dialogo_creditos">Creditos de la app</string>
+    <string-array name="generos">
+        <item>All</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
