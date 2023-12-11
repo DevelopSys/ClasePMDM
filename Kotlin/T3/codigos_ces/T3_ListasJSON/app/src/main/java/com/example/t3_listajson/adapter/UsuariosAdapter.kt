@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
+import com.example.t3_listajson.DetailActivity
 import com.example.t3_listajson.R
 import com.example.t3_listajson.model.User
 import com.google.android.material.snackbar.Snackbar
@@ -48,5 +49,20 @@ class UsuariosAdapter(var lista: ArrayList<User>, var contexto: Context) :
         val item = lista[position]
         holder.textoDetalle.text = item.first + " " + item.last
         Glide.with(contexto).load(item.picture).into(holder.imagenDetalle)
+        holder.imagenDetalle.setOnLongClickListener {
+
+            Snackbar.make(
+                holder.imagenDetalle,
+                "Quieres ver los detalles del usuario",
+                Snackbar.LENGTH_SHORT
+            ).setAction("OK") {
+                val intent = Intent(contexto,DetailActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.putExtra("usuario",item)
+                contexto.startActivity(intent)
+            }.show()
+
+            return@setOnLongClickListener true
+        }
     }
 }

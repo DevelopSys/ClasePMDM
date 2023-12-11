@@ -3,6 +3,11 @@ package com.example.t3_listajson
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request.Method
@@ -12,14 +17,17 @@ import com.android.volley.toolbox.Volley
 import com.example.t3_listaapi.adapter.UsuariosAdapter
 import com.example.t3_listajson.databinding.ActivityMainBinding
 import com.example.t3_listajson.model.User
+import com.example.t3_listajson.ui.dialog.VersionDialog
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemSelectedListener {
 
     private lateinit var listaUsuario: ArrayList<User>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
     private lateinit var binding: ActivityMainBinding
     private lateinit var adaptadorResultados: ArrayAdapter<Int>
+    private lateinit var genero: String;
+    private  var resultados: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +49,11 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
 
         // creo la peticion
-        val url = "https://randomuser.me/api/?results=50"
+
+    }
+
+    fun getURLResponse(url: String): Unit {
+
         val peticion: JsonObjectRequest = JsonObjectRequest(url, {
             getUsers(it)
         }, {
@@ -50,6 +62,12 @@ class MainActivity : AppCompatActivity() {
         //val peticion2: JsonObjectRequest = JsonObjectRequest(Method.GET,url,null,{},{})
         // lanzar la peticion
         Volley.newRequestQueue(applicationContext).add(peticion)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.spinnerResultados.onItemSelectedListener = this
+        binding.spinnerGenero.onItemSelectedListener = this
     }
 
     fun getUsers(response: JSONObject): Unit {
@@ -74,5 +92,52 @@ class MainActivity : AppCompatActivity() {
         }
         // nombre, apellido, telefono, pais, ciudad, codigo postal, mail
 
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+
+        when(parent!!.id){
+            binding.spinnerResultados.id->{
+                resultados = parent.adapter.getItem(position).toString().toInt()
+                // peticion
+            }
+            binding.spinnerGenero.id->{
+                genero = parent.adapter.getItem(position).toString()
+                // peticion
+            }
+        }
+
+        listaUsuario.clear()
+        adaptadoUsuariosAdapter.notifyDataSetChanged()
+
+        getURLResponse("https://randomuser.me/api/?results=${resultados}&gender=${genero.toLowerCase()}")
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        // traer el menu -> xml
+        menuInflater.inflate(R.menu.main_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_reset->{
+                getURLResponse("https://randomuser.me/api/?results=50");
+                binding.spinnerResultados.setSelection(49)
+                binding.spinnerGenero.setSelection(0)
+            }
+            R.id.menu_version->{
+             val versionDialog: VersionDialog = VersionDialog();
+             versionDialog.show(supportFragmentManager,"")
+            }
+        }
+        return true
     }
 }
