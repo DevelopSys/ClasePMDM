@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -21,7 +22,8 @@ import com.example.t3_listaapi.ui.dialog.CreditosDialog
 import com.example.t3_listaapi.ui.dialog.GeneroDialog
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity(), OnItemSelectedListener{
+class MainActivity : AppCompatActivity(), OnItemSelectedListener,
+    GeneroDialog.OnGeneroDialogListener{
 
     private lateinit var listaUsuario: ArrayList<Usuario>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -157,4 +159,10 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener{
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
     }
+
+    override fun onGeneroSelected(gender: String) {
+        Toast.makeText(this, "El genero cominciado es ${gender}",
+            Toast.LENGTH_SHORT).show()
+    }
+
 }
