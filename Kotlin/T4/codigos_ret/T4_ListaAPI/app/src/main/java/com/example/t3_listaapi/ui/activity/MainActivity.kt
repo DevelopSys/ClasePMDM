@@ -23,6 +23,7 @@ import com.example.t3_listaapi.ui.dialog.CreditosDialog
 import com.example.t3_listaapi.ui.dialog.GeneralDialog
 import com.example.t3_listaapi.ui.dialog.GeneroDialog
 import com.example.t3_listaapi.ui.dialog.GeneroSimpleDialog
+import com.example.t3_listaapi.ui.dialog.InformacionDialog
 import com.example.t3_listaapi.ui.dialog.NumeroDialog
 import org.json.JSONObject
 
@@ -92,11 +93,7 @@ NumeroDialog.OnNumeroDialogListener, GeneroSimpleDialog.OnGeneroSimpleDialogList
 
         when (item.itemId) {
             R.id.menu_reset -> {
-                // resetea la peticion ->
-                /*numeroSeleccionado=50
-                generoSeleccionado="All"
-                val url = "https://randomuser.me/api/?gender=${generoSeleccionado.toLowerCase()}&results=${numeroSeleccionado}"
-                addPetion(url)*/
+
                 binding.spinnerGenero.setSelection(0)
                 binding.spinnerResultados.setSelection(49)
             }
@@ -111,6 +108,11 @@ NumeroDialog.OnNumeroDialogListener, GeneroSimpleDialog.OnGeneroSimpleDialogList
             R.id.menu_creditos -> {
                 val dialogo = CreditosDialog();
                 dialogo.show(supportFragmentManager, null)
+            }
+
+            R.id.menu_info ->{
+                val dialgo = InformacionDialog()
+                dialgo.show(supportFragmentManager,null)
             }
         }
 

@@ -5,6 +5,9 @@
     <item android:title="Filtros"
         android:id="@+id/menu_filtros"
         />
+    <item android:title="Obtener informacion"
+        android:id="@+id/menu_info"
+        />
     <item android:title="Resetear"
         android:id="@+id/menu_reset"
         app:showAsAction="ifRoom"
