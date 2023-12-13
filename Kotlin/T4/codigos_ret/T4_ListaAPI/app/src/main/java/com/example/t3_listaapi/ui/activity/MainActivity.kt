@@ -29,7 +29,8 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     GeneroDialog.OnGeneroDialogListener, GeneralDialog.OnGeneralDialogoListener,
-NumeroDialog.OnNumeroDialogListener, GeneroSimpleDialog.OnGeneroSimpleDialogListener{
+NumeroDialog.OnNumeroDialogListener, GeneroSimpleDialog.OnGeneroSimpleDialogListener,
+InformacionDialog.OnInformacionDialogListener{
 
     private lateinit var listaUsuario: ArrayList<Usuario>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -201,6 +202,10 @@ NumeroDialog.OnNumeroDialogListener, GeneroSimpleDialog.OnGeneroSimpleDialogList
             this, "El genero cominciado es ${genero}",
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    override fun onInformacionSelected(seleccion: ArrayList<String>) {
+        Log.v("informacion",seleccion[0])
     }
 
 }

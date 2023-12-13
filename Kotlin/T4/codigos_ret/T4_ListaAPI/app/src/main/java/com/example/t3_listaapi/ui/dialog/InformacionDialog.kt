@@ -16,15 +16,24 @@ class InformacionDialog: DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.context = context
-        //listener = context as OnInformacionDialogListener
+        listener = context as OnInformacionDialogListener
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
+        val seleccion = ArrayList<String>()
         val builder: AlertDialog.Builder = AlertDialog.Builder(this.context)
-
         builder.setTitle("Selecciona la info que quieres")
-        builder.setMultiChoiceItems(R.array.informacion,null){ _, which, isChecked ->  }
-        builder.setPositiveButton("OK"){_,_->}
+        builder.setMultiChoiceItems(R.array.informacion,null)
+        { _, which, isChecked ->
+            if (isChecked){
+                seleccion.add(resources.getStringArray(R.array.informacion)[which])
+            } else{
+                seleccion.remove(resources.getStringArray(R.array.informacion)[which])
+            }
+        }
+        builder.setPositiveButton("OK"){_,_->
+            listener?.onInformacionSelected(seleccion)
+        }
 
         return builder.create()
 
@@ -34,7 +43,7 @@ class InformacionDialog: DialogFragment() {
         listener = null
     }
     interface OnInformacionDialogListener{
-        fun onInformacionSelected()
+        fun onInformacionSelected(seleccion: ArrayList<String>)
     }
 }
 
