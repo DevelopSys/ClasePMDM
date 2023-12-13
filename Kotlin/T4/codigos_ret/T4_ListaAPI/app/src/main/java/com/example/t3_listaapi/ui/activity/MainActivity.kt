@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -19,11 +20,14 @@ import com.example.t3_listaapi.databinding.ActivityMainBinding
 import com.example.t3_listaapi.model.Direccion
 import com.example.t3_listaapi.model.Usuario
 import com.example.t3_listaapi.ui.dialog.CreditosDialog
+import com.example.t3_listaapi.ui.dialog.GeneralDialog
 import com.example.t3_listaapi.ui.dialog.GeneroDialog
+import com.example.t3_listaapi.ui.dialog.NumeroDialog
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
-    GeneroDialog.OnGeneroDialogListener{
+    GeneroDialog.OnGeneroDialogListener, GeneralDialog.OnGeneralDialogoListener,
+NumeroDialog.OnNumeroDialogListener{
 
     private lateinit var listaUsuario: ArrayList<Usuario>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -95,13 +99,17 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
                 binding.spinnerGenero.setSelection(0)
                 binding.spinnerResultados.setSelection(49)
             }
+
             R.id.menu_filtros -> {
-                val dialogo = GeneroDialog()
-                dialogo.show(supportFragmentManager,null)
+                //val dialogo = GeneroDialog()
+                //dialogo.show(supportFragmentManager,null)
+                val dialogo = GeneralDialog()
+                dialogo.show(supportFragmentManager, null)
             }
-            R.id.menu_creditos->{
+
+            R.id.menu_creditos -> {
                 val dialogo = CreditosDialog();
-                dialogo.show(supportFragmentManager,null)
+                dialogo.show(supportFragmentManager, null)
             }
         }
 
@@ -161,8 +169,28 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     }
 
     override fun onGeneroSelected(gender: String) {
-        Toast.makeText(this, "El genero cominciado es ${gender}",
-            Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this, "El genero cominciado es ${gender}",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    override fun onFiltroSelected(tipo: String) {
+        var dialogo: DialogFragment? = null
+        when (tipo) {
+            "numero" -> {
+                dialogo = NumeroDialog()
+            }
+
+            "genero" -> {
+                dialogo = GeneroDialog()
+            }
+        }
+        dialogo?.show(supportFragmentManager, null)
+    }
+
+    override fun onNumeroSelected(numero: Int) {
+        // filtado por numero
     }
 
 }
