@@ -12,4 +12,11 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string-array name="informacion">
+        <item>gender</item>
+        <item>name</item>
+        <item>nat</item>
+        <item>picture</item>
+        <item>cell</item>
+    </string-array>
 </resources>

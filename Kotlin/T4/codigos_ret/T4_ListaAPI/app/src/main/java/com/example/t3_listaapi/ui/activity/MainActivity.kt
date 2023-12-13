@@ -22,12 +22,13 @@ import com.example.t3_listaapi.model.Usuario
 import com.example.t3_listaapi.ui.dialog.CreditosDialog
 import com.example.t3_listaapi.ui.dialog.GeneralDialog
 import com.example.t3_listaapi.ui.dialog.GeneroDialog
+import com.example.t3_listaapi.ui.dialog.GeneroSimpleDialog
 import com.example.t3_listaapi.ui.dialog.NumeroDialog
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     GeneroDialog.OnGeneroDialogListener, GeneralDialog.OnGeneralDialogoListener,
-NumeroDialog.OnNumeroDialogListener{
+NumeroDialog.OnNumeroDialogListener, GeneroSimpleDialog.OnGeneroSimpleDialogListener{
 
     private lateinit var listaUsuario: ArrayList<Usuario>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -183,7 +184,7 @@ NumeroDialog.OnNumeroDialogListener{
             }
 
             "genero" -> {
-                dialogo = GeneroDialog()
+                dialogo = GeneroSimpleDialog()
             }
         }
         dialogo?.show(supportFragmentManager, null)
@@ -191,6 +192,13 @@ NumeroDialog.OnNumeroDialogListener{
 
     override fun onNumeroSelected(numero: Int) {
         // filtado por numero
+    }
+
+    override fun onGeneroSimpleSelected(genero: String?) {
+        Toast.makeText(
+            this, "El genero cominciado es ${genero}",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 }
