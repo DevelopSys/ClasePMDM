@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request.Method
 import com.android.volley.Response
@@ -18,12 +19,16 @@ import com.example.t3_listaapi.adapter.UsuariosAdapter
 import com.example.t3_listajson.databinding.ActivityMainBinding
 import com.example.t3_listajson.model.User
 import com.example.t3_listajson.ui.dialog.FiltradoDialog
+import com.example.t3_listajson.ui.dialog.GeneralDialog
+import com.example.t3_listajson.ui.dialog.GeneroListaDialog
+import com.example.t3_listajson.ui.dialog.GeneroSimpleDialog
 import com.example.t3_listajson.ui.dialog.VersionDialog
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
-    FiltradoDialog.OnFiltradoDialogListener {
+    FiltradoDialog.OnFiltradoDialogListener, GeneralDialog.OnGenarlDialogListener,
+    GeneroListaDialog.OnGeneroListaListener, GeneroSimpleDialog.OnGeneroSimpleListener {
 
     private lateinit var listaUsuario: ArrayList<User>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -146,7 +151,7 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
             }
 
             R.id.menu_filtro -> {
-                val filtroDialog: FiltradoDialog = FiltradoDialog()
+                val filtroDialog = GeneralDialog()
                 filtroDialog.show(supportFragmentManager, null)
             }
         }
@@ -156,5 +161,27 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     override fun onGeneroSelected(genero: String) {
         Snackbar.make(binding.root, "Seleccionado ${genero}", Snackbar.LENGTH_SHORT)
             .show()
+    }
+
+    override fun onGeneralSelected(filtro: String) {
+        lateinit var dialog: DialogFragment
+        when (filtro) {
+            "genero" -> {
+                dialog = GeneroSimpleDialog()
+            }
+
+            "numero" -> {
+
+            }
+        }
+        dialog.show(supportFragmentManager, null)
+    }
+
+    override fun onGeneroListaSelected(genero: String) {
+
+    }
+
+    override fun onGeneroSimpleSelected(genero: String) {
+
     }
 }
