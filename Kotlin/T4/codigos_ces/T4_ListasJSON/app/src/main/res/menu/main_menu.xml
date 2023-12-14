@@ -8,6 +8,9 @@
         android:title="Resetear"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/menu_nac"
+        android:title="Nacionalidad" />
+    <item
         android:id="@+id/menu_filtro"
         android:title="Filtrar" />
     <item

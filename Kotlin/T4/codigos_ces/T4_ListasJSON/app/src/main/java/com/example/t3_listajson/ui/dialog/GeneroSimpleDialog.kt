@@ -12,11 +12,12 @@ class GeneroSimpleDialog : DialogFragment() {
 
     private var listener: OnGeneroSimpleListener? = null
     private lateinit var context: Context
+    private var genero: String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.context = context;
-        listener = context as 6
+        listener = context as OnGeneroSimpleListener
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -25,9 +26,11 @@ class GeneroSimpleDialog : DialogFragment() {
         builder.setTitle("Por que genero quieres filtrar")
         builder.setSingleChoiceItems(R.array.generos, -1) { _, pos ->
             // la ejecucion
+            genero = resources.getStringArray(R.array.generos)[pos]
         }
         builder.setPositiveButton("ok") { _, _ ->
             // la ejecucion
+            listener?.onGeneroSimpleSelected(genero)
         }
 
         return builder.create()
@@ -40,6 +43,6 @@ class GeneroSimpleDialog : DialogFragment() {
     }
 
     interface OnGeneroSimpleListener {
-        fun onGeneroSimpleSelected(genero: String)
+        fun onGeneroSimpleSelected(genero: String?)
     }
 }

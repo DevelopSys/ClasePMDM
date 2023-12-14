@@ -5,4 +5,12 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string-array name="nacionalidades">
+        <item>us</item>
+        <item>dk</item>
+        <item>fr</item>
+        <item>gb</item>
+        <item>es</item>
+    </string-array>
 </resources>

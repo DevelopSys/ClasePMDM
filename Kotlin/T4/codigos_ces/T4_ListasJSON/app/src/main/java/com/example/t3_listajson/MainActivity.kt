@@ -22,6 +22,7 @@ import com.example.t3_listajson.ui.dialog.FiltradoDialog
 import com.example.t3_listajson.ui.dialog.GeneralDialog
 import com.example.t3_listajson.ui.dialog.GeneroListaDialog
 import com.example.t3_listajson.ui.dialog.GeneroSimpleDialog
+import com.example.t3_listajson.ui.dialog.NacionalidadDialog
 import com.example.t3_listajson.ui.dialog.VersionDialog
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
@@ -154,6 +155,11 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
                 val filtroDialog = GeneralDialog()
                 filtroDialog.show(supportFragmentManager, null)
             }
+
+            R.id.menu_nac->{
+                val nacioDialog = NacionalidadDialog()
+                nacioDialog.show(supportFragmentManager,null)
+            }
         }
         return true
     }
@@ -181,7 +187,7 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
 
     }
 
-    override fun onGeneroSimpleSelected(genero: String) {
-
+    override fun onGeneroSimpleSelected(genero: String?) {
+        Snackbar.make(binding.root,genero?:"sin seleccion",Snackbar.LENGTH_SHORT).show()
     }
 }
