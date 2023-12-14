@@ -10,6 +10,7 @@ import com.example.t3_listajson.R
 
 class NacionalidadDialog : DialogFragment() {
 
+    private var listaNacionalidades: ArrayList<String> = ArrayList()
     private lateinit var context: Context
     private var listener: OnNacionalidadListener? = null
 
@@ -25,9 +26,15 @@ class NacionalidadDialog : DialogFragment() {
         builder.setMultiChoiceItems(R.array.nacionalidades, null)
         { _, pos, isChecked ->
             // ejecuto
+            if (isChecked){
+                listaNacionalidades.add(resources.getStringArray(R.array.nacionalidades)[pos])
+            } else {
+                listaNacionalidades.remove(resources.getStringArray(R.array.nacionalidades)[pos])
+            }
         }
         builder.setPositiveButton("OK") { _, _ ->
             // comunico
+            listener?.onDialogoNacionalidadSelected(listaNacionalidades)
 
         }
         return builder.create()

@@ -29,7 +29,9 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     FiltradoDialog.OnFiltradoDialogListener, GeneralDialog.OnGenarlDialogListener,
-    GeneroListaDialog.OnGeneroListaListener, GeneroSimpleDialog.OnGeneroSimpleListener {
+    GeneroListaDialog.OnGeneroListaListener, GeneroSimpleDialog.OnGeneroSimpleListener,
+    NacionalidadDialog.OnNacionalidadListener
+{
 
     private lateinit var listaUsuario: ArrayList<User>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -184,10 +186,28 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     }
 
     override fun onGeneroListaSelected(genero: String) {
-
+        //
     }
 
     override fun onGeneroSimpleSelected(genero: String?) {
         Snackbar.make(binding.root,genero?:"sin seleccion",Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onDialogoNacionalidadSelected(nacionalidades: ArrayList<String>) {
+
+        var nacionalidadConsulta = ""
+
+        nacionalidades.forEachIndexed { index, item ->
+            if (index!=nacionalidades.size-1){
+                nacionalidadConsulta+="$item,"
+            } else {
+                nacionalidadConsulta+=item
+            }
+        }
+        getURLResponse("https://randomuser.me/api/?results=${resultados}" +
+                "&gender=${genero.toLowerCase()}&nac=${nacionalidadConsulta}")
+
+
+
     }
 }
