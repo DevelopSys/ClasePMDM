@@ -31,7 +31,7 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     FiltradoDialog.OnFiltradoDialogListener, GeneralDialog.OnGenarlDialogListener,
     GeneroListaDialog.OnGeneroListaListener, GeneroSimpleDialog.OnGeneroSimpleListener,
-    NacionalidadDialog.OnNacionalidadListener
+    NacionalidadDialog.OnNacionalidadListener, PersonalizadoDialog.OnDialogoPersoListener
 {
 
     private lateinit var listaUsuario: ArrayList<User>;
@@ -87,6 +87,8 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     fun getUsers(response: JSONObject): Unit {
         // crear clase modelo User
         // obtener una lista de todos los usuarios del JSON
+        listaUsuario.clear()
+        adaptadoUsuariosAdapter.notifyDataSetChanged()
         val results = response.getJSONArray("results")
         for (i in (0..results.length() - 1)) {
             val user = results.getJSONObject(i);
@@ -212,5 +214,10 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
 
 
 
+    }
+
+    override fun onPersonalizadoSelected(genero: String, resultados: Int) {
+        getURLResponse("https://randomuser.me/api/?results=${resultados}" +
+                "&gender=${genero.toLowerCase()}&nac=")
     }
 }

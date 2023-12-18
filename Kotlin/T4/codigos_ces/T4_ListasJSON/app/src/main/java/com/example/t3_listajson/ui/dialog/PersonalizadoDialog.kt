@@ -25,13 +25,17 @@ class PersonalizadoDialog : DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.context = context;
-        this.vista = LayoutInflater.from(context).inflate(R.layout.dialogo_filter,
-            null)
-        this.adapterNumeros = ArrayAdapter(context,android.R.layout.simple_spinner_item
-            ,(1..100).toList())
+        this.vista = LayoutInflater.from(context).inflate(
+            R.layout.dialogo_filter,
+            null
+        )
+        this.adapterNumeros = ArrayAdapter(
+            context, android.R.layout.simple_spinner_item, (1..100).toList()
+        )
         this.adapterNumeros.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        //this.listener = context as OnDialogoPersoListener
+        this.listener = context as OnDialogoPersoListener
     }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(context)
         builder.setView(vista)
@@ -40,6 +44,11 @@ class PersonalizadoDialog : DialogFragment() {
         spinnerGeneros = vista.findViewById(R.id.spinner_genero)
         botonFilrar = vista.findViewById(R.id.boton_filrar)
         botonFilrar.setOnClickListener {
+            // llamar a la interfaz
+            listener.onPersonalizadoSelected(
+                spinnerGeneros.selectedItem.toString(),
+                spinnerNumeros.selectedItem.toString().toInt()
+            )
             dismiss()
         }
         return builder.create()
