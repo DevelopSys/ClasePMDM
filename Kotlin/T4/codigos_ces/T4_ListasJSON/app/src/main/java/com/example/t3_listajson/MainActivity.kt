@@ -23,6 +23,7 @@ import com.example.t3_listajson.ui.dialog.GeneralDialog
 import com.example.t3_listajson.ui.dialog.GeneroListaDialog
 import com.example.t3_listajson.ui.dialog.GeneroSimpleDialog
 import com.example.t3_listajson.ui.dialog.NacionalidadDialog
+import com.example.t3_listajson.ui.dialog.PersonalizadoDialog
 import com.example.t3_listajson.ui.dialog.VersionDialog
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
@@ -154,8 +155,10 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
             }
 
             R.id.menu_filtro -> {
-                val filtroDialog = GeneralDialog()
-                filtroDialog.show(supportFragmentManager, null)
+                /*val filtroDialog = GeneralDialog()
+                filtroDialog.show(supportFragmentManager, null)*/
+                val persoDialog = PersonalizadoDialog()
+                persoDialog.show(supportFragmentManager, null)
             }
 
             R.id.menu_nac->{
