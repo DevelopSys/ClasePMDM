@@ -32,7 +32,9 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     FiltradoDialog.OnFiltradoDialogListener, GeneralDialog.OnGenarlDialogListener,
     GeneroListaDialog.OnGeneroListaListener, GeneroSimpleDialog.OnGeneroSimpleListener,
-    NacionalidadDialog.OnNacionalidadListener, PersonalizadoDialog.OnDialogoPersoListener {
+    NacionalidadDialog.OnNacionalidadListener, PersonalizadoDialog.OnDialogoPersoListener,
+
+UsuariosAdapter.OnUsuarioListener{
 
     private lateinit var listaUsuario: ArrayList<User>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter

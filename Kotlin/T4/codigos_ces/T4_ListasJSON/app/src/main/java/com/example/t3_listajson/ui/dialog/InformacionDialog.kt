@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.t3_listajson.R
+import com.example.t3_listajson.model.User
 
 class InformacionDialog(): DialogFragment() {
 
@@ -20,11 +21,12 @@ class InformacionDialog(): DialogFragment() {
 
     
     companion object{
-        fun newInstance(nombre: String, edad: Int): InformacionDialog {
+        fun newInstance(nombre: String, edad: Int, user: User): InformacionDialog {
             val informDialog: InformacionDialog = InformacionDialog();
             val bundle = Bundle()
             bundle.putString("nombre",nombre)
             bundle.putInt("edad",edad)
+            bundle.putSerializable("usuario",user)
             informDialog.arguments = bundle
             //  comienza el ciclo de vida
             return informDialog
