@@ -22,6 +22,7 @@ import com.example.t3_listajson.ui.dialog.FiltradoDialog
 import com.example.t3_listajson.ui.dialog.GeneralDialog
 import com.example.t3_listajson.ui.dialog.GeneroListaDialog
 import com.example.t3_listajson.ui.dialog.GeneroSimpleDialog
+import com.example.t3_listajson.ui.dialog.InformacionDialog
 import com.example.t3_listajson.ui.dialog.NacionalidadDialog
 import com.example.t3_listajson.ui.dialog.PersonalizadoDialog
 import com.example.t3_listajson.ui.dialog.VersionDialog
@@ -31,8 +32,7 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     FiltradoDialog.OnFiltradoDialogListener, GeneralDialog.OnGenarlDialogListener,
     GeneroListaDialog.OnGeneroListaListener, GeneroSimpleDialog.OnGeneroSimpleListener,
-    NacionalidadDialog.OnNacionalidadListener, PersonalizadoDialog.OnDialogoPersoListener
-{
+    NacionalidadDialog.OnNacionalidadListener, PersonalizadoDialog.OnDialogoPersoListener {
 
     private lateinit var listaUsuario: ArrayList<User>;
     private lateinit var adaptadoUsuariosAdapter: UsuariosAdapter
@@ -145,6 +145,11 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.menu_ayuda -> {
+                val ayudaDialog: InformacionDialog = InformacionDialog.newInstance("comunicacion",20)
+                ayudaDialog.show(supportFragmentManager, null)
+            }
+
             R.id.menu_reset -> {
                 getURLResponse("https://randomuser.me/api/?results=50");
                 binding.spinnerResultados.setSelection(49)
@@ -163,9 +168,9 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
                 persoDialog.show(supportFragmentManager, null)
             }
 
-            R.id.menu_nac->{
+            R.id.menu_nac -> {
                 val nacioDialog = NacionalidadDialog()
-                nacioDialog.show(supportFragmentManager,null)
+                nacioDialog.show(supportFragmentManager, null)
             }
         }
         return true
@@ -195,7 +200,7 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
     }
 
     override fun onGeneroSimpleSelected(genero: String?) {
-        Snackbar.make(binding.root,genero?:"sin seleccion",Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(binding.root, genero ?: "sin seleccion", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDialogoNacionalidadSelected(nacionalidades: ArrayList<String>) {
@@ -203,21 +208,24 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener,
         var nacionalidadConsulta = ""
 
         nacionalidades.forEachIndexed { index, item ->
-            if (index!=nacionalidades.size-1){
-                nacionalidadConsulta+="$item,"
+            if (index != nacionalidades.size - 1) {
+                nacionalidadConsulta += "$item,"
             } else {
-                nacionalidadConsulta+=item
+                nacionalidadConsulta += item
             }
         }
-        getURLResponse("https://randomuser.me/api/?results=${resultados}" +
-                "&gender=${genero.toLowerCase()}&nac=${nacionalidadConsulta}")
-
+        getURLResponse(
+            "https://randomuser.me/api/?results=${resultados}" +
+                    "&gender=${genero.toLowerCase()}&nac=${nacionalidadConsulta}"
+        )
 
 
     }
 
     override fun onPersonalizadoSelected(genero: String, resultados: Int) {
-        getURLResponse("https://randomuser.me/api/?results=${resultados}" +
-                "&gender=${genero.toLowerCase()}&nac=")
+        getURLResponse(
+            "https://randomuser.me/api/?results=${resultados}" +
+                    "&gender=${genero.toLowerCase()}&nac="
+        )
     }
 }
