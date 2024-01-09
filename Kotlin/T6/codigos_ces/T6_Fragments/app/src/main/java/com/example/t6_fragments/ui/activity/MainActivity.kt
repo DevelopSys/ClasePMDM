@@ -2,6 +2,7 @@ package com.example.t6_fragments.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.view.View.OnClickListener
 import com.example.t6_fragments.R
@@ -16,8 +17,9 @@ class MainActivity : AppCompatActivity(), OnClickListener, FragmentUno.OnFragmen
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.botonF1.setOnClickListener(this)
-        binding.botonF2.setOnClickListener(this)
+        setSupportActionBar(binding.toolbar)
+        //binding.botonF1.setOnClickListener(this)
+        //binding.botonF2.setOnClickListener(this)
 
         //binding.sitioFragments
         // supportFragmentManager-> gestion de fragments
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity(), OnClickListener, FragmentUno.OnFragmen
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            binding.botonF1.id->{
+            /*binding.botonF1.id->{
                 var ft = supportFragmentManager.beginTransaction();
                 // replace
                 ft.replace(binding.sitioFragments.id,FragmentUno(),"f1")
@@ -52,16 +54,22 @@ class MainActivity : AppCompatActivity(), OnClickListener, FragmentUno.OnFragmen
                 ft.replace(binding.sitioFragments.id,FragmentDos(),"f11")
                 ft.addToBackStack("f11")
                 ft.commit()
-            }
+            }*/
         }
     }
 
     override fun onNombreSelected(nombre: String) {
+        supportActionBar!!.title = "Fragment dos"
         var ft = supportFragmentManager.beginTransaction();
         //ft.setCustomAnimations(android.R.)
         ft.replace(binding.sitioFragments.id,FragmentDos.newInstance(nombre),"f11")
         ft.addToBackStack("f11")
         ft.commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu,menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
 
