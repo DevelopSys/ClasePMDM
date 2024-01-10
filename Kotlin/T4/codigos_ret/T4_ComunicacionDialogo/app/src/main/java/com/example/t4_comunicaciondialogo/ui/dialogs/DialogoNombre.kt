@@ -15,10 +15,12 @@ class DialogoNombre: DialogFragment() {
     private lateinit var contexto: Context
     private lateinit var boton: Button
     private lateinit var editNombre: EditText
+    private lateinit var listener: OnDialogoNombreListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         this.contexto = context;
+        listener = contexto as OnDialogoNombreListener
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -38,8 +40,13 @@ class DialogoNombre: DialogFragment() {
     override fun onStart() {
         super.onStart()
         boton.setOnClickListener {
-            editNombre.text.toString()
+            listener.onNombreSelected(editNombre.text.toString())
+            dismiss()
         }
+    }
+
+    interface OnDialogoNombreListener{
+        fun onNombreSelected(nombre: String);
     }
 
 }
