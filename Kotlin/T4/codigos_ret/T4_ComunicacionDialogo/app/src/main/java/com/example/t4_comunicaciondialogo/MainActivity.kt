@@ -13,6 +13,7 @@ import com.example.t4_comunicaciondialogo.databinding.ActivityMainBinding
 import com.example.t4_comunicaciondialogo.ui.dialogs.DialogoFecha
 import com.example.t4_comunicaciondialogo.ui.dialogs.DialogoHora
 import com.example.t4_comunicaciondialogo.ui.dialogs.DialogoNombre
+import com.example.t4_comunicaciondialogo.ui.dialogs.DialogoResumen
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(),
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(),
     private lateinit var binding: ActivityMainBinding
     private lateinit var nombre: String
     private lateinit var hora: String
+    private lateinit var fecha: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -47,6 +49,9 @@ class MainActivity : AppCompatActivity(),
 
             R.id.menu_resumen -> {
 
+                val dialogoResumen: DialogoResumen =
+                    DialogoResumen.newInstance(fecha,hora,nombre)
+                dialogoResumen.show(supportFragmentManager,null)
             }
         }
 
@@ -69,7 +74,8 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        Snackbar.make(binding.root,"${dayOfMonth}/${month+1}/${year}",Snackbar.LENGTH_SHORT).show()
+        //Snackbar.make(binding.root,"${dayOfMonth}/${month+1}/${year}",Snackbar.LENGTH_SHORT).show()
+        fecha = "${dayOfMonth}/${month+1}/${year}"
     }
 
 
