@@ -9,7 +9,7 @@
         android:id="@+id/FirstFragment"
         android:name="com.example.t5_navegacion.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_sigin">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -19,7 +19,7 @@
         android:id="@+id/SecondFragment"
         android:name="com.example.t5_navegacion.SecondFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_main">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
