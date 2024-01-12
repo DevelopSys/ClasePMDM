@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:padding="50dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/login"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="introduce nombre"
+        android:id="@+id/edit_nombre_login"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="introduce pass"
+        android:inputType="textPassword"
+        android:id="@+id/edit_pass_login"
+        />
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/boton_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="login"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="Crear cuenta"
+            />
+
+        <Button
+
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"            android:textColor="@color/black"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="Acceder invitaro"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
