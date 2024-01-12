@@ -3,26 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/loginFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.t5_navegacion.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_sigin">
-
+        tools:layout="@layout/fragment_login"
+        android:id="@+id/loginFragment"
+        android:name="com.example.t5_navegacion.ui.fragments.LoginFragment"
+        android:label="Iniciar sesión" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_loginFragment_to_sigInFragment"
+            app:destination="@id/sigInFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.t5_navegacion.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_main">
-
+        tools:layout="@layout/fragment_sigin"
+        android:id="@+id/sigInFragment"
+        android:name="com.example.t5_navegacion.ui.fragments.SigInFragment"
+        android:label="Crear cuenta" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_sigInFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_sigInFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_main"
+        android:id="@+id/mainFragment"
+        android:name="com.example.t5_navegacion.ui.fragments.MainFragment"
+        android:label="Pantalla principal" >
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

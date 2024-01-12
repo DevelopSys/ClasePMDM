@@ -75,16 +75,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/boton_sign_in"
-            android:textColor="Crear cuenta"
-            android:layout_marginBottom="20dp"
-
-            />
+            android:text="Crear cuenta"
+            android:layout_marginBottom="20dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/boton_signlog_in"
-            android:textColor="Crear cuenta e inicar"
+            android:text="Crear cuenta y login"
             android:layout_marginBottom="20dp"
 
             />
