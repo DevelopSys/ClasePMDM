@@ -36,5 +36,8 @@
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <argument
+            android:name="nombre"
+            app:argType="string" />
     </fragment>
 </navigation>
