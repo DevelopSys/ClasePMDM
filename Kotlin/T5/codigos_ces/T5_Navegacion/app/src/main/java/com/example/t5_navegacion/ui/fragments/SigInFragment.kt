@@ -10,6 +10,7 @@ import com.example.t5_navegacion.databinding.FragmentSiginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 /**
@@ -19,6 +20,7 @@ class SigInFragment : Fragment() {
 
     private var _binding: FragmentSiginBinding? = null
     private lateinit var auth: FirebaseAuth;
+    private lateinit var databese: FirebaseDatabase
 
 
     // This property is only valid between onCreateView and
@@ -28,6 +30,8 @@ class SigInFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         auth = Firebase.auth
+        databese =
+            FirebaseDatabase.getInstance("https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app/")
     }
 
     override fun onCreateView(
@@ -58,6 +62,13 @@ class SigInFragment : Fragment() {
                                 "Cuenta creada con exito",
                                 Snackbar.LENGTH_SHORT
                             ).show()
+
+                            val referencia =
+                                databese.getReference("usuarios").child(auth.currentUser!!.uid)
+                            referencia.child("nombre").setValue(binding.editNombreSigin.text.toString())
+                            referencia.child("apellido").setValue(binding.editApellidoSigin.text.toString())
+                            referencia.child("correo").setValue(binding.editCorreoSigin.text.toString())
+                            referencia.child("direccion").setValue(binding.editDireccionSigin.text.toString())
                         } else {
                             Snackbar.make(
                                 binding.root,

@@ -13,6 +13,9 @@ import com.example.t5_navegacion.adapters.AdapterProductos
 import com.example.t5_navegacion.databinding.FragmentMainBinding
 import com.example.t5_navegacion.databinding.FragmentSiginBinding
 import com.example.t5_navegacion.model.Producto
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -25,10 +28,12 @@ class MainFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var adapterProductos: AdapterProductos
-
+    private lateinit var database: FirebaseDatabase
     override fun onAttach(context: Context) {
         super.onAttach(context)
         adapterProductos = AdapterProductos(context)
+        database =
+            FirebaseDatabase.getInstance("https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app/")
     }
 
     override fun onCreateView(
@@ -50,6 +55,8 @@ class MainFragment : Fragment() {
         binding.recyclerProductos.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         getAllProducts()
+        database.getReference("usuarios").child("usuario1").setValue("asdasd")
+        database.getReference("usuarios").child("usuario2").setValue("fghdfhfghfg")
     }
 
     private fun getAllProducts() {
