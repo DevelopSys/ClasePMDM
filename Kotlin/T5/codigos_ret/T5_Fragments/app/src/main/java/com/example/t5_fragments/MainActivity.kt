@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.text.Layout
 import android.view.Menu
 import android.view.MenuItem
+import com.example.t5_fragments.adapter.AdaptadorProductos
 import com.example.t5_fragments.databinding.ActivityMainBinding
+import com.example.t5_fragments.model.Producto
 import com.example.t5_fragments.ui.fragments.DetalleFragment
 import com.example.t5_fragments.ui.fragments.ListadoFragment
 
-class MainActivity : AppCompatActivity(), ListadoFragment.OnListadoListener {
+class MainActivity : AppCompatActivity(), ListadoFragment.OnListadoListener, AdaptadorProductos.OnProductoListener{
 
     private lateinit var binding: ActivityMainBinding
 
@@ -54,6 +56,14 @@ class MainActivity : AppCompatActivity(), ListadoFragment.OnListadoListener {
         val ft = supportFragmentManager.beginTransaction()
         ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
         ft.replace(binding.sitioFragments.id, DetalleFragment())
+        ft.addToBackStack(null)
+        ft.commit()
+    }
+
+    override fun onProductoSelected(x: Producto) {
+        // cambiar al siguiente fragment
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(binding.sitioFragments.id, DetalleFragment.newInstance(x))
         ft.addToBackStack(null)
         ft.commit()
     }
