@@ -54,6 +54,7 @@ class LoginFragment : Fragment() {
                     if (it.isSuccessful) {
                         val bundle = Bundle();
                         bundle.putString("nombre",binding.editNombreLogin.text.toString())
+                        bundle.putString("uid",auth.currentUser!!.uid)
                         findNavController().navigate(R.id.action_loginFragment_to_mainFragment,bundle)
                     } else {
                         Snackbar.make(binding.root, "Datos incorrectos", Snackbar.LENGTH_SHORT)

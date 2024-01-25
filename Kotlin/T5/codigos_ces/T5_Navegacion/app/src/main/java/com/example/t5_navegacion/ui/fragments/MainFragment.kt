@@ -31,7 +31,8 @@ class MainFragment : Fragment() {
     private lateinit var database: FirebaseDatabase
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        adapterProductos = AdapterProductos(context)
+        val uid = arguments?.getString("uid") ?:""
+        adapterProductos = AdapterProductos(context,uid)
         database =
             FirebaseDatabase.getInstance("https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app/")
     }
@@ -63,13 +64,20 @@ class MainFragment : Fragment() {
         val peticion: JsonObjectRequest = JsonObjectRequest("https://dummyjson.com/products", {
             val productos = it.getJSONArray("products")
             for (i in 0 until productos.length()) {
+                val imagenes: ArrayList<String> = ArrayList()
+                imagenes.add("Imagen1")
+                imagenes.add("Imagen2")
+                imagenes.add("Imagen3")
+                imagenes.add("Imagen4")
                 val item = productos.getJSONObject(i)
                 val itemProducto = Producto(
+                    item.getInt("id"),
                     item.getString("title"),
                     item.getDouble("price"),
                     item.getString("description"),
                     item.getString("category"),
-                    item.getString("thumbnail")
+                    item.getString("thumbnail"),
+                    imagenes
                 )
                 adapterProductos.addProducto(itemProducto)
             }
