@@ -52,7 +52,17 @@ class AdapterProductos(var context: Context) :
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val item: Producto = listaProductos[position]
         holder.toolbar.title = item.nombre
+        holder.toolbar.inflateMenu(R.menu.item_menu)
+        holder.toolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.menu_fav_item->{
+                    
+                }
+            }
+            return@setOnMenuItemClickListener true
+        }
         Glide.with(context).load(item.imagen).into(holder.imagen)
+
     }
 
 
