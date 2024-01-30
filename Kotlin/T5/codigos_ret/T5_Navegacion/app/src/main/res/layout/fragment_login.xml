@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal"
             >
 
@@ -68,6 +69,7 @@
                 android:id="@+id/boton_cuenta"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:textColor="@color/primary"
+
                 />
 
 
