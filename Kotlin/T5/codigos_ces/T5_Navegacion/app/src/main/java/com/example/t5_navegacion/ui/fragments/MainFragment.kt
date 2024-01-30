@@ -34,8 +34,8 @@ class MainFragment : Fragment() {
     private lateinit var uid: String;
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        uid = arguments?.getString("uid") ?:""
-        adapterProductos = AdapterProductos(context,uid)
+        uid = arguments?.getString("uid") ?: ""
+        adapterProductos = AdapterProductos(context, uid)
         database =
             FirebaseDatabase.getInstance("https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app/")
     }
@@ -62,14 +62,15 @@ class MainFragment : Fragment() {
         //database.getReference("usuarios").child(uid).child("nombre").setValue("asdasd")
         //database.getReference("usuarios").child(uid).child("apellido").setValue("fghdfhfghfg")
         binding.botonEscuchar.setOnClickListener {
-            val reference = database.getReference("usuarios").child(uid).child("fav")
-            reference.addListenerForSingleValueEvent(object : ValueEventListener{
+            val reference = database.getReference("datos").child("products")
+            reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val hijos =  snapshot.children
+                    val hijos = snapshot.children
                     hijos.forEach {
 
                         val producto = it.getValue(Producto::class.java)
-                        Log.v("datos", producto!!.nombre.toString())
+                        adapterProductos.addProducto(producto)
+                        // Log.v("datos", producto!!.nombre.toString())
                     }
                 }
 

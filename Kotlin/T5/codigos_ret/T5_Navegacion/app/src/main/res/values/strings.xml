@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">T5_Navegacion</string>
+    <string-array name="perfiles">
+        <item>Invitado</item>
+        <item>Usuario</item>
+        <item>Administrador</item>
+    </string-array>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
