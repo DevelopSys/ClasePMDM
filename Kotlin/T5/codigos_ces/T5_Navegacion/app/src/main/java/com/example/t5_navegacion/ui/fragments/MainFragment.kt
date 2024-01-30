@@ -2,6 +2,7 @@ package com.example.t5_navegacion.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,11 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.t5_navegacion.adapters.AdapterProductos
 import com.example.t5_navegacion.databinding.FragmentMainBinding
-import com.example.t5_navegacion.databinding.FragmentSiginBinding
 import com.example.t5_navegacion.model.Producto
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
 /**
@@ -29,9 +31,10 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapterProductos: AdapterProductos
     private lateinit var database: FirebaseDatabase
+    private lateinit var uid: String;
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val uid = arguments?.getString("uid") ?:""
+        uid = arguments?.getString("uid") ?:""
         adapterProductos = AdapterProductos(context,uid)
         database =
             FirebaseDatabase.getInstance("https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -56,19 +59,44 @@ class MainFragment : Fragment() {
         binding.recyclerProductos.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         getAllProducts()
-        database.getReference("usuarios").child("usuario1").setValue("asdasd")
-        database.getReference("usuarios").child("usuario2").setValue("fghdfhfghfg")
+        //database.getReference("usuarios").child(uid).child("nombre").setValue("asdasd")
+        //database.getReference("usuarios").child(uid).child("apellido").setValue("fghdfhfghfg")
+        binding.botonEscuchar.setOnClickListener {
+            val reference = database.getReference("usuarios").child(uid).child("fav")
+            reference.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val hijos =  snapshot.children
+                    hijos.forEach {
+
+                        val producto = it.getValue(Producto::class.java)
+                        Log.v("datos", producto!!.nombre.toString())
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+        }
+
     }
+
+    /*
+    * Crear el recycler con los productos
+    * una vez se pulse el boton
+    * los productos deben ser leidos desde firebase
+    * */
 
     private fun getAllProducts() {
         val peticion: JsonObjectRequest = JsonObjectRequest("https://dummyjson.com/products", {
             val productos = it.getJSONArray("products")
             for (i in 0 until productos.length()) {
-                val imagenes: ArrayList<String> = ArrayList()
-                imagenes.add("Imagen1")
-                imagenes.add("Imagen2")
-                imagenes.add("Imagen3")
-                imagenes.add("Imagen4")
+                val imagenes: ArrayList<String>? = ArrayList()
+                imagenes!!.add("Imagen1")
+                imagenes!!.add("Imagen2")
+                imagenes!!.add("Imagen3")
+                imagenes!!.add("Imagen4")
                 val item = productos.getJSONObject(i)
                 val itemProducto = Producto(
                     item.getInt("id"),
@@ -79,6 +107,9 @@ class MainFragment : Fragment() {
                     item.getString("thumbnail"),
                     imagenes
                 )
+
+
+
                 adapterProductos.addProducto(itemProducto)
             }
         }, {})
