@@ -33,7 +33,10 @@ class FragmentSignUp : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.botonCrear.setOnClickListener {
-            findNavController().na .navigate(R.id.action_fragmentSignUp_to_fragmentLogin)}
+            val bundle = Bundle()
+            bundle.putString("correo",binding.editCorreo.text.toString())
+            bundle.putString("pass",binding.editPass.text.toString())
+            findNavController().navigate(R.id.action_fragmentSignUp_to_fragmentLogin,bundle)}
     }
 
     override fun onDetach() {
