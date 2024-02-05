@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:id="@+id/texto_uno"
+        android:text="UNO"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:id="@+id/texto_dos"
+        android:text="DOS"
+        />
+
+</LinearLayout>
