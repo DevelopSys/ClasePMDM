@@ -11,6 +11,7 @@ import com.example.t5_navegacion.R
 import com.example.t5_navegacion.databinding.FragmentLoginBinding
 import com.example.t5_navegacion.model.Usuario
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class FragmentLogin : Fragment() {
 
@@ -30,17 +31,21 @@ class FragmentLogin : Fragment() {
     // algun usuario que esta en la lista, coincide
     // con correo y pass con lo que pone en los edit???
 
+    private lateinit var auth: FirebaseAuth;
     private lateinit var binding: FragmentLoginBinding
     private var correo: String? = null
     private var pass: String? = null
+    private var uid: String? = null
     private lateinit var listaUsuarios: ArrayList<Usuario>;
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        auth = FirebaseAuth.getInstance()
         listaUsuarios = ArrayList()
-        listaUsuarios.add(Usuario("asd","asd"))
+        listaUsuarios.add(Usuario("asd", "asd"))
         this.correo = this.arguments?.getString("correo")
         this.pass = this.arguments?.getString("pass")
+        this.uid = this.arguments?.getString("uid")
     }
 
     override fun onCreateView(
@@ -63,17 +68,33 @@ class FragmentLogin : Fragment() {
 
         binding.botonLogin.setOnClickListener {
             // editUsuario.text && editPass.text
-            if (!binding.editUsuario.text.toString().isEmpty() && !binding.editPass.text.toString().isEmpty()){
-                if (listaUsuarios.find {
-                        it.correo == binding.editUsuario.text.toString()
-                                && it.pass == binding.editPass.text.toString()
-                    } != null) {
-                    findNavController().navigate(R.id.action_fragmentLogin_to_fragmentMain)
-                } else {
-                    Snackbar.make(binding.root, "Datos incorrectos",Snackbar.LENGTH_SHORT).show()
+            if (!binding.editUsuario.text.toString().isEmpty() && !binding.editPass.text.toString()
+                    .isEmpty()
+            ) {
+                auth.signInWithEmailAndPassword(correo!!, pass!!).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val bundle = Bundle();
+                        bundle.putString("uid", uid)
+                        findNavController().navigate(
+                            R.id.action_fragmentLogin_to_fragmentMain,
+                            bundle
+                        )
+                    } else {
+                        Snackbar.make(binding.root, "Fallo de credenciales", Snackbar.LENGTH_SHORT)
+                            .show()
+                    }
                 }
+                /*if (listaUsuarios.find {
+                            it.correo == binding.editUsuario.text.toString()
+                                    && it.pass == binding.editPass.text.toString()
+                        } != null) {
+                        findNavController().navigate(R.id.action_fragmentLogin_to_fragmentMain)
+                    } else {
+                        Snackbar.make(binding.root, "Datos incorrectos",Snackbar.LENGTH_SHORT).show()
+                    }*/
             } else {
-                Snackbar.make(binding.root, "Por favor introduce datos",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Por favor introduce datos", Snackbar.LENGTH_SHORT)
+                    .show()
             }
         }
         binding.botonCuenta.setOnClickListener {

@@ -47,23 +47,59 @@ class FragmentSignUp : Fragment() {
             *               y poniendolos en los edit correspondientes
             * */
 
-            auth.createUserWithEmailAndPassword("bmartin@gmail.com", "Retamar1a")
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        Snackbar.make(
-                            binding.root,
-                            "Usuario creado con exito",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+            val condicion =
+                binding.editPass2.text.isEmpty() ||
+                        binding.editPass.text.isEmpty() ||
+                        binding.editCorreo.text.isEmpty() ||
+                        binding.editDireccion.text.isEmpty() ||
+                        binding.editNombre.text.isEmpty() ||
+                        binding.editTelefono.text.isEmpty()
+            if (condicion) {
+                Snackbar.make(
+                    binding.root,
+                    "Faltan datos",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } else {
+                if (binding.editPass.text.toString().equals(binding.editPass2.text.toString())) {
+                    auth.createUserWithEmailAndPassword(
+                        binding.editCorreo.text.toString(),
+                        binding.editPass.text.toString()
+                    )
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Snackbar.make(
+                                    binding.root,
+                                    "Usuario creado con exito",
+                                    Snackbar.LENGTH_SHORT
+                                ).setAction("¿Quieres iniciar sesion?") {
+                                    val bundle = Bundle();
+                                    bundle.putString("correo",binding.editCorreo.text.toString())
+                                    bundle.putString("pass",binding.editPass.text.toString())
+                                    bundle.putString("uid",auth.currentUser!!.uid)
+                                    findNavController().navigate(R.id.action_fragmentSignUp_to_fragmentLogin, bundle)
+                                }
+                                    .show()
 
-                    } else {
-                        Snackbar.make(
-                            binding.root,
-                            "Fallo en la creacion",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
+                                /*limpiar los edit*/
+
+                            } else {
+                                Snackbar.make(
+                                    binding.root,
+                                    "Fallo en la creacion",
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                } else {
+                    Snackbar.make(
+                        binding.root,
+                        "Fallo en la creacion",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
+
+            }
 
 
             /*    val bundle = Bundle()
