@@ -75,9 +75,6 @@ class FragmentLogin : Fragment() {
             } else {
                 Snackbar.make(binding.root, "Por favor introduce datos",Snackbar.LENGTH_SHORT).show()
             }
-
-
-
         }
         binding.botonCuenta.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentLogin_to_fragmentSignUp)
