@@ -58,12 +58,23 @@ class MainFragment : Fragment() {
         binding.recyclerProductos.adapter = adapterProductos;
         binding.recyclerProductos.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        getAllProductsFB()
-        val referencia =
+        //getAllProductsFB()
 
-            /* database.getReference("datos").child("products").child("0")
-                 .child("price").setValue(100)*/
-        database.getReference("datos").child("products").orderByChild("title")
+
+        /* database.getReference("datos").child("products").child("0")
+             .child("price").setValue(100)*/
+        binding.botonEscuchar.setOnClickListener {
+            database.getReference("datos").child("products").child("0")
+                .child("price").setValue(200)
+            /*database.getReference("datos").child("products").orderByChild("title")
+                .equalTo("iPhone 9").get().addOnCompleteListener(){
+                        //.child("price").setValue(100)
+                    Log.v("datos2",it.result.ref.toString())
+
+                }*/
+        }
+
+        /*database.getReference("datos").child("products").orderByChild("title")
             .equalTo("iPhone 9").addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
 
@@ -75,7 +86,7 @@ class MainFragment : Fragment() {
                 }
 
             })
-        Log.v("datos2", referencia.toString())
+        Log.v("datos2", referencia.toString())*/
         //getAllProducts()
         //database.getReference("usuarios").child(uid).child("nombre").setValue("asdasd")
         //database.getReference("usuarios").child(uid).child("apellido").setValue("fghdfhfghfg")
