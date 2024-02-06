@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class AdapterProductos(var context: Context, var uid: String) :
     RecyclerView.Adapter<AdapterProductos.MyHolder>() {
-    private var listaProductos: ArrayList<Producto>;
+    private var listaProductos: ArrayList<Producto?>;
     val bdb: FirebaseDatabase = FirebaseDatabase.getInstance("https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app/")
 
     // AL PULSAR EL ADD FAV SE AÑADE EL PRODUCTO AL NODO FAV DEL USUARIO LOGEADO
@@ -51,25 +51,25 @@ class AdapterProductos(var context: Context, var uid: String) :
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        val item: Producto = listaProductos[position]
-        holder.toolbar.title = item.nombre
+        val item: Producto? = listaProductos[position]
+        holder.toolbar.title = item?.title
         holder.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_fav_item -> {
                     val db =
                         FirebaseDatabase.getInstance("https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app/")
                     val referencia = db.getReference("usuarios").child(uid).child("fav")
-                    referencia.child(item.id.toString()).setValue(item)
+                    referencia.child(item?.id.toString()).setValue(item)
                 }
             }
             return@setOnMenuItemClickListener true
         }
-        Glide.with(context).load(item.imagen).into(holder.imagen)
+        Glide.with(context).load(item?.thumbnail).into(holder.imagen)
 
     }
 
 
-    fun addProducto(item: Producto) {
+    fun addProducto(item: Producto?) {
         listaProductos.add(item)
         notifyItemInserted(listaProductos.size - 1)
     }
