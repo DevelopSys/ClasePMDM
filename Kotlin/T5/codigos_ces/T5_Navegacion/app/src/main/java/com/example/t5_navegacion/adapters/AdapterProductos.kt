@@ -69,6 +69,11 @@ class AdapterProductos(var context: Context, var uid: String) :
     }
 
 
+    fun borrarLista(){
+        this.listaProductos.clear();
+        notifyDataSetChanged()
+    }
+
     fun addProducto(item: Producto?) {
         listaProductos.add(item)
         notifyItemInserted(listaProductos.size - 1)

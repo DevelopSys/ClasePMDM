@@ -59,11 +59,28 @@ class MainFragment : Fragment() {
         binding.recyclerProductos.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         getAllProductsFB()
+        val referencia =
+
+            /* database.getReference("datos").child("products").child("0")
+                 .child("price").setValue(100)*/
+        database.getReference("datos").child("products").orderByChild("title")
+            .equalTo("iPhone 9").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    Log.v("datos2", snapshot.value.toString())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        Log.v("datos2", referencia.toString())
         //getAllProducts()
         //database.getReference("usuarios").child(uid).child("nombre").setValue("asdasd")
         //database.getReference("usuarios").child(uid).child("apellido").setValue("fghdfhfghfg")
-       /* binding.botonEscuchar.setOnClickListener {
-            *//*val reference = database.getReference("datos").child("products")
+        /* binding.botonEscuchar.setOnClickListener {
+             *//*val reference = database.getReference("datos").child("products")
             reference.addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     Log.v("datos", snapshot.toString())
@@ -89,8 +106,7 @@ class MainFragment : Fragment() {
 
                 }
 
-            })
-*//**/
+            })*/
     }
 
     /*
@@ -127,20 +143,24 @@ class MainFragment : Fragment() {
         Volley.newRequestQueue(context).add(peticion)
     }
 
-    private fun getAllProductsFB(){
-        database.getReference("datos").child("productos").addValueEventListener(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach {
-                    val producto: Producto? = it.getValue(Producto::class.java)
-                    adapterProductos.addProducto(producto)
+    private fun getAllProductsFB() {
+
+        database.getReference("datos").child("products").orderByChild("title")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    adapterProductos.borrarLista()
+                    snapshot.children.forEach {
+                        val producto: Producto? = it.getValue(Producto::class.java)
+                        Log.v("datos", producto!!.title.toString())
+                        adapterProductos.addProducto(producto)
+                    }
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
 
-        })
+            })
         //database.getReference("datos").child("productos").child("0").child("precio").
     }
 
