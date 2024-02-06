@@ -58,12 +58,22 @@ class MainFragment : Fragment() {
         binding.recyclerProductos.adapter = adapterProductos;
         binding.recyclerProductos.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        getAllProducts()
+        //getAllProducts()
         //database.getReference("usuarios").child(uid).child("nombre").setValue("asdasd")
         //database.getReference("usuarios").child(uid).child("apellido").setValue("fghdfhfghfg")
         binding.botonEscuchar.setOnClickListener {
             val reference = database.getReference("datos").child("products")
-            reference.addListenerForSingleValueEvent(object : ValueEventListener {
+            reference.addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.v("datos", snapshot.toString())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+            /*reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val hijos = snapshot.children
                     hijos.forEach {
@@ -79,7 +89,7 @@ class MainFragment : Fragment() {
                 }
 
             })
-        }
+*/        }
 
     }
 
