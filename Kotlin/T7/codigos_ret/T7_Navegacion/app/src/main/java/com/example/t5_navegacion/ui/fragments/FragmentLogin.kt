@@ -71,13 +71,12 @@ class FragmentLogin : Fragment() {
             if (!binding.editUsuario.text.toString().isEmpty() && !binding.editPass.text.toString()
                     .isEmpty()
             ) {
-                auth.signInWithEmailAndPassword(correo!!, pass!!).addOnCompleteListener {
+                auth.signInWithEmailAndPassword(binding.editUsuario.text.toString(),binding.editPass.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
                         val bundle = Bundle();
                         bundle.putString("uid", uid)
                         findNavController().navigate(
                             R.id.action_fragmentLogin_to_fragmentMain,
-                            bundle
                         )
                     } else {
                         Snackbar.make(binding.root, "Fallo de credenciales", Snackbar.LENGTH_SHORT)
