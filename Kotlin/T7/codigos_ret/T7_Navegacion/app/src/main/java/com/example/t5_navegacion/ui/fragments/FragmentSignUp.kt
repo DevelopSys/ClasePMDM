@@ -74,6 +74,7 @@ class FragmentSignUp : Fragment() {
                             if (it.isSuccessful) {
                                 val referencia =
                                     datasabe.getReference("usuarios").child(auth.currentUser!!.uid)
+                                referencia.child("conocimientos").child("cosa")
                                 referencia.child("nombre")
                                     .setValue(binding.editNombre.text.toString())
                                 referencia.child("direccion")

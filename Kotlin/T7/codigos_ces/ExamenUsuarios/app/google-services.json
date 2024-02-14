@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "568107152110",
+    "firebase_url": "https://bmh-ces-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "bmh-ces",
+    "storage_bucket": "bmh-ces.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568107152110:android:5a9c11a31eb41b3b2af9ff",
+        "android_client_info": {
+          "package_name": "com.example.examenusuarios"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcJIeFCQOOLTgAUC9U7Bs-3Rk9Puig2HM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568107152110:android:f3ff83fe9b51bab62af9ff",
+        "android_client_info": {
+          "package_name": "com.example.t5_navegacion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcJIeFCQOOLTgAUC9U7Bs-3Rk9Puig2HM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

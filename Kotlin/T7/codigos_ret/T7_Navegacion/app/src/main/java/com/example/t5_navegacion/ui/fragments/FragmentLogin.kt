@@ -38,6 +38,7 @@ class FragmentLogin : Fragment() {
     private var uid: String? = null
     private lateinit var listaUsuarios: ArrayList<Usuario>;
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         auth = FirebaseAuth.getInstance()
@@ -74,9 +75,9 @@ class FragmentLogin : Fragment() {
                 auth.signInWithEmailAndPassword(binding.editUsuario.text.toString(),binding.editPass.text.toString()).addOnCompleteListener {
                     if (it.isSuccessful) {
                         val bundle = Bundle();
-                        bundle.putString("uid", uid)
+                        bundle.putString("uid", auth.currentUser!!.uid)
                         findNavController().navigate(
-                            R.id.action_fragmentLogin_to_fragmentMain,
+                            R.id.action_fragmentLogin_to_fragmentMain,bundle
                         )
                     } else {
                         Snackbar.make(binding.root, "Fallo de credenciales", Snackbar.LENGTH_SHORT)

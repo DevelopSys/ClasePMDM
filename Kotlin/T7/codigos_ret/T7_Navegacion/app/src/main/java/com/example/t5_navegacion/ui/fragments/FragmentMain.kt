@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.t5_navegacion.databinding.FragmentLoginBinding
 import com.example.t5_navegacion.databinding.FragmentMainBinding
 import com.example.t5_navegacion.databinding.FragmentSignupBinding
+import com.example.t5_navegacion.model.Producto
 import com.google.firebase.database.FirebaseDatabase
 
 class FragmentMain : Fragment() {
@@ -23,11 +24,14 @@ class FragmentMain : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private lateinit var database: FirebaseDatabase
+    private lateinit var uid: String;
+    private var contador: Int = 0;
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         database = FirebaseDatabase
             .getInstance("https://proyectoret-bmh2023-default-rtdb.firebaseio.com/")
+        uid = arguments?.getString("uid")!!
     }
 
     override fun onCreateView(
@@ -43,8 +47,14 @@ class FragmentMain : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.botonAdd.setOnClickListener {
-            database.getReference("usuarios").child(binding.editNodo.text.toString())
-                .setValue(binding.editValor.text.toString())
+            database.getReference("usuarios").child(uid).child("productos")
+                .child(contador.toString()).setValue(
+                Producto(
+                    binding.editNodo.text.toString(),
+                    binding.editValor.text.toString().toInt()
+                )
+            )
+            contador++
         }
     }
 

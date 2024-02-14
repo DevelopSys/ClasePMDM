@@ -50,5 +50,9 @@
         android:name="com.example.t5_navegacion.ui.fragments.FragmentMain"
         android:label="FragmentMain"
         tools:layout="@layout/fragment_main"
-        />
+        >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+    </fragment>
 </navigation>
