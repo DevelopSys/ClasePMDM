@@ -2,6 +2,7 @@ package com.example.t5_navegacion.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,10 @@ import com.example.t5_navegacion.databinding.FragmentLoginBinding
 import com.example.t5_navegacion.databinding.FragmentMainBinding
 import com.example.t5_navegacion.databinding.FragmentSignupBinding
 import com.example.t5_navegacion.model.Producto
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class FragmentMain : Fragment() {
 
@@ -55,6 +59,20 @@ class FragmentMain : Fragment() {
                 )
             )
             contador++
+        }
+        binding.botonConsulta.setOnClickListener {
+            database.getReference("consultas").child("hoja1")
+                .addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach {
+                            Log.v("datos", it.value.toString())
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                    }
+
+                })
         }
     }
 
