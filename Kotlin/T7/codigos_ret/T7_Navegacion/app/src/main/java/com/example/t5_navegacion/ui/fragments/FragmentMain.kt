@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.t5_navegacion.adapters.ProductoAdapter
 import com.example.t5_navegacion.databinding.FragmentLoginBinding
 import com.example.t5_navegacion.databinding.FragmentMainBinding
 import com.example.t5_navegacion.databinding.FragmentSignupBinding
@@ -26,6 +28,7 @@ class FragmentMain : Fragment() {
     * el atributo cambia a false
     * */
 
+    private lateinit var adapter: ProductoAdapter
     private lateinit var binding: FragmentMainBinding
     private lateinit var database: FirebaseDatabase
     private lateinit var uid: String;
@@ -33,6 +36,7 @@ class FragmentMain : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        adapter = ProductoAdapter(context)
         database = FirebaseDatabase
             .getInstance("https://proyectoret-bmh2023-default-rtdb.firebaseio.com/")
         uid = arguments?.getString("uid")!!
@@ -50,22 +54,30 @@ class FragmentMain : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerProductos.adapter = adapter;
+        binding.recyclerProductos.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
         binding.botonAdd.setOnClickListener {
-            database.getReference("usuarios").child(uid).child("productos")
+            /*database.getReference("usuarios").child(uid).child("productos")
                 .child(contador.toString()).setValue(
-                Producto(
+                /*Producto(
                     binding.editNodo.text.toString(),
                     binding.editValor.text.toString().toInt()
-                )
-            )
+                )*/
+            )*/
             contador++
         }
         binding.botonConsulta.setOnClickListener {
-            database.getReference("consultas").child("hoja1")
-                .addValueEventListener(object : ValueEventListener{
+            database.getReference("productos")
+                .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         snapshot.children.forEach {
-                            Log.v("datos", it.value.toString())
+                            val producto: Producto = it.getValue(Producto::class.java)!!
+                            adapter.addProducto(
+                                producto
+                            )
+
                         }
                     }
 
