@@ -33,10 +33,13 @@ class FragmentMain : Fragment() {
     private lateinit var database: FirebaseDatabase
     private lateinit var uid: String;
     private var contador: Int = 0;
+    private lateinit var listener: OnMainListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         uid = arguments?.getString("uid")!!
+        listener = context as OnMainListener
+        listener.onMainSelected(uid)
         adapter = ProductoAdapter(context, uid)
         database = FirebaseDatabase
             .getInstance("https://proyectoret-bmh2023-default-rtdb.firebaseio.com/")
@@ -80,5 +83,9 @@ class FragmentMain : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
+    }
+
+    interface OnMainListener{
+        fun onMainSelected(x: String)
     }
 }

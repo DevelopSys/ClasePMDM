@@ -18,10 +18,10 @@ class ProductoAdapter(var contexto: Context, var uid: String) :
 
     var lista: ArrayList<Producto>
     var database: FirebaseDatabase
-    //var listener: OnFavoritosListener;
+    lateinit var listener: OnFavoritosListener;
 
     init {
-        //lista = contexto as OnFavoritosListener
+        listener = contexto as OnFavoritosListener
         lista = ArrayList();
         database =
             FirebaseDatabase.getInstance("https://proyectoret-bmh2023-default-rtdb.firebaseio.com/");
@@ -62,6 +62,11 @@ class ProductoAdapter(var contexto: Context, var uid: String) :
 
                 R.id.menu_fav -> {
                     // interfaz -> MainActivity
+                    listener.onFavoritoSelected()
+                }
+                R.id.menu_fav_eliminar -> {
+                    // interfaz -> MainActivity
+
                 }
             }
 

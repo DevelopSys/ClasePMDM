@@ -10,12 +10,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.example.t5_navegacion.adapters.ProductoAdapter
 import com.example.t5_navegacion.databinding.ActivityMainBinding
+import com.example.t5_navegacion.ui.fragments.FragmentMain
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ProductoAdapter.OnFavoritosListener, FragmentMain.OnMainListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var uid: String;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -53,5 +56,15 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    override fun onFavoritoSelected() {
+        val bundle: Bundle = Bundle()
+        bundle.putString("uid",uid)
+        findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_fragmentMain_to_fragmentFavs,bundle)
+    }
+
+    override fun onMainSelected(x: String) {
+        uid = x;
     }
 }
