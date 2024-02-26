@@ -6,6 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <androidx.appcompat.widget.Toolbar
+        android:alpha="0.5"
+        android:id="@+id/toolbarProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <ImageView
         android:src="@mipmap/ic_launcher"
         android:id="@+id/imagenLista"
@@ -13,7 +24,7 @@
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbarProducto" />
 
     <LinearLayout
         android:background="@android:color/white"
@@ -24,15 +35,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/imagenLista"
         app:layout_constraintEnd_toEndOf="@+id/imagenLista"
         app:layout_constraintStart_toStartOf="@+id/imagenLista">
-
-        <TextView
-            android:id="@+id/textoTitulo"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:text="TITULO" />
 
         <TextView
             android:id="@+id/textoPrecio"

@@ -54,5 +54,17 @@
         <argument
             android:name="uid"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentFavs"
+            app:destination="@id/fragmentFavs" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fav_fsragment"
+        android:id="@+id/fragmentFavs"
+        android:name="com.example.t5_navegacion.ui.fragments.FragmentFavs"
+        android:label="FragmentFavs" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
     </fragment>
 </navigation>

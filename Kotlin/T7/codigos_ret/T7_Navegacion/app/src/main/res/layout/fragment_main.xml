@@ -12,68 +12,6 @@
         android:padding="32dp">
 
 
-        <EditText
-            android:hint="introduce el nombre del nodo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/texto_mensaje"
-            android:layout_marginTop="10dp"
-            android:id="@+id/edit_nodo"
-            />
-
-        <EditText
-            android:hint="introduce el valor del nodo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_nodo"
-            android:layout_marginTop="10dp"
-            android:id="@+id/edit_valor"
-            />
-
-        <TextView
-            android:text="Pantalla principal"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="40dp"
-            android:id="@+id/texto_mensaje"
-            />
-
-
-
-        <Button
-            android:text="Agregar dato"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/edit_valor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
-            android:id="@+id/boton_add"
-            />
-
-        <Button
-            android:text="Consultar dato"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/boton_add"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
-            android:id="@+id/boton_consulta"
-            />
 
         <androidx.recyclerview.widget.RecyclerView
 
@@ -85,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/boton_consulta" />
+            app:layout_constraintTop_toBottomOf="parent" />
 
 
 
