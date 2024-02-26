@@ -28,7 +28,7 @@ class FragmentFavs : Fragment() {
         database =
             FirebaseDatabase.getInstance("https://proyectoret-bmh2023-default-rtdb.firebaseio.com/")
         this.uid = this.arguments?.getString("uid") ?: ""
-        adapter = ProductoAdapter(context, uid)
+        adapter = ProductoAdapter(context, uid, "favorito")
     }
 
     override fun onCreateView(
@@ -49,6 +49,8 @@ class FragmentFavs : Fragment() {
         database.getReference("usuarios").child(uid).child("favoritos")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    // borro lista
+                    adapter.clearList()
                     snapshot.children.forEach {
                         val producto: Producto = it.getValue(Producto::class.java) as Producto
                         adapter.addProducto(producto)

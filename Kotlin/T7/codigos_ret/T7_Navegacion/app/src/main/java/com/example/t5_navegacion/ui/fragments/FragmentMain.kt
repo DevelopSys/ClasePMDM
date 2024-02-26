@@ -40,7 +40,7 @@ class FragmentMain : Fragment() {
         uid = arguments?.getString("uid")!!
         listener = context as OnMainListener
         listener.onMainSelected(uid)
-        adapter = ProductoAdapter(context, uid)
+        adapter = ProductoAdapter(context, uid, "producto")
         database = FirebaseDatabase
             .getInstance("https://proyectoret-bmh2023-default-rtdb.firebaseio.com/")
     }

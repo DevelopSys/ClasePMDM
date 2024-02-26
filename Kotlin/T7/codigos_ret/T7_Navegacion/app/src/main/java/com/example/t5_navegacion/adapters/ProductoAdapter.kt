@@ -13,7 +13,7 @@ import com.example.t5_navegacion.R
 import com.example.t5_navegacion.model.Producto
 import com.google.firebase.database.FirebaseDatabase
 
-class ProductoAdapter(var contexto: Context, var uid: String) :
+class ProductoAdapter(var contexto: Context, var uid: String, var ubicacion: String) :
     RecyclerView.Adapter<ProductoAdapter.MyHolder>() {
 
     var lista: ArrayList<Producto>
@@ -27,19 +27,29 @@ class ProductoAdapter(var contexto: Context, var uid: String) :
             FirebaseDatabase.getInstance("https://proyectoret-bmh2023-default-rtdb.firebaseio.com/");
     }
 
-    class MyHolder(item: View) : RecyclerView.ViewHolder(item) {
+    class MyHolder(item: View, ubicacion: String) : RecyclerView.ViewHolder(item) {
         var toolbar: Toolbar = item.findViewById(R.id.toolbarProducto)
         var textoPrecio: TextView = item.findViewById(R.id.textoPrecio)
         var imagen: ImageView = item.findViewById(R.id.imagenLista)
 
         init {
-            toolbar.inflateMenu(R.menu.menu_producto)
+            when (ubicacion) {
+                "producto" -> {
+                    toolbar.inflateMenu(R.menu.menu_producto)
+                }
+
+                "favorito" -> {
+                    toolbar.inflateMenu(R.menu.menu_favorito)
+                }
+            }
+
+
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         return MyHolder(
-            LayoutInflater.from(contexto).inflate(R.layout.item_recycler, parent, false)
+            LayoutInflater.from(contexto).inflate(R.layout.item_recycler, parent, false), ubicacion
         )
     }
 
@@ -64,8 +74,11 @@ class ProductoAdapter(var contexto: Context, var uid: String) :
                     // interfaz -> MainActivity
                     listener.onFavoritoSelected()
                 }
+
                 R.id.menu_fav_eliminar -> {
                     // interfaz -> MainActivity
+                    database.getReference("usuarios").child(uid).child("favoritos")
+                        .child(producto.id.toString()).setValue(null)
 
                 }
             }
@@ -79,7 +92,12 @@ class ProductoAdapter(var contexto: Context, var uid: String) :
         notifyItemInserted(lista.size - 1)
     }
 
-    interface OnFavoritosListener{
+    fun clearList(): Unit {
+        this.lista.clear();
+        notifyDataSetChanged()
+    }
+
+    interface OnFavoritosListener {
         fun onFavoritoSelected()
     }
 }
