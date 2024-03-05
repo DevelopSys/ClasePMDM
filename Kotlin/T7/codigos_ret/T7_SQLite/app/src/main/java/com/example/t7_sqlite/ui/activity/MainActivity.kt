@@ -1,4 +1,4 @@
-package com.example.t7_sqlite
+package com.example.t7_sqlite.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -9,7 +9,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.example.t7_sqlite.R
 import com.example.t7_sqlite.database.DAOUsuarios
+import com.example.t7_sqlite.database.DBHelper
+import com.example.t7_sqlite.database.SchemeDB
 import com.example.t7_sqlite.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,19 +26,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
 
-        val daoUsuarios = DAOUsuarios()
-        daoUsuarios.insertarAlumno("asdasd")
+
+        setSupportActionBar(binding.toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
