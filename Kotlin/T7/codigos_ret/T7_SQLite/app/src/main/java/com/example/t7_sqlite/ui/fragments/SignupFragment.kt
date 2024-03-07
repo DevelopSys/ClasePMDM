@@ -8,20 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.t7_sqlite.database.DAOUsuarios
 import com.example.t7_sqlite.database.DBHelper
 import com.example.t7_sqlite.database.SchemeDB
 import com.example.t7_sqlite.databinding.FragmentLoginBinding
 import com.example.t7_sqlite.databinding.FragmentSignupBinding
+import com.example.t7_sqlite.model.Usuario
 
 class SignupFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupBinding
-    private lateinit var openHelper: DBHelper
-    private lateinit var database: SQLiteDatabase
+    private lateinit var daoUsuarios: DAOUsuarios
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        openHelper = DBHelper(context, SchemeDB.DB_NAME, null, SchemeDB.DB_VERSION)
+        daoUsuarios = DAOUsuarios(context)
     }
 
     override fun onCreateView(
@@ -34,8 +36,16 @@ class SignupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.botonRegistrar.setOnClickListener {
+            daoUsuarios.insertarAlumno(
+                Usuario(
+                    binding.editNombre.text.toString(),
+                    binding.editCorreo.text.toString(),
+                    binding.editPass.text.toString(),
+                    binding.editTelefono.text.toString().toInt(),
+                )
+            )
             // db
-            database = openHelper.writableDatabase
+            /*database = openHelper.writableDatabase
             database.execSQL(
                 "INSERT INTO ${SchemeDB.TAB_USUARIOS}" +
                         " (${SchemeDB.COL_NOMBRE}, ${SchemeDB.COL_CORREO}, ${SchemeDB.COL_PASS}, ${SchemeDB.COL_TELEFONO})" +
@@ -43,7 +53,7 @@ class SignupFragment : Fragment() {
                             binding.editTelefono.text.toString().toInt()
                         }')"
             )
-            database.close()
+            database.close()*/
         }
     }
 }
