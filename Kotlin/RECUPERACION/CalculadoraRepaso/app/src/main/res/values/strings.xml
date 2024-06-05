@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CalculadoraRepaso</string>
+    <string-array name="operaciones">
+        <item>suma</item>
+        <item>resta</item>
+        <item>multiplicacion</item>
+        <item>division</item>
+    </string-array>
+</resources>
