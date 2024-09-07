@@ -31,7 +31,7 @@ Para poder entender un proyecto Flutter, lo primero que hay que hablar es de la 
 
 ![árbol de nodos](./images/arbol_widgets.png)
 
-Como se puede ver en la imagen todo parte de un elemento llamado MyApp, terminar en los widgets finales de texto e icono. En esta gerarquía, podemos diferencia entre widgets finales (aquellos que representan un elemento como texto o icono) y widgets contenedores (aquellos que tienen otros wodgets dentro). Esta diferenciación es sobre elementos gráficos, pero en cuanto a funcionalidad existen dos tipos de widgets:
+Como se puede ver en la imagen todo parte de un elemento llamado MyApp, terminar en los widgets finales de texto e icono. En esta jerarquía, podemos diferencia entre widgets finales (aquellos que representan un elemento como texto o icono) y widgets contenedores (aquellos que tienen otros wodgets dentro). Esta diferenciación es sobre elementos gráficos, pero en cuanto a funcionalidad existen dos tipos de widgets:
 
 - Stateless: aquellos widgets que no tienen estado, es decir que tan solo se utilizan para mostrar información y no recogerla y/o guardarla para tratarla de alguna forma
 
@@ -285,7 +285,7 @@ Una vez se ha entendido la creación del proyecto y la forma en la que se estruc
 
 Para empezar a ver los principales widgets que existe, haremos diferenciación entre los elementos gráficos (aquellos que tienen una GUI) y elementos de colocación (aquellos que sirven como contenedores de otros widgets y los colocan de una forma determinada). Para todos los ejemplos se va a partir de la aplicaión realizada en el punto anterior, representando dentro del body del scaffold los elementos a mostrar
 
-## Widgets de colocación 
+## Widgets de colocación
 
 Como se ha dicho antes, los wodgets de colocación son aquellos que tienen la capacidad de contener otros widgets y colocarlos de tal forma que queden en una disposicion concreta. Una cosa muy importante es que todos ellos se pueden anidar entre sí, pero para explicarlo de forma más sencilla vamos a utilizarlos de forma indifidualizada. Para todos los ejemplos nos vamos a utilizar como base un MaterialApp con un scaffold con el siguiente código
 
@@ -295,7 +295,7 @@ Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       floatingActionButton: FloatingActionButton(onPressed: () => {}, child: const Icon(Icons.add)),
-      body: 
+      body:
     );
   }
 ```
@@ -328,6 +328,7 @@ Se trata de un widget parecido al anterior, pero con la capacidad de personaliza
         height: 200.0,
       ),
 ```
+
 Con las características configuradas, la colocacion del texto quedaría de la siguiente forma
 
 [<img src="./images/container1.png" width="50%"/>]
@@ -353,7 +354,7 @@ Se trata de un elemento fila que agrupa widgets en su interior horizontalmente (
           Expanded(
               child: Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png"))
         ],
-        
+
       ),
 ```
 
@@ -362,7 +363,7 @@ En el caso de querer centrar la fila para que aparezca en la parte central de la
 ```dart
 mainAxisAlignment: MainAxisAlignment.center,
 //Center Row contents horizontally,
-crossAxisAlignment: CrossAxisAlignment.center 
+crossAxisAlignment: CrossAxisAlignment.center
 //Center Row contents vertically,,
 ```
 
@@ -388,10 +389,11 @@ En el caso de querer centrar la columna para que aparezca en la parte central de
 ```dart
 mainAxisAlignment: MainAxisAlignment.center,
 //Center Row contents horizontally,
-crossAxisAlignment: CrossAxisAlignment.center 
+crossAxisAlignment: CrossAxisAlignment.center
 //Center Row contents vertically,,
 ```
-##### Convinación
+
+##### Combinación
 
 Tal y como se ha explicado antes, se pueden utilizar los elementos de forma individual o también juntarlos. En el siguiente ejemplo se va a realizar la UI de un formulario que junte diferentes row , col
 
@@ -459,7 +461,7 @@ Con el siguiente resultado
 
 [<img src="./images/rowcol1.png" width="50%"/>]
 
-Antes de continuar con el siguiente layout, es importante reseñar el uso del Expanded. No es obligatorio su uso, pero en el caso de hacerlo, aquel elemento que está incluido dentro tendrá la capacidad de ajustarse al espacio donde está puesto. Por ejemplo, si tenemos un row con todos los elementos puestos como expanded, en un móvil todos los elementos se acomplarán al espacio que tienen disponible pero si se visualiza en un navegador pasará exactamente lo mismo por lo que se verá mejor. 
+Antes de continuar con el siguiente layout, es importante reseñar el uso del Expanded. No es obligatorio su uso, pero en el caso de hacerlo, aquel elemento que está incluido dentro tendrá la capacidad de ajustarse al espacio donde está puesto. Por ejemplo, si tenemos un row con todos los elementos puestos como expanded, en un móvil todos los elementos se acomplarán al espacio que tienen disponible pero si se visualiza en un navegador pasará exactamente lo mismo por lo que se verá mejor.
 
 ### Tabla
 
@@ -486,6 +488,7 @@ body: Table(
           ],
         )
 ```
+
 Con el siguiente resultado
 
 <img src="./images/tabla1.png">
@@ -526,9 +529,9 @@ El primer tipo de elemento que veremos son los botones
 
 ### Botones
 
-Los botones son los elementos típicos de UI que permiten interaccion con el usuario, ya que permite a este seleccionar o lanzar acciones con su pulsación. 
+Los botones son los elementos típicos de UI que permiten interaccion con el usuario, ya que permite a este seleccionar o lanzar acciones con su pulsación.
 
-#### Normal Button 
+#### Normal Button
 
 Existen multitud de botones, entre los que descatan los siguientes, ElevatedButton, FilledButton, FilledButton.tonal, OutlinedButton, TextButton. El código de cada uno de ellos sería el siguiente
 
@@ -563,7 +566,7 @@ class ButtonPage extends StatelessWidget {
 
 La construccion de todos ellos es bastante sencilla, lo única diferencia como tal por defecto es el aspecto gráfico. El resultado es el siguiente:
 
-<img src="./images/botones1.png"> 
+<img src="./images/botones1.png">
 
 Como se puede comprobar todos los botones tienen la misma función onPressed (la cual trataremos ahora). En el caso de querer incoporar un icono a cada uno de los botones se podría hacer indicandolo en la creación del botón
 
@@ -610,7 +613,7 @@ Column(
                     )
 ```
 
-Si juntamos los dos tipos de botones que hemos visto dentro de una fila tendríamos el siguiente código 
+Si juntamos los dos tipos de botones que hemos visto dentro de una fila tendríamos el siguiente código
 
 ```dart
 class ButtonPage extends StatelessWidget {
@@ -681,7 +684,6 @@ Con el siguiente resultado
 
 <img src="./images/botones2.png">
 
-
 #### Acciones
 
 Para poder gestionar la pulsación de los botones, existe la obligación de sobreescribir el metodo onPressed de la clase Button. Este atributo va asociado a una función, la cual se ejecutará al producirse la acción concreta
@@ -690,6 +692,7 @@ Para poder gestionar la pulsación de los botones, existe la obligación de sobr
 ElevatedButton(
 onPressed: () {print('Pulsado botón elevado');}, child: Text("Elevated")),
 ```
+
 De la misma forma, se puede realizar una función que reciba por parámetros el mensaje que se quiere mostrar para que dicha función se pueda llamar desde la pulsación del botón. La función quedaría de la siguiente forma
 
 ```dart
@@ -710,6 +713,7 @@ icon: const Icon(Icons.filter_drama),
 onPressed: () {
 sendMessage("Boton pulsado icono normal", context);},),
 ```
+
 No solo se puede evaluar la pulsación del botón, sino también por ejemplo la pulsación larga, mediante el método onLongPress
 
 ```dart
@@ -751,14 +755,14 @@ Una vez contamos con la lista de opciones, el siguiente paso es crear el element
   }
 ```
 
-Como se puede ver, ademas de indicar cuales son los elementos que se quieren mostrar dentro de la lista de botones, también se indica cual es el elemento que está seleccionado (en este caso el lenguaje Dart). Esto puede suponer un problema, ya que cuando cambia la seleccion no se realiza una actualización de quien es el elemento seleccionado, sino que aunque se realice una selección diferente seguiré estando seleccionado el mismo. Para poder hacer el cambio es necesario jugar con el estado del grupo de botones  (a continuación veremos como hacerlo). Por último podemos ver en el código la propiedad onSelectionChanged, la cual tiene asignada una funcion de flecha que retorna un parámetro de tipo Set con la selección. En este caso lo que se realiza es una impresión por consola del elemento que está seleccionado.
+Como se puede ver, ademas de indicar cuales son los elementos que se quieren mostrar dentro de la lista de botones, también se indica cual es el elemento que está seleccionado (en este caso el lenguaje Dart). Esto puede suponer un problema, ya que cuando cambia la seleccion no se realiza una actualización de quien es el elemento seleccionado, sino que aunque se realice una selección diferente seguiré estando seleccionado el mismo. Para poder hacer el cambio es necesario jugar con el estado del grupo de botones (a continuación veremos como hacerlo). Por último podemos ver en el código la propiedad onSelectionChanged, la cual tiene asignada una funcion de flecha que retorna un parámetro de tipo Set con la selección. En este caso lo que se realiza es una impresión por consola del elemento que está seleccionado.
 
 En el caso de querer que se puedan seleccionar varias opciones al mismo tiempo, sería necesario indicar dentro del objeto dicha posibilidad con la siguiente característica
 
 ```dart
 multiSelectionEnabled: true,
 ```
-   
+
 ##### Acciones
 
 Como se acaba de contar, las acciones de un SegmentedButton son sencillas ya que tan solo es necesario asociar la característica onSelectionChanged con su funcion de flecha asociada. Sin embargo si se quiere mantener el elemento seleccionado o simplemente se quiere sacar esa selección para utilizarla en cualquier lado, es necesario gestionar su estado. Para ello tenemos que crear un widget con dicho estado como el siguiente:
@@ -795,6 +799,7 @@ class _SegmentedButtonState extends State<SegmentedButtonComplete> {
   }
 }
 ```
+
 La primera clase representa el widget como tal, que al extender de statefull sobreescribe el método createState que retorna un objeto de tipo State. Este objeto se crea con la siguiente clase, la cual extiende de State tipada como la clase anterior. Esto hace que el widget tenga un estado asociado correcto y esté disponible el método setState en toda la clase, la cual tiene la capacidad de cambiar cualquier variable de la clase. Esto se realiza en el método onSelectionChanged, asociando a la variable selected el valor seleccionado de la lista de elementos
 
 #### FloatingActionButton (FBA)
@@ -878,7 +883,7 @@ class _RadioGruopState extends State<RadioGroupComplete>{
 }
 ```
 
-Una vez tenemos estos elementos creados, en la clase _RadioGruopState retornamos el grupo de radios. Para ello, es necesario crear un LisTile por cada uno de los elementos que se quieran representar, donde en la característica leading se indica cual es el aspecto - widget que se quiere mostrar (además del valor, el método onChanged y eel atributo groupValue)
+Una vez tenemos estos elementos creados, en la clase \_RadioGruopState retornamos el grupo de radios. Para ello, es necesario crear un LisTile por cada uno de los elementos que se quieran representar, donde en la característica leading se indica cual es el aspecto - widget que se quiere mostrar (además del valor, el método onChanged y eel atributo groupValue)
 
 ```dart
 class _RadioGruopState extends State<RadioGroupComplete> {
@@ -935,6 +940,7 @@ children: [
   )],
 ),
 ```
+
 De las cosas que hay que tener en cuenta es que tan solo son dos las propiedades que son requeridas: value y onChanged. La primera de ellas es necesario asociarla a una variable booleana (el estado que se comentaba antes), para cuando el valor de esta variable cambie, también cambie el estado y opor lo tanto su aspecto gráfico. Además, guardando el como parte del estado el check del widget, podríamos asociarlo a un textfield indicando si su estado activado o desactivado
 
 ```dart
@@ -954,7 +960,7 @@ TextField(
 
 ### TextInput
 
-Otro de los elementos más importantes de la UI son los inputs o elementos de entrada de texto, los cuales permiten a los usuarios introducir datos para que estos puedan ser procesados. Los text inputs son utilizados en los formularios y al ser elementos de los cuales se quieren guardar su contenido están asociados a un estado para poder tratarlo. Además de esto, cuando se trabaja con TextInput, para poder recoger el estado del elemento se utiliza un objeto de tipo TextEditingController y se asocia al TextInput dentro de la característica controller. Para este ejemplo vamos a realizar un formulario donde el usuario puede introducir nombre, apellido y correo. 
+Otro de los elementos más importantes de la UI son los inputs o elementos de entrada de texto, los cuales permiten a los usuarios introducir datos para que estos puedan ser procesados. Los text inputs son utilizados en los formularios y al ser elementos de los cuales se quieren guardar su contenido están asociados a un estado para poder tratarlo. Además de esto, cuando se trabaja con TextInput, para poder recoger el estado del elemento se utiliza un objeto de tipo TextEditingController y se asocia al TextInput dentro de la característica controller. Para este ejemplo vamos a realizar un formulario donde el usuario puede introducir nombre, apellido y correo.
 
 El primer paso es crear las clases asociadas tanto al widget como al state del mismo. Dentro de la clase del estado, se retorna un TextField (dentro de una columna centrada), donde se asocia un controlador. Como se ha dicho antes, este controlador seré el encargado de guardar el estado del elemento de tipo textfield
 
@@ -1005,7 +1011,7 @@ TextField(
 )
 ```
 
-- Indicar el contenido que se puede poner dentro del input mediante la selección de un titpo de teclado específico con la característica keyboardType y la característica inputFormatters, el máximo número de carácteres con maxLength, 
+- Indicar el contenido que se puede poner dentro del input mediante la selección de un titpo de teclado específico con la característica keyboardType y la característica inputFormatters, el máximo número de carácteres con maxLength,
 
 ```dart
 TextField(
@@ -1022,7 +1028,7 @@ TextField(
 
 #### Acciones
 
-Las acciones referidas al input no son muchas, ya que prácticamente su cometido principal es que el usuario escriba dentro del mismo y al pulsar un botón todos los datos sean mandados o utilizados para algo. Sin ambargo, y al igual que la mayoría de los widgets, a los textfields se les puede asociar acciones, donde la más útil es la de onSubmitted. Esta acción está asociada a a la pulsación de la tecla Enter (cuando estamos ejecutando en un navegador por ejemplo). Sin ambargo, en muchas ocasiones lo que se querrá hacer es cumplimentar todos los campos y una vez rellenos enviar los datos tras la pulsción de un botón, a modo de formulario. Para ello es necesario incorporar un botón y asociarle una accion de pressed con el envio de los datos (guardados en el estado). 
+Las acciones referidas al input no son muchas, ya que prácticamente su cometido principal es que el usuario escriba dentro del mismo y al pulsar un botón todos los datos sean mandados o utilizados para algo. Sin ambargo, y al igual que la mayoría de los widgets, a los textfields se les puede asociar acciones, donde la más útil es la de onSubmitted. Esta acción está asociada a a la pulsación de la tecla Enter (cuando estamos ejecutando en un navegador por ejemplo). Sin ambargo, en muchas ocasiones lo que se querrá hacer es cumplimentar todos los campos y una vez rellenos enviar los datos tras la pulsción de un botón, a modo de formulario. Para ello es necesario incorporar un botón y asociarle una accion de pressed con el envio de los datos (guardados en el estado).
 
 ```dart
 @override
@@ -1124,13 +1130,14 @@ void sendData() {
                 : const Text('Por favor rellena todos los datos'),
         duration: const Duration(milliseconds: 3000),
         padding: const EdgeInsets.symmetric(
-          horizontal: 8.0, 
+          horizontal: 8.0,
         ),
         behavior: SnackBarBehavior.floating,
       ),
     );
   }
 ```
+
 Con esto el formulario estará completado. Hay que tener cuidado porque visualmente, podríamos tener un fallo a la hora de seleccionar un texfield y que no se pueda representar todos los elementos en pantalla. En este caso aparecerá un error de "Overflowed By # Pixels on The Bottom". Para solucionar esto es encesario que la columna donde está guardado el formulario (todos los textfields) esté englobada en un SingleChildScrollView. De esta forma el error no aparecerá ya que la vista se puede mover para mostrar tantos elementos como se quieran. El código completo quedaría de la siguiente forma
 
 ```dart
@@ -1307,6 +1314,6 @@ En el caso de querer darle un aspecto gráfico más trabajado, con elementos com
 
 La diferencia entre ambas pantallas es la siguiente
 
-|                  Sin formato                 |              Con formato              |
-| :---------------------------------------------: | :---------------------------------------------: |
+|                  Sin formato                  |                 Con formato                  |
+| :-------------------------------------------: | :------------------------------------------: |
 | ![alt-text-1](./images/fields1.png "title-1") | ![alt-text-2](./images/field2.png "title-2") |

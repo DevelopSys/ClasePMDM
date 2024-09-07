@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">T2_Estados</string>
-    <string name="limit">Limit excedded</string>
-    <string name="reset">Reset</string>
-    <string name="change">Change</string>
-</resources>

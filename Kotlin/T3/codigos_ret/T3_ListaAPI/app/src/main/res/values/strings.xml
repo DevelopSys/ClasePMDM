@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">T3_ListaAPI</string>
-    <string-array name="generos">
-        <item>All</item>
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>
-</resources>
