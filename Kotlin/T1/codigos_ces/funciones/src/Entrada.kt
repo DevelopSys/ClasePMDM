@@ -17,12 +17,31 @@ fun funcionTabla() {
     }
 }
 
+fun funcionAleatorios(){
+
+    println("Cuantos numeros quieres guardar")
+    val capacidad = readln().toInt()
+    val numeros: Array<Int?> = arrayOfNulls<Int>(capacidad)
+    println("Indica el valor minimo a generar")
+    val minGenerado: Int = readln().toInt()
+    println("Indica el valor maximo a generar")
+    val maxGenerado: Int = readln().toInt()
+
+    for (i in 0 until numeros.size ){
+        val aleatorio = (minGenerado..maxGenerado).random()
+        numeros[i]= aleatorio
+    }
+
+
+}
+
 // CREAR UN PROGRAMA QUE TENGA LA SIGUIENTE FUNCIONALIDAD
 // PIDE AL USUARIO CUANTOS NUMEROS QUIERES GUARDAR -> 20
 // ******* PEDIR AL USUARIO SI QUIERE REPETIR NUMEROS ********
 // ******* CONTROLAR EL TAMAÑO DEL ARRAY y EL RANGO *******
 // PIDE AL USUARIO UN nª MIN y UN nº MAX -> 10 - 100
-// GUARDA EN EL ARRAY TANTOS nºs COMO EL USUARIO DIGA (20) ALEATORIOS COMPRENDIDOS ENTRE
+// GUARDA EN EL ARRAY TANTOS nºs COMO EL USUARIO DIGA (20) ALEATORIOS
+// COMPRENDIDOS ENTRE
 // LOS DOS VALORES MIN - MAX
 
 // UNA VEZ GUARDADOS
