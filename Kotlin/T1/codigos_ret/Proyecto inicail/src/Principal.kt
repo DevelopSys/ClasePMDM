@@ -4,6 +4,7 @@
 
 fun main() {
 
+    // ejercicioUno()
     // variable no cambian su valor -> no mutable
     val NOMBRE = "Borja"
     // varible si cambian su valor -> mutables
@@ -32,7 +33,7 @@ fun main() {
 
     }*/
 
-    val nota = 6
+    /*val nota = 6
     when (nota) {
         in 0..4 ->{
             println("El examen esta suspenso")
@@ -49,10 +50,37 @@ fun main() {
         !in calcularValor(9)..calcularValor(20)->{
             println("No es valida")
         }
-    }
+    }*/
+
+    // FOR -> recorridos -> for (int i=0 ; i<10;++){}
+    // for (String item : coleccion) {  }
+
+    /*for ( i in 1 until 10){
+        println(i)
+    }*/
+
+    (10..20 step 2).forEach{ println(it) }
+    (30..40).forEachIndexed { index, i -> println("El item en la posicion ${index+1} es $i") }
+    (60..70).forEachIndexed { _, i -> println("El item es $i") }
+
+    println("Introduce el nombre a evaluar")
+    var nombreLectura = readln()
+    println("Introduce el numero a evaluar")
+    // Integer.valueOf("3")
+    var edadLectura = readln().toInt()
+    (30..50).random()
+
+
+
+
+
 
 }
 
 fun calcularValor(numero: Int): Int{
     return numero*2;
+}
+
+fun ejercicioUno(){
+
 }
