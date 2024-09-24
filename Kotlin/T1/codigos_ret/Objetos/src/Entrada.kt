@@ -1,6 +1,36 @@
+import controller.Colegio
 import model.Usuario
 
 fun main() {
+
+    var opcion =0;
+    val colegio : Colegio = Colegio()
+    // [werwer,3321321]
+
+    do {
+
+        println("Indica opcion")
+        opcion = readln().toInt()
+        when(opcion){
+            1->{
+                var nombre = readln();
+                var apellido= readln();
+                colegio.agregarAlumno(Usuario(nombre,apellido))
+                // agregar alumnos
+                // pedir los datos, crear el obejto y meterlo dento de la lista
+                // colegio.agregarUsuario(usuario)
+            }
+            2->{
+                colegio.listaAlumnos.forEach { println(it) }
+            }
+            3->{}
+            4->{}
+            5->{}
+            else ->{}
+        }
+
+    }while (opcion!=5)
+
     // instanciar objetos
     /*
     var alumno1: Usuario = Usuario("Borja","Martin")

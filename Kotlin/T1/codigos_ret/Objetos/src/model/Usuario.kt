@@ -8,7 +8,8 @@ package model
         // no exista -> no puede haber un alumno con el ID que se da
             // se debe dar aviso del resultado
     // desmatricular un alumno: id
-            // se debe dar aviso del resultado -> alumno con nombre XXX desmatriculado con exito
+            // se debe dar aviso del resultado -> alumno con nombre XXX desmatriculado
+// con exito
     // listar alumnos
             // todos
             // matriculados
@@ -17,18 +18,16 @@ package model
             // si la calificacion no esta en rango -> error
             // si la calificacion esta en rango -> le pones la nota
     // mostrar clasificacion: se mostrará una clasificacion con los alumnos ordenador por notas
-
 // Mediante un menu se debe poder ejecutar la funcionalidad -> ENTRADA
 
 class Usuario(var nombre: String? = null, var apellido: String? = null) {
 
-    var lista: ArrayList<Usuario>? = null;
-    // todo el mundo tiene que tener una variable matriculado que se
     // inicializa a true
     // VARIABLES (LATEINIT o ? -> VAR)
     var correo: String? = null;
     var telefono: Int?=null;
     var matriculado: Boolean = true;
+    var id: Int = 0;
     // CONSTRUCTOR -> SECUNDARIOS
 
     init {
