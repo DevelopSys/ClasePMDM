@@ -20,7 +20,7 @@ package model
     // mostrar clasificacion: se mostrará una clasificacion con los alumnos ordenador por notas
 // Mediante un menu se debe poder ejecutar la funcionalidad -> ENTRADA
 
-class Usuario(var nombre: String? = null, var apellido: String? = null) {
+abstract open class Usuario(var nombre: String? = null, var apellido: String? = null) {
 
     // inicializa a true
     // VARIABLES (LATEINIT o ? -> VAR)
@@ -34,6 +34,7 @@ class Usuario(var nombre: String? = null, var apellido: String? = null) {
     init {
         // ejecutado siempre despues del constructor (primario - secundario)
         nombre += "_23/24";
+        apellido += "_23/24"
     }
 
     constructor(nombre: String?, apellido: String?, correo: String?=null, telefono: Int?=null) : this(nombre, apellido){
@@ -42,7 +43,7 @@ class Usuario(var nombre: String? = null, var apellido: String? = null) {
     }
 
     // FUNCIONES
-    fun mostrarDatos(){
+    open fun mostrarDatos(){
         println("Nombre: $nombre")
         println("Apellido: $apellido")
         println("Matriculado: $matriculado")

@@ -1,10 +1,12 @@
 import controller.Colegio
+import model.Alumno
 import model.Usuario
 
 fun main() {
 
-    var opcion =0;
-    val colegio : Colegio = Colegio()
+    
+    var opcion = 0;
+    val colegio: Colegio = Colegio()
     // [werwer,3321321]
 
     do {
@@ -15,25 +17,27 @@ fun main() {
         println("5. Salir")
         println("Indica opcion")
         opcion = readln().toInt()
-        when(opcion){
-            1->{
+        when (opcion) {
+            1 -> {
                 println("AGREGANDO ALUMNO")
                 println("Indica el nombre a agregar")
                 var nombre = readln();
                 println("Indica el apellido a agregar")
-                var apellido= readln();
-                colegio.agregarAlumno(Usuario(nombre,apellido))
+                var apellido = readln();
+                colegio.agregarAlumno(Usuario(nombre, apellido))
                 // agregar alumnos
                 // pedir los datos, crear el obejto y meterlo dento de la lista
                 // colegio.agregarUsuario(usuario)
             }
-            2->{
+
+            2 -> {
                 // id
                 println("Por favor indica el id del alumno que quieres desmatricular")
                 var id = readln().toInt()
                 colegio.desmatricular(id)
             }
-            3->{
+
+            3 -> {
                 // 1-> todos
                 // 2-> matriculados
                 // 3-> no matriculados
@@ -44,20 +48,23 @@ fun main() {
                 var opcionListado = readln().toInt()
                 colegio.listarAlumno(opcionListado)
             }
-            4->{
+
+            4 -> {
                 println("Por favor indica el id del alumno que quieres calificar")
                 var id = readln().toInt()
                 colegio.calificarAlumno(id)
             }
-            5->{
+
+            5 -> {
                 println("Saliendo...")
             }
-            else ->{
+
+            else -> {
                 println("Opcion no valida, intentalo de nuevo")
             }
         }
 
-    }while (opcion!=5)
+    } while (opcion != 5)
 
     // instanciar objetos
     /*
@@ -101,9 +108,9 @@ fun main() {
     val alumnos = ArrayList<Usuario>()
     alumnos.add(alumno2)
     alumnos.add(alumno1)
-    alumnos.add(Usuario("Claudia","Martin", telefono = 123123))
-    alumnos.add(Usuario("Juan","Lopez",correo = "juan@gmail.com"))
-    alumnos.add(Usuario("Pepe","Gomez"))
+    alumnos.add(Usuario("Claudia", "Martin", telefono = 123123))
+    alumnos.add(Usuario("Juan", "Lopez", correo = "juan@gmail.com"))
+    alumnos.add(Usuario("Pepe", "Gomez"))
 
     alumnos[3].desmatricular();
     alumnos[1].desmatricular();
@@ -127,7 +134,7 @@ fun main() {
         }
     }*/
     // la lista de los matriculados
-    val matriculados: List<Usuario> = alumnos.filter {it.matriculado}
+    val matriculados: List<Usuario> = alumnos.filter { it.matriculado }
     // alumnos.filter {it.matriculado}.forEach { it.mostrarDatos() }
     // diferencia entre un LIST y un ARRAYLIST ->
 }
