@@ -28,6 +28,7 @@ class Usuario(var nombre: String? = null, var apellido: String? = null) {
     var telefono: Int?=null;
     var matriculado: Boolean = true;
     var id: Int = 0;
+    var calificacion: Double = 0.0
     // CONSTRUCTOR -> SECUNDARIOS
 
     init {

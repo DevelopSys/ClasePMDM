@@ -8,12 +8,19 @@ fun main() {
     // [werwer,3321321]
 
     do {
-
+        println("1. Agrega alumno")
+        println("2. Desmatricular alumno")
+        println("3. Listar alumnos")
+        println("4. Calificar alumno")
+        println("5. Salir")
         println("Indica opcion")
         opcion = readln().toInt()
         when(opcion){
             1->{
+                println("AGREGANDO ALUMNO")
+                println("Indica el nombre a agregar")
                 var nombre = readln();
+                println("Indica el apellido a agregar")
                 var apellido= readln();
                 colegio.agregarAlumno(Usuario(nombre,apellido))
                 // agregar alumnos
@@ -21,12 +28,33 @@ fun main() {
                 // colegio.agregarUsuario(usuario)
             }
             2->{
-                colegio.listaAlumnos.forEach { println(it) }
+                // id
+                println("Por favor indica el id del alumno que quieres desmatricular")
+                var id = readln().toInt()
+                colegio.desmatricular(id)
             }
-            3->{}
-            4->{}
-            5->{}
-            else ->{}
+            3->{
+                // 1-> todos
+                // 2-> matriculados
+                // 3-> no matriculados
+                println("Indica que listado quieres mostrar")
+                println("1- todos")
+                println("2- matriculados")
+                println("3- desmatricualdos")
+                var opcionListado = readln().toInt()
+                colegio.listarAlumno(opcionListado)
+            }
+            4->{
+                println("Por favor indica el id del alumno que quieres calificar")
+                var id = readln().toInt()
+                colegio.calificarAlumno(id)
+            }
+            5->{
+                println("Saliendo...")
+            }
+            else ->{
+                println("Opcion no valida, intentalo de nuevo")
+            }
         }
 
     }while (opcion!=5)
