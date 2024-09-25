@@ -1,6 +1,6 @@
 package model
 
-class Usuario (var nombre: String?=null, var apellido: String?=null ) {
+abstract class Usuario (var nombre: String?=null, var apellido: String?=null ) {
 
     // variables -> nombre, apellido
     var correo: String?=null;
@@ -17,17 +17,16 @@ class Usuario (var nombre: String?=null, var apellido: String?=null ) {
     }
 
     // metodos -> get set -> implicitos
-    fun mostrarDatos(): Unit{
+    open fun mostrarDatos(): Unit{
         println("Nombre $nombre")
         println("Apellido $apellido")
         println("Correo ${correo?:"sin especificar"}")
     }
-
     fun desmatricular(){
         this.matriculado = false;
     }
-
     fun matricularse(id: Int){
         // hacer lo que tenga que ser
     }
+    abstract fun imprimirExpediente();
 }
