@@ -20,7 +20,7 @@ package model
     // mostrar clasificacion: se mostrará una clasificacion con los alumnos ordenador por notas
 // Mediante un menu se debe poder ejecutar la funcionalidad -> ENTRADA
 
-abstract open class Usuario(var nombre: String? = null, var apellido: String? = null) {
+abstract class Usuario(var nombre: String? = null, var apellido: String? = null) {
 
     // inicializa a true
     // VARIABLES (LATEINIT o ? -> VAR)
@@ -56,4 +56,5 @@ abstract open class Usuario(var nombre: String? = null, var apellido: String? = 
     }
     // GET - SET -> implicitos a no ser que quiera
     // modificar su comportamiento
+    abstract fun obtenerInformacion()
 }

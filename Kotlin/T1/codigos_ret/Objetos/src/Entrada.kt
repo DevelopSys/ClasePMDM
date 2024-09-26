@@ -4,7 +4,7 @@ import model.Usuario
 
 fun main() {
 
-    
+    /*
     var opcion = 0;
     val colegio: Colegio = Colegio()
     // [werwer,3321321]
@@ -136,5 +136,5 @@ fun main() {
     // la lista de los matriculados
     val matriculados: List<Usuario> = alumnos.filter { it.matriculado }
     // alumnos.filter {it.matriculado}.forEach { it.mostrarDatos() }
-    // diferencia entre un LIST y un ARRAYLIST ->
+    // diferencia entre un LIST y un ARRAYLIST ->*/
 }
