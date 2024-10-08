@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titulo1">25sp</dimen>
+    <dimen name="padding_gen">24dp</dimen>
+
+</resources>
