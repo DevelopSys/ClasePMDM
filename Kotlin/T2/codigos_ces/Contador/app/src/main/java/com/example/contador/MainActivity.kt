@@ -9,6 +9,7 @@ import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.TextView
 import com.example.contador.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -19,13 +20,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         // savedInstanceState.getInt()
         // recuperar estado
 
-        contador = savedInstanceState?.getInt("contador",0)?:0
+        contador = savedInstanceState?.getInt("contador", 0) ?: 0
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.textoContador.text = contador.toString();
         Log.v("ciclo_vida", "ejecutando OnCreate")
         binding.botonIncrementar.setOnClickListener(this)
         binding.botonDecrementar.setOnClickListener(this)
+        binding.botonReset?.setOnClickListener(this)
 
 
     }
@@ -62,12 +64,20 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
+            binding.botonReset?.id->{
+                contador=0
+            }
             binding.botonIncrementar.id -> {
                 contador++
             }
 
             binding.botonDecrementar.id -> {
-                contador--
+                if (contador == 0) {
+                    Snackbar.make(binding.root, "Borja, ${resources.getString(R.string.aviso)}", Snackbar.LENGTH_LONG).show()
+                } else {
+                    contador--
+                }
+
             }
         }
         binding.textoContador.text = contador.toString()

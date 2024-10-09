@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Contador</string>
+    <string name="aviso">No puedes decrementar a negativos</string>
 </resources>
