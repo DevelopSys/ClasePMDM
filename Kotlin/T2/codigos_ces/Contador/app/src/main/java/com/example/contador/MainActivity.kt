@@ -16,9 +16,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var contador: Int = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState.ge
+        // savedInstanceState.getInt()
+        // recuperar estado
+
+        contador = savedInstanceState?.getInt("contador",0)?:0
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.textoContador.text = contador.toString();
         Log.v("ciclo_vida", "ejecutando OnCreate")
         binding.botonIncrementar.setOnClickListener(this)
         binding.botonDecrementar.setOnClickListener(this)
