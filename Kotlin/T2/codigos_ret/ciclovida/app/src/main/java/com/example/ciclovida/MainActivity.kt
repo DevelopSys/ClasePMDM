@@ -17,12 +17,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var botonDecremento: Button;
     private lateinit var textoContador: TextView;*/
     private lateinit var binding: ActivityMainBinding
-    private var contador = 0
+    private var contador:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        contador = savedInstanceState?.getInt("contador") ?: 0
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Log.v("ciclo_vida", "Ejecutando onCreate")
+
+        binding.textoContador.text = contador.toString()
+
+        // Log.v("ciclo_vida", "Ejecutando onCreate")
+        Log.v("estado",savedInstanceState?.getInt("contador").toString())
         instancias()
         acciones()
     }
@@ -55,7 +60,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 if (contador == 0) {
                     Snackbar.make(
                         binding.root,
-                        "Borja,"+"No puedes decrementar a negativos",
+                        "Borja, ${getString(R.string.aviso)}",
                         Snackbar.LENGTH_LONG
                     ).show()
                 } else {
@@ -70,6 +75,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         //botonDecremento = findViewById(R.id.botonDecremento)
         //botonIncremento = findViewById(R.id.botonIncremento)
         //textoContador = findViewById(R.id.textoContador)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("contador",contador)
     }
 
     override fun onStart() {
