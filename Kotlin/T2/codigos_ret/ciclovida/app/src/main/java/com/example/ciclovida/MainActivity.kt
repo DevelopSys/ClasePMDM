@@ -7,7 +7,9 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.ciclovida.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -44,12 +46,21 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            binding.botonIncremento.id->{
+        when (v!!.id) {
+            binding.botonIncremento.id -> {
                 contador++
             }
-            binding.botonDecremento.id->{
-                contador--
+
+            binding.botonDecremento.id -> {
+                if (contador == 0) {
+                    Snackbar.make(
+                        binding.root,
+                        "Borja,"+"No puedes decrementar a negativos",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                } else {
+                    contador--
+                }
             }
         }
         binding.textoContador.text = contador.toString()
