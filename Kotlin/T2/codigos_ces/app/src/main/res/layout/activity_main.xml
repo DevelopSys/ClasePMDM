@@ -11,7 +11,7 @@
         android:id="@+id/textoInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INICIO SESION"
+        android:text="@string/titulo"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textoInicio" />
 
     <EditText
+        android:hint="@string/hint_nombre"
         android:id="@+id/editNombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -36,27 +37,75 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <EditText
-        android:layout_marginTop="12dp"
+        android:hint="@string/hint_correo"
         android:id="@+id/editCorreo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="@+id/imagenLogin"
         app:layout_constraintStart_toStartOf="@+id/imagenLogin"
         app:layout_constraintTop_toBottomOf="@+id/editNombre" />
+
     <EditText
-        android:layout_marginTop="12dp"
+        android:hint="@string/hint_pass"
+        android:inputType="textPassword"
         android:id="@+id/editPass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="@+id/imagenLogin"
         app:layout_constraintStart_toStartOf="@+id/imagenLogin"
         app:layout_constraintTop_toBottomOf="@+id/editCorreo" />
+
+    <CheckBox
+        android:id="@+id/checkRecordar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/editPass"
+        app:layout_constraintTop_toBottomOf="@+id/editPass" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text="@string/text_pass"
+        app:layout_constraintBottom_toBottomOf="@+id/checkRecordar"
+        app:layout_constraintEnd_toStartOf="@+id/checkRecordar"
+        app:layout_constraintTop_toTopOf="@+id/checkRecordar" />
+
+    <Button
+        android:text="@string/btn_login"
+        android:id="@+id/botonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/editPass"
+        app:layout_constraintTop_toBottomOf="@+id/checkRecordar" />
+
+    <Button
+        android:text="@string/btn_clear"
+        android:id="@+id/botonVaciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/checkRecordar"
+        app:layout_constraintStart_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/checkRecordar" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
 
