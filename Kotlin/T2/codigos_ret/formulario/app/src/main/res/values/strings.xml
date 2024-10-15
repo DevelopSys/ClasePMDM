@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">formulario</string>
+    <string name="titulo">Inicio sesion</string>
+    <string name="hint_nombre">introduce nombre</string>
+    <string name="hint_correo">introduce correo</string>
+    <string name="hint_pass">introduce pass</string>
+    <string name="check_pass">Recordar contraseña</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_clear">Limpiar</string>
 </resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">form</string>
+    <string name="titulo">Login session</string>
+    <string name="hint_nombre">enter name</string>
+    <string name="hint_correo">enter mail</string>
+    <string name="hint_pass">enter pass</string>
+    <string name="check_pass">remeber pass</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_clear">Clear</string>
+</resources>
