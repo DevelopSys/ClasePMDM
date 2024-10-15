@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var botonDecremento: Button;
     private lateinit var textoContador: TextView;*/
     private lateinit var binding: ActivityMainBinding
-    private var contador:Int = 0
+    private var contador: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         contador = savedInstanceState?.getInt("contador") ?: 0
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding.textoContador.text = contador.toString()
 
         // Log.v("ciclo_vida", "Ejecutando onCreate")
-        Log.v("estado",savedInstanceState?.getInt("contador").toString())
+        Log.v("estado", savedInstanceState?.getInt("contador").toString())
         instancias()
         acciones()
     }
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         binding.botonIncremento.setOnClickListener(this)
         binding.botonDecremento.setOnClickListener(this)
+        binding.botonReset?.setOnClickListener(this)
 
         /*binding.botonIncremento.setOnClickListener {
             // si pulso el boton +, se suma 1 al texto
@@ -55,7 +56,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             binding.botonIncremento.id -> {
                 contador++
             }
-
             binding.botonDecremento.id -> {
                 if (contador == 0) {
                     Snackbar.make(
@@ -66,6 +66,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 } else {
                     contador--
                 }
+            }
+            binding.botonReset?.id -> {
+                contador = 0
             }
         }
         binding.textoContador.text = contador.toString()
@@ -79,7 +82,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("contador",contador)
+        outState.putInt("contador", contador)
     }
 
     override fun onStart() {
