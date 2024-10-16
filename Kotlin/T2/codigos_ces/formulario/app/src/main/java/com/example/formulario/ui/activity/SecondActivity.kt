@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.formulario.R
 import com.example.formulario.databinding.ActivityMainBinding
 import com.example.formulario.databinding.ActivitySecondBinding
+import com.example.formulario.model.Usuario
 
 class SecondActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySecondBinding
@@ -14,11 +15,15 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val datosRecuperados = intent.getBundleExtra("datos")
-        binding.textoNombre.text =datosRecuperados?.getString("nombre") ?: "sin datos extra"
+        val usuarioRecuperado:Usuario = datosRecuperados?.getSerializable("usuario") as Usuario
+        /*binding.textoNombre.text =datosRecuperados?.getString("nombre") ?: "sin datos extra"
         binding.textoPass.text =datosRecuperados?.getString("pass") ?: "sin datos extra"
-        binding.textoCorreo.text =datosRecuperados?.getString("correo") ?: "sin datos extra"
+        binding.textoCorreo.text =datosRecuperados?.getString("correo") ?: "sin datos extra"*/
+        binding.textoNombre.text = usuarioRecuperado.nombre
+        binding.textoCorreo.text = usuarioRecuperado.correo
+        binding.textoPass.text = usuarioRecuperado.pass
 
-        if (datosRecuperados?.getBoolean("recordar") ?: false){
+        if (usuarioRecuperado.recordar?:false){
             binding.textoRecordar.text = "Se esta recordando tu pass"
         } else {
             binding.textoRecordar.text = "No se esta recordando tu pass"

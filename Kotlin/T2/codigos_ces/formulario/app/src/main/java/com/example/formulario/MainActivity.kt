@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 import com.example.formulario.databinding.ActivityMainBinding
+import com.example.formulario.model.Usuario
 import com.example.formulario.ui.activity.SecondActivity
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         super.onRestart()
         limpiarDatos()
     }
+
     override fun onStart() {
         super.onStart()
         acciones()
@@ -47,26 +49,44 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     // INTENT origen destino
                     val intent: Intent = Intent(applicationContext, SecondActivity::class.java);
                     val bundle: Bundle = Bundle();
-                    bundle.putString("nombre", binding.editNombre.text.toString())
-                    bundle.putString("correo", binding.editCorreo.text.toString())
-                    bundle.putString("pass", binding.editPass.text.toString())
-                    bundle.putBoolean("recordar", binding.checkRecordar.isChecked)
+                    //bundle.putString("nombre", binding.editNombre.text.toString())
+                    //bundle.putString("correo", binding.editCorreo.text.toString())
+                    //bundle.putString("pass", binding.editPass.text.toString())
+                    //bundle.putBoolean("recordar", binding.checkRecordar.isChecked)
+                    val usuario = Usuario(
+                        binding.editNombre.text.toString(),
+                        binding.editCorreo.text.toString(),
+                        binding.editPass.text.toString(),
+                        binding.checkRecordar.isChecked
+                    )
+                    bundle.putSerializable("usuario", usuario)
                     intent.putExtra("datos", bundle)
                     startActivity(intent)
                     // finish()
                 } else {
-                    Snackbar.make(
+                    val notificacion: Snackbar = Snackbar.make(
                         binding.root,
                         "Fallo a la hora de pasar de pantalla",
                         Snackbar.LENGTH_SHORT
-                    ).show()
+                    )
+                    notificacion.setAction("Entrar como invidado"){
+                        val intent: Intent = Intent(applicationContext, SecondActivity::class.java);
+                        val bundle = Bundle();
+                        bundle.putSerializable("usuario", Usuario())
+                        intent.putExtra("datos",bundle)
+                        startActivity(intent)
+                    }
+                    notificacion.show()
                 }
             }
-            binding.botonVaciar.id->{limpiarDatos()}
+
+            binding.botonVaciar.id -> {
+                limpiarDatos()
+            }
         }
     }
 
-    private fun limpiarDatos(){
+    private fun limpiarDatos() {
         binding.editNombre.text.clear()
         binding.editCorreo.text.clear()
         binding.editPass.text.clear()
