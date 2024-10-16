@@ -14,6 +14,16 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val datosRecuperados = intent.getBundleExtra("datos")
+        binding.textoNombre.text =datosRecuperados?.getString("nombre") ?: "sin datos extra"
+        binding.textoPass.text =datosRecuperados?.getString("pass") ?: "sin datos extra"
+        binding.textoCorreo.text =datosRecuperados?.getString("correo") ?: "sin datos extra"
+
+        if (datosRecuperados?.getBoolean("recordar") ?: false){
+            binding.textoRecordar.text = "Se esta recordando tu pass"
+        } else {
+            binding.textoRecordar.text = "No se esta recordando tu pass"
+        }
+
         Log.v("datos",datosRecuperados?.getString("nombre") ?: "sin datos extra")
         Log.v("datos",datosRecuperados?.getString("correo")?: "sin datos extra")
         Log.v("datos",datosRecuperados?.getString("pass")?: "sin datos extra")
