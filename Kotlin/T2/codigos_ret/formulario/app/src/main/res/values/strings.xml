@@ -7,4 +7,9 @@
     <string name="check_pass">Recordar contraseña</string>
     <string name="btn_login">Login</string>
     <string name="btn_clear">Limpiar</string>
+    <string name="name">Nombre: </string>
+    <string name="mail">Correo: </string>
+    <string name="pass">Contraseña: </string>
+    <string name="pass_remember">Estás recordando la contraseña</string>
+    <string name="pass_no_remember">Estás recordando la contraseña</string>
 </resources>
