@@ -7,10 +7,12 @@ import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
 import android.widget.CompoundButton
 import android.widget.CompoundButton.OnCheckedChangeListener
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import com.example.botones.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(),
-    OnCheckedChangeListener, OnClickListener, OnLongClickListener{
+    OnCheckedChangeListener, OnClickListener, OnLongClickListener, RadioGroup.OnCheckedChangeListener{
 
     private lateinit var binding: ActivityMainBinding
     private var imagenesTitle = arrayListOf(R.drawable.background1, R.drawable.background2)
@@ -21,12 +23,13 @@ class MainActivity : AppCompatActivity(),
         binding.imgTitle.setImageResource(imagenesTitle[(0..1).random()])
         // binding.swOnOff.setOnCheckedChangeListener { _, isChecked ->  }
         binding.swOnOff.setOnCheckedChangeListener(this)
+        binding.checkbox.setOnCheckedChangeListener(this)
+        binding.grRadios.setOnCheckedChangeListener(this)
         binding.imgButton.setOnClickListener(this)
         binding.imgButton.setOnLongClickListener(this)
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-
         when(buttonView?.id){
             binding.swOnOff.id->{
                 if (isChecked){
@@ -40,18 +43,22 @@ class MainActivity : AppCompatActivity(),
                     binding.txSwitch.text = "Te han desactivado"
                 }
             }
+            binding.checkbox.id ->{
+                binding.txCheck.text = isChecked.toString()
+            }
         }
 
     }
-
     override fun onClick(v: View?) {
         when(v?.id){
             binding.imgButton.id->{
                 binding.imgTitle.setImageResource(imagenesTitle[(0..1).random()])
+                // binding.grRadios.checkedRadioButtonId -> el id del que esta seleccionado
+                val radioSeleccionado: RadioButton? = findViewById(binding.grRadios.checkedRadioButtonId)
+                binding.txRadio.text = radioSeleccionado?.text ?: "No han seleccion"
             }
         }
     }
-
     override fun onLongClick(v: View?): Boolean {
 
         when(v?.id){
@@ -61,6 +68,11 @@ class MainActivity : AppCompatActivity(),
         }
 
         return true
+    }
+
+    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+        val radioSeleccionado: RadioButton = findViewById(checkedId)
+        binding.txRadio.text = radioSeleccionado.text
     }
 
 }
