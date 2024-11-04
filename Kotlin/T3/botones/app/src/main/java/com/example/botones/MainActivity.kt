@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
+import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.CompoundButton.OnCheckedChangeListener
 import android.widget.RadioButton
@@ -15,7 +16,12 @@ class MainActivity : AppCompatActivity(),
     OnCheckedChangeListener, OnClickListener, OnLongClickListener, RadioGroup.OnCheckedChangeListener{
 
     private lateinit var binding: ActivityMainBinding
+
+    // objetos relacionados con el array dinamico
     private var imagenesTitle = arrayListOf(R.drawable.background1, R.drawable.background2)
+    private var listaDinamica:ArrayList<CharSequence> = arrayListOf("DAM","DAW","ASIR")
+    private lateinit var adapterCursosDinamico: ArrayAdapter<CharSequence>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

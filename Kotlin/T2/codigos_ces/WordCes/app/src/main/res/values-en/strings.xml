@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WordCes</string>
+    <string name="aviso">No se has acertado</string>
+    <string name="hint">por favor introduce nombre</string>
+</resources>
