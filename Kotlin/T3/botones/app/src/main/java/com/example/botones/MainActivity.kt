@@ -14,6 +14,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.example.botones.databinding.ActivityMainBinding
 import com.example.botones.model.Ciclo
+import com.google.android.material.snackbar.Snackbar
 
 // HACER UN SPINNER NUEVO CON DATOS DE CICLOS
 // LOS CICLOS SON OBJETOS CON LAS CARACTERISTICAS DE NOMBRE, SIGLAS Y FAMILIA
@@ -93,6 +94,8 @@ class MainActivity : AppCompatActivity(),
         binding.imgButton.setOnClickListener(this)
         binding.imgButton.setOnLongClickListener(this)
         binding.spinnerSencillo.setOnItemSelectedListener(this)
+        binding.spinnerDinamico.setOnItemSelectedListener(this)
+        binding.spinnerCiclosDinamico.setOnItemSelectedListener(this)
     }
 
 
@@ -154,6 +157,30 @@ class MainActivity : AppCompatActivity(),
         // parent -> quien ha generado el evento
         // position -> la posicion pulsada
         // id -> el id de la fila pulsada
+        when (parent!!.id) {
+            binding.spinnerSencillo.id -> {
+                if (position > 0) {
+                    // val curso = resources.getStringArray(R.array.spinner_base)[position]
+                    val curso = parent.adapter.getItem(position)
+                    Snackbar.make(
+                        binding.root,
+                        "El curso seleccionado es ${curso}",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            binding.spinnerDinamico.id -> {
+                val curso: CharSequence = adapterCursosDinamico.getItem(position)!!
+                Snackbar.make(binding.root,"El seleccionado es ${curso}", Snackbar.LENGTH_SHORT).show()
+            }
+
+            binding.spinnerCiclosDinamico.id ->{
+                val curso: Ciclo = adapterCiclos.getItem(position)!!
+                Snackbar.make(binding.root,"El seleccionado es ${curso.familia}",Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
