@@ -12,11 +12,15 @@ import com.example.botones.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), OnCheckedChangeListener {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var listaImagenes: ArrayList<Int>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        instancias()
+    }
+    fun instancias(){
+        listaImagenes = arrayListOf(R.drawable.background2, R.drawable.background1);
     }
 
     override fun onResume() {
@@ -27,6 +31,11 @@ class MainActivity : AppCompatActivity(), OnCheckedChangeListener {
 
     private fun acciones() {
         binding.toggleActivar.setOnCheckedChangeListener(this)
+        binding.btnCheck.setOnCheckedChangeListener(this)
+        binding.btnSwitch.setOnCheckedChangeListener(this)
+        binding.btnEnviar.setOnClickListener {
+            binding.imagenHeader.setImageResource(listaImagenes.random())
+        }
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {

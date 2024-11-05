@@ -19,6 +19,68 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imagenHeader"
+        android:src="@drawable/background1"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toStartOf="@+id/toggleActivar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toggleActivar" />
+
+    <Switch
+        android:checked="true"
+        android:id="@+id/btnSwitch"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/toggleActivar"
+        app:layout_constraintStart_toStartOf="@+id/toggleActivar"
+        app:layout_constraintTop_toBottomOf="@+id/toggleActivar" />
+
+    <CheckBox
+        android:id="@+id/btnCheck"
+        android:checked="true"
+        android:text="activar"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/toggleActivar"
+        app:layout_constraintStart_toStartOf="@+id/toggleActivar"
+        app:layout_constraintTop_toBottomOf="@+id/btnSwitch" />
+
+
+    <RadioGroup
+        android:gravity="end"
+        android:id="@+id/grupOpcione"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/btnCheck"
+        app:layout_constraintStart_toStartOf="@+id/imagenHeader"
+        app:layout_constraintTop_toBottomOf="@+id/imagenHeader">
+
+        <RadioButton
+            android:id="@+id/radioUno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opcion 1" />
+
+        <RadioButton
+            android:id="@+id/radioDos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opcion 2" />
+
+        <RadioButton
+            android:id="@+id/radioTres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opcion 3" />
+
+    </RadioGroup>
+
     <Button
         android:id="@+id/btnEnviar"
         android:layout_width="match_parent"
