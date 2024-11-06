@@ -6,3 +6,9 @@ class Ciclo(
     var siglas: String?=null,
     var listaAsignaturas: ArrayList<Asignatura>?=null
 )
+{
+
+    override fun toString(): String {
+        return siglas!!
+    }
+}

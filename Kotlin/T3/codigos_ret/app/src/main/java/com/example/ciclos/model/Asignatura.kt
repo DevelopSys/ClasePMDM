@@ -5,4 +5,8 @@ class Asignatura(
     var siglas: String? = null,
     var hora: Int? = null,
     var troncal: Boolean? = null
-)
+) {
+    override fun toString(): String {
+        return siglas!!
+    }
+}
