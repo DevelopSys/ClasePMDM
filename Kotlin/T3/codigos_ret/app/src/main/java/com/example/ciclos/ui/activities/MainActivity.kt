@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
     private lateinit var adapterCiclos: ArrayAdapter<Ciclo>
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterAsignatura: ArrayAdapter<Asignatura>
+    private lateinit var cicloSeleccionado: Ciclo
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,12 +63,12 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
                 "ASIR",
                 arrayListOf(
                     Asignatura("Sistamas", "SI", 8, true),
-                    Asignatura("Base datos", "BD", 6, true),
+                    Asignatura("Base datos", "BD", 6, false),
                 )
             )
         var dam = Ciclo(
             "Desarrollo Aplicaciones", "Informatica", "DAM", arrayListOf(
-                Asignatura("Programacion", "PRO", 8, true),
+                Asignatura("Programacion", "PRO", 8, false),
                 Asignatura("Lenguaje de Marcas", "LM", 4, true),
             )
         )
@@ -78,10 +80,11 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         // detecto cuando cambia la seleccion
+
         when (p0?.id) {
             binding.spinnerCiclos.id -> {
                 // que ciclo es el seleccionado
-                val cicloSeleccionado: Ciclo = adapterCiclos.getItem(p2)!!
+                cicloSeleccionado = adapterCiclos.getItem(p2)!!
                 // cual es su lista de asignaturas
                 val listaSeleccionada: ArrayList<Asignatura> = cicloSeleccionado.listaAsignaturas!!
                 // las pongo en el spinner
@@ -92,6 +95,15 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
                 )
                 adapterAsignatura.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 binding.spinnerAsignaturas.adapter = adapterAsignatura
+            }
+
+            binding.spinnerAsignaturas.id -> {
+                // cual es la asignatura seleccionada
+                val asignaturaSeleccionada = adapterAsignatura.getItem(p2)
+                // cuales son sus caracteristicas
+                binding.textoSeleccion.text =
+                    "Nombre: ${asignaturaSeleccionada!!.nombre}\nHoras: ${asignaturaSeleccionada.hora}\nSiglas: ${asignaturaSeleccionada.siglas}\nCiclo: ${cicloSeleccionado?.nombre}"
+                binding.checkTroncal.isChecked = asignaturaSeleccionada.troncal!!
             }
         }
     }
