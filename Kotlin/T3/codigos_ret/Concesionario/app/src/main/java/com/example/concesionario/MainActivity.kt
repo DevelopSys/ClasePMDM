@@ -9,7 +9,6 @@ import com.example.concesionario.adapter.AdaptadorMarcas
 import com.example.concesionario.databinding.ActivityMainBinding
 import com.example.concesionario.model.Marca
 import com.example.concesionario.model.Modelo
-import java.util.ArrayList
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
