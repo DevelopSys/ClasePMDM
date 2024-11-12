@@ -13,9 +13,6 @@
         android:theme="@style/Theme.Concesionario"
         tools:targetApi="31">
         <activity
-            android:name=".ui.DetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

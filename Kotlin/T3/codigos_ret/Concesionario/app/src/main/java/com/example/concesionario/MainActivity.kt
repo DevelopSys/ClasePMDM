@@ -1,8 +1,11 @@
 package com.example.concesionario
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Telephony.Mms.Intents
 import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,9 +16,10 @@ import com.example.concesionario.adapter.AdaptadorModelos
 import com.example.concesionario.databinding.ActivityMainBinding
 import com.example.concesionario.model.Marca
 import com.example.concesionario.model.Modelo
+import com.example.concesionario.ui.DetailActivity
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     // arraylist -> datos a mostrar
     private lateinit var listaMarca: ArrayList<Marca>
@@ -83,5 +87,19 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+        binding.listViewModelos.onItemClickListener = this
+    }
+
+    override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val seleccionModelo:Modelo = adaptadorModelo.getItem(p2)
+        //val seleccionMarca: Marca = binding.spinnerMarcas.selectedItem as Marca
+        val seleccionMarca: Marca = adaptadorMarcas
+            .getItem(binding.spinnerMarcas.selectedItemPosition)
+        val bundle : Bundle = Bundle()
+        bundle.putSerializable("modelo", seleccionModelo)
+        bundle.putSerializable("marca", seleccionMarca)
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("datos",bundle)
+        startActivity(intent)
     }
 }
