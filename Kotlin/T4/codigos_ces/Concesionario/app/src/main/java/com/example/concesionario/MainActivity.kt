@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.concesionario.adapter.AdaptadorMarca
+import com.example.concesionario.adapter.AdaptadorModelo
 import com.example.concesionario.databinding.ActivityMainBinding
 import com.example.concesionario.model.Marca
+import com.example.concesionario.model.Modelo
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     // adaptador de datos
     // private lateinit var adaptadorMarcas: ArrayAdapter<Marca>
     private lateinit var adaptadorMarca: AdaptadorMarca
+
+    private lateinit var listaModelos: ArrayList<Modelo>
+    private lateinit var adaptadorModelos: AdaptadorModelo
 
 
     private lateinit var binding: ActivityMainBinding
@@ -47,6 +52,18 @@ class MainActivity : AppCompatActivity() {
         )
         adaptadorMarca = AdaptadorMarca(listaMarcas, applicationContext)
         binding.spinnerMarcas.adapter = adaptadorMarca
+
+        listaModelos = arrayListOf(
+            Modelo("Mercedes","C63",R.drawable.c63),
+            Modelo("Mercedes","S63",R.drawable.s63),
+            Modelo("Audi","RS7",R.drawable.rs7),
+            Modelo("Audi","RS5",R.drawable.rs5),
+            Modelo("BMW","M3",R.drawable.m3),
+            Modelo("BMW","M4",R.drawable.m4),
+            Modelo("Ford","Mustang GT",R.drawable.mustangt),
+        )
+        adaptadorModelos = AdaptadorModelo(listaModelos,applicationContext)
+        binding.listaModelos.adapter = adaptadorModelos
         //listaMarcas.add(Marca("Peugeot",R.drawable.peugeot))
         /*adaptadorMarcas = ArrayAdapter(applicationContext,
             android.R.layout.simple_spinner_item,listaMarcas)
@@ -73,9 +90,14 @@ class MainActivity : AppCompatActivity() {
         binding.spinnerMarcas.onItemSelectedListener = object : OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 if (p2!=0){
+
+                    val listaFiltrada = listaModelos.filter { it.marca == (adaptadorMarca.getItem(p2) as Marca).nombre } as ArrayList
+                    adaptadorModelos.cambiarLista(listaFiltrada)
                     //val marcaSeleccionada: Marca = adaptadorMarcas.getItem(p2) as Marca
                     // binding.imagenLogo.setImageResource(marcaSeleccionada.imagen)
-                    // binding.spinnerMarcas.setSelection(0)
+                    //
+                //
+                // binding.spinnerMarcas.setSelection(0)
                 }
 
             }
