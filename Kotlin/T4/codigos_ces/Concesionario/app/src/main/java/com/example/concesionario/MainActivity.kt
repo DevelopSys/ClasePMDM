@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.concesionario.adapter.AdaptadorMarca
 import com.example.concesionario.databinding.ActivityMainBinding
 import com.example.concesionario.model.Marca
 import com.google.android.material.snackbar.Snackbar
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
     // lista de datos a representar
     private lateinit var listaMarcas: ArrayList<Marca>
     // adaptador de datos
-    private lateinit var adaptadorMarcas: ArrayAdapter<Marca>
+    // private lateinit var adaptadorMarcas: ArrayAdapter<Marca>
+    private lateinit var adaptadorMarca: AdaptadorMarca
 
 
     private lateinit var binding: ActivityMainBinding
@@ -36,31 +38,50 @@ class MainActivity : AppCompatActivity() {
 
     private fun instancias() {
         listaMarcas = arrayListOf(
+            Marca("Selecciona marca",0),
             Marca("Mercedes",R.drawable.mercedes),
             Marca("Audi",R.drawable.audi),
             Marca("Ford",R.drawable.ford),
             Marca("BMW",R.drawable.bmw),
             Marca("BYD",R.drawable.byd),
         )
-        listaMarcas.add(Marca("Peugeot",R.drawable.peugeot))
-
-        adaptadorMarcas = ArrayAdapter(applicationContext,
+        adaptadorMarca = AdaptadorMarca(listaMarcas, applicationContext)
+        binding.spinnerMarcas.adapter = adaptadorMarca
+        //listaMarcas.add(Marca("Peugeot",R.drawable.peugeot))
+        /*adaptadorMarcas = ArrayAdapter(applicationContext,
             android.R.layout.simple_spinner_item,listaMarcas)
         adaptadorMarcas.setDropDownViewResource(android.R.layout
             .simple_spinner_dropdown_item)
 
-        binding.spinnerMarcas.adapter = adaptadorMarcas
+        binding.spinnerMarcas.adapter = adaptadorMarcas*/
     }
 
     private fun acciones() {
         binding.btnFiltrar.setOnClickListener {
             //val seleccionMarca: String = binding.spinnerMarcas.selectedItem.toString()
+            listaMarcas.add(Marca("Opel",R.drawable.bmw))
+            //adaptadorMarcas.notifyDataSetChanged()
             if (binding.spinnerMarcas.selectedItemPosition != 0) {
                 /*Snackbar.make(
                     binding.root,
                     "La marca seleccionada es $seleccionMarca",
                     Snackbar.LENGTH_SHORT
                 ).show()*/
+            }
+
+        }
+        binding.spinnerMarcas.onItemSelectedListener = object : OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                if (p2!=0){
+                    //val marcaSeleccionada: Marca = adaptadorMarcas.getItem(p2) as Marca
+                    // binding.imagenLogo.setImageResource(marcaSeleccionada.imagen)
+                    // binding.spinnerMarcas.setSelection(0)
+                }
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
             }
 
         }
