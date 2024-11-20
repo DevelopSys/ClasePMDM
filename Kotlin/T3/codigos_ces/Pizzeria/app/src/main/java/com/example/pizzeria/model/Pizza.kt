@@ -1,5 +1,7 @@
 package com.example.pizzeria.model
 
+import java.io.Serializable
+
 class Pizza(
     var nombre: String,
     var info: String,

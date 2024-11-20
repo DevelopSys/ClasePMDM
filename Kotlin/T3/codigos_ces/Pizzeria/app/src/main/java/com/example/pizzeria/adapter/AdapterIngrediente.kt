@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.example.pizzeria.R
 import com.example.pizzeria.model.Ingrediente
 import com.example.pizzeria.model.Pizza
+import com.google.android.material.snackbar.Snackbar
 
 class AdapterIngrediente(
     var lista: ArrayList<Ingrediente>,
@@ -34,9 +35,17 @@ class AdapterIngrediente(
         val textoNombre: TextView = vista.findViewById(R.id.textIngrediente)
         val textoInfo: TextView = vista.findViewById(R.id.textInfoIngrediente)
         val imagen: ImageView = vista.findViewById(R.id.imageViewIngrediente)
+        val ingrediente = lista[p0]
+
+        imagen.setOnClickListener {
+            Snackbar.make(
+                it,
+                "El elemento seleccionado es ${ingrediente.nombre}",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
 
         // val ingrediente = getItem(p0)
-        val ingrediente = lista[p0]
         textoInfo.text = ingrediente.info
         textoNombre.text = ingrediente.nombre
         imagen.setImageResource(ingrediente.imagen)
@@ -44,8 +53,13 @@ class AdapterIngrediente(
         return vista
     }
 
-    fun changeList(lista: ArrayList<Ingrediente>){
+    fun changeList(lista: ArrayList<Ingrediente>) {
         this.lista = lista
+        notifyDataSetChanged()
+    }
+
+    fun removeIng(posicion: Int) {
+        lista.removeAt(posicion)
         notifyDataSetChanged()
     }
 }

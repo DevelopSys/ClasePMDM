@@ -16,6 +16,7 @@ import com.example.pizzeria.databinding.ActivityMainBinding
 import com.example.pizzeria.model.Alergeno
 import com.example.pizzeria.model.Ingrediente
 import com.example.pizzeria.model.Pizza
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -49,6 +50,24 @@ class MainActivity : AppCompatActivity() {
         }
         binding.toggleDisponibilidad.setOnCheckedChangeListener { _, b ->
             binding.btnPedido.isEnabled = b
+        }
+        /*binding.listViewIngredientes.setOnItemClickListener { _, _, i, _ ->
+            // nueva pantalla con el detalle del ingrediente pulsado
+            Snackbar.make(
+                binding.root,
+                "El ingrediente seleccionado es ${adapterIngrediente.getItem(i).nombre}",
+                Snackbar.LENGTH_SHORT
+            ).show()
+
+        }*/
+        binding.listViewIngredientes.setOnItemLongClickListener { _, _, i, _ ->
+            /*Snackbar.make(
+                binding.root,
+                "El ingrediente seleccionado es ${i.toString()}",
+                Snackbar.LENGTH_SHORT
+            ).show()*/
+            adapterIngrediente.removeIng(i)
+            return@setOnItemLongClickListener true
         }
     }
 
@@ -94,15 +113,20 @@ class MainActivity : AppCompatActivity() {
             )
         )
         adapterPizzas =
-            ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item,
-                listaPizza)
+            ArrayAdapter(
+                applicationContext, android.R.layout.simple_spinner_item,
+                listaPizza
+            )
         adapterPizzas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerPizzas.adapter = adapterPizzas
 
         val pizzaSeleccionada = adapterPizzas
             .getItem(binding.spinnerPizzas.selectedItemPosition)
         adapterIngrediente =
-            AdapterIngrediente(pizzaSeleccionada!!.ingredientes, applicationContext)
+            AdapterIngrediente(
+                pizzaSeleccionada!!.ingredientes,
+                applicationContext
+            )
         binding.listViewIngredientes.adapter = adapterIngrediente;
         adapterIngrediente.notifyDataSetChanged()
         // binding.listViewIngredientes.adapter = adapterIngrediente
