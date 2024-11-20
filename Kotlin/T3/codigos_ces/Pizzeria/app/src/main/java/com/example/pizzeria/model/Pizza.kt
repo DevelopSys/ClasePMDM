@@ -15,4 +15,8 @@ class Pizza(
             precio += it.precio
         }
     }
+
+    override fun toString(): String {
+        return nombre
+    }
 }
