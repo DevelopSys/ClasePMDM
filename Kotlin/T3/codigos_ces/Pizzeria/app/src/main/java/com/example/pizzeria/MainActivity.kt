@@ -1,6 +1,8 @@
 package com.example.pizzeria
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         instancias()
         acciones()
-
     }
 
     private fun acciones() {
@@ -130,6 +131,32 @@ class MainActivity : AppCompatActivity() {
         binding.listViewIngredientes.adapter = adapterIngrediente;
         adapterIngrediente.notifyDataSetChanged()
         // binding.listViewIngredientes.adapter = adapterIngrediente
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.menuSalir -> {
+                finish()
+            }
+
+            R.id.menuComprar -> {
+                if (!binding.toggleDisponibilidad.isChecked) {
+                    Snackbar.make(
+                        binding.root,
+                        "No esta disponible para la venta",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        return true
     }
 
 
