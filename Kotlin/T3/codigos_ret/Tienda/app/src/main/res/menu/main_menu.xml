@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Informacion"
+        android:id="@+id/info_menu"
+        />
+
+    <item android:title="Salir"
+        android:id="@+id/salir_menu"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_lock_power_off"
+        />
+
+    <item android:title="Acciones">
+        <menu>
+            <item android:title="Submenu 1"/>
+            <item android:title="Submenu 2"/>
+        </menu>
+    </item>
+
+</menu>

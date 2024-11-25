@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Tienda" parent="Theme.Material3.DayNight">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/primary</item>
+    </style>
+
+    <style name="Theme.Tienda" parent="Base.Theme.Tienda" />
+</resources>

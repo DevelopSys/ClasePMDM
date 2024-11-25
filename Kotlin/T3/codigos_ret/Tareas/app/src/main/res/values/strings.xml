@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Tareas</string>
+    <string-array name="prioridades">
+        <item>Baja</item>
+        <item>Media</item>
+        <item>Alta</item>
+    </string-array>
+    <string-array name="prioridades_filtro">
+        <item>Selecciona opcion a filtrar</item>
+        <item>Todas</item>
+        <item>Baja</item>
+        <item>Media</item>
+        <item>Alta</item>
+    </string-array>
+</resources>
