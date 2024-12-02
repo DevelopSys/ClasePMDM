@@ -13,11 +13,14 @@ import com.example.tienda.adapter.ProductoAdapter
 import com.example.tienda.database.DataSet
 import com.example.tienda.databinding.ActivityMainBinding
 import com.example.tienda.model.Producto
+import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ProductoAdapter.OnProductoListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adaptadorProducto: ProductoAdapter
+    private var productoComparar1: Producto? = null
+    private var productoComparar2: Producto? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,10 +28,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         instancias()
+        acciones()
+    }
+
+    private fun acciones() {
+        //binding.recyclerProductos.seTON
     }
 
     private fun instancias() {
-        adaptadorProducto = ProductoAdapter(DataSet.listaProductos, this)
+        adaptadorProducto = ProductoAdapter(DataSet.listaProductos, this) /*{ pos, pro ->
+            {
+                Snackbar.make(binding.root, "Elemento pulsado ${pos}", Snackbar.LENGTH_SHORT).show()
+            }
+        }*/
 
         binding.recyclerProductos.adapter = adaptadorProducto
 
@@ -61,5 +73,39 @@ class MainActivity : AppCompatActivity() {
             R.id.info_menu -> {}
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onProductoSelected(producto: Producto) {
+
+        if (productoComparar1 == null) {
+            productoComparar1 = producto;
+            Snackbar.make(
+                binding.root,
+                "Comparacion de productos actualizada",
+                Snackbar.LENGTH_SHORT
+            )
+                .show()
+        } else {
+            if (producto == productoComparar1 || producto == productoComparar2) {
+                Snackbar.make(
+                    binding.root,
+                    "Por favor selecciona otro producto",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } else {
+                if (productoComparar2 == null) {
+                    productoComparar2 = productoComparar2;
+                    Snackbar.make(binding.root, "Comparacion disponible", Snackbar.LENGTH_SHORT)
+                        .show()
+                } else {
+                    productoComparar1 = productoComparar2
+                    productoComparar2 = producto;
+                    Snackbar.make(binding.root, "Comparacion disponible", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+
+
     }
 }
