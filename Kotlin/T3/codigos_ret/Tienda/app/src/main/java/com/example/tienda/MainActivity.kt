@@ -1,6 +1,8 @@
 package com.example.tienda
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity(), ProductoAdapter.OnProductoListener {
     }
 
     private fun instancias() {
+
         adaptadorProducto = ProductoAdapter(DataSet.listaProductos, this) /*{ pos, pro ->
             {
                 Snackbar.make(binding.root, "Elemento pulsado ${pos}", Snackbar.LENGTH_SHORT).show()
@@ -71,6 +74,30 @@ class MainActivity : AppCompatActivity(), ProductoAdapter.OnProductoListener {
             }
 
             R.id.info_menu -> {}
+            R.id.menuCompararPrecio, R.id.menuCompararCategoria -> {
+                Log.v("producto", productoComparar1?.nombre ?: "producto no disponible")
+                Log.v("producto", productoComparar2?.nombre ?: "producto no disponible")
+                if (productoComparar1 != null && productoComparar2 != null) {
+                    val intent: Intent = Intent(applicationContext, DetailActivity::class.java)
+                    val bundle = Bundle()
+                    bundle.putSerializable("producto1", productoComparar1)
+                    bundle.putSerializable("producto2", productoComparar2)
+                    var tipo = -1;
+                    when(item.itemId){
+                        R.id.menuCompararPrecio->{tipo=0}
+                        R.id.menuCompararCategoria->{tipo=1}
+                    }
+                    bundle.putInt("comparacion",tipo)
+                    intent.putExtra("datos",bundle)
+                    startActivity(intent)
+                } else {
+                    Snackbar.make(binding.root, "Comparacion no disponible", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+
+
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }
@@ -94,7 +121,8 @@ class MainActivity : AppCompatActivity(), ProductoAdapter.OnProductoListener {
                 ).show()
             } else {
                 if (productoComparar2 == null) {
-                    productoComparar2 = productoComparar2;
+                    // Log.v("producto","diferentes")
+                    productoComparar2 = producto;
                     Snackbar.make(binding.root, "Comparacion disponible", Snackbar.LENGTH_SHORT)
                         .show()
                 } else {

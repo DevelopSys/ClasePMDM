@@ -14,8 +14,16 @@
 
     <item android:title="Acciones">
         <menu>
-            <item android:title="Submenu 1"/>
-            <item android:title="Submenu 2"/>
+            <item android:title="Comparar por precio"
+                android:icon="@android:drawable/ic_input_add"
+                app:showAsAction="ifRoom"
+                android:id="@+id/menuCompararPrecio"
+                />
+            <item android:title="Comparar por categoria"
+                android:id="@+id/menuCompararCategoria"
+                android:icon="@android:drawable/ic_delete"
+                app:showAsAction="ifRoom"
+                />
         </menu>
     </item>
 
