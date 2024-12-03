@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun procesarRespuesta(respuesta: JSONObject){
         val users: JSONArray = respuesta.getJSONArray("users")
-        for (i in 0..users.length()){
+        for (i in 0..users.length()-1){
             val user: JSONObject = users.getJSONObject(i)
             val fistName: String = user.getString("firstName")
             Log.v("usuarios", fistName)
