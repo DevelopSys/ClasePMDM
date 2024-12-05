@@ -33,10 +33,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    viewBinding { enable = true }
 }
 
 dependencies {
 
+
+    implementation(libs.glide)
+    implementation(libs.gson)
     implementation(libs.volley)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
