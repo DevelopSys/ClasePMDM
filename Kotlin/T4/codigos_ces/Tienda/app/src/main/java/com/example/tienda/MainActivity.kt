@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tienda.adapters.AdaptadorProductos
 import com.example.tienda.data.DataSet
 import com.example.tienda.databinding.ActivityMainBinding
+import com.example.tienda.model.Producto
+import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdaptadorProductos.OnProductoListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adaptadorProductos: AdaptadorProductos
@@ -24,9 +26,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun instancias() {
-        adaptadorProductos = AdaptadorProductos(DataSet.lista, this)
+        adaptadorProductos = AdaptadorProductos(DataSet.lista, this, {
+            Snackbar.make(binding.root, "El precio del producto es $it", Snackbar.LENGTH_SHORT)
+                .show()
+        })
         binding.recyclerProductos.adapter = adaptadorProductos
-        if (resources.configuration.orientation == 1){
+        if (resources.configuration.orientation == 1) {
             binding.recyclerProductos.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         } else {
@@ -36,5 +41,13 @@ class MainActivity : AppCompatActivity() {
         /*binding.recyclerProductos.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)*/
 
+    }
+
+    override fun onProductoSelected(producto: Producto) {
+        Snackbar.make(
+            binding.root,
+            "El producto seleccionadp es ${producto.nombre}",
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 }
