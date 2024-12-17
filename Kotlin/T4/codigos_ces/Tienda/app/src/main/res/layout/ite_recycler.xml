@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="20dp"
+    android:layout_margin="20dp"
     android:padding="6dp"
     >
 
-    <ImageView
-        android:id="@+id/imagenProducto"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@mipmap/ic_launcher"
-        />
-
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:id="@+id/textoProducto"
-            />
-        <Button
-            android:id="@+id/botonComparar"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_light"
+            app:title="Nombre producto"
+            app:titleTextColor="@android:color/white" />
+
+
+        <ImageView
+            android:id="@+id/imagenProducto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
-            android:text="Comparar"
-            />
+            android:src="@mipmap/ic_launcher" />
 
     </LinearLayout>
 
-</LinearLayout>
+
+</androidx.cardview.widget.CardView>
