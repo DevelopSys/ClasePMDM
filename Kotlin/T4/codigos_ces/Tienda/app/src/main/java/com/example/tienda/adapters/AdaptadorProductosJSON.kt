@@ -18,17 +18,18 @@ import com.example.tienda.model.Producto
 import com.example.tienda.ui.DetaiActivity
 import com.google.android.material.snackbar.Snackbar
 
-class AdaptadorProductos(
-    var lista: ArrayList<Producto>, var context: Context, var funcion: ((Double) -> Unit)? = null
+class AdaptadorProductosJSON(var context: Context, var funcion: ((Double) -> Unit)? = null
 ) :
-    RecyclerView.Adapter<AdaptadorProductos.MyHolder>() {
+    RecyclerView.Adapter<AdaptadorProductosJSON.MyHolder>() {
     private lateinit var listener: OnProductoListener
+    private lateinit var lista: ArrayList<Producto>
 
     init {
         listener = context as OnProductoListener
+        lista = ArrayList()
     }
 
-    class MyHolder(item: View, adaptadorProductos: AdaptadorProductos) : ViewHolder(item) {
+    class MyHolder(item: View, adaptadorProductos: AdaptadorProductosJSON) : ViewHolder(item) {
 
         // cualquier evento asociado a una posicion -> AQUI
 
@@ -69,7 +70,7 @@ class AdaptadorProductos(
         // https://cdn-icons-png.freepik.com/256/3206/3206042.png?semt=ais_hybrid tecno
         // https://cdn-icons-png.flaticon.com/512/3248/3248597.png jardin
         var imagen: String = ""
-        //holder.toolbar.title = producto.nombre
+        holder.toolbar.title = producto.title
         holder.toolbar.setOnMenuItemClickListener {
             // evaluar quien es el pulsado
             when (it.itemId) {
@@ -87,8 +88,7 @@ class AdaptadorProductos(
             }
             return@setOnMenuItemClickListener true
         }
-        /*
-        when (producto.categoria) {
+        when (producto.description) {
             "ropa" -> imagen = "https://cdn-icons-png.freepik.com/512/925/925072.png"
             "tecnologia" -> imagen =
                 "https://cdn-icons-png.freepik.com/256/3206/3206042.png?semt=ais_hybrid"
@@ -105,9 +105,14 @@ class AdaptadorProductos(
             listener.onProductoSelected(producto)
         }*/
         holder.imagen.setOnClickListener {
-            funcion?.invoke(producto.precio)
-        }*/
+            funcion?.invoke(producto.price!!.toInt().toDouble())
+        }
 
+    }
+
+    fun agregarProducto(producto: Producto){
+        lista.add(producto)
+        notifyItemInserted(lista.size-1)
     }
 
     interface OnProductoListener {
