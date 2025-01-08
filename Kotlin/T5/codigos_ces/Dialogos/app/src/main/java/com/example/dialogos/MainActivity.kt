@@ -12,7 +12,8 @@ import com.example.dialogos.ui.dialog.DialogoInfo
 import com.example.dialogos.ui.dialog.DialogoLista
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), DialogoInfo.OnDialogoListener {
+class MainActivity : AppCompatActivity(), DialogoInfo.OnDialogoListener,
+    DialogoLista.OnDialogoListaListener {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,10 @@ class MainActivity : AppCompatActivity(), DialogoInfo.OnDialogoListener {
     }
 
     override fun onDialogoSelectedAll() {
-        TODO("Not yet implemented")
+
+    }
+
+    override fun onOpcionSelected(x: String) {
+        binding.textoRespuesta.text = x
     }
 }
