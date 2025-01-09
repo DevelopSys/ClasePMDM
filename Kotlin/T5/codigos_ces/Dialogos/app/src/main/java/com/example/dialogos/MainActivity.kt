@@ -19,7 +19,9 @@ import com.example.dialogos.ui.dialog.DialogoListaSimple
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), DialogoInfo.OnDialogoListener,
-    DialogoLista.OnDialogoListaListener, DialogoListaSimple.OnDialogoSimpleListener {
+    DialogoLista.OnDialogoListaListener, DialogoListaSimple.OnDialogoSimpleListener,
+    DialogoListaMultiple.OnDialogoMultipleListener
+{
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +69,10 @@ class MainActivity : AppCompatActivity(), DialogoInfo.OnDialogoListener,
     override fun onOpcionSimpleSelected(posicion: Int, opcion: String) {
         Log.v("preguntas",posicion.toString())
         Log.v("preguntas",opcion.toString())
+    }
+
+    override fun onOpcionMultpleSelected(respuestas: ArrayList<Int>) {
+        Log.v("respuesta",respuestas.toString())
     }
 
 
