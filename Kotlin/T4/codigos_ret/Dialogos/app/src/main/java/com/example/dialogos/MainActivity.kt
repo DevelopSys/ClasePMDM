@@ -11,8 +11,10 @@ import com.example.dialogos.databinding.ActivityMainBinding
 import com.example.dialogos.ui.dialog.ConfirmDialog
 import com.example.dialogos.ui.dialog.InfoDialog
 import com.example.dialogos.ui.dialog.ListDialog
+import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), ConfirmDialog.OnDialogoConfirmacionListener {
+class MainActivity : AppCompatActivity(),
+    ConfirmDialog.OnDialogoConfirmacionListener, ListDialog.OnDialogoListListener {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,5 +50,13 @@ class MainActivity : AppCompatActivity(), ConfirmDialog.OnDialogoConfirmacionLis
             val dialogo = InfoDialog()
             dialogo.show(supportFragmentManager, null)
         }
+    }
+
+    override fun onCancelSelected() {
+        Snackbar.make(binding.root,"Faltan datos",Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onOptionSelected(opcion: String) {
+        binding.textoRespuesta.text = opcion
     }
 }
