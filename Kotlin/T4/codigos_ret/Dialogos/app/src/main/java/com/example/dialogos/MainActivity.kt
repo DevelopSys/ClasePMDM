@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.dialogos.databinding.ActivityMainBinding
+import com.example.dialogos.ui.dialog.ConfirmDialog
 import com.example.dialogos.ui.dialog.InfoDialog
+import com.example.dialogos.ui.dialog.ListDialog
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ConfirmDialog.OnDialogoConfirmacionListener {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +31,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
-            R.id.menu_dialogo->{
-                val dialogo = InfoDialog()
-                dialogo.show(supportFragmentManager,null)
+        when (item.itemId) {
+            R.id.menu_dialogo -> {
+                // val dialogo = InfoDialog()
+                //val dialogo = ConfirmDialog()
+                val dialogo = ListDialog()
+                dialogo.show(supportFragmentManager, null)
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onConfirmacionSelected(resultado: String) {
+        // binding.textoRespuesta.text = resultado
+        if (resultado == "OK") {
+            val dialogo = InfoDialog()
+            dialogo.show(supportFragmentManager, null)
+        }
     }
 }
