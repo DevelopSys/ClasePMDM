@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
 class ListDialog : DialogFragment() {
-
+    private var indexSelected: Int = -1;
     private lateinit var listener: OnDialogoListListener
 
     override fun onAttach(context: Context) {
@@ -26,11 +26,17 @@ class ListDialog : DialogFragment() {
         }*/
 
         // single
-        builder.setSingleChoiceItems(opciones, -1) { _, i -> }
+        builder.setSingleChoiceItems(opciones, 2) { _, i ->
+            indexSelected = i;
+        }
         // multiple
 
-        builder.setPositiveButton("Cancelar") { _, _ ->
+        builder.setNeutralButton("Cancelar") { _, _ ->
             listener.onCancelSelected()
+        }
+
+        builder.setPositiveButton("OK") { _, _ ->
+            listener.onOptionSelected(opciones[indexSelected].toString())
         }
 
         return builder.create()
