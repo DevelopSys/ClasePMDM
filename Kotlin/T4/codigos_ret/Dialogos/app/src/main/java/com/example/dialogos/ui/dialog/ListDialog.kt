@@ -9,12 +9,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
 class ListDialog : DialogFragment() {
-    private var indexSelected: Int = -1;
-    private lateinit var listener: OnDialogoListListener
-
+    private lateinit var listaSeleccion: ArrayList<Int>
+    private lateinit var listener: OnListaMultipleListener
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = context as OnDialogoListListener
+        listaSeleccion = ArrayList()
+        listener = context as OnListaMultipleListener
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -34,7 +34,11 @@ class ListDialog : DialogFragment() {
         // multiple
         builder.setMultiChoiceItems(opciones, null)
         { _, i, b ->
-            Log.v("posicion","posicion ${i} ${b}")
+            if (b){
+             listaSeleccion.add(i)
+            } else {
+                listaSeleccion.remove(i)
+            }
         }
 
 
@@ -44,15 +48,18 @@ class ListDialog : DialogFragment() {
 
         builder.setPositiveButton("OK") { _, _ ->
             // listener.onOptionSelected(opciones[indexSelected].toString())
+            listener.onListaMultipleSelected(listaSeleccion)
         }
 
         return builder.create()
     }
 
-    interface OnDialogoListListener {
-        fun onCancelSelected()
-        fun onOptionSelected(opcion: String)
+    interface OnListaMultipleListener{
+
+        fun onListaMultipleSelected(opcionesResultado: ArrayList<Int>)
+
     }
+
 
 
 }

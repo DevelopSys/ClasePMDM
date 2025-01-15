@@ -1,6 +1,7 @@
 package com.example.dialogos
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -14,7 +15,7 @@ import com.example.dialogos.ui.dialog.ListDialog
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(),
-    ConfirmDialog.OnDialogoConfirmacionListener, ListDialog.OnDialogoListListener {
+    ConfirmDialog.OnDialogoConfirmacionListener, ListDialog.OnListaMultipleListener {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,11 +53,10 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onCancelSelected() {
-        Snackbar.make(binding.root,"Faltan datos",Snackbar.LENGTH_SHORT).show()
+    override fun onListaMultipleSelected(opcionesResultado: ArrayList<Int>) {
+        Log.v("respuesta",opcionesResultado.toString())
     }
 
-    override fun onOptionSelected(opcion: String) {
-        binding.textoRespuesta.text = opcion
-    }
+
+    // arraylist
 }
