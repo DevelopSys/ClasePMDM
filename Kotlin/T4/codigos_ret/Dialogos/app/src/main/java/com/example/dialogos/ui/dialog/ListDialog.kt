@@ -2,7 +2,9 @@ package com.example.dialogos.ui.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
@@ -26,17 +28,22 @@ class ListDialog : DialogFragment() {
         }*/
 
         // single
-        builder.setSingleChoiceItems(opciones, 2) { _, i ->
+        /*builder.setSingleChoiceItems(opciones, 2) { _, i ->
             indexSelected = i;
-        }
+        }*/
         // multiple
+        builder.setMultiChoiceItems(opciones, null)
+        { _, i, b ->
+            Log.v("posicion","posicion ${i} ${b}")
+        }
+
 
         builder.setNeutralButton("Cancelar") { _, _ ->
-            listener.onCancelSelected()
+            // listener.onCancelSelected()
         }
 
         builder.setPositiveButton("OK") { _, _ ->
-            listener.onOptionSelected(opciones[indexSelected].toString())
+            // listener.onOptionSelected(opciones[indexSelected].toString())
         }
 
         return builder.create()
