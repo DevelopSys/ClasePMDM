@@ -2,6 +2,8 @@ package com.example.dialogos
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.icu.text.DateFormat
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -19,6 +21,7 @@ import com.example.dialogos.ui.dialog.InfoDialog
 import com.example.dialogos.ui.dialog.ListDialog
 import com.example.dialogos.ui.dialog.TimeDialog
 import com.google.android.material.snackbar.Snackbar
+import java.util.Date
 
 class MainActivity : AppCompatActivity(),
     ConfirmDialog.OnDialogoConfirmacionListener,
@@ -28,6 +31,10 @@ class MainActivity : AppCompatActivity(),
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        // val fecha: Date = Date()
+        /*val calendario: Calendar = Calendar.getInstance()
+        calendario.set(2025,0,12)
+        calendario.*/
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -90,7 +97,11 @@ class MainActivity : AppCompatActivity(),
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
         // Log.v("calendario","Año: ${p1} Mes: ${p2+1} Dia: ${p3}")
-        binding.textFechaSalida.text = "$p3/${p2 + 1}/$p1"
+        if(binding.textFechaSalida.text != "Salida"){
+        binding.textFechaLlegada.text = "$p3/${p2 + 1}/$p1"
+        } else{
+            binding.textFechaSalida.text = "$p3/${p2 + 1}/$p1"
+        }
     }
 
     override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
