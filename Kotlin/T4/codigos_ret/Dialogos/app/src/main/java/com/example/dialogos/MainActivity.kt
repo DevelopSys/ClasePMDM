@@ -34,6 +34,26 @@ class MainActivity : AppCompatActivity(),
         setSupportActionBar(binding.toolbar)
         binding.toolbar.title = "Cambio"
         // supportActionBar?.title  = "Aplicacion de trivial"
+        binding.textFechaSalida.setOnClickListener {
+
+            val dialog: DateDialog = DateDialog();
+            dialog.show(supportFragmentManager, null)
+        }
+
+        binding.textFechaLlegada.setOnClickListener {
+
+            if (binding.textFechaSalida.text != "Salida") {
+                val dialog: DateDialog = DateDialog();
+                dialog.show(supportFragmentManager, null)
+            } else {
+                Snackbar.make(
+                    binding.root,
+                    "Por favor selecciona una salida antes",
+                    Snackbar.LENGTH_SHORT
+                ).setAction("Selecciona fecaha ahora"){}.show()
+            }
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -65,15 +85,16 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onListaMultipleSelected(opcionesResultado: ArrayList<Int>) {
-        Log.v("respuesta",opcionesResultado.toString())
+        Log.v("respuesta", opcionesResultado.toString())
     }
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
-        Log.v("calendario","Año: ${p1} Mes: ${p2+1} Dia: ${p3}")
+        // Log.v("calendario","Año: ${p1} Mes: ${p2+1} Dia: ${p3}")
+        binding.textFechaSalida.text = "$p3/${p2 + 1}/$p1"
     }
 
     override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
-        Log.v("calendario","Hora: ${p1} Minutos: ${p2}")
+        Log.v("calendario", "Hora: ${p1} Minutos: ${p2}")
     }
 
 
