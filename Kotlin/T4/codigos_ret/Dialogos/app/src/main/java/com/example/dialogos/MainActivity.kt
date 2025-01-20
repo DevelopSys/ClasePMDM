@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.dialogos.databinding.ActivityMainBinding
 import com.example.dialogos.ui.dialog.ConfirmDialog
 import com.example.dialogos.ui.dialog.DateDialog
+import com.example.dialogos.ui.dialog.DialogoComunicacion
 import com.example.dialogos.ui.dialog.InfoDialog
 import com.example.dialogos.ui.dialog.ListDialog
 import com.example.dialogos.ui.dialog.TimeDialog
@@ -46,7 +47,6 @@ class MainActivity : AppCompatActivity(),
             val dialog: DateDialog = DateDialog();
             dialog.show(supportFragmentManager, null)
         }
-
         binding.textFechaLlegada.setOnClickListener {
 
             if (binding.textFechaSalida.text != "Salida") {
@@ -61,6 +61,12 @@ class MainActivity : AppCompatActivity(),
             }
 
         }
+
+        binding.btnValidar.setOnClickListener {
+            val dialogo: DialogoComunicacion = DialogoComunicacion.newInstance("borja","1234A")
+            dialogo.show(supportFragmentManager,null)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

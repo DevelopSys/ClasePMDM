@@ -32,7 +32,7 @@ class DialogoComunicacion : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
         builder.setTitle("Confirmacion")
-        builder.setMessage("Por favor XXX, confirmas que tu pass es XXX")
+        builder.setMessage("Por favor ${nombre}, confirmas que tu pass es ${pass}")
         return builder.create()
     }
 
