@@ -22,6 +22,7 @@ import com.example.dialogos.ui.dialog.DialogoInfo
 import com.example.dialogos.ui.dialog.DialogoLista
 import com.example.dialogos.ui.dialog.DialogoListaMultiple
 import com.example.dialogos.ui.dialog.DialogoListaSimple
+import com.example.dialogos.ui.dialog.DialogoLogin
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), DialogoInfo.OnDialogoListener,
@@ -52,7 +53,8 @@ class MainActivity : AppCompatActivity(), DialogoInfo.OnDialogoListener,
                 // val dialogo = DialogoListaMultiple()
                 // val dialogo = DialogoFecha()
                 // val dialogo = DialogoHora()
-                val dialogo = DialogoComunicacion.newInstance("Borja","PMDM")
+                // val dialogo = DialogoComunicacion.newInstance("Borja","PMDM")
+                val dialogo = DialogoLogin()
                 dialogo.show(supportFragmentManager, null)
 
 /*                TimePickerDialog(this
