@@ -2,18 +2,14 @@ package com.example.dialogos
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.icu.text.DateFormat
-import android.icu.util.Calendar
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.TimePicker
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.dialogos.databinding.ActivityMainBinding
 import com.example.dialogos.ui.dialog.ConfirmDialog
 import com.example.dialogos.ui.dialog.DateDialog
@@ -22,7 +18,7 @@ import com.example.dialogos.ui.dialog.InfoDialog
 import com.example.dialogos.ui.dialog.ListDialog
 import com.example.dialogos.ui.dialog.TimeDialog
 import com.google.android.material.snackbar.Snackbar
-import java.util.Date
+
 
 class MainActivity : AppCompatActivity(),
     ConfirmDialog.OnDialogoConfirmacionListener,
@@ -57,14 +53,17 @@ class MainActivity : AppCompatActivity(),
                     binding.root,
                     "Por favor selecciona una salida antes",
                     Snackbar.LENGTH_SHORT
-                ).setAction("Selecciona fecaha ahora"){}.show()
+                ).setAction("Selecciona fecaha ahora") {}.show()
             }
 
         }
 
+
+
+
         binding.btnValidar.setOnClickListener {
-            val dialogo: DialogoComunicacion = DialogoComunicacion.newInstance("borja","1234A")
-            dialogo.show(supportFragmentManager,null)
+            val dialogo: DialogoComunicacion = DialogoComunicacion.newInstance("borja", "1234A")
+            dialogo.show(supportFragmentManager, null)
         }
 
     }
@@ -103,9 +102,12 @@ class MainActivity : AppCompatActivity(),
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
         // Log.v("calendario","Año: ${p1} Mes: ${p2+1} Dia: ${p3}")
-        if(binding.textFechaSalida.text != "Salida"){
-        binding.textFechaLlegada.text = "$p3/${p2 + 1}/$p1"
-        } else{
+        if (binding.textFechaSalida.text != "Salida") {
+            binding.textFechaLlegada.setPaintFlags(binding.textFechaLlegada.getPaintFlags()
+
+                    or Paint.UNDERLINE_TEXT_FLAG)
+            binding.textFechaLlegada.text = "$p3/${p2 + 1}/$p1"
+        } else {
             binding.textFechaSalida.text = "$p3/${p2 + 1}/$p1"
         }
     }
