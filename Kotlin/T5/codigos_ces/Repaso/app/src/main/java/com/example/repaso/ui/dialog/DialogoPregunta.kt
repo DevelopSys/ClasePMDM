@@ -39,8 +39,7 @@ class DialogoPregunta : DialogFragment() {
         builder.setTitle(pregunta.question)
         (pregunta.incorrectAnswers as ArrayList<String>)
             .add(pregunta.correctAnswer!!)
-        val opciones: Array<CharSequence> = pregunta.incorrectAnswers
-                as Array<CharSequence>
+        val opciones: Array<CharSequence> = (pregunta.incorrectAnswers as ArrayList<String>).toTypedArray()
         opciones.shuffle();
         builder.setSingleChoiceItems(opciones, -1, { _, i ->
             seleccion = opciones[i].toString()

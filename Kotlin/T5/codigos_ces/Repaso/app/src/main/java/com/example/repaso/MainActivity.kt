@@ -41,9 +41,9 @@ class MainActivity : AppCompatActivity(),
                     val question = results.getJSONObject(i)
                     val pregunta: Pregunta = gson.fromJson(question.toString(),Pregunta::class.java)
                     adapterTrivial.agregarPregunta(pregunta)
-                    // val title= question.getString("question")
-                    // val correct= question.getString("correct_answer")
-                    // val incorrects= question.getJSONArray("incorrect_answers")
+                    val title= question.getString("question")
+                    val correct= question.getString("correct_answer")
+                    val incorrects= question.getJSONArray("incorrect_answers")
                     // val pregunta = Pregunta(title,correct,incorrects as Array<String>)
                     Log.v("preguntas",pregunta.question!!)
                 }

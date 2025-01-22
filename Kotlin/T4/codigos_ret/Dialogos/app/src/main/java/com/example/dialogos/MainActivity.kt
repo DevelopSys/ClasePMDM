@@ -15,6 +15,7 @@ import com.example.dialogos.model.Pregunta
 import com.example.dialogos.ui.dialog.ConfirmDialog
 import com.example.dialogos.ui.dialog.DateDialog
 import com.example.dialogos.ui.dialog.DialogoComunicacion
+import com.example.dialogos.ui.dialog.DialogoLogin
 import com.example.dialogos.ui.dialog.InfoDialog
 import com.example.dialogos.ui.dialog.ListDialog
 import com.example.dialogos.ui.dialog.QuestionDialog
@@ -85,7 +86,7 @@ class MainActivity : AppCompatActivity(),
                 //val dialogo = ConfirmDialog()
                 // val dialogo = ListDialog()
                 // val dialogo = DateDialog()
-                val dialogo = TimeDialog()
+                val dialogo = DialogoLogin()
                 dialogo.show(supportFragmentManager, null)
             }
 
