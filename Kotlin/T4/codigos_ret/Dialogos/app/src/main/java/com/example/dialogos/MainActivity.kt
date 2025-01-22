@@ -11,11 +11,13 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dialogos.databinding.ActivityMainBinding
+import com.example.dialogos.model.Pregunta
 import com.example.dialogos.ui.dialog.ConfirmDialog
 import com.example.dialogos.ui.dialog.DateDialog
 import com.example.dialogos.ui.dialog.DialogoComunicacion
 import com.example.dialogos.ui.dialog.InfoDialog
 import com.example.dialogos.ui.dialog.ListDialog
+import com.example.dialogos.ui.dialog.QuestionDialog
 import com.example.dialogos.ui.dialog.TimeDialog
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,8 +26,10 @@ class MainActivity : AppCompatActivity(),
     ConfirmDialog.OnDialogoConfirmacionListener,
     ListDialog.OnListaMultipleListener,
     DatePickerDialog.OnDateSetListener,
-    TimePickerDialog.OnTimeSetListener {
-
+    TimePickerDialog.OnTimeSetListener,
+    QuestionDialog.OnPreguntaListener {
+    private var indice: Int = 0;
+    private lateinit var preguntaActual: Pregunta;
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         // val fecha: Date = Date()
@@ -84,6 +88,13 @@ class MainActivity : AppCompatActivity(),
                 val dialogo = TimeDialog()
                 dialogo.show(supportFragmentManager, null)
             }
+
+            R.id.menu_juego -> {
+                // empezar a sacar dialogo (xsize)
+                preguntaActual = DataSet.preguntas[indice]
+                val dialog = QuestionDialog.newInstance(preguntaActual)
+                dialog.show(supportFragmentManager, null)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -103,9 +114,11 @@ class MainActivity : AppCompatActivity(),
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
         // Log.v("calendario","Año: ${p1} Mes: ${p2+1} Dia: ${p3}")
         if (binding.textFechaSalida.text != "Salida") {
-            binding.textFechaLlegada.setPaintFlags(binding.textFechaLlegada.getPaintFlags()
+            binding.textFechaLlegada.setPaintFlags(
+                binding.textFechaLlegada.getPaintFlags()
 
-                    or Paint.UNDERLINE_TEXT_FLAG)
+                        or Paint.UNDERLINE_TEXT_FLAG
+            )
             binding.textFechaLlegada.text = "$p3/${p2 + 1}/$p1"
         } else {
             binding.textFechaSalida.text = "$p3/${p2 + 1}/$p1"
@@ -114,6 +127,37 @@ class MainActivity : AppCompatActivity(),
 
     override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
         Log.v("calendario", "Hora: ${p1} Minutos: ${p2}")
+    }
+
+    override fun onRespuestaSelected(x: Int) {
+        //
+        // 1- ver si es correcta
+        if (preguntaActual.correcta == x) {
+            Snackbar.make(binding.root, "Respuesta correcta", Snackbar.LENGTH_SHORT).show()
+        } else {
+            Snackbar.make(binding.root, "Respuesta incorrecta", Snackbar.LENGTH_SHORT).show()
+        }
+        indice++
+        if (indice < DataSet.preguntas.size) {
+            preguntaActual = DataSet.preguntas[indice]
+            val dialog = QuestionDialog.newInstance(preguntaActual)
+            dialog.show(supportFragmentManager, null)
+        } else {
+            // sacame la puntiacion de la pregunta
+            Snackbar.make(binding.root, "Quiere volver a empezar", Snackbar.LENGTH_LONG)
+                .setAction("OK") {
+                    indice =0;
+                    preguntaActual = DataSet.preguntas[indice]
+                    val dialog = QuestionDialog.newInstance(preguntaActual)
+                    dialog.show(supportFragmentManager, null)
+                }.show()
+        }
+
+
+        // 1.1 -> sumar puntos
+        // 2- sacar siguiente dialogo
+        // 2.1 -> hay siguiente
+
     }
 
 
