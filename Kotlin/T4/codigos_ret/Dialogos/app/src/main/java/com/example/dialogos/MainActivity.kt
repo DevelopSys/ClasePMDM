@@ -41,8 +41,11 @@ class MainActivity : AppCompatActivity(),
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = "Cambio"
-        // supportActionBar?.title  = "Aplicacion de trivial"
+
+        //binding.toolbar.title = "Cambio"
+        binding.toolbar
+            .setTitleTextColor(resources.getColor(android.R.color.darker_gray))
+        supportActionBar?.title  = "Aplicacion de trivial"
         binding.textFechaSalida.setOnClickListener {
 
             val dialog: DateDialog = DateDialog();
