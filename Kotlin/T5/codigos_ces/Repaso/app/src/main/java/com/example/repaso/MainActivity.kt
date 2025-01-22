@@ -12,12 +12,15 @@ import com.android.volley.toolbox.Volley
 import com.example.repaso.adapter.AdapterTrivial
 import com.example.repaso.databinding.ActivityMainBinding
 import com.example.repaso.model.Pregunta
+import com.example.repaso.ui.dialog.DialogoPregunta
 import com.google.gson.Gson
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    AdapterTrivial.OnPreguntaListener, DialogoPregunta.OnRespuestaListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterTrivial: AdapterTrivial
+    private lateinit var pregunta: Pregunta
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,5 +52,19 @@ class MainActivity : AppCompatActivity() {
                 Log.v("preguntas",it.toString())
             })
         Volley.newRequestQueue(this).add(peticion)
+    }
+
+    override fun onPreguntaSelected(pregunta: Pregunta) {
+        // contestacion del recycler
+        this.pregunta =pregunta;
+        val dialogo = DialogoPregunta.newInstance(pregunta)
+    }
+
+    override fun onRespuestaSelected(opcion: String) {
+        // if opcion es == a la respuesta correcta
+        if (opcion.equals(pregunta.correctAnswer,false)){
+            // sumo un punto
+        }
+
     }
 }

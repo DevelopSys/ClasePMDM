@@ -13,9 +13,11 @@ import com.example.repaso.model.Pregunta
 class AdapterTrivial(val contexto: Context) : RecyclerView.Adapter<AdapterTrivial.MyHolder>() {
 
     private lateinit var lista: ArrayList<Pregunta>
+    private lateinit var listener: OnPreguntaListener
 
     init {
         lista = ArrayList()
+        listener = contexto as OnPreguntaListener
     }
 
     class MyHolder(itemView: View) : ViewHolder(itemView) {
@@ -36,11 +38,18 @@ class AdapterTrivial(val contexto: Context) : RecyclerView.Adapter<AdapterTrivia
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val pregunta = lista[position]
         holder.textoPregunta.text = pregunta.question
+        holder.textoPregunta.setOnClickListener {
+            listener.onPreguntaSelected(pregunta)
+        }
     }
 
     fun agregarPregunta(x: Pregunta) {
         lista.add(x)
         //notifyItemInserted(lista.size-1)
         notifyDataSetChanged()
+    }
+
+    interface OnPreguntaListener{
+        fun onPreguntaSelected(pregunta: Pregunta)
     }
 }
