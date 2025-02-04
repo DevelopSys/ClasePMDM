@@ -14,6 +14,9 @@
             app:destination="@id/fragmentRegister"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_dialogoAviso"
+            app:destination="@id/dialogoAviso" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_register"
@@ -26,4 +29,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
+    <dialog
+        android:id="@+id/dialogoAviso"
+        android:name="com.example.navegacion.ui.dialog.DialogoAviso"
+        android:label="DialogoAviso" />
 </navigation>

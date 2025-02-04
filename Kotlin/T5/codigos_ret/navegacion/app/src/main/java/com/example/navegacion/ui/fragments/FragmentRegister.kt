@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.navegacion.R
 import com.example.navegacion.databinding.FragmentRegisterBinding
+import com.example.navegacion.dataset.DataSet
 
 class FragmentRegister : Fragment() {
 
@@ -25,6 +26,8 @@ class FragmentRegister : Fragment() {
     override fun onStart() {
         super.onStart()
         binding.btnRegistrar.setOnClickListener {
+
+            //DataSet.agregarUsuario();
             findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
         }
     }

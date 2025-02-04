@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navegacion.R
 import com.example.navegacion.databinding.FragmentLoginBinding
+import com.example.navegacion.dataset.DataSet
 
 class FragmentLogin : Fragment() {
 
@@ -30,7 +31,11 @@ class FragmentLogin : Fragment() {
             .into(binding.imagenLogin)
         binding.textoRegistro.setOnClickListener {
             // navegar al fragment registro
-            findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)
+            if (DataSet.realizarLogin("2323", "2323") != null) {
+                findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)
+            } else {
+                findNavController().navigate(R.id.action_fragmentLogin_to_dialogoAviso)
+            }
         }
 
     }
