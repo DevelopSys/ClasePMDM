@@ -32,5 +32,12 @@
     <dialog
         android:id="@+id/dialogoAviso"
         android:name="com.example.navegacion.ui.dialog.DialogoAviso"
-        android:label="DialogoAviso" />
+        android:label="DialogoAviso" >
+        <action
+            android:id="@+id/action_dialogoAviso_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
+        <action
+            android:id="@+id/action_dialogoAviso_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </dialog>
 </navigation>
