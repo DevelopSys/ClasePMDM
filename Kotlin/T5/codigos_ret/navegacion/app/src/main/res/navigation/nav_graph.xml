@@ -12,8 +12,8 @@
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentRegister"
             app:destination="@id/fragmentRegister"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_fragmentLogin_to_dialogoAviso"
             app:destination="@id/dialogoAviso" />
@@ -24,10 +24,10 @@
         android:name="com.example.navegacion.ui.fragments.FragmentRegister"
         android:label="Registrar usuario" >
         <action
-            android:id="@+id/action_fragmentRegister_to_fragmentLogin"
-            app:destination="@id/fragmentLogin"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_fragmentRegister_to_dialogoConfirmacion"
+            app:destination="@id/dialogoConfirmacion"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <dialog
         android:id="@+id/dialogoAviso"
@@ -39,5 +39,16 @@
         <action
             android:id="@+id/action_dialogoAviso_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />
+    </dialog>
+    <dialog
+        android:id="@+id/dialogoConfirmacion"
+        android:name="com.example.navegacion.ui.dialog.DialogoConfirmacion"
+        android:label="DialogoConfirmacion" >
+        <action
+            android:id="@+id/action_dialogoConfirmacion_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <argument
+            android:name="nombre"
+            app:argType="string" />
     </dialog>
 </navigation>

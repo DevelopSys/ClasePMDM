@@ -27,8 +27,12 @@ class FragmentRegister : Fragment() {
         super.onStart()
         binding.btnRegistrar.setOnClickListener {
 
-            //DataSet.agregarUsuario();
-            findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
+            // si hay registro correcto -> DATASET
+            val bundle = Bundle()
+            bundle.putString("nombre", binding.editNombre.text.toString())
+            findNavController().navigate(R.id.action_fragmentRegister_to_dialogoConfirmacion,bundle)
+            // registro elemento
+
         }
     }
 
