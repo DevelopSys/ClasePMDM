@@ -1,5 +1,6 @@
 package com.example.iniciofg.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,18 @@ import com.example.iniciofg.databinding.FragmenteLoginBinding
 import com.example.iniciofg.dataset.DataSet
 import com.example.iniciofg.model.Usuario
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmenteLoginBinding
+    private lateinit var auth: FirebaseAuth
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        auth = FirebaseAuth.getInstance()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +44,21 @@ class LoginFragment : Fragment() {
             .into(binding.imagenLogin)
 
         binding.btnLogin.setOnClickListener {
-            val bundle = Bundle()
-            val usuario: Usuario? = DataSet.realizarLogin(
+
+            auth.signInWithEmailAndPassword(
+                binding.editCorreo.text.toString(),
+                binding.editPass.text.toString()
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+                } else {
+                    Snackbar.make(binding.root, "Fallo de credenciales", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+            // val bundle = Bundle()
+            /*val usuario: Usuario? = DataSet.realizarLogin(
                 binding.editCorreo.text.toString(),
                 binding.editPass.text.toString()
             )
@@ -46,7 +68,7 @@ class LoginFragment : Fragment() {
                 findNavController().navigate(R.id.action_loginFragment_to_mainFragment, bundle)
             } else {
                 Snackbar.make(binding.root, "Fallo de credenciales", Snackbar.LENGTH_SHORT).show()
-            }
+            }*/
 
         }
 
