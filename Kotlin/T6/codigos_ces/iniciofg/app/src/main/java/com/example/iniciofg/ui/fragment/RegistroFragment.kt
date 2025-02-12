@@ -59,14 +59,23 @@ class RegistroFragment : Fragment() {
             ).addOnCompleteListener {
                 if (it.isSuccessful) {
                     // Log.v("registro","usuario registrado con exito")
+                    val usuario =
+                        Usuario(
+                            binding.editNombre.text.toString(),
+                            binding.editCorreo.text.toString(),
+                            binding.editPass1.text.toString()
+                        )
                     val currenUser = auth.currentUser
                     val reference = database.reference.child("usuarios").child(currenUser!!.uid)
-                    reference
+                    reference.setValue(usuario)
+                    /*reference
                         .child("nombre").setValue(binding.editNombre.text.toString())
                     reference
                         .child("correo").setValue(binding.editCorreo.text.toString())
                     reference
-                        .child("pass").setValue(binding.editPass1.text.toString())
+                        .child("pass").setValue(binding.editPass1.text.toString())*/
+                    findNavController().navigate(R.id.action_registroFragment_to_registroDialog)
+
                 } else {
                     Snackbar.make(binding.root, "Hay algun fallo en auth", Snackbar.LENGTH_SHORT)
                         .show()
