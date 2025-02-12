@@ -24,12 +24,16 @@ import com.google.firebase.database.ValueEventListener
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private lateinit var usuario:Usuario
-    private lateinit var fireDatabase: FirebaseDatabase
+    private lateinit var usuario: Usuario
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var firebaseAuth: FirebaseAuth
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        fireDatabase = FirebaseDatabase.getInstance("https://compras-ec8a2-default-rtdb.europe-west1.firebasedatabase.app/")
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseDatabase =
+            FirebaseDatabase.getInstance("https://compras-ec8a2-default-rtdb.europe-west1.firebasedatabase.app/")
         // usuario = arguments?.getSerializable("usuario") as Usuario
     }
 
@@ -39,45 +43,21 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // XML -> inflater-> View
-        binding = FragmentMainBinding.inflate(layoutInflater, container,false)
+        binding = FragmentMainBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
 
-        val usuario: FirebaseUser? = FirebaseAuth.getInstance().currentUser;
+
+        binding.btnLeer.setOnClickListener { }
         binding.btnEscribir.setOnClickListener {
-            fireDatabase.reference.child("usuarios").child(usuario?.uid?:"invitado").child("nombre").setValue("borja")
-            fireDatabase.reference.child("usuarios").child(usuario?.uid?:"invitado").child("correo").setValue("borja@gmail.com")
-            fireDatabase.reference.child("usuarios").child(usuario?.uid?:"invitado").child("pass").setValue("password1234")
+            Log.v("datos", "Pulsacion detectada")
+            firebaseDatabase.reference.child("datos")
+                .child("version_app").setValue("compras_app")
         }
 
-        binding.btnLeer.setOnClickListener {
-            fireDatabase.reference.child("usuarios")
-                .addValueEventListener(object: ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()){
-                            /*val valor = snapshot.getValue(String::class.java)
-                            Log.v("valores",valor.toString())*/
-                            for ( child in snapshot.children){
-                                /*val nombre= child.child("nombre")
-                                val apellido= child.child("correo")
-                                val pass= child.child("pass")*/
-                                val usuario = child.getValue(Usuario::class.java)
-                                Log.v("valores","Usuario ${usuario!!.nombre} obtenido correctamente")
-
-                            }
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                })
-        }
-        // binding.textoLogin.text = "Enhorabuena ${usuario.nombre}"
 
     }
 }
