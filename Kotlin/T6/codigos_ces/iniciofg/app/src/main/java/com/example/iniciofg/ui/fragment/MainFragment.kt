@@ -19,6 +19,7 @@ import com.example.iniciofg.model.Producto
 import com.example.iniciofg.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -72,11 +73,18 @@ class MainFragment : Fragment() {
         super.onStart()
         binding.btnLeer.setOnClickListener {
             firebaseDatabase.reference.child("usuarios")
-                .child(firebaseUser?.uid ?:"invitado")
-                .child("nombre")
-                .addListenerForSingleValueEvent(object : ValueEventListener{
+                .addValueEventListener(object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        Log.v("dato",snapshot.toString())
+                        /*val nombre = snapshot.child("nombre").value
+                        val correo = snapshot.child("correo").value
+                        val pass = snapshot.child("pass").value
+                        Log.v("datos",nombre.toString())
+                        Log.v("datos",correo.toString())
+                        Log.v("datos",pass.toString())*/
+                        for (i in snapshot.children){
+                            val usuario = i.getValue(Usuario::class.java)
+                            Log.v("datos",usuario!!.nombre.toString())
+                        }
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -84,8 +92,36 @@ class MainFragment : Fragment() {
                     }
 
                 })
+            /*firebaseDatabase.reference.child("usuarios")
+                .addChildEventListener(object : ChildEventListener{
+                    override fun onChildAdded(snapshot: DataSnapshot,
+                                              previousChildName: String?) {
+                        Log.v("datos","nodo añadido")
+                    }
+
+                    override fun onChildChanged(
+                        snapshot: DataSnapshot,
+                        previousChildName: String?
+                    ) {
+
+                    }
+
+                    override fun onChildRemoved(snapshot: DataSnapshot) {
+
+                    }
+
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                })*/
         }
         binding.btnEscribir.setOnClickListener {
+
             Log.v("datos", "Pulsacion detectada")
             firebaseDatabase.reference.child("datos")
                 .child("version_app").setValue("compras_app")
