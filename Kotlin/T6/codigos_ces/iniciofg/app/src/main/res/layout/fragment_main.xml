@@ -4,28 +4,9 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Escribir datos"
-        android:id="@+id/btnEscribir"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerProductos"
         />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Leer datos"
-        android:id="@+id/btnLeer"
-        />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="USUARIO"
-        android:textSize="30sp"
-        android:id="@+id/textoLogin"
-        />
-
 </LinearLayout>

@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.iniciofg.R
+import com.example.iniciofg.adapter.AdapterProducto
 import com.example.iniciofg.databinding.FragmentDosBinding
 import com.example.iniciofg.databinding.FragmentMainBinding
 import com.example.iniciofg.databinding.FragmenteLoginBinding
@@ -29,6 +32,8 @@ import com.google.gson.Gson
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
+    private lateinit var adapterProducto: AdapterProducto
+    private lateinit var lista: ArrayList<Producto>
     private lateinit var usuario: Usuario
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var firebaseAuth: FirebaseAuth
@@ -42,6 +47,25 @@ class MainFragment : Fragment() {
         firebaseDatabase =
             FirebaseDatabase.getInstance("https://compras-ec8a2-default-rtdb.europe-west1.firebasedatabase.app/")
         cargarDatos()
+        lista = ArrayList()
+        adapterProducto = AdapterProducto(lista,requireContext())
+        firebaseDatabase.reference.child("productos")
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (i in snapshot.children){
+                    val producto = i.getValue(Producto::class.java)
+                    adapterProducto.addProducto(producto!!)
+                    //lista.add(producto!!)
+                    //adapterProducto.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
     }
 
     private fun cargarDatos() {
@@ -71,16 +95,24 @@ class MainFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        binding.btnLeer.setOnClickListener {
+        binding.recyclerProductos.adapter = adapterProducto;
+        if (resources.configuration.orientation == 1){
+            binding.recyclerProductos.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        } else if (resources.configuration.orientation == 2){
+            binding.recyclerProductos.layoutManager = GridLayoutManager(requireContext(),2)
+        }
+
+
+        /*binding.btnLeer.setOnClickListener {
             firebaseDatabase.reference.child("usuarios")
                 .addValueEventListener(object : ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        /*val nombre = snapshot.child("nombre").value
+                        *//*val nombre = snapshot.child("nombre").value
                         val correo = snapshot.child("correo").value
                         val pass = snapshot.child("pass").value
                         Log.v("datos",nombre.toString())
                         Log.v("datos",correo.toString())
-                        Log.v("datos",pass.toString())*/
+                        Log.v("datos",pass.toString())*//*
                         for (i in snapshot.children){
                             val usuario = i.getValue(Usuario::class.java)
                             Log.v("datos",usuario!!.nombre.toString())
@@ -92,7 +124,7 @@ class MainFragment : Fragment() {
                     }
 
                 })
-            /*firebaseDatabase.reference.child("usuarios")
+            *//*firebaseDatabase.reference.child("usuarios")
                 .addChildEventListener(object : ChildEventListener{
                     override fun onChildAdded(snapshot: DataSnapshot,
                                               previousChildName: String?) {
@@ -118,16 +150,15 @@ class MainFragment : Fragment() {
 
                     }
 
-                })*/
+                })*//*
         }
         binding.btnEscribir.setOnClickListener {
 
             Log.v("datos", "Pulsacion detectada")
             firebaseDatabase.reference.child("datos")
                 .child("version_app").setValue("compras_app")
-        }
+        }*/
     }
-
     override fun onDetach() {
         super.onDetach()
         firebaseAuth.signOut()
