@@ -9,11 +9,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.navegacion.R
 import com.example.navegacion.databinding.FragmentRegisterBinding
 import com.example.navegacion.dataset.DataSet
+import com.google.firebase.auth.FirebaseAuth
 
 class FragmentRegister : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-
+    private lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +27,13 @@ class FragmentRegister : Fragment() {
     override fun onStart() {
         super.onStart()
         binding.btnRegistrar.setOnClickListener {
+            
+            auth.createUserWithEmailAndPassword("","")
+                .addOnCompleteListener {
+                    if (it.isSuccessful){
+                        // currentUser.uid
+                    }
+                }
 
             // si hay registro correcto -> DATASET
             val bundle = Bundle()
