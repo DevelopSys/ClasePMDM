@@ -95,6 +95,41 @@ class MainFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+
+        /*firebaseDatabase.reference.child("user")
+            .child(firebaseAuth.currentUser!!.uid).get().addOnCompleteListener {
+                val user = it.result.getValue(Usuario::class.java)
+            }*/
+
+        firebaseDatabase.reference.child("user")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for ( i in snapshot.children ){
+                        i.getValue(Usuario::class.java)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+        binding.toolbarFMain.inflateMenu(R.menu.menu_main)
+        binding.toolbarFMain.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.mainFragment->{
+                    return@setOnMenuItemClickListener true
+                }
+            }
+
+            return@setOnMenuItemClickListener true
+
+
+
+        }
+
         binding.recyclerProductos.adapter = adapterProducto;
         if (resources.configuration.orientation == 1){
             binding.recyclerProductos.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)

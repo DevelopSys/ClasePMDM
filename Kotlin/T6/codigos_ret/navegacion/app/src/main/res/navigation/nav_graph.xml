@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_fragmentLogin_to_dialogoAviso"
             app:destination="@id/dialogoAviso" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_register"
@@ -44,11 +47,19 @@
         android:id="@+id/dialogoConfirmacion"
         android:name="com.example.navegacion.ui.dialog.DialogoConfirmacion"
         android:label="DialogoConfirmacion" >
-        <action
-            android:id="@+id/action_dialogoConfirmacion_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
         <argument
             android:name="nombre"
             app:argType="string" />
+        <action
+            android:id="@+id/action_dialogoConfirmacion_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_dialogoConfirmacion_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
     </dialog>
+    <fragment
+        tools:layout="@layout/fragment_main"
+        android:id="@+id/fragmentMain"
+        android:name="com.example.navegacion.ui.fragments.FragmentMain"
+        android:label="FragmentMain" />
 </navigation>

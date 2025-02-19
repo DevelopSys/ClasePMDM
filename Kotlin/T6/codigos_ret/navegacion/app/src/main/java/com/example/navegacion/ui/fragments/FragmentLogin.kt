@@ -48,13 +48,19 @@ class FragmentLogin : Fragment() {
                 binding.editCorreo.text.toString(),
                 binding.editPass.text.toString()
             ).addOnCompleteListener {
-                if (it.isSuccessful){
+                if (it.isSuccessful) {
                     // Snackbar.make(binding.root,"Inicio correcto",Snackbar.LENGTH_SHORT).show()
                     currentFBUser = auth.currentUser
-                    Log.v("usuario", currentFBUser?.uid ?:"no hay nadie en login")
-                    findNavController().navigate(R.id.action_fragmentLogin_to_dialogoAviso)
+                    Log.v("usuario", currentFBUser?.uid ?: "no hay nadie en login")
+                    findNavController().navigate(R.id.action_fragmentLogin_to_fragmentMain)
                 } else {
-                    Snackbar.make(binding.root,"Inicio incorrecto",Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "Inicio incorrecto", Snackbar.LENGTH_SHORT)
+                        .setAction("Quieres registrate") {
+                            findNavController().navigate(R.id.action_fragmentLogin_to_fragmentMain)
+                        }
+
+                        .show()
+
                 }
             }
         }
