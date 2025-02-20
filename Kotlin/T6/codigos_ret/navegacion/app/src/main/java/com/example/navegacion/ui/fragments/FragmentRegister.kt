@@ -27,7 +27,7 @@ class FragmentRegister : Fragment() {
     override fun onStart() {
         super.onStart()
         binding.btnRegistrar.setOnClickListener {
-            
+
             auth.createUserWithEmailAndPassword("","")
                 .addOnCompleteListener {
                     if (it.isSuccessful){
