@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.navegacion.databinding.FragmentMainBinding
 import com.example.navegacion.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -55,7 +56,36 @@ class FragmentMain : Fragment() {
                     }
                 }*/
             database.reference.child("usuarios")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
+                .addChildEventListener(object : ChildEventListener{
+                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                        Log.v("lectura","Añadido "+snapshot.toString())
+                        Log.v("lectura","Previo "+previousChildName)
+                    }
+
+                    override fun onChildChanged(
+                        snapshot: DataSnapshot,
+                        previousChildName: String?
+                    ) {
+                        Log.v("lectura","Cambiado "+snapshot.toString())
+                        Log.v("lectura","Previo "+previousChildName)
+                    }
+
+                    override fun onChildRemoved(snapshot: DataSnapshot) {
+                        Log.v("lectura","Borrado "+snapshot.toString())
+                    }
+
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                        Log.v("lectura","Movido "+snapshot.toString())
+                        Log.v("lectura","Previo "+previousChildName)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+
+                })
+
+                /*.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (i in snapshot.children) {
 
@@ -71,7 +101,7 @@ class FragmentMain : Fragment() {
 
                     }
 
-                })
+                })*/
         }
     }
 }
