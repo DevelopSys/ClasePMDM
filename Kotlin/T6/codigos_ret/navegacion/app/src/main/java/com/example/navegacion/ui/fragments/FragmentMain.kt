@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.navegacion.dao.UsuarioDAO
 import com.example.navegacion.databinding.FragmentMainBinding
 import com.example.navegacion.model.Producto
 import com.example.navegacion.model.Usuario
@@ -42,11 +43,15 @@ class FragmentMain : Fragment() {
     override fun onStart() {
         super.onStart()
         binding.btnEscribir.setOnClickListener {
+            val usuarioDAO = UsuarioDAO(requireContext())
+            usuarioDAO.insertarUsuario(Usuario("ejemplo","correo@gmail.com","pass"))
+        }
+       /* binding.btnEscribir.setOnClickListener {
 
-            /*val usuario = Usuario("Borja1", "borja@gmail.com", "1234")
+            *//*val usuario = Usuario("Borja1", "borja@gmail.com", "1234")
             val referencia = database.reference.child("usuarios")
                 .child(auth.currentUser!!.uid)
-            referencia.setValue(usuario)*/
+            referencia.setValue(usuario)*//*
 
             val producto = Producto(2, "Producto2", 20.76, "Este producto es uno de mis favoritos2")
 
@@ -57,14 +62,14 @@ class FragmentMain : Fragment() {
 
         }
         binding.btnLeer.setOnClickListener {
-            /*database.reference.child("version")
+            *//*database.reference.child("version")
                 .get().addOnCompleteListener {
                     if (it.isSuccessful){
                         Log.v("lectura","lectura completa")
                         Log.v("lectura",it.result.value.toString())
                     }
-                }*/
-            /*database.reference.child("usuarios")
+                }*//*
+            *//*database.reference.child("usuarios")
                 .addChildEventListener(object : ChildEventListener {
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                         Log.v("lectura", "Añadido " + snapshot.toString())
@@ -92,8 +97,8 @@ class FragmentMain : Fragment() {
 
                     }
 
-                })*/
-            /*.addValueEventListener(object : ValueEventListener {
+                })*//*
+            *//*.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (i in snapshot.children) {
 
@@ -109,7 +114,7 @@ class FragmentMain : Fragment() {
 
                 }
 
-            })*/
+            })*//*
             database.reference.child("usuarios").child(auth.currentUser!!.uid)
                 .child("favs").addChildEventListener(object : ChildEventListener {
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
@@ -138,6 +143,6 @@ class FragmentMain : Fragment() {
                     }
 
                 })
-        }
+        }*/
     }
 }

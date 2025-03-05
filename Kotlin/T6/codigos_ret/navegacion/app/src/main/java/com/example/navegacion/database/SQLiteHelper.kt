@@ -15,13 +15,11 @@ class SQLiteHelper(
     override fun onCreate(p0: SQLiteDatabase?) {
         // metodo a ejecutar si el nombre de la base de datos no existe
         // en el caso de existir la base de datos, no ejecuta nada
-        p0?.execSQL("CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        p0?.execSQL("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name TEXT NOT NULL," +
                 "password TEXT NOT NULL)")
     }
-
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         
     }
-
 }
