@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.navegacion.R
+import com.example.navegacion.dao.UsuarioDAO
 import com.example.navegacion.databinding.FragmentRegisterBinding
 import com.example.navegacion.dataset.DataSet
+import com.example.navegacion.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
 
 class FragmentRegister : Fragment() {
@@ -28,17 +30,25 @@ class FragmentRegister : Fragment() {
         super.onStart()
         binding.btnRegistrar.setOnClickListener {
 
-            auth.createUserWithEmailAndPassword("","")
+            val dao: UsuarioDAO = UsuarioDAO(requireContext())
+            dao.insertarUsuario(
+                Usuario(
+                    correo = binding.editCorreo.text.toString(),
+                    pass = binding.editPass1.text.toString()
+                )
+            )
+
+            /*auth.createUserWithEmailAndPassword("","")
                 .addOnCompleteListener {
                     if (it.isSuccessful){
                         // currentUser.uid
                     }
-                }
+                }*/
 
             // si hay registro correcto -> DATASET
-            val bundle = Bundle()
-            bundle.putString("nombre", binding.editNombre.text.toString())
-            findNavController().navigate(R.id.action_fragmentRegister_to_dialogoConfirmacion,bundle)
+            /* val bundle = Bundle()
+             bundle.putString("nombre", binding.editNombre.text.toString())*/
+            // findNavController().navigate(R.id.action_fragmentRegister_to_dialogoConfirmacion,bundle)
             // registro elemento
 
         }

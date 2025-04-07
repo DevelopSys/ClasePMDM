@@ -1,5 +1,6 @@
 package com.example.navegacion.ui.fragments
 
+import android.app.usage.UsageStats
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navegacion.R
+import com.example.navegacion.dao.UsuarioDAO
 import com.example.navegacion.databinding.FragmentLoginBinding
 import com.example.navegacion.dataset.DataSet
 import com.google.android.material.snackbar.Snackbar
@@ -25,6 +27,12 @@ class FragmentLogin : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         auth = FirebaseAuth.getInstance()
+        val dao: UsuarioDAO = UsuarioDAO(context)
+        if (dao.getAllUserPrueba()){
+            Log.v("datos","hay usuario")
+        } else {
+            Log.v("datos","no hay usuario")
+        }
     }
 
     override fun onCreateView(
@@ -66,8 +74,8 @@ class FragmentLogin : Fragment() {
         }
 
         binding.textoRegistro.setOnClickListener {
-
-            auth.createUserWithEmailAndPassword(
+            findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)
+            /*auth.createUserWithEmailAndPassword(
                 binding.editCorreo.text.toString(),
                 binding.editPass.text.toString()
             )
@@ -79,7 +87,7 @@ class FragmentLogin : Fragment() {
                         Snackbar.make(binding.root, "Fallo en la creacion", Snackbar.LENGTH_SHORT)
                             .show()
                     }
-                }
+                }*/
             // navegar al fragment registro
             /*if (DataSet.realizarLogin("2323", "2323") != null) {
                     findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)

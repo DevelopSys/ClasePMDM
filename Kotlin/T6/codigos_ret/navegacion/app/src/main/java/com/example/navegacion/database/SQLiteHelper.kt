@@ -18,6 +18,11 @@ class SQLiteHelper(
         p0?.execSQL("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name TEXT NOT NULL," +
                 "password TEXT NOT NULL)")
+        /*p0?.execSQL("CREATE TABLE products (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "name TEXT NOT NULL," +
+                "category TEXT NOT NULL, " +
+                "price INTEGER)")*/
+
     }
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
         

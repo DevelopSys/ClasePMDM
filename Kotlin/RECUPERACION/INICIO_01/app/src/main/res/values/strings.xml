@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">INICIO_01</string>
-    <string-array name="tratamiento">
-        <item></item>
-        <item>Sr</item>
-        <item>Sra</item>
-    </string-array>
-</resources>

@@ -46,6 +46,11 @@ class FragmentMain : Fragment() {
             val usuarioDAO = UsuarioDAO(requireContext())
             usuarioDAO.insertarUsuario(Usuario("ejemplo","correo@gmail.com","pass"))
         }
+
+        binding.btnLeer.setOnClickListener {
+            val usuarioDAO = UsuarioDAO(requireContext())
+            usuarioDAO.getAllUser()
+        }
        /* binding.btnEscribir.setOnClickListener {
 
             *//*val usuario = Usuario("Borja1", "borja@gmail.com", "1234")
