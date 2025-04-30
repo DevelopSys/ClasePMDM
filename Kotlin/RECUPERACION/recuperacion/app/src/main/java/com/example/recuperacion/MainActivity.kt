@@ -67,5 +67,7 @@ class MainActivity : AppCompatActivity() {
                                  un texto en la parte superior izquierda
                                  un texto en la parte central
 
+    4. Conectar el proyecto a firebase y intentar registrar usuarios y logearlos
+
 
 */
