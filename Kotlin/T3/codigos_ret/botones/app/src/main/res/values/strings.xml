@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">botones</string>
-    <string-array name="spinner_base">
-        <item>Selecciona ciclo</item>
-        <item>DAM</item>
-        <item>DAW</item>
-        <item>ASIR</item>
-    </string-array>
-</resources>

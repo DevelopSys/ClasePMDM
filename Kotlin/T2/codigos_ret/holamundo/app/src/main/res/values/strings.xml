@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">hola mundo</string>
-    <string name="saludo">Primera app android</string>
-    <string name="hint_nombre">Por favor introduce tu nombre</string>
-</resources>
