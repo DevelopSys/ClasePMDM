@@ -75,5 +75,9 @@ fun repetirFor() {
     //(20..30).forEach { p -> println(p) }
     (20..30).forEachIndexed { index, item ->
         println("Elemento en posicion $index con valor determinado")
+
+        for (i in 10 downTo 1 ){
+
+        }
     }
 }
