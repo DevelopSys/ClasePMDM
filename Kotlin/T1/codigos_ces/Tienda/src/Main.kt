@@ -10,4 +10,14 @@ fun main() {
     var cartera = Producto(5,5.0,"Cartera",
         "Cartera para guardar la pasta")
 
+    val listaProductos: Array<Producto?> =
+        arrayOf(camiseta, zapatillas, pantalones, gorra, cartera)
+    listaProductos.last()?.precio = 20.0
+    listaProductos[2] =null
+
+    for (i in listaProductos){
+        i?.mostrarDatos()
+    }
+
+
 }

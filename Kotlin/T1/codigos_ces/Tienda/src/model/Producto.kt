@@ -1,6 +1,11 @@
 package model
 
-class Producto(var id: Int, var precio: Double = 10.0, var nombre: String? = null, var descripcion: String? = null) {
+class Producto(
+    var id: Int,
+    var precio: Double = 10.0,
+    var nombre: String? = null,
+    var descripcion: String? = null
+) {
 
     // id
     // precio
@@ -23,4 +28,11 @@ class Producto(var id: Int, var precio: Double = 10.0, var nombre: String? = nul
     // metodo para poder mostrar todos los datos del producto concreto
     // si no hay nombre, aparece SIN NOMBRE
     // si no hay descripcion, aparece SIN DESCRIPCION
+
+    fun mostrarDatos() {
+        println("ID: $id")
+        println("Precio: $precio")
+        println("Nombre: ${nombre ?: "SIN DEFINIR"} ")
+        println("Descripcion: ${descripcion ?: "SIN DEFINIR"} ")
+    }
 }
