@@ -1,11 +1,10 @@
 package model
 
-class Producto(var id: Int, var precio: Double = 10.0) {
+class Producto(var id: Int, var precio: Double = 10.0, var nombre: String? = null, var descripcion: String? = null) {
 
     // id
     // precio
-    var nombre: String? = null
-    var descripcion: String? = null
+
 
     /*
     constructor(id: Int, precio: Double, nombre: String) : this(id, precio) {
@@ -20,6 +19,8 @@ class Producto(var id: Int, var precio: Double = 10.0) {
     }
     // crear constructor solo con descripcion y otro con nombre y descripcion
     */
-     
 
+    // metodo para poder mostrar todos los datos del producto concreto
+    // si no hay nombre, aparece SIN NOMBRE
+    // si no hay descripcion, aparece SIN DESCRIPCION
 }
