@@ -35,6 +35,8 @@ fun main() {
     }
 
     var tienda: Tienda = Tienda("asdasd")
+    tienda.mostrarAlmacen()
+
 
 }
 
