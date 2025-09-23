@@ -1,4 +1,5 @@
 import model.Producto
+import model.Tienda
 
 fun main() {
 
@@ -32,6 +33,8 @@ fun main() {
         println("Mostrando producto en posicion $index")
         producto?.mostrarDatos()
     }
+
+    var tienda: Tienda = Tienda("asdasd")
 
 }
 
