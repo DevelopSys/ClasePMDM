@@ -42,4 +42,16 @@ class Tienda(
         // su precio se suma a la caja
     // si se vende se da aviso de producto vendido y se da el valor de la caja
     // si no se encuentra se da aviso de que no esta en el almacen
+
+    fun venderProducto(id: Int){
+        for ( i in 0..almacen.size-1 ){
+            // no es nulo lo que accedo
+            if (almacen[i]!=null && almacen[i]?.id == id){
+                caja += almacen[i]!!.precio
+                almacen[i] = null
+                return
+            }
+        }
+        println("El id indicado no esta en la lista")
+    }
 }
