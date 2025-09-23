@@ -5,5 +5,13 @@ class Producto(var id: Int?=null,
                var nombre: String?=null,
                var descripcion:String?=null) {
 
+    // hacer un metodo que muestre todos los datos del producto
+    // en caso de no tener dato, aparecera el mensaje de SIN DEFINIR
+    fun mostrarDatos() {
+        println("ID: ${id ?: "Sin definir"}")
+        println("Precio: ${precio ?: "Sin definir"}")
+        println("Nombre: ${nombre ?: "Sin definir"}")
+        println("Descripcion: ${descripcion ?: "Sin definir"}")
+    }
 
 }
