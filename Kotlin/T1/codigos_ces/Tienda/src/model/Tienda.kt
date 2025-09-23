@@ -54,4 +54,15 @@ class Tienda(
         }
         println("El id indicado no esta en la lista")
     }
+
+    fun buscarProductosCategoria(categoria: Categoria){
+        // filtrando -> obteniendo varios
+    }
+
+    fun buscarProductoId(id: Int):Unit{
+        // buscando -> obtengo solo un elemento
+        var productoBusqueda: Producto? = almacen.find {
+            return@find it?.id == id
+        }
+    }
 }

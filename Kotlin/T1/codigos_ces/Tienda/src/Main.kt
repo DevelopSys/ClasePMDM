@@ -1,23 +1,27 @@
+import model.Categoria
 import model.Producto
 import model.Tienda
 
 fun main() {
 
-    var camiseta: Producto = Producto(id = 1, precio = 14.99)
-    var zapatillas = Producto(2, 20.0)
+    var camiseta: Producto = Producto(id = 1, precio = 14.99, categoria = Categoria.Ropa)
+    var zapatillas = Producto(2, 20.0, categoria = Categoria.Ropa)
     // id, precio, nombre
-    var pantalones = Producto(3, 30.0, "Pantalones")
-    var gorra = Producto(4, 20.0, descripcion = "Gorra molona")
+    var pantalones = Producto(3, 30.0, nombre = "Pantalones", categoria = Categoria.Ropa)
+    var gorra = Producto(4, 20.0, descripcion = "Gorra molona", categoria = Categoria.Ropa)
     var cartera = Producto(
-        5, 5.0, "Cartera",
-        "Cartera para guardar la pasta"
+        5, 5.0, nombre = "Cartera", descripcion = "Cartera para guardar la pasta", categoria = Categoria.Generica
+    )
+    var telefono = Producto(
+        6, 500.0, nombre = "Iphone", descripcion = "Telefono mocil", categoria = Categoria.Tecnologia
     )
 
     val listaProductos: Array<Producto?> =
-        arrayOf(camiseta, zapatillas, pantalones, gorra, cartera)
+        arrayOf(camiseta, zapatillas, pantalones, gorra, cartera, telefono)
 
+    /*
     // String[] clientes = new String[]{"asdasdasd"}
-    val listaClientes: Array<String> = arrayOf("asdasd","asdasdasd")
+    val listaClientes: Array<String> = arrayOf("asdasd", "asdasdasd")
 
     //int[] numeros = new int[8]
     val listaProductoVacio: Array<Producto?> = arrayOfNulls(5)
@@ -32,9 +36,10 @@ fun main() {
     listaProductos.forEachIndexed { index, producto ->
         println("Mostrando producto en posicion $index")
         producto?.mostrarDatos()
-    }
+    }*/
 
-    var tienda: Tienda = Tienda("asdasd")
+    var tienda: Tienda = Tienda("Tienda de todo un poco")
+    tienda.almacen = listaProductos
     tienda.mostrarAlmacen()
 
 

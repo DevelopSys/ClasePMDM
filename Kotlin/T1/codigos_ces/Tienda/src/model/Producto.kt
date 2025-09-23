@@ -3,6 +3,7 @@ package model
 class Producto(
     var id: Int,
     var precio: Double = 10.0,
+    var categoria: Categoria = Categoria.Generica,
     var nombre: String? = null,
     var descripcion: String? = null
 ) {
@@ -33,6 +34,7 @@ class Producto(
         println("ID: $id")
         println("Precio: $precio")
         println("Nombre: ${nombre ?: "SIN DEFINIR"} ")
+        println("Categoria: ${categoria.name}")
         println("Descripcion: ${descripcion ?: "SIN DEFINIR"} ")
     }
 }
