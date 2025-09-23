@@ -23,6 +23,23 @@ class Tienda(
             println("No hay productos en el almacen")
     }
 
+
     // agregar un elemento al almacen. En caso de no tener hueco
     // disponible se mostrara un aviso
+    fun agregarProducto(producto: Producto){
+        for (item in 0..almacen.size-1){
+            if (almacen[item] == null){
+                 almacen[item] = producto;
+                return;
+            }
+        }
+        println("El almacen esta completo")
+    }
+
+    // vamos a vender un producto. PAra ello se solicita el id del producto
+    // a vender. En caso de estar en el almacen:
+        // se elimina de este
+        // su precio se suma a la caja
+    // si se vende se da aviso de producto vendido y se da el valor de la caja
+    // si no se encuentra se da aviso de que no esta en el almacen
 }
