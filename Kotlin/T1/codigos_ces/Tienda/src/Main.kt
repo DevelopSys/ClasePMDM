@@ -44,10 +44,12 @@ fun main() {
     // tienda.mostrarAlmacen()
     // tienda.buscarProductosCategoria(Categoria.Muebles)
     var cliente: Cliente = Cliente(1,"Borja")
-    cliente.agregarProductoCarrito(gorra)
-    cliente.agregarProductoCarrito(pantalones)
+    cliente.agregarProductoCarrito(gorra) // 4
+    cliente.agregarProductoCarrito(gorra) // 4
+    cliente.agregarProductoCarrito(pantalones) // 3
     //cliente.mostrarCarrito()
-    cliente.accesoPorPosicion(1)
+    // cliente.accesoPorPosicion(1)
+    cliente.borrarElementos(1)
 
 
 }
