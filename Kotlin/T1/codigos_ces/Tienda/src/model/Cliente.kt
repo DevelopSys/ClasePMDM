@@ -68,6 +68,19 @@ class Cliente(var id: Int, var nombre: String) {
         }
     }
 
+    fun pedirFactura() {
+        if (carrito.isEmpty()){
+            println("No puedes pedir, no hay productos en carrito")
+        } else{
+            carrito.forEach {
+                factura+=it.precio
+            }
+            println("Debes un total de $factura")
+            carrito.clear()
+            factura = 0.0
+        }
+    }
+
     // hacer un metodo para calcular la factura del cliente
     // cuando un cliente pide la factura se muestra por consola y vacia el carrito
 
