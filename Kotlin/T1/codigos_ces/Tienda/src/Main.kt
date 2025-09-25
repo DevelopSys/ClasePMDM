@@ -1,4 +1,5 @@
 import model.Categoria
+import model.Cliente
 import model.Producto
 import model.Tienda
 
@@ -40,7 +41,13 @@ fun main() {
 
     var tienda: Tienda = Tienda("Tienda de todo un poco")
     tienda.almacen = listaProductos
-    tienda.mostrarAlmacen()
+    // tienda.mostrarAlmacen()
+    // tienda.buscarProductosCategoria(Categoria.Muebles)
+    var cliente: Cliente = Cliente(1,"Borja")
+    cliente.agregarProductoCarrito(gorra)
+    cliente.agregarProductoCarrito(pantalones)
+    //cliente.mostrarCarrito()
+    cliente.accesoPorPosicion(1)
 
 
 }
