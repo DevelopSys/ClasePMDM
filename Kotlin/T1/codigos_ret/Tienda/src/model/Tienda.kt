@@ -23,11 +23,29 @@ class Tienda(var nombre: String? = null) {
             println("El almacen esta vacio")
     }
 
-    // [ null p2 null p4 p5 ]
-    // vamos a meter prductos al almacen.
-    // para ello crear un metodo que permita poner un
-    // producto en el almacen
-    // se colocará en el primer hueco disponible
-    // en caso de estar todos los huecos ocupados saltar un aviso
-    // NO HAY HUECO
+    fun agregarProducto(producto: Producto) {
+
+        val busqueda: Producto? = almacen.find {
+            return@find it?.id == producto.id
+        }
+
+        for (i in almacen.indices) {
+            if (almacen[i] == null && busqueda==null) {
+                almacen[i] = producto
+                println("Producto agregado correctamente")
+                return
+            }
+        }
+        println("No hay espacio disponible o esta repetido")
+    }
+
+    // realizar un metodo que muestre los productos
+    // de una categoria pasada
+    // si no hay productos de la categoria psada -> AVISO
+
+    fun filtrarCategoria(categoria: Categoria) {
+        val listaFiltrada: ArrayList<Producto?> = almacen.filter {
+            return@filter it?.categoria == categoria
+        } as ArrayList<Producto?>
+    }
 }

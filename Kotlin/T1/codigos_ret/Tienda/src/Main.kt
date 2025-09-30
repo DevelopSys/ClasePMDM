@@ -1,13 +1,20 @@
+import model.Categoria
+import model.Cliente
 import model.Producto
+import model.Tienda
 
 fun main() {
 
     println((1..14).random())
     var gorra = Producto()
-    var pantalones = Producto(2, 10.0)
-    var zapatillas = Producto(3, 30.0, "zapatillas")
+    var pantalones = Producto(2, 10.0, categoria = Categoria.Ropa)
+    var zapatillas = Producto(3, 30.0, "zapatillas", categoria = Categoria.Ropa)
     var cartera = Producto(4, 5.0, descripcion = "esta cartera es para guardar la pasta")
-    var camiseta = Producto(1, 10.0, "camiseta", "camiseta para salir de fiesta")
+    var camiseta = Producto(
+        1, 10.0, "camiseta", "camiseta para salir de fiesta"
+        , categoria = Categoria.Ropa
+    )
+
 
     // camiseta.mostrarDatos()
     // array es una coleccion fija de elementos
@@ -20,10 +27,26 @@ fun main() {
     // listaProductos.first() = null
     // mostrar los datos de todos los productos de la lista
 
+    /*
+    val tienda = Tienda()
+    tienda.agregarProducto(camiseta) // 1
+    tienda.agregarProducto(cartera) // 4
+    tienda.agregarProducto(zapatillas) // 2
+    tienda.agregarProducto(pantalones) // 2
+    tienda.mostrarProductos()
+    */
     /* FOREACH -> recorrer y acceder a la info
     listaProductos.forEach{
         it?.mostrarDatos() ?: println("Hueco vacio")
     }*/
+
+    var cliente: Cliente = Cliente(1,"Borja")
+    cliente.agregarProducto(Producto(id = 1, precio = 10.0))
+    cliente.agregarProducto(Producto(id = 2, precio = 30.0))
+    cliente.agregarProducto(Producto(id = 3, precio = 20.0))
+    cliente.mostrarProductos()
+    // 0.0
+    // []
 
 
     /*for (item in listaProductos){
