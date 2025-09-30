@@ -41,10 +41,12 @@ fun main() {
     }*/
 
     var cliente: Cliente = Cliente(1,"Borja")
-    cliente.agregarProducto(Producto(id = 1, precio = 10.0))
-    cliente.agregarProducto(Producto(id = 2, precio = 30.0))
-    cliente.agregarProducto(Producto(id = 3, precio = 20.0))
+    cliente.agregarProducto(Producto(id = 1, precio = 10.0, categoria = Categoria.Ropa))
+    cliente.agregarProducto(Producto(id = 2, precio = 30.0, categoria = Categoria.Tecnologia))
+    cliente.agregarProducto(Producto(id = 3, precio = 20.0, categoria = Categoria.Ropa))
+    cliente.borrarxCategoria(Categoria.Ropa)
     cliente.mostrarProductos()
+//cliente.mostrarProductos()
     // 0.0
     // []
 
