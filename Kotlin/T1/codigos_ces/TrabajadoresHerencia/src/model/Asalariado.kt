@@ -22,11 +22,6 @@ class Asalariado(
         }
     }
 
-    // un asalariado, puede pedir un aumento de sueldo
-        // se genera un aleatorio entre 1-10
-        // en caso de generar un numero <5 no se le sube el salario
-        // en caso de generar un numero >=5 se le sube un 10% el salario
-
     override fun mostrarDatos() {
         super.mostrarDatos()
         println("nPagas = ${nPagas}")
