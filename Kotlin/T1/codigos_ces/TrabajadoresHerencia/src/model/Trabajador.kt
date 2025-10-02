@@ -4,7 +4,7 @@ package model
 // Trabajador() : Persona(), Junta
 abstract class Trabajador(
     nombre: String, apellido: String, dni: String,
-    var salario: Int
+    var salario: Double
 ) : Persona(nombre, apellido, dni) {
 
     // nombre, apellido, dni, SALARIO,NPAGAS
@@ -13,7 +13,7 @@ abstract class Trabajador(
 
     constructor(
         nombre: String, apellido: String, dni: String,
-        salario: Int,seguro: Boolean, telefono: Int, correo: String,
+        salario: Double,seguro: Boolean, telefono: Int, correo: String,
     ) : this(nombre, apellido, dni, salario) {
         this.seguro = seguro;
         this.telefono = telefono
