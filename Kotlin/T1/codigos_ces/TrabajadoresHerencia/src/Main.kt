@@ -26,6 +26,14 @@ fun main() {
 
     // calcular beneficios
 
+    // Para poder bajar sueldos, un jefe solo bajara los sueldos
+        // a los trabajadores que no son jefes
+        // la cantidad de salario que puede bajar es del 10%
+    // En caso de ser un directivo, le podré bajar el sueldo a todos los trabajador
+        // incluido a los jefes. un 20% a los Asalariados / Autonomos
+        // un 10% a los jefes
+
+
     trabajadores.forEach {
         if (it is Sindicato) {
             it.calcularBeneficios()
