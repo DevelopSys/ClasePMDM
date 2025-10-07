@@ -29,7 +29,13 @@ class Jefe(
     }
 
     override fun bajarSueldos(lista: ArrayList<Trabajador>): Boolean {
-        println("Procedes a bajar los sueldos, eres jefe, puedes hacerlo parcialmente")
+
+        lista.forEach {
+            if (it !is Jefe){
+                it.salario *= 0.90
+            }
+        }
+
         return true
     }
 

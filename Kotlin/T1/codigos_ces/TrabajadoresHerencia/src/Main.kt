@@ -8,6 +8,8 @@ import model.Trabajador
 import kotlin.reflect.typeOf
 
 fun main() {
+
+
     // var persona = Persona("Borja", "Martin","123A")
     // persona.mostrarDatos()
     // var trabajador = Trabajador("Borja","Martin","1234A",40000,12,true,91111111,"borja@gmail.com")
@@ -27,16 +29,17 @@ fun main() {
     // calcular beneficios
 
     // Para poder bajar sueldos, un jefe solo bajara los sueldos
-        // a los trabajadores que no son jefes
-        // la cantidad de salario que puede bajar es del 10%
+    // a los trabajadores que no son jefes
+    // la cantidad de salario que puede bajar es del 10%
     // En caso de ser un directivo, le podré bajar el sueldo a todos los trabajador
-        // incluido a los jefes. un 20% a los Asalariados / Autonomos
-        // un 10% a los jefes
+    // incluido a los jefes. un 20% a los Asalariados / Autonomos
+    // un 10% a los jefes
 
 
     trabajadores.forEach {
         if (it is Sindicato) {
-            it.calcularBeneficios()
+            it.bajarSueldos(trabajadores.filter { it !is Directivo }
+                    as ArrayList<Trabajador>)
         }
     }
 

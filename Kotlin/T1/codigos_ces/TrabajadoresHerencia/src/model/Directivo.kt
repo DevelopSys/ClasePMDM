@@ -21,7 +21,15 @@ class Directivo(
     }
 
     override fun bajarSueldos(lista: ArrayList<Trabajador>): Boolean {
-        println("Procedes a bajar los sueldos, eres directivo y puedes hacerlo")
+
+        lista.forEach {
+            if (it is Jefe){
+                it.salario = it.salario*0.90;
+            } else {
+                it.salario = it.salario*0.80;
+            }
+        }
+
         return true
     }
 
