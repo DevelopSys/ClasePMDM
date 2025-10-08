@@ -9,7 +9,7 @@ class Coche(
     precio: Double,
     var nPuertas: Int,
     var capacidadMaletero: Int
-) : Vehiculo(matricula,marca,modelo,km,cv,precio) {
+) : Vehiculo(matricula,marca,modelo,km,cv,precio), Coleccionable {
 
     override fun mostrarDatos() {
         super.mostrarDatos()
@@ -23,6 +23,11 @@ class Coche(
         } else {
             println("Demasiado grande")
         }
+    }
+
+    override fun incrementarValor() {
+        println("Vamos a ver como te coleccionas")
+        precio *= 1.10;
     }
 
 }

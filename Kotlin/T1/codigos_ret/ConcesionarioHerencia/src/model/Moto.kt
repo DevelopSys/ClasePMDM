@@ -9,7 +9,7 @@ class Moto(
     precio: Double,
     var alforjas: Boolean,
     var manillar: String
-) : Vehiculo(matricula, marca, modelo, km, cv, precio) {
+) : Vehiculo(matricula, marca, modelo, km, cv, precio), Coleccionable {
 
     override fun mostrarDatos() {
         super.mostrarDatos()
@@ -21,6 +21,10 @@ class Moto(
         if (!alforjas && manillar.equals("L",true)){
             println("Puedes hacer caballito")
         }
+    }
+
+    override fun incrementarValor() {
+        precio *= 1.05
     }
 
 }
