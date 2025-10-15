@@ -122,6 +122,7 @@ class Fantasy() {
     }
 
     fun iniciarConteo() {
+        
         validarParticipante().forEach {
             it.plantilla.forEach { jugador ->
                 it.puntos += puntuaciones.find { jugadorPuntuacion -> jugadorPuntuacion.nombre == jugador.nombre }?.puntos
