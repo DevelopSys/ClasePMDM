@@ -59,6 +59,7 @@
             android:text="R"
             android:textSize="50sp"
             android:id="@+id/botonReset"
+            android:backgroundTint="@color/orange_dark"
             />
         <EditText
             android:id="@+id/editReset"

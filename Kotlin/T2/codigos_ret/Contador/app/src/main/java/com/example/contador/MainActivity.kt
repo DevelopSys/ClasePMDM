@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     // lateinit var botonIncremen: Button
 
     lateinit var binding: ActivityMainBinding
-    var contador: Int =0
+    var contador: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -52,8 +52,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 contador--
             }
 
-            binding.botonReset?.id->{
-                contador = 0;
+            binding.botonReset?.id -> {
+                if (binding.editReset!!.text.isEmpty()) {
+                    Snackbar.make(v, "Por favor introduce datos",
+                        Snackbar.LENGTH_LONG).show()
+                } else {
+                    contador = binding.editReset!!.text.toString().toInt();
+                }
             }
         }
         binding.textoContador.text = contador.toString()
