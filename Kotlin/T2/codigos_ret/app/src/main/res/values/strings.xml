@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Formulario</string>
+    <string-array name="perfiles">
+        <item>Ingeniero</item>
+        <item>Contable</item>
+        <item>Marketing</item>
+        <item>Ventas</item>
+        <item>Logistica</item>
+        <item>Otros</item>
+    </string-array>
 </resources>

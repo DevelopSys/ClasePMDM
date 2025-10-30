@@ -84,6 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editLocate" />
 
     <Spinner
+        android:entries="@array/perfiles"
         android:id="@+id/spinnerPuesto"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -93,6 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editLocate" />
 
     <CheckBox
+        android:textSize="10dp"
         android:id="@+id/checkExperiencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,15 +102,40 @@
         app:layout_constraintEnd_toEndOf="@+id/spinnerPuesto"
         app:layout_constraintTop_toBottomOf="@+id/spinnerPuesto" />
 
+    <RadioGroup
+        android:id="@+id/grupoRadios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/checkExperiencia"
+        app:layout_constraintTop_toBottomOf="@+id/checkExperiencia">
+
+        <RadioButton
+            android:layout_marginEnd="12dp"
+            android:id="@+id/radioCinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="menos de 5 años"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/radioMasCinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mas de 5 años"
+            android:textSize="10sp" />
+
+    </RadioGroup>
+
     <Button
-        android:text="Enviar"
         android:id="@+id/botonEnviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Enviar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/checkExperiencia"
+        app:layout_constraintEnd_toEndOf="@+id/grupoRadios"
         app:layout_constraintStart_toStartOf="@+id/imagenPuesto"
-        app:layout_constraintTop_toBottomOf="@+id/checkExperiencia" />
+        app:layout_constraintTop_toBottomOf="@+id/grupoRadios" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
