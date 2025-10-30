@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:background="@android:color/transparent"
+        android:id="@+id/iamgenLogin"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@drawable/login"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:drawableStart="@drawable/mail"
+        android:hint="Introduce correo"
+        android:inputType="textEmailAddress"
+        android:gravity="center"
+        android:id="@+id/editCorreo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/iamgenLogin"
+        app:layout_constraintStart_toStartOf="@+id/iamgenLogin"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <EditText
+        android:layout_marginTop="12dp"
+        android:id="@+id/editPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/passwd"
+        android:gravity="center"
+        android:hint="Introduce password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/iamgenLogin"
+        app:layout_constraintStart_toStartOf="@+id/iamgenLogin"
+        app:layout_constraintTop_toBottomOf="@+id/editCorreo" />
+
+    <Spinner
+        android:layout_marginTop="12dp"
+        android:id="@+id/spinnerPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/editPass"
+        app:layout_constraintTop_toBottomOf="@+id/editPass" />
+
+    <CheckBox
+        android:layout_marginTop="12dp"
+        android:id="@+id/checkRecordar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recordar contraseña"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerPerfil"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPerfil" />
+
+
+    <ImageButton
+        android:id="@+id/botonGoogle"
+        android:scaleType="fitXY"
+        android:src="@drawable/google"
+        android:layout_marginTop="24dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintStart_toStartOf="@+id/editPass"
+        app:layout_constraintTop_toBottomOf="@+id/checkRecordar" />
+
+    <ImageButton
+        android:id="@+id/botonFacebook"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/facebook"
+        app:layout_constraintEnd_toEndOf="@+id/checkRecordar"
+        app:layout_constraintTop_toTopOf="@+id/botonGoogle" />
+
+    <ImageButton
+        android:id="@+id/botonGit"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/gith"
+        app:layout_constraintEnd_toStartOf="@+id/botonFacebook"
+        app:layout_constraintStart_toEndOf="@+id/botonGoogle"
+        app:layout_constraintTop_toTopOf="@+id/botonGoogle" />
+
+    <Button
+        android:id="@+id/botonLogin"
+        android:text="Login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/botonFacebook"
+        app:layout_constraintStart_toStartOf="@+id/botonGoogle"
+        app:layout_constraintTop_toBottomOf="@+id/botonGit" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

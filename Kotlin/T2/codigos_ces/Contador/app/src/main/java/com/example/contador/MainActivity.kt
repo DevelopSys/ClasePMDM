@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun acciones() {
         binding.botonIncremento.setOnClickListener(this)
         binding.botonDecremento.setOnClickListener(this)
+        binding.botonDReset?.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -43,6 +44,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             binding.botonIncremento.id -> {
                 contador++
+            }
+            binding.botonDReset?.id -> {
+                contador = 0
             }
         }
         binding.textoContador.text = contador.toString()
