@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.formulario.databinding.ActivityMainBinding
+import com.example.formulario.model.Usuario
+import com.google.android.material.snackbar.Snackbar
+import javax.net.ssl.SNIHostName
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -26,7 +29,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val nombre = binding.editNombre.text.toString()
             val mail = binding.editMail.text.toString()
             val pass = binding.editPass.text.toString()
+            val localizacion = binding.editLocate.text.toString()
             val experiencia = binding.checkExperiencia.isChecked
+            val estudios = binding.spinnerPuesto.selectedItem.toString()
             lateinit var cantidad: String
             if (experiencia) {
                 when (binding.grupoRadios.checkedRadioButtonId) {
@@ -41,10 +46,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 cantidad = "sin experiencia"
             }
-            val estudios = binding.spinnerPuesto.selectedItem
-            val intent: Intent = Intent(applicationContext,
-                SecondActivity::class.java)
-            startActivity(intent)
+
+
+            if (nombre.isNotEmpty() && pass.isNotEmpty() && mail.isNotEmpty() && localizacion.isNotEmpty()) {
+                if (mail == "admin@admin.com" && pass == "admin") {
+                    val intent = Intent(applicationContext, SecondActivity::class.java)
+                    val usuario =
+                        Usuario(
+                            nombre, pass, mail, localizacion,
+                            estudios, cantidad
+                        )
+                    intent.putExtra("usuario",usuario)
+                    // intent.putExtra("correo",mail)
+                    startActivity(intent)
+                } else {
+                    Snackbar.make(it, "Datos incorrectos", Snackbar.LENGTH_SHORT).show()
+                }
+            } else {
+                Snackbar.make(it, "Faltan datos", Snackbar.LENGTH_SHORT).show()
+            }
+
+
+            // solo deberia pasar de una pantalla a otra cuando:
+
+            // todos los datos estar completos
+            // correo es admin@admin.com
+            // pass es admin
 
         }
         binding.checkExperiencia.setOnCheckedChangeListener { view, state ->
