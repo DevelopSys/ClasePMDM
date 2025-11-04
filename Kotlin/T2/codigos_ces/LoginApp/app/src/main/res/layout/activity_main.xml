@@ -44,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editCorreo" />
 
     <Spinner
+        android:entries="@array/plataformas"
         android:layout_marginTop="12dp"
         android:id="@+id/spinnerPerfil"
         android:layout_width="wrap_content"
@@ -62,6 +63,7 @@
 
 
     <ImageButton
+
         android:id="@+id/botonGoogle"
         android:scaleType="fitXY"
         android:src="@drawable/google"
