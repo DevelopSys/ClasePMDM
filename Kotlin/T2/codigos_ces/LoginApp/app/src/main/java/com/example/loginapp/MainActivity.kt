@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
                         startActivity(intent)
                     } else {
                         Snackbar.make(
-                            binding.root, "Datos incorrectos",
+                            binding.root, resources.getString(R.string.text_data),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }

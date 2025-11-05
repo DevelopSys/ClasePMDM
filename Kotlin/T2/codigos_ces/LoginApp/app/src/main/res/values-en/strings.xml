@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">LoginApp</string>
     <string name="text_login">Login</string>
+    <string name="text_data">Wrong data</string>
     <string-array name="plataformas">
         <item>Google</item>
         <item>GitHub</item>
