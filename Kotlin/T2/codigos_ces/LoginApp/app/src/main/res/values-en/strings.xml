@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LoginApp</string>
-    <string name="text_login">Iniciar sesion</string>
+    <string name="text_login">Login</string>
     <string-array name="plataformas">
         <item>Google</item>
         <item>GitHub</item>

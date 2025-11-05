@@ -8,5 +8,5 @@ class Usuario(
     var mail: String,
     var localizacion: String,
     var estudios: String,
-    var experiencia: String
+    var cantidad: String
 ) : Serializable

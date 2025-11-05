@@ -94,7 +94,7 @@
 
     <Button
         android:id="@+id/botonLogin"
-        android:text="Login"
+        android:text="@string/text_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
