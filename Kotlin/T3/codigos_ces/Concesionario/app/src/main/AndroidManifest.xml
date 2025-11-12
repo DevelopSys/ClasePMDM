@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Concesionario">
         <activity
+            android:name=".ui.SecondActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,6 +1,8 @@
 package com.example.concesionario.model
 
-class Marca(var nombre: String, var imagen: Int){
+import java.io.Serializable
+
+class Marca(var nombre: String, var imagen: Int): Serializable{
     override fun toString(): String {
         return nombre
     }
