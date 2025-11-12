@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.concesionario.databinding.ActivityMainBinding
 import com.example.concesionario.model.Marca
 import com.example.concesionario.ui.SecondActivity
@@ -41,7 +38,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 Marca("Ford", R.drawable.ford),
                 Marca("Opel", R.drawable.opel),
                 Marca("Mercedes", R.drawable.mercedes),
-                Marca("Fiat", R.drawable.fiat)
+                Marca("Fiat", R.drawable.fiats)
             )
         adapterMarcas =
             ArrayAdapter(this, android.R.layout.simple_spinner_item, listaMarcas)
