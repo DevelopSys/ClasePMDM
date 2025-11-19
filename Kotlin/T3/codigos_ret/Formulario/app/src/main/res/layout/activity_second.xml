@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textNombre"
+        android:hint="Introduce nombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:id="@+id/textApellido"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Introduce apellido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNombre" />
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:id="@+id/textMatricula"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Introduce matricula"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textApellido" />
+
+    <EditText
+        android:layout_marginTop="12dp"
+        android:id="@+id/textAnio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Introduce año"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMatricula" />
+
+    <TextView
+        android:hint="combustible"
+        android:layout_marginTop="12dp"
+        android:id="@+id/textCombustible"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textAnio" />
+
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:id="@+id/textAutonomia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Introduce autonomia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCombustible" />
+
+    <ImageView
+        android:id="@+id/imagenEtiqueta"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textAutonomia" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

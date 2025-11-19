@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ExamenEtiquetas</string>
+    <string-array name="combustibles">
+        <item>Electrico</item>
+        <item>Hibrido</item>
+        <item>Gasolina</item>
+        <item>Diesel</item>
+    </string-array>
+</resources>
