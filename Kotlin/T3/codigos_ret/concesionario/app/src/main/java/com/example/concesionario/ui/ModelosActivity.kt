@@ -1,6 +1,7 @@
 package com.example.concesionario.ui
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -8,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.concesionario.R
 import com.example.concesionario.adapter.AdapterModelo
 import com.example.concesionario.databinding.ActivityModelosBinding
+import com.example.concesionario.dataset.DataSet
 import com.example.concesionario.model.Marca
 import com.example.concesionario.model.Modelo
 
@@ -35,13 +37,8 @@ class ModelosActivity : AppCompatActivity() {
     }
 
     private fun instancias() {
-        listaModelos = arrayListOf(
-            Modelo(marca, "Modelo1", 10000, 100, R.drawable.vw, ""),
-            Modelo(marca, "Modelo2", 20000, 200, R.drawable.fiat, ""),
-            Modelo(marca, "Modelo3", 30000, 300, R.drawable.ford, ""),
-            Modelo(marca, "Modelo4", 40000, 400, R.drawable.audi, ""),
-            Modelo(marca, "Modelo5", 50000, 500, R.drawable.mercedes, ""),
-        )
+
+        listaModelos = DataSet.getListaModelos(marca)
         adapterModelo = AdapterModelo(listaModelos)
 
     }

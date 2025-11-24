@@ -13,17 +13,11 @@
 
     <TextView
         android:id="@+id/nombreModelo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="12dp"
         android:gravity="center"
         />
-    <TextView
-        android:id="@+id/cvModelo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="12dp"
-        android:gravity="right|center"
-        />
+
 
 </LinearLayout>
