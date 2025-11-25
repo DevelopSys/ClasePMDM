@@ -28,4 +28,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoModelos" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaCoches"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerModelos"
+        app:layout_constraintStart_toStartOf="@+id/spinnerModelos"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerModelos" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
