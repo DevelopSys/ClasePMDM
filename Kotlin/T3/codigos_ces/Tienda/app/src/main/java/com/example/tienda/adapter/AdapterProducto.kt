@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tienda.databinding.ItemProductoBinding
 import com.example.tienda.model.Producto
+import com.google.android.material.snackbar.Snackbar
 
 class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
     RecyclerView.Adapter<AdapterProducto.MyHolder>() {
@@ -28,8 +29,14 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
     ) {
         val producto: Producto = lista[position]
         holder.binding.nombreFila.text = producto.nombre
-        holder.binding.btnDetalle.setOnClickListener {  }
-        holder.binding.btnCompra.setOnClickListener {  }
+        holder.binding.btnDetalle.setOnClickListener {
+            Snackbar.make(holder.binding.root, "El precio del articulo es ${producto.precio}",
+                Snackbar.LENGTH_SHORT).show()
+        }
+        holder.binding.btnCompra.setOnClickListener {
+            Snackbar.make(holder.binding.root, "El stock del producto es ${producto.stock}",
+                Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     // cuantos elementso tendre que pintar
