@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/nombreFila"
             android:textSize="25sp"
             android:paddingBottom="6dp"
             android:gravity="center"
