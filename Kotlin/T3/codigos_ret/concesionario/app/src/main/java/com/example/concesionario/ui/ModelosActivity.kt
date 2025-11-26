@@ -43,6 +43,8 @@ class ModelosActivity : AppCompatActivity() {
 
     private fun acciones() {
 
+
+
         binding.spinnerModelos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
         {
             override fun onItemSelected(
@@ -53,7 +55,8 @@ class ModelosActivity : AppCompatActivity() {
             ) {
                 val modeloSeleccionado: Modelo = parent!!.adapter.getItem(position) as Modelo
                 listaCoches = DataSet.getModelos(modeloSeleccionado);
-                adapterCoche.notifyDataSetChanged()
+                adapterCoche = AdapterCoche(listaCoches,applicationContext)
+                binding.listaCoches.adapter = adapterCoche
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

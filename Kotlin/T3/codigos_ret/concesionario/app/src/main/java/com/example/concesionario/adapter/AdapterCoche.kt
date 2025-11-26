@@ -8,9 +8,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.concesionario.R
 import com.example.concesionario.databinding.ItemCocheBinding
 import com.example.concesionario.model.Coche
+import com.google.android.material.snackbar.Snackbar
 
 // 2. Indico el tipado del adapter como la clase inner
 // 3. Implemento los metodos abs
@@ -18,7 +20,7 @@ import com.example.concesionario.model.Coche
 class AdapterCoche(var lista: ArrayList<Coche>, var contexto: Context) :
     RecyclerView.Adapter<AdapterCoche.MyHolder>() {
     // 1. creo la clase anidada
-    inner class MyHolder(var vista: View) : RecyclerView.ViewHolder(vista){
+    inner class MyHolder(var vista: View) : RecyclerView.ViewHolder(vista) {
         val textoPrecio: TextView = vista.findViewById(R.id.txtPrecioCoche)
         val imagenCoche: ImageView = vista.findViewById(R.id.imagenCoche)
         val botonDetalle: Button = vista.findViewById(R.id.btnDetalleCoche)
@@ -40,8 +42,15 @@ class AdapterCoche(var lista: ArrayList<Coche>, var contexto: Context) :
         position: Int
     ) {
         val coche = lista[position]
-        // holder.imagenCoche.setImageResource(coche.imagen)
+        Glide.with(contexto).load(coche.imagen)
+            .placeholder(R.drawable.logo_coche).into(holder.imagenCoche)
         holder.textoPrecio.setText(coche.precio.toString())
+        holder.botonDetalle.setOnClickListener {
+            Snackbar.make(
+                holder.botonDetalle, "Los detalles del coche son ${coche.detalle}",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
     }
 
     // indicar cuantos elementos se deben representar
