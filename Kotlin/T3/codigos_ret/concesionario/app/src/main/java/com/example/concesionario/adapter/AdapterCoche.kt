@@ -40,7 +40,7 @@ class AdapterCoche(var lista: ArrayList<Coche>, var contexto: Context) :
         position: Int
     ) {
         val coche = lista[position]
-        holder.imagenCoche.setImageResource(coche.imagen)
+        // holder.imagenCoche.setImageResource(coche.imagen)
         holder.textoPrecio.setText(coche.precio.toString())
     }
 

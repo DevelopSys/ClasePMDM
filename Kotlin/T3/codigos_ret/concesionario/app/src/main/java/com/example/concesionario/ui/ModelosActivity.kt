@@ -2,6 +2,9 @@ package com.example.concesionario.ui
 
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,9 +35,32 @@ class ModelosActivity : AppCompatActivity() {
         marca = intent.getSerializableExtra("marca") as Marca
         instancias()
         initGUI()
+        acciones()
         // binding.textoModelos.append(" ${marca.nombre}")
         binding.textoModelos.append(" ${marca.nombre}")
 
+    }
+
+    private fun acciones() {
+
+        binding.spinnerModelos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener
+        {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val modeloSeleccionado: Modelo = parent!!.adapter.getItem(position) as Modelo
+                listaCoches = DataSet.getModelos(modeloSeleccionado);
+                adapterCoche.notifyDataSetChanged()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
     }
 
     private fun initGUI() {
@@ -42,7 +68,7 @@ class ModelosActivity : AppCompatActivity() {
         binding.listaCoches.layoutManager =
             LinearLayoutManager(
                 this,
-                LinearLayoutManager.HORIZONTAL,
+                LinearLayoutManager.VERTICAL,
                 false
             )
         binding.listaCoches.adapter = adapterCoche
@@ -52,32 +78,9 @@ class ModelosActivity : AppCompatActivity() {
 
         listaModelos = DataSet.getListaModelos(marca)
         adapterModelo = AdapterModelo(listaModelos)
-        listaCoches = arrayListOf(
-            Coche(
-                Marca("Ford", R.drawable.ford),
-                "Fiesta",
-                20000,
-                100,
-                R.drawable.fiesta,
-                "este detalle es del focus"
-            ),
-            Coche(
-                Marca("Ford", R.drawable.ford),
-                "Focus",
-                10000,
-                100,
-                R.drawable.focus,
-                "este detalle es del focus"
-            ),
-            Coche(
-                Marca("Ford", R.drawable.ford),
-                "Mondeo",
-                10000,
-                100,
-                R.drawable.mondeo,
-                "este detalle es del focus"
-            )
-        )
+        listaCoches =
+            DataSet.getModelos(Modelo(Marca("Ford", 1), "Fiesta"))
+
         adapterCoche = AdapterCoche(listaCoches, this)
 
 

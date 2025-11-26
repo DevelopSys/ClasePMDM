@@ -9,18 +9,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.concesionario.databinding.ActivityMainBinding
+import com.example.concesionario.databinding.ActivityMain1Binding
 import com.example.concesionario.model.Marca
 import com.example.concesionario.ui.ModelosActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+
+    private lateinit var binding: ActivityMain1Binding
     private lateinit var adapterMarcas: ArrayAdapter<Marca>
     private lateinit var listaMarcas: ArrayList<Marca>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMain1Binding.inflate(layoutInflater)
         setContentView(binding.root)
         instancias()
         initGUI()

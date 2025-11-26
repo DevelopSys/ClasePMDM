@@ -5,6 +5,6 @@ class Coche(
     var modelo: String,
     var precio: Int,
     var cv: Int,
-    var imagen: Int,
+    var imagen: String,
     var detalle: String
 )
