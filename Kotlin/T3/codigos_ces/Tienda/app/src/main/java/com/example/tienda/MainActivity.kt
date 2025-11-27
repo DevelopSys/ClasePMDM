@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tienda.adapter.AdapterProducto
 import com.example.tienda.databinding.ActivityMainBinding
+import com.example.tienda.dataset.DataSet
 import com.example.tienda.model.Producto
 
 class MainActivity : AppCompatActivity() {
@@ -20,24 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val lista: ArrayList<Producto> =
-            arrayListOf(
-                Producto(1, "Nombre1", 112, 10.0, "descripcion1", "muebles", ""),
-                Producto(2, "Nombre2", 212, 20.0, "descripcion2", "muebles", ""),
-                Producto(2, "Nombre2", 312, 30.0, "descripcion3", "muebles", ""),
-                Producto(2, "Nombre2", 412, 40.0, "descripcion4", "muebles", ""),
-                Producto(2, "Nombre2", 512, 50.0, "descripcion5", "muebles", ""),
-                Producto(2, "Nombre2", 612, 60.0, "descripcion6", "muebles", ""),
-                Producto(2, "Nombre2", 712, 70.0, "descripcion7", "muebles", ""),
-                Producto(2, "Nombre2", 812, 80.0, "descripcion8", "muebles", ""),
-                Producto(2, "Nombre2", 912, 90.0, "descripcion9", "muebles", ""),
-                Producto(2, "Nombre2", 1112, 100.0, "descripcion10", "muebles", ""),
-                Producto(2, "Nombre2", 1212, 110.0, "descripcion11", "muebles", ""),
-                Producto(2, "Nombre2", 1312, 120.0, "descripcion12", "muebles", ""),
-                Producto(2, "Nombre2", 1412, 130.0, "descripcion13", "muebles", ""),
-                Producto(2, "Nombre2", 1512, 140.0, "descripcion14", "muebles", ""),
+        val lista: ArrayList<Producto> = DataSet.lista
+        // quiero obtener la lista de productos de una categoria determinada
+        // categoria
 
-                )
         adapterProducto = AdapterProducto(lista, this)
 
         if (resources.configuration.orientation == 1) {
