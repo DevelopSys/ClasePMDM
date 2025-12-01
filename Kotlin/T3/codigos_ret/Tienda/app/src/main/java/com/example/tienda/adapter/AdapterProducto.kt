@@ -41,9 +41,7 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
 
         holder.binding.nombreFila.text = producto.nombre
         holder.binding.btnDetalle.setOnClickListener {
-            val intent: Intent = Intent(contexto, DetalleActivity::class.java)
-            intent.putExtra("producto", producto)
-            contexto.startActivity(intent)
+
         }
         holder.binding.btnCompra.setOnClickListener {
             Snackbar.make(
