@@ -35,9 +35,17 @@ class DataSet {
             Producto(2, "Camiseta", 612, 60.0, "descripcion6", "ropa", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIQ8hEv2cIrl_09DYuj8p-fQopD1dpNKy-tQ&s"),
             Producto(2, "Camiseta", 612, 60.0, "descripcion6", "ropa", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIQ8hEv2cIrl_09DYuj8p-fQopD1dpNKy-tQ&s"),
             )
+        var listaFavs: ArrayList<Producto> = arrayListOf()
 
+        fun addProductoFav(x: Producto) {
+            listaFavs.add(x)
+        }
 
+        fun getProductosCategoria(x: String): List<Producto> {
+            return lista.filter { it.categoria == x }
+        }
 
     }
+
 
 }
