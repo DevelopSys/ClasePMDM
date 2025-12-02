@@ -1,6 +1,9 @@
 package com.example.tienda
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.helper.widget.Grid
@@ -13,7 +16,8 @@ import com.example.tienda.databinding.ActivityMainBinding
 import com.example.tienda.dataset.DataSet
 import com.example.tienda.model.Producto
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    AdapterProducto.OnProductoCarritoListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterProducto: AdapterProducto
@@ -43,6 +47,34 @@ class MainActivity : AppCompatActivity() {
         }
         binding.recyclerProductos.adapter = adapterProducto;
 
+        acciones()
 
+
+    }
+
+    fun acciones(){
+        binding.spinnerCategorias.onItemSelectedListener =object : AdapterView.OnItemSelectedListener
+        {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var categoriaSeleccionada = parent!!.adapter.getItem(position)
+                var listaFiltrada = DataSet.getListaFiltrada(categoriaSeleccionada.toString())
+                adapterProducto.chageList(listaFiltrada)
+                // adapterProducto = AdapterProducto(listaFiltrada, this@MainActivity)
+                // binding.recyclerProductos.adapter = adapterProducto;
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+    }
+
+    override fun actualizarContadorCarrito() {
+        binding.textoContador.text = DataSet.listaCarrito.size.toString()
     }
 }

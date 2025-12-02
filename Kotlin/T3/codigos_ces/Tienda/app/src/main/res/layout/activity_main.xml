@@ -9,10 +9,12 @@
     tools:context=".MainActivity">
 
     <Spinner
+        android:entries="@array/categorias"
+        android:layout_marginEnd="12dp"
         android:id="@+id/spinnerCategorias"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imagenCarrito"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +27,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategorias" />
+
+
+    <TextView
+        android:textSize="20sp"
+        android:text="0"
+        android:id="@+id/textoContador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCategorias"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCategorias" />
+
+    <ImageView
+        android:layout_marginEnd="12dp"
+        android:id="@+id/imagenCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/carrito"
+        app:layout_constraintBottom_toBottomOf="@+id/textoContador"
+        app:layout_constraintEnd_toStartOf="@+id/textoContador"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCategorias" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
