@@ -1,14 +1,14 @@
 package com.example.tienda
 
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+
 import android.view.View
 import android.widget.AdapterView
-import androidx.activity.enableEdgeToEdge
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.helper.widget.Grid
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tienda.adapter.AdapterProducto
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         val lista: ArrayList<Producto> = DataSet.lista
         // quiero obtener la lista de productos de una categoria determinada
         // categoria
@@ -52,26 +53,43 @@ class MainActivity : AppCompatActivity(),
 
     }
 
-    fun acciones(){
-        binding.spinnerCategorias.onItemSelectedListener =object : AdapterView.OnItemSelectedListener
-        {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                var categoriaSeleccionada = parent!!.adapter.getItem(position)
-                var listaFiltrada = DataSet.getListaFiltrada(categoriaSeleccionada.toString())
-                adapterProducto.chageList(listaFiltrada)
-                // adapterProducto = AdapterProducto(listaFiltrada, this@MainActivity)
-                // binding.recyclerProductos.adapter = adapterProducto;
-            }
+    fun acciones() {
+        binding.spinnerCategorias.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    var categoriaSeleccionada = parent!!.adapter.getItem(position)
+                    var listaFiltrada = DataSet.getListaFiltrada(categoriaSeleccionada.toString())
+                    adapterProducto.chageList(listaFiltrada)
+                    // adapterProducto = AdapterProducto(listaFiltrada, this@MainActivity)
+                    // binding.recyclerProductos.adapter = adapterProducto;
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
 
+                }
             }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.manu_main,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            // ver la activity del carrito
+            R.id.menu_carrio->{}
+            // fitrar la lista (no se filtra por el cambio)
+            R.id.menu_filtrar->{}
+            // quito el filtro de la lista, y pongo todos los elementos
+            R.id.menu_limpiar->{}
         }
+        return true;
     }
 
     override fun actualizarContadorCarrito() {

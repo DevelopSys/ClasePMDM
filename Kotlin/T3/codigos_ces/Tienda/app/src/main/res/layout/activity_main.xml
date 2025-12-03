@@ -3,33 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:padding="24sp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:titleTextColor="@color/black"
+        android:title="Ejemplo de titulo"
+        android:background="@color/background_toolbar"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
+
     <Spinner
-        android:entries="@array/categorias"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
+
         android:id="@+id/spinnerCategorias"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:entries="@array/categorias"
         app:layout_constraintEnd_toStartOf="@+id/imagenCarrito"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProductos"
-        android:layout_marginTop="12dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textoContador"
+        app:layout_constraintStart_toStartOf="@+id/spinnerCategorias"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategorias" />
 
 
     <TextView
+        android:layout_marginEnd="12dp"
         android:textSize="20sp"
         android:text="0"
         android:id="@+id/textoContador"
