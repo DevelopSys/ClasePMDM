@@ -8,14 +8,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Spinner
-        android:entries="@array/categorias"
-        android:id="@+id/spinnerCategorias"
+
+    <androidx.appcompat.widget.Toolbar
+        android:background="@android:color/holo_blue_dark"
+        android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerCategorias"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:entries="@array/categorias"
+        app:layout_constraintEnd_toStartOf="@+id/textoCarrito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/textoCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCategorias"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCategorias" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProductos"

@@ -13,7 +13,7 @@ import com.example.tienda.databinding.ActivityMainBinding
 import com.example.tienda.dataset.DataSet
 import com.example.tienda.model.Producto
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdapterProducto.OnProductoListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterProducto: AdapterProducto
@@ -21,9 +21,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         val lista: ArrayList<Producto> = DataSet.lista
         // quiero obtener la lista de productos de una categoria determinada
         // categoria
+
+
+        // binding.textoCarrito.text =
 
         adapterProducto = AdapterProducto(lista, this)
 
@@ -44,5 +48,9 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerProductos.adapter = adapterProducto;
 
 
+    }
+
+    override fun onCompraProductoSelected() {
+        binding.textoCarrito.text = DataSet.listaFavs.size.toString()
     }
 }

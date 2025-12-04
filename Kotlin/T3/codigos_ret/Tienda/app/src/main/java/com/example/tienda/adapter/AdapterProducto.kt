@@ -16,8 +16,13 @@ import com.google.android.material.snackbar.Snackbar
 
 class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
     RecyclerView.Adapter<AdapterProducto.MyHolder>() {
-    inner class MyHolder(var binding: ItemProductoBinding) : RecyclerView.ViewHolder(binding.root)
+    private lateinit var listener: OnProductoListener
 
+    init {
+        listener = contexto as OnProductoListener
+    }
+
+    inner class MyHolder(var binding: ItemProductoBinding) : RecyclerView.ViewHolder(binding.root)
     // crea un holder de la clase anidada
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -44,17 +49,22 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
         holder.binding.nombreFila.text = producto.nombre
         holder.binding.btnDetalle.setOnClickListener {
             val intent = Intent(contexto, DetalleActivity::class.java)
-            intent.putExtra("producto",producto)
+            intent.putExtra("producto", producto)
             contexto.startActivity(intent)
         }
         holder.binding.btnCompra.setOnClickListener {
             DataSet.addProductoFav(producto)
+            listener.onCompraProductoSelected()
         }
     }
 
     // cuantos elementso tendre que pintar
     override fun getItemCount(): Int {
         return lista.size
+    }
+
+    interface OnProductoListener {
+        fun onCompraProductoSelected()
     }
 
 
