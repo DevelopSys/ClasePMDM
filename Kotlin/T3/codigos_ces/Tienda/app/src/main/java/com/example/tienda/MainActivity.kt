@@ -15,6 +15,7 @@ import com.example.tienda.adapter.AdapterProducto
 import com.example.tienda.databinding.ActivityMainBinding
 import com.example.tienda.dataset.DataSet
 import com.example.tienda.model.Producto
+import com.example.tienda.ui.dialogs.DialogoInformacion
 
 class MainActivity : AppCompatActivity(),
     AdapterProducto.OnProductoCarritoListener {
@@ -88,6 +89,10 @@ class MainActivity : AppCompatActivity(),
             R.id.menu_filtrar->{}
             // quito el filtro de la lista, y pongo todos los elementos
             R.id.menu_limpiar->{}
+            R.id.menu_info->{
+                val dialogoInformacion: DialogoInformacion = DialogoInformacion()
+                dialogoInformacion.show(supportFragmentManager,null)
+            }
         }
         return true;
     }

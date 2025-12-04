@@ -1,4 +1,4 @@
-package com.example.tienda.ui
+package com.example.tienda.ui.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
