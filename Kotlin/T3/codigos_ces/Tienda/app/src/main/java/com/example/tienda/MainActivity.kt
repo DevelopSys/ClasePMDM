@@ -116,6 +116,11 @@ class MainActivity : AppCompatActivity(),
         return true;
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        actualizarContadorCarrito()
+    }
+
     override fun actualizarContadorCarrito() {
         binding.textoContador.text = DataSet.listaCarrito.size.toString()
     }

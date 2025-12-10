@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_compra"
+        android:title="Completar compra" />
+
+
+    <item android:title="Configurar compra">
+
+        <menu>
+            <item
+                android:id="@+id/menu_pago"
+                android:title="Tipo pago" />
+            <item
+                android:id="@+id/menu_compra_info"
+                android:title="Informacion compra" />
+        </menu>
+    </item>
+
+
+</menu>

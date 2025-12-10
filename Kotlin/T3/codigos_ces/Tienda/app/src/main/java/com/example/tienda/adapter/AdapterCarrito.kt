@@ -46,5 +46,10 @@ class AdapterCarrito(var lista: ArrayList<Producto>, var contexto: Context) :
         return lista.size
     }
 
+    fun limpiarListaCarrito(){
+        this.lista.clear()
+        notifyDataSetChanged();
+    }
+
 
 }
