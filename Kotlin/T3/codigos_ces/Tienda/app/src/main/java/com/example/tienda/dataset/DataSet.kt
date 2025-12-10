@@ -71,7 +71,7 @@ class DataSet {
         }
 
         fun getListaFiltrada(categoria: String): ArrayList<Producto> {
-            if (categoria == "Todas") {
+            if (categoria == "todas") {
                 return lista
             } else {
                 return lista.filter { it.categoria.equals(categoria, true) }

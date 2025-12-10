@@ -2,6 +2,7 @@ package com.example.tienda.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -66,7 +67,7 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
     }
 
     fun chageList(lista: ArrayList<Producto>){
-        lista.clear()
+        Log.v("test",lista.size.toString())
         this.lista = lista;
         notifyDataSetChanged()
         // notificaciones individuales

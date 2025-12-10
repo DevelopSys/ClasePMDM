@@ -1,6 +1,8 @@
 package com.example.tienda
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 
@@ -12,10 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tienda.adapter.AdapterProducto
+import com.example.tienda.databinding.ActivityCarritoBinding
 import com.example.tienda.databinding.ActivityMainBinding
 import com.example.tienda.dataset.DataSet
 import com.example.tienda.model.Producto
+import com.example.tienda.ui.activities.CarritoActivity
 import com.example.tienda.ui.dialogs.DialogoInformacion
+import java.util.Locale
 
 class MainActivity : AppCompatActivity(),
     AdapterProducto.OnProductoCarritoListener {
@@ -49,7 +54,7 @@ class MainActivity : AppCompatActivity(),
         }
         binding.recyclerProductos.adapter = adapterProducto;
 
-        acciones()
+        // acciones()
 
 
     }
@@ -64,7 +69,11 @@ class MainActivity : AppCompatActivity(),
                     id: Long
                 ) {
                     var categoriaSeleccionada = parent!!.adapter.getItem(position)
-                    var listaFiltrada = DataSet.getListaFiltrada(categoriaSeleccionada.toString())
+                    var listaFiltrada = DataSet.getListaFiltrada(
+                        categoriaSeleccionada.toString().lowercase(
+                            Locale.ROOT
+                        )
+                    )
                     adapterProducto.chageList(listaFiltrada)
                     // adapterProducto = AdapterProducto(listaFiltrada, this@MainActivity)
                     // binding.recyclerProductos.adapter = adapterProducto;
@@ -84,11 +93,21 @@ class MainActivity : AppCompatActivity(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             // ver la activity del carrito
-            R.id.menu_carrio->{}
+            R.id.menu_carrio->{
+                val intent = Intent(this, CarritoActivity::class.java)
+                startActivity(intent)
+            }
             // fitrar la lista (no se filtra por el cambio)
-            R.id.menu_filtrar->{}
+            R.id.menu_filtrar->{
+                val seleccionSpinner = binding.spinnerCategorias.selectedItem.toString()
+                val lista = DataSet.getListaFiltrada(seleccionSpinner)
+                adapterProducto.chageList(lista)
+            }
             // quito el filtro de la lista, y pongo todos los elementos
-            R.id.menu_limpiar->{}
+            R.id.menu_limpiar->{
+                val lista = DataSet.getListaFiltrada("todas")
+                adapterProducto.chageList(lista)
+            }
             R.id.menu_info->{
                 val dialogoInformacion: DialogoInformacion = DialogoInformacion()
                 dialogoInformacion.show(supportFragmentManager,null)
