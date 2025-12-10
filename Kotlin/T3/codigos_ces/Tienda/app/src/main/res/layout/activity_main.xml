@@ -59,7 +59,7 @@
     <ImageView
         android:layout_marginEnd="12dp"
         android:id="@+id/imagenCarrito"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:src="@drawable/carrito"
         app:layout_constraintBottom_toBottomOf="@+id/textoContador"

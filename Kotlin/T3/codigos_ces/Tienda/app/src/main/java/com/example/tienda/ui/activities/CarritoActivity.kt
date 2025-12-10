@@ -8,21 +8,22 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tienda.R
+import com.example.tienda.adapter.AdapterCarrito
 import com.example.tienda.adapter.AdapterProducto
 import com.example.tienda.databinding.ActivityCarritoBinding
 import com.example.tienda.dataset.DataSet
 
-class CarritoActivity : AppCompatActivity(), AdapterProducto.OnProductoCarritoListener {
+class CarritoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCarritoBinding
-    private lateinit var adapterProducto: AdapterProducto
+    private lateinit var adapterCarrito: AdapterCarrito
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCarritoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        adapterProducto = AdapterProducto(DataSet.listaCarrito, this)
-        binding.recycrCarrito.adapter = adapterProducto;
+        adapterCarrito = AdapterCarrito(DataSet.listaCarrito, this)
+        binding.recycrCarrito.adapter = adapterCarrito;
         binding.recycrCarrito.layoutManager =
             LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false)
@@ -35,7 +36,5 @@ class CarritoActivity : AppCompatActivity(), AdapterProducto.OnProductoCarritoLi
 
     }
 
-    override fun actualizarContadorCarrito() {
-        TODO("Not yet implemented")
-    }
+
 }
