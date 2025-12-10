@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/menu_info"
+        android:id="@+id/menuInformacion"
+        />
+    <item
+        android:title="@string/menu_total"
+        android:id="@+id/menuTotal"
+        />
+    <item
+        android:title="@string/menu_carrito"
+        android:id="@+id/menuCarrito"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/compras"
+        />
+
+
+</menu>

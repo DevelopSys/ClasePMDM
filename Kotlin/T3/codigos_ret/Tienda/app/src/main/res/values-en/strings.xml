@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Tienda</string>
-    <string name="menu_total">Ver total carrito</string>
+    <string name="app_name">Shop</string>
+    <string name="menu_total">Show total</string>
     <string name="menu_carrito">Ver carrito</string>
     <string name="menu_info">Ver informacion</string>
     <string-array name="categorias">

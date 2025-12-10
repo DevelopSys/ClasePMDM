@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:padding="24sp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -16,19 +15,22 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
 
     <Spinner
         android:id="@+id/spinnerCategorias"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="12dp"
+        android:layout_marginStart="12dp"
         android:entries="@array/categorias"
-        app:layout_constraintEnd_toStartOf="@+id/textoCarrito"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
+        android:layout_marginEnd="12dp"
         android:id="@+id/textoCarrito"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,12 +42,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProductos"
-        android:layout_marginTop="12dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerCategorias"
+        app:layout_constraintStart_toStartOf="@+id/spinnerCategorias"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategorias" />
 
 

@@ -1,6 +1,8 @@
 package com.example.tienda
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.helper.widget.Grid
@@ -27,8 +29,6 @@ class MainActivity : AppCompatActivity(), AdapterProducto.OnProductoListener {
         // categoria
 
 
-        // binding.textoCarrito.text =
-
         adapterProducto = AdapterProducto(lista, this)
 
         if (resources.configuration.orientation == 1) {
@@ -50,7 +50,24 @@ class MainActivity : AppCompatActivity(), AdapterProducto.OnProductoListener {
 
     }
 
+    // representar el menu en la parte superior derecha
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // gestiono la logica de cada pulsacion de los elementos del menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menuTotal->{}
+            R.id.menuInformacion->{}
+            R.id.menuCarrito->{}
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onCompraProductoSelected() {
         binding.textoCarrito.text = DataSet.listaFavs.size.toString()
     }
+
 }
