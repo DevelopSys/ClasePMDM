@@ -3,6 +3,8 @@ package com.example.tienda
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.helper.widget.Grid
@@ -47,7 +49,34 @@ class MainActivity : AppCompatActivity(), AdapterProducto.OnProductoListener {
         }
         binding.recyclerProductos.adapter = adapterProducto;
 
+        acciones()
 
+
+    }
+
+    fun acciones(){
+        binding.spinnerCategorias.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+                val seleccion = binding.spinnerCategorias.adapter.getItem(position).toString()
+                val listaFiltrada = DataSet.getProductosCategoria(seleccion)
+                adapterProducto.cambiarLista(listaFiltrada)
+                // adapterProducto = AdapterProducto(listaFiltrada as ArrayList, applicationContext)
+                // binding.recyclerProductos.adapter = adapterProducto;
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+
+            }
+
+        }
     }
 
     // representar el menu en la parte superior derecha

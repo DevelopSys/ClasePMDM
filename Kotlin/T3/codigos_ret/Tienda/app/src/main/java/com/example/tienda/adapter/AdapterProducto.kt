@@ -63,6 +63,12 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
         return lista.size
     }
 
+    fun cambiarLista(x: ArrayList<Producto>): Unit {
+        this.lista = x
+        notifyDataSetChanged()
+        
+    }
+
     interface OnProductoListener {
         fun onCompraProductoSelected()
     }
