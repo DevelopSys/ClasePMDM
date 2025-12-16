@@ -21,10 +21,12 @@ import com.example.tienda.model.Producto
 import com.example.tienda.ui.activities.CarritoActivity
 import com.example.tienda.ui.dialogs.DIalogoComparar
 import com.example.tienda.ui.dialogs.DialogoInformacion
+import com.google.android.material.snackbar.Snackbar
 import java.util.Locale
 
 class MainActivity : AppCompatActivity(),
-    AdapterProducto.OnProductoCarritoListener {
+    AdapterProducto.OnProductoCarritoListener,
+    DIalogoComparar.OnCompararListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterProducto: AdapterProducto
@@ -87,36 +89,37 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.manu_main,menu)
+        menuInflater.inflate(R.menu.manu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             // ver la activity del carrito
-            R.id.menu_carrio->{
+            R.id.menu_carrio -> {
                 val intent = Intent(this, CarritoActivity::class.java)
                 startActivity(intent)
             }
             // fitrar la lista (no se filtra por el cambio)
-            R.id.menu_filtrar->{
+            R.id.menu_filtrar -> {
                 val seleccionSpinner = binding.spinnerCategorias.selectedItem.toString()
                 val lista = DataSet.getListaFiltrada(seleccionSpinner)
                 adapterProducto.chageList(lista)
             }
             // quito el filtro de la lista, y pongo todos los elementos
-            R.id.menu_limpiar->{
+            R.id.menu_limpiar -> {
                 val lista = DataSet.getListaFiltrada("todas")
                 adapterProducto.chageList(lista)
             }
-            R.id.menu_info->{
+
+            R.id.menu_info -> {
                 val dialogoInformacion: DialogoInformacion = DialogoInformacion()
-                dialogoInformacion.show(supportFragmentManager,null)
+                dialogoInformacion.show(supportFragmentManager, null)
             }
 
-            R.id.menu_comparar ->{
+            R.id.menu_comparar -> {
                 val dialogoComparar = DIalogoComparar()
-                dialogoComparar.show(supportFragmentManager,null)
+                dialogoComparar.show(supportFragmentManager, null)
             }
         }
         return true;
@@ -129,5 +132,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun actualizarContadorCarrito() {
         binding.textoContador.text = DataSet.listaCarrito.size.toString()
+    }
+
+    override fun onCompararSelected(opcion: String) {
+        Snackbar.make(binding.root, "La opcion seleccionada es ${opcion}", Snackbar.LENGTH_SHORT)
+            .show()
     }
 }
