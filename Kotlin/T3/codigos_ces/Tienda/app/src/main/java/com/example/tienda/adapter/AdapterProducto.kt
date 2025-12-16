@@ -59,6 +59,9 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
             // lanzar la accion de add carrito
             listener.actualizarContadorCarrito()
         }
+        holder.binding.btnComparar.setOnClickListener {
+
+        }
     }
 
     // cuantos elementso tendre que pintar

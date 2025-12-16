@@ -36,23 +36,44 @@
             app:layout_constraintEnd_toEndOf="@+id/imagenFila"
             app:layout_constraintStart_toStartOf="@+id/imagenFila" />
 
-        <Button
-            android:text="Ver detalle"
-            android:id="@+id/btnDetalle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagenFila" />
 
-        <Button
-            android:id="@+id/btnCompra"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Agregar carrito"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/imagenFila" />
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/imagenFila"
+            app:layout_constraintStart_toStartOf="@+id/imagenFila"
+            app:layout_constraintTop_toBottomOf="@+id/imagenFila">
+
+            <Button
+                android:id="@+id/btnDetalle"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:text="Detalle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagenFila" />
+
+            <Button
+                android:id="@+id/btnCompra"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:text=" Carrito"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagenFila" />
+
+
+            <Button
+                android:id="@+id/btnComparar"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"                android:layout_height="wrap_content"
+                android:text="Comparar" />
+
+
+        </LinearLayout>
+
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

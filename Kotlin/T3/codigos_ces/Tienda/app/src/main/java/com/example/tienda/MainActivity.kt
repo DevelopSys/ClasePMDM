@@ -19,6 +19,7 @@ import com.example.tienda.databinding.ActivityMainBinding
 import com.example.tienda.dataset.DataSet
 import com.example.tienda.model.Producto
 import com.example.tienda.ui.activities.CarritoActivity
+import com.example.tienda.ui.dialogs.DIalogoComparar
 import com.example.tienda.ui.dialogs.DialogoInformacion
 import java.util.Locale
 
@@ -111,6 +112,11 @@ class MainActivity : AppCompatActivity(),
             R.id.menu_info->{
                 val dialogoInformacion: DialogoInformacion = DialogoInformacion()
                 dialogoInformacion.show(supportFragmentManager,null)
+            }
+
+            R.id.menu_comparar ->{
+                val dialogoComparar = DIalogoComparar()
+                dialogoComparar.show(supportFragmentManager,null)
             }
         }
         return true;
