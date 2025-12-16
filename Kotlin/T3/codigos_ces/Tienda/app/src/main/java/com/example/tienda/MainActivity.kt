@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity(),
     AdapterProducto.OnProductoCarritoListener,
     DIalogoComparar.OnCompararListener {
 
+    private var producto1: Producto? = null
+    private var producto2: Producto? = null
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterProducto: AdapterProducto
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,6 +134,21 @@ class MainActivity : AppCompatActivity(),
 
     override fun actualizarContadorCarrito() {
         binding.textoContador.text = DataSet.listaCarrito.size.toString()
+    }
+
+    override fun compararProducto(producto: Producto) {
+        if (producto1 == null) {
+            producto1 = producto;
+        } else if (producto2 == null) {
+            producto2 = producto;
+        } else {
+            /*producto2 = producto1
+            producto1 = producto*/
+            Snackbar.make(
+                binding.root, "No hay espacio para comprar",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
     }
 
     override fun onCompararSelected(opcion: String) {

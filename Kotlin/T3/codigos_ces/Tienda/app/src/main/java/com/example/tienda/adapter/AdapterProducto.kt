@@ -60,7 +60,7 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
             listener.actualizarContadorCarrito()
         }
         holder.binding.btnComparar.setOnClickListener {
-
+            listener.compararProducto(producto)
         }
     }
 
@@ -78,7 +78,7 @@ class AdapterProducto(var lista: ArrayList<Producto>, var contexto: Context) :
 
     interface OnProductoCarritoListener {
         fun actualizarContadorCarrito(): Unit
-
+        fun compararProducto(producto: Producto)
 
     }
 
