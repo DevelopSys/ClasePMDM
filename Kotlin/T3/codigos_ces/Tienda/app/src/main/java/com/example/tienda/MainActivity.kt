@@ -21,6 +21,7 @@ import com.example.tienda.model.Producto
 import com.example.tienda.ui.activities.CarritoActivity
 import com.example.tienda.ui.dialogs.DIalogoComparar
 import com.example.tienda.ui.dialogs.DialogoInformacion
+import com.example.tienda.ui.dialogs.DialogoResultado
 import com.google.android.material.snackbar.Snackbar
 import java.util.Locale
 
@@ -154,5 +155,8 @@ class MainActivity : AppCompatActivity(),
     override fun onCompararSelected(opcion: String) {
         Snackbar.make(binding.root, "La opcion seleccionada es ${opcion}", Snackbar.LENGTH_SHORT)
             .show()
+
+        val dialogo = DialogoResultado.newInstance(producto1!!,producto2!!, opcion)
+        dialogo.show(supportFragmentManager,null)
     }
 }
