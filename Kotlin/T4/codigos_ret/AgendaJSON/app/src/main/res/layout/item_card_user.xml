@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageUser"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/ic_launcher"
@@ -35,8 +35,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/guide"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageUser"
+            app:layout_constraintTop_toTopOf="@+id/imageUser"
             tools:text="Email" />
 
         <TextView
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageUser"
             app:layout_constraintTop_toTopOf="@+id/guide"
             tools:text="Nombre" />
 
