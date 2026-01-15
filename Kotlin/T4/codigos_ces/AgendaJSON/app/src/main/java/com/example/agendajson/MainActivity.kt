@@ -14,6 +14,7 @@ import com.android.volley.toolbox.Volley
 import com.example.agendajson.adapter.UserAdapter
 import com.example.agendajson.databinding.ActivityMainBinding
 import com.example.agendajson.model.User
+import com.example.agendajson.ui.dialog.DialogFilter
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
@@ -78,7 +79,8 @@ class MainActivity : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.menu_filtrar -> {
-                
+                val dialogFilter: DialogFilter = DialogFilter()
+                dialogFilter.show(supportFragmentManager,null)
             }
         }
 
