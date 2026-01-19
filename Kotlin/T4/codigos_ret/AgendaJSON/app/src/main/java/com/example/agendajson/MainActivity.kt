@@ -12,11 +12,13 @@ import com.example.agendajson.adapter.AdapterUser
 import com.example.agendajson.databinding.ActivityMainBinding
 import com.example.agendajson.model.Usuario
 import com.example.agendajson.ui.dialog.DialogAyuda
+import com.example.agendajson.ui.dialog.DialogFiltrar
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener {
 
     lateinit var binding: ActivityMainBinding
     lateinit var adapterUser: AdapterUser
@@ -81,7 +83,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_filtrar -> {
-
+                val dialogoFiltrar: DialogFiltrar = DialogFiltrar()
+                dialogoFiltrar.show(supportFragmentManager, null)
             }
 
             R.id.menu_ayuda -> {
@@ -91,6 +94,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onGeneroSelected(genero: String) {
+        Snackbar.make(
+            binding.root, "El genero pasado es ${genero}",
+            Snackbar.LENGTH_SHORT
+        ).show()
+
+        // mostrar en la lista lo que diga el filtro
     }
 
 }
