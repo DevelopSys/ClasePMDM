@@ -5,22 +5,39 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.agendajson.MainActivity
 import com.example.agendajson.R
 import com.example.agendajson.databinding.ActivityMainBinding
 import com.example.agendajson.databinding.ItemUserCardBinding
 import com.example.agendajson.model.User
+import com.example.agendajson.ui.dialog.DialogUser
+import kotlin.random.Random
 
 class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHolder>() {
 
     private var lista: ArrayList<User>
+    private lateinit var listener: OnItemUserListener
 
-    inner class MyHolder(var binding: ItemUserCardBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class MyHolder(var binding: ItemUserCardBinding) : RecyclerView.ViewHolder(binding.root) {
         // ejecutamos el inflado en la creacion del holder
-        
+        init {
+            binding.toolbarCard.inflateMenu(R.menu.user_menu)
+            binding.toolbarCard.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.menu_user_detalle->{
+                        listener.onUserDetailSelected(null)
+                    }
+                    R.id.menu_user_fav->{}
+                }
+                return@setOnMenuItemClickListener true
+            }
+        }
+
     }
 
     init {
         lista = ArrayList()
+        listener = context as MainActivity
     }
 
     fun clearUsers(): Unit {
@@ -30,7 +47,7 @@ class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHol
 
     fun addUSer(user: User): Unit {
         this.lista.add(user)
-        notifyItemInserted(lista.size-1)
+        notifyItemInserted(lista.size - 1)
     }
 
     override fun onCreateViewHolder(
@@ -58,9 +75,12 @@ class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHol
     }
 
 
-
     override fun getItemCount(): Int {
         return lista.size
+    }
+
+    interface OnItemUserListener{
+        fun onUserDetailSelected(user: User?)
     }
 
 

@@ -15,12 +15,14 @@ import com.example.agendajson.adapter.UserAdapter
 import com.example.agendajson.databinding.ActivityMainBinding
 import com.example.agendajson.model.User
 import com.example.agendajson.ui.dialog.DialogFilter
+import com.example.agendajson.ui.dialog.DialogUser
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity(), DialogFilter.OnDialogoFiltrarListener {
+class MainActivity : AppCompatActivity(),
+    DialogFilter.OnDialogoFiltrarListener, UserAdapter.OnItemUserListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: UserAdapter
@@ -99,6 +101,11 @@ class MainActivity : AppCompatActivity(), DialogFilter.OnDialogoFiltrarListener 
             val urlGender = "$urlBase/filter?key=gender&value=$genero"
             realizarPeticionJSON(urlGender)
         }
+    }
+
+    override fun onUserDetailSelected(user: User?) {
+        val dialogo: DialogUser = DialogUser()
+        dialogo.show(supportFragmentManager, null)
     }
 
 
