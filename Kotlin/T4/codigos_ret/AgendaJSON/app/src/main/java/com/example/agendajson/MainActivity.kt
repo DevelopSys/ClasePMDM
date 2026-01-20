@@ -20,8 +20,9 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener {
 
-    lateinit var binding: ActivityMainBinding
-    lateinit var adapterUser: AdapterUser
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapterUser: AdapterUser
+    private val urlBase: String = "https://dummyjson.com/users"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener 
         setSupportActionBar(binding.toolbar)
         instancias()
         initGUI()
-        realizarPeticionJSON()
+        realizarPeticionJSON(urlBase)
     }
 
     private fun initGUI() {
@@ -46,8 +47,8 @@ class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener 
         adapterUser = AdapterUser(this)
     }
 
-    private fun realizarPeticionJSON() {
-        val url = "https://dummyjson.com/users"
+    private fun realizarPeticionJSON(url: String?) {
+
         // 1 - crear la peticion -> JSONObjectRequest
         val request: JsonObjectRequest =
             JsonObjectRequest(
@@ -97,12 +98,13 @@ class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener 
     }
 
     override fun onGeneroSelected(genero: String) {
-        Snackbar.make(
-            binding.root, "El genero pasado es ${genero}",
-            Snackbar.LENGTH_SHORT
-        ).show()
 
-        // mostrar en la lista lo que diga el filtro
+        adapterUser.clearUsers()
+        if (genero.equals("all")) {
+            realizarPeticionJSON(urlBase)
+        } else {
+            realizarPeticionJSON("$urlBase/filter?key=gender&value=$genero")
+        }
     }
 
 }

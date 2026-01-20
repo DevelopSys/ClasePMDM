@@ -53,5 +53,10 @@ class AdapterUser(var context: Context) :
         notifyItemInserted(lista.size-1)
     }
 
+    fun clearUsers()
+    {
+        lista.clear()
+        notifyDataSetChanged()
+    }
 
 }

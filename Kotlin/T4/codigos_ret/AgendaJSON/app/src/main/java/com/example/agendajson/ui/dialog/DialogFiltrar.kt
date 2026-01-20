@@ -15,7 +15,7 @@ class DialogFiltrar : DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listaOpciones = arrayOf("Male", "Famale", "All")
+        listaOpciones = arrayOf("male", "female", "all")
         listener = context as MainActivity
     }
 

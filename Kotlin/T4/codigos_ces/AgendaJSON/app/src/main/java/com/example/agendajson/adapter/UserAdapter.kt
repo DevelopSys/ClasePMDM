@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.agendajson.R
 import com.example.agendajson.databinding.ActivityMainBinding
 import com.example.agendajson.databinding.ItemUserCardBinding
 import com.example.agendajson.model.User
@@ -13,12 +14,19 @@ class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHol
 
     private var lista: ArrayList<User>
 
-    inner class MyHolder(var binding: ItemUserCardBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class MyHolder(var binding: ItemUserCardBinding) : RecyclerView.ViewHolder(binding.root){
+        // ejecutamos el inflado en la creacion del holder
+        
+    }
 
     init {
         lista = ArrayList()
     }
 
+    fun clearUsers(): Unit {
+        lista.clear()
+        notifyDataSetChanged()
+    }
 
     fun addUSer(user: User): Unit {
         this.lista.add(user)
@@ -45,8 +53,11 @@ class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHol
         val user = lista[position]
         holder.binding.textoCard.text = user.email
         holder.binding.toolbarCard.title = user.firstName
+        //holder.binding.toolbarCard.inflateMenu(R.menu.user_menu)
         Glide.with(context).load(user.image).into(holder.binding.imagenCard)
     }
+
+
 
     override fun getItemCount(): Int {
         return lista.size
