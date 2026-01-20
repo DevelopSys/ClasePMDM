@@ -47,6 +47,7 @@ class DialogUser : DialogFragment() {
         builder.setView(binding.root)
         binding.correoDialogo.text = user.email
         binding.nombreDialogo.text = user.firstName
+        binding.generoDialogo.text = user.gender.toString()
         binding.edadDialogo.text = user.age.toString()
         Glide.with(requireContext()).load(user.image).into(binding.imagenDialogo)
 

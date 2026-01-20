@@ -103,8 +103,8 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onUserDetailSelected(user: User?) {
-        val dialogo: DialogUser = DialogUser()
+    override fun onUserDetailSelected(user: User) {
+        val dialogo: DialogUser = DialogUser.newInstance(user)
         dialogo.show(supportFragmentManager, null)
     }
 

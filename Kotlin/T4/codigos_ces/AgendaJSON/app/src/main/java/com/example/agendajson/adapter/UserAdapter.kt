@@ -25,7 +25,7 @@ class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHol
             binding.toolbarCard.setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.menu_user_detalle->{
-                        listener.onUserDetailSelected(null)
+                        listener.onUserDetailSelected(lista[bindingAdapterPosition])
                     }
                     R.id.menu_user_fav->{}
                 }
@@ -72,6 +72,7 @@ class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHol
         holder.binding.toolbarCard.title = user.firstName
         //holder.binding.toolbarCard.inflateMenu(R.menu.user_menu)
         Glide.with(context).load(user.image).into(holder.binding.imagenCard)
+
     }
 
 
@@ -80,7 +81,7 @@ class UserAdapter(var context: Context) : RecyclerView.Adapter<UserAdapter.MyHol
     }
 
     interface OnItemUserListener{
-        fun onUserDetailSelected(user: User?)
+        fun onUserDetailSelected(user: User)
     }
 
 
