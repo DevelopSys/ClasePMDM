@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    app:cardElevation="20dp"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="20dp">
+
+    <LinearLayout
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/imagenDetalle"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOMBRE"
+            android:id="@+id/nombreDetalle"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APELLIDO"
+            android:id="@+id/apellidoDetalle"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CORREO"
+            android:id="@+id/correoDetalle"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDAD"
+            android:id="@+id/edadaDetalle"
+            />
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

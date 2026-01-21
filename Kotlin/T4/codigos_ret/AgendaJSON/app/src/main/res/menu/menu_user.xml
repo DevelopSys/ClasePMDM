@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Ver detalles"
+        android:id="@+id/menu_user_detail"
+        />
+
+    <item android:title="Agregar fav"
+        android:id="@+id/menu_user_fav"
+        />
+
+</menu>

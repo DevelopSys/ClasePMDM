@@ -13,6 +13,7 @@ import com.example.agendajson.databinding.ActivityMainBinding
 import com.example.agendajson.model.Usuario
 import com.example.agendajson.ui.dialog.DialogAyuda
 import com.example.agendajson.ui.dialog.DialogFiltrar
+import com.example.agendajson.ui.dialog.DialogUser
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import org.json.JSONArray
@@ -92,6 +93,8 @@ class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener 
                 // crea un objeto de la clase
                 val dialogoAyuda = DialogAyuda()
                 dialogoAyuda.show(supportFragmentManager, null)
+                /*val dialogoDetalle: DialogUser = DialogUser()
+                dialogoDetalle.show(supportFragmentManager,null)*/
             }
         }
         return super.onOptionsItemSelected(item)
