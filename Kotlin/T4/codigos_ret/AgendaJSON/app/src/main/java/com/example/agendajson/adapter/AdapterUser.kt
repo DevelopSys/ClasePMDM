@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.agendajson.MainActivity
 import com.example.agendajson.R
 import com.example.agendajson.databinding.ActivityMainBinding
 import com.example.agendajson.databinding.ItemCardUserBinding
@@ -16,9 +17,11 @@ class AdapterUser(var context: Context) :
     RecyclerView.Adapter<AdapterUser.MyHolder>() {
 
     private lateinit var lista: ArrayList<Usuario>
+    private lateinit var listener: OnUserAdapterListener
 
     init {
         lista = ArrayList<Usuario>()
+        listener = context as MainActivity
     }
 
     inner class MyHolder(var binding: ItemCardUserBinding)
@@ -29,7 +32,7 @@ class AdapterUser(var context: Context) :
                 binding.toolbarUsuario.setOnMenuItemClickListener {
                     when(it.itemId){
                         R.id.menu_user_detail->{
-                            
+                            listener.onDetailSelected(lista[bindingAdapterPosition])
                         }
                         R.id.menu_user_fav->{
 
@@ -81,6 +84,10 @@ class AdapterUser(var context: Context) :
         notifyDataSetChanged()
     }
 
+
+    interface OnUserAdapterListener{
+        fun onDetailSelected(usuario: Usuario)
+    }
 
 
 }

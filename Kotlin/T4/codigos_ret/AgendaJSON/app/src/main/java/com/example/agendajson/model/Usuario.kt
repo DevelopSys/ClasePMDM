@@ -1,5 +1,7 @@
 package com.example.agendajson.model
 
+import java.io.Serializable
+
 data class Usuario(
     val id: Long? = null,
     val firstName: String? = null,
@@ -9,4 +11,4 @@ data class Usuario(
     val gender: String? = null,
     val email: String? = null,
     val image: String? = null
-)
+): Serializable

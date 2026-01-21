@@ -19,7 +19,9 @@ import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener {
+class MainActivity : AppCompatActivity()
+    , DialogFiltrar.OnDialogoGeneroListener
+    , AdapterUser.OnUserAdapterListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterUser: AdapterUser
@@ -108,6 +110,11 @@ class MainActivity : AppCompatActivity(), DialogFiltrar.OnDialogoGeneroListener 
         } else {
             realizarPeticionJSON("$urlBase/filter?key=gender&value=$genero")
         }
+    }
+
+    override fun onDetailSelected(usuario: Usuario) {
+        val dialogo: DialogUser = DialogUser.newInstance(usuario)
+        dialogo.show(supportFragmentManager, null)
     }
 
 }
