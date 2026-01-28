@@ -2,7 +2,34 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
 
 
+    <fragment
+        tools:layout="@layout/frament_login"
+        android:id="@+id/loginFragment"
+        android:name="com.example.tienda.ui.fragment.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_registro"
+        android:id="@+id/registerFragment"
+        android:name="com.example.tienda.ui.fragment.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_main"
+        android:id="@+id/mainFragment"
+        android:name="com.example.tienda.ui.fragment.MainFragment"
+        android:label="MainFragment" />
 </navigation>
