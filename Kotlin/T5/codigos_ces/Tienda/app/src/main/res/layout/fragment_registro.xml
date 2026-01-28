@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    >
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNombreRegistro"
+        android:hint="Introduce nombre"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editApellidoRegistro"
+        android:hint="Introduce apellido"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEdadRegistro"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editCorreoRegistro"
+        android:hint="Introduce correo"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPassRegistro"
+        android:hint="Introduce pass"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:text="Registrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRegistro"
+        android:hint="Registrar"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        />
+
+</LinearLayout>
