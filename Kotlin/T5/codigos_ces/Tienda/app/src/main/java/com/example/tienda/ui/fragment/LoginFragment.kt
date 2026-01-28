@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tienda.R
+import com.example.tienda.data.DataSet
 import com.example.tienda.databinding.FramentLoginBinding
+import com.google.android.material.snackbar.Snackbar
 
 class LoginFragment : Fragment() {
 
@@ -30,7 +32,19 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+            if (DataSet.loginUser(
+                    binding.editCorreoLogin.text.toString(),
+                    binding.editPassLogin.text.toString()
+                )
+            ) {
+                findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+            } else {
+                Snackbar
+                    .make(binding.root, "Usuario no encontrado", Snackbar.LENGTH_SHORT)
+                    .setAction("Quieres registrarlo",
+                        { findNavController().navigate(R.id.action_loginFragment_to_registerFragment) })
+                    .show()
+            }
         }
         binding.btnRegistro.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
