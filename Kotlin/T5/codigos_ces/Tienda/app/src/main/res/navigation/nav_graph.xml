@@ -24,12 +24,30 @@
         android:name="com.example.tienda.ui.fragment.RegisterFragment"
         android:label="RegisterFragment" >
         <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_registerFragment_to_diagloRegistroOK"
+            app:destination="@id/diagloRegistroOK" />
+        <action
+            android:id="@+id/action_registerFragment_to_diagloRegistroFAIL"
+            app:destination="@id/diagloRegistroFAIL" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_main"
         android:id="@+id/mainFragment"
         android:name="com.example.tienda.ui.fragment.MainFragment"
         android:label="MainFragment" />
+    <dialog
+        android:id="@+id/diagloRegistroOK"
+        android:name="com.example.tienda.ui.dialog.DiagloRegistroOK"
+        android:label="DiagloRegistroOK" >
+        <action
+            android:id="@+id/action_diagloRegistroOK_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_diagloRegistroOK_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/diagloRegistroFAIL"
+        android:name="com.example.tienda.ui.dialog.DiagloRegistroFAIL"
+        android:label="DiagloRegistroFAIL" />
 </navigation>
