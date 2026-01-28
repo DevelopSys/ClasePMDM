@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.tienda.R
 import com.example.tienda.databinding.FramentLoginBinding
 
-class LoginFragment: Fragment() {
+class LoginFragment : Fragment() {
 
     private lateinit var binding: FramentLoginBinding
 
@@ -21,17 +23,18 @@ class LoginFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FramentLoginBinding.inflate(inflater,container,false)
+        binding = FramentLoginBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onResume() {
         super.onResume()
+        binding.btnLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+        }
+        binding.btnRegistro.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
 }
