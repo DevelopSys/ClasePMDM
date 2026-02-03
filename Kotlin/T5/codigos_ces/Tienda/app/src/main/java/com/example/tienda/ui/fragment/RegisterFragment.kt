@@ -13,17 +13,21 @@ import com.example.tienda.data.DataSet
 import com.example.tienda.databinding.FragmentRegistroBinding
 import com.example.tienda.databinding.FramentLoginBinding
 import com.example.tienda.model.User
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegistroBinding
     private lateinit var adaterEdad: ArrayAdapter<Int>
     private lateinit var listaEdades: ArrayList<Int>
+    private lateinit var auth: FirebaseAuth
     private var nombre: String? = null
     private var pass: String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        auth = FirebaseAuth.getInstance()
         listaEdades = ArrayList()
         for (i in 16..90) {
             listaEdades.add(i)
@@ -49,12 +53,29 @@ class RegisterFragment : Fragment() {
     override fun onResume() {
         /*binding.editCorreoRegistro.setText(nombre ?: "")
         binding.editPassRegistro.setText(pass ?: "")*/
-        if(nombre !=null|| pass !=null){
+        if (nombre != null || pass != null) {
             binding.editCorreoRegistro.setText(nombre)
             binding.editPassRegistro.setText(pass)
         }
         binding.spinnerEdadRegistro.adapter = adaterEdad
         binding.btnRegistro.setOnClickListener {
+            // registra un usuario
+            auth.createUserWithEmailAndPassword(
+                binding.editCorreoRegistro.text.toString(),
+                binding.editPassRegistro.text.toString()
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Snackbar.make(binding.root, "Usuario creado con existo", Snackbar.LENGTH_SHORT)
+                        .show()
+                    val usuarioLogeado = auth.currentUser!!.uid
+                    val bundle = Bundle()
+                    // bundle.putString("uid",usuarioLogeado)
+                    findNavController().navigate(R.id.action_registerFragment_to_diagloRegistroOK)
+                } else {
+                    findNavController().navigate(R.id.action_registerFragment_to_diagloRegistroFAIL)
+                }
+            }
+            /*
             if (DataSet.registerUser(
                     User(
                         nombre = binding.editNombreRegistro.text.toString(),
@@ -65,10 +86,13 @@ class RegisterFragment : Fragment() {
                     )
                 )
             ) {
+
                 findNavController().navigate(R.id.action_registerFragment_to_diagloRegistroOK)
             } else {
                 findNavController().navigate(R.id.action_registerFragment_to_diagloRegistroFAIL)
             }
+
+             */
         }
         super.onResume()
     }

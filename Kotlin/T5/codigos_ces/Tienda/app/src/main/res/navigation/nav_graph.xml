@@ -40,11 +40,7 @@
         tools:layout="@layout/fragment_main"
         android:id="@+id/mainFragment"
         android:name="com.example.tienda.ui.fragment.MainFragment"
-        android:label="MainFragment" >
-        <argument
-            android:name="user"
-            app:argType="com.example.tienda.model.User" />
-    </fragment>
+        android:label="MainFragment" />
     <dialog
         android:id="@+id/diagloRegistroOK"
         android:name="com.example.tienda.ui.dialog.DiagloRegistroOK"

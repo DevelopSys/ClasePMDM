@@ -10,15 +10,18 @@ import com.example.tienda.databinding.FragmentMainBinding
 import com.example.tienda.databinding.FragmentRegistroBinding
 import com.example.tienda.databinding.FramentLoginBinding
 import com.example.tienda.model.User
+import com.google.firebase.auth.FirebaseAuth
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private lateinit var user: User
+    private lateinit var auth: FirebaseAuth
+    private lateinit var uid: String
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        user = this.arguments?.getSerializable("user") as User
+        auth = FirebaseAuth.getInstance()
+        uid = auth.currentUser!!.uid
     }
 
     override fun onCreateView(
@@ -32,7 +35,7 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.textNombreMain.text = user.nombre
+        binding.textNombreMain.text = uid
     }
 
 }
