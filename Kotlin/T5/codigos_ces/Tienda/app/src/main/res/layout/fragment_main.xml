@@ -16,6 +16,22 @@
         android:id="@+id/textNombreMain"
         android:layout_marginBottom="6dp"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guardarDatos"
+        android:text="Guardar"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/elimiarDatos"
+        android:text="Borrar"
+        />
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
