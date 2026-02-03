@@ -11,6 +11,7 @@ import com.example.tienda.R
 import com.example.tienda.data.DataSet
 import com.example.tienda.databinding.FramentLoginBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.internal.synchronizedImpl
 
 class LoginFragment : Fragment() {
 
@@ -32,17 +33,30 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.btnLogin.setOnClickListener {
-            if (DataSet.loginUser(
-                    binding.editCorreoLogin.text.toString(),
-                    binding.editPassLogin.text.toString()
-                )
-            ) {
-                findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+
+            val loginUSer = DataSet.loginUser(
+                binding.editCorreoLogin.text.toString(),
+                binding.editPassLogin.text.toString()
+            )
+            if (loginUSer != null) {
+                // nombre
+                val bundle = Bundle()
+                bundle.putSerializable("user", loginUSer)
+                findNavController().navigate(R.id.action_loginFragment_to_mainFragment,bundle)
             } else {
                 Snackbar
                     .make(binding.root, "Usuario no encontrado", Snackbar.LENGTH_SHORT)
-                    .setAction("Quieres registrarlo",
-                        { findNavController().navigate(R.id.action_loginFragment_to_registerFragment) })
+                    .setAction(
+                        "Quieres registrarlo",
+                        {
+                            val bundle = Bundle()
+                            bundle.putString("correo", binding.editCorreoLogin.text.toString())
+                            bundle.putString("pass", binding.editPassLogin.text.toString())
+                            findNavController().navigate(
+                                R.id.action_loginFragment_to_registerFragment,
+                                bundle
+                            )
+                        })
                     .show()
             }
         }

@@ -29,12 +29,22 @@
         <action
             android:id="@+id/action_registerFragment_to_diagloRegistroFAIL"
             app:destination="@id/diagloRegistroFAIL" />
+        <argument
+            android:name="correo"
+            app:argType="string" />
+        <argument
+            android:name="pass"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_main"
         android:id="@+id/mainFragment"
         android:name="com.example.tienda.ui.fragment.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.tienda.model.User" />
+    </fragment>
     <dialog
         android:id="@+id/diagloRegistroOK"
         android:name="com.example.tienda.ui.dialog.DiagloRegistroOK"

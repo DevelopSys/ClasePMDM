@@ -14,9 +14,9 @@ class DataSet {
             }
         }
 
-        fun loginUser(correo: String, pass: String): Boolean {
+        fun loginUser(correo: String, pass: String): User? {
             return listaUsuarios
-                .find { it.correo == correo && it.pass == pass } != null;
+                .find { it.correo == correo && it.pass == pass } ;
         }
     }
 }
