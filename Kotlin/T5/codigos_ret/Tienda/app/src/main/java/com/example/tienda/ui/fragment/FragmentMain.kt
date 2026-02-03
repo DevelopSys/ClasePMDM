@@ -5,31 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.tienda.R
 import com.example.tienda.databinding.FragmentLoginBinding
+import com.example.tienda.databinding.FragmentMainBinding
 import com.example.tienda.databinding.FragmentRegisterBinding
 
-class FragmentRegister: Fragment() {
+class FragmentMain: Fragment() {
 
-    private lateinit var binding: FragmentRegisterBinding
+    private lateinit var binding: FragmentMainBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRegisterBinding.inflate(inflater,container,false)
+        binding = FragmentMainBinding.inflate(inflater,container,false)
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // logica del registro
-        binding.btnRegister.setOnClickListener {
-
-        findNavController().navigate(R.id.action_fragmentRegister_to_dialogRegisterOK)
-        }
     }
 
 }

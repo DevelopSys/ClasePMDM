@@ -1,5 +1,6 @@
 package com.example.tienda.ui.fragment
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tienda.R
+
 import com.example.tienda.databinding.FragmentLoginBinding
 
 class FragmentLogin: Fragment() {
@@ -24,9 +26,14 @@ class FragmentLogin: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.btnF1.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
+            // logica del login
+            findNavController().navigate(R.id.action_fragmentLogin_to_fragmentMain)
+        }
+        binding.btnRegistro.setOnClickListener {
             findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)
         }
+
     }
 
 }

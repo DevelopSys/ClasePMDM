@@ -5,19 +5,47 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/fragmentLogin">
     <fragment
+        tools:layout="@layout/fragment_login"
         android:id="@+id/fragmentLogin"
         android:name="com.example.tienda.ui.fragment.FragmentLogin"
         android:label="FragmentLogin" >
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentRegister"
             app:destination="@id/fragmentRegister" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
     </fragment>
     <fragment
+        tools:layout="@layout/fragment_register"
         android:id="@+id/fragmentRegister"
         android:name="com.example.tienda.ui.fragment.FragmentRegister"
         android:label="FragmentRegister" >
         <action
-            android:id="@+id/action_fragmentRegister_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
+            android:id="@+id/action_fragmentRegister_to_dialogRegisterOK"
+            app:destination="@id/dialogRegisterOK" />
+        <action
+            android:id="@+id/action_fragmentRegister_to_dialogRegisterFAIL"
+            app:destination="@id/dialogRegisterFAIL" />
     </fragment>
+    <fragment
+        tools:layout="@layout/fragment_main"
+        android:id="@+id/fragmentMain"
+        android:name="com.example.tienda.ui.fragment.FragmentMain"
+        android:label="FragmentMain" />
+    <dialog
+        android:id="@+id/dialogRegisterOK"
+        android:name="com.example.tienda.ui.dialog.DialogRegisterOK"
+        android:label="DialogRegisterOK" >
+        <action
+            android:id="@+id/action_dialogRegisterOK_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
+        <action
+            android:id="@+id/action_dialogRegisterOK_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </dialog>
+    <dialog
+        android:id="@+id/dialogRegisterFAIL"
+        android:name="com.example.tienda.ui.dialog.DialogRegisterFAIL"
+        android:label="DialogRegisterFAIL" />
 </navigation>

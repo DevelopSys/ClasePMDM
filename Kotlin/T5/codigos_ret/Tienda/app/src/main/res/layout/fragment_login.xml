@@ -1,30 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:padding="24dp"
     >
 
-    <TextView
-        android:text="FRAGMENT 1"
-        android:textSize="30sp"
-        android:id="@+id/etiquetaF1"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_marginTop="24dp"
+        android:id="@+id/btnLogin"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Iniciar"
+        app:layout_constraintEnd_toEndOf="@+id/checkRecordar"
+        app:layout_constraintStart_toStartOf="@+id/editPass"
+        app:layout_constraintTop_toBottomOf="@+id/checkRecordar" />
 
     <Button
-        android:id="@+id/btnF1"
+        android:layout_marginTop="16dp"
+        android:id="@+id/btnRegistro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        app:layout_constraintEnd_toEndOf="@+id/checkRecordar"
+        app:layout_constraintStart_toStartOf="@+id/editPass"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <ImageView
+        android:id="@+id/imagenLogin"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:layout_marginTop="16dp"
+        android:id="@+id/editPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Introduce correo"
+        app:layout_constraintEnd_toEndOf="@+id/imagenLogin"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imagenLogin"
+        app:layout_constraintTop_toBottomOf="@+id/editCorreo" />
+
+    <CheckBox
+        android:layout_marginTop="16dp"
+        android:id="@+id/checkRecordar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Navegar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/etiquetaF1"
-        app:layout_constraintStart_toStartOf="@+id/etiquetaF1"
-        app:layout_constraintTop_toBottomOf="@+id/etiquetaF1" />
+        android:text="Recordar sesion"
+        app:layout_constraintEnd_toEndOf="@+id/editPass"
+        app:layout_constraintTop_toBottomOf="@+id/editPass" />
 
+    <EditText
+        android:layout_marginTop="24dp"
+        android:id="@+id/editCorreo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Introduce correo"
+        app:layout_constraintEnd_toEndOf="@+id/imagenLogin"
+        app:layout_constraintStart_toStartOf="@+id/imagenLogin"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
