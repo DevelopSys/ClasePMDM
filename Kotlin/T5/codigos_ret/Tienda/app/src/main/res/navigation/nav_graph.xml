@@ -27,6 +27,12 @@
         <action
             android:id="@+id/action_fragmentRegister_to_dialogRegisterFAIL"
             app:destination="@id/dialogRegisterFAIL" />
+        <argument
+            android:name="correo"
+            app:argType="string" />
+        <argument
+            android:name="pass"
+            app:argType="string" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_main"
