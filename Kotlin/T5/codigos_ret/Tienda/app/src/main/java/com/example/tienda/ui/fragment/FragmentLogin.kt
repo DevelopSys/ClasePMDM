@@ -41,6 +41,8 @@ class FragmentLogin : Fragment() {
                     .setAction("¿Registrarlo?") {
                         // bundle
                         val bundle = Bundle()
+                        bundle.putString("correo", binding.editCorreo.text.toString())
+                        bundle.putString("pass", binding.editPass.text.toString())
                         findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister,bundle)
                     }
                     .show()

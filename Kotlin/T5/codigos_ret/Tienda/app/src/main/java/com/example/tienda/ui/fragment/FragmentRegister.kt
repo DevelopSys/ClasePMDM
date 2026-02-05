@@ -18,6 +18,8 @@ class FragmentRegister : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var adapterEdad: ArrayAdapter<Int>
+    private var correo: String? = null;
+    private var pass: String? = null;
 
     override fun onAttach(context: Context) {
         // utilizo para inicializacion logica
@@ -26,6 +28,8 @@ class FragmentRegister : Fragment() {
         for (i in 16..90) {
             lista.add(i)
         }
+        correo = this.arguments?.getString("correo")
+        pass = this.arguments?.getString("pass")
         adapterEdad = ArrayAdapter(
             context,
             android.R.layout.simple_spinner_item,
@@ -45,6 +49,9 @@ class FragmentRegister : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        // poner los datos recuperados en los input
+        binding.editCorreo.setText(correo)
+        binding.editPass.setText(pass)
         // logica del registro
         binding.spinnerEdad.adapter = adapterEdad
         binding.btnRegister.setOnClickListener {
