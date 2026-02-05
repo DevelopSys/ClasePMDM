@@ -5,7 +5,7 @@ import com.example.tienda.model.User
 class DataSet {
 
     companion object {
-        val lista: ArrayList<User> = ArrayList()
+        val lista: ArrayList<User> = arrayListOf()
 
         fun agregarUsuario(user: User): Boolean {
             // cuando se puede agregar
