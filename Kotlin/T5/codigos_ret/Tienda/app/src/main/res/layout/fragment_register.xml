@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="24dp"
     android:orientation="vertical"
-    >
+    android:padding="24dp">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -15,62 +14,56 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
-                android:text="REGISTAR"
-                android:textSize="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                android:hint="Introduce nombre"
                 android:gravity="center"
-                />
+                android:hint="Introduce nombre"
+                android:text="REGISTAR"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/editNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="Introduce nombre"
                 android:gravity="center"
-                />
+                android:hint="Introduce nombre" />
+
             <EditText
                 android:id="@+id/editApellido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="Introduce apellido"
                 android:gravity="center"
-                />
+                android:hint="Introduce apellido" />
 
             <Spinner
                 android:id="@+id/spinnerEdad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:gravity="center"
-                />
+                android:gravity="center" />
 
             <EditText
                 android:id="@+id/editCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:hint="Introduce correo"
                 android:gravity="center"
-                />
+                android:hint="Introduce correo" />
 
             <EditText
                 android:id="@+id/editPass"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                android:hint="Introduce nombre"
                 android:gravity="center"
-                />
+                android:hint="Introduce nombre"
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/btnRegister"
@@ -78,14 +71,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:text="Registrar"
-                />
+                android:text="Registrar" />
 
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 
 </LinearLayout>

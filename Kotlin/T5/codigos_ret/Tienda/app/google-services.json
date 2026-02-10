@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1074530278338",
+    "project_id": "bmh2526-ret",
+    "storage_bucket": "bmh2526-ret.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074530278338:android:f4b3544a35d9ab1c18145b",
+        "android_client_info": {
+          "package_name": "com.example.tienda"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUpEUIgXhcfwHRvXZzBe_3t00MXS1Pt_A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

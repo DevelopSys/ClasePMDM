@@ -13,6 +13,7 @@ import com.example.tienda.databinding.FragmentLoginBinding
 import com.example.tienda.databinding.FragmentRegisterBinding
 import com.example.tienda.dateset.DataSet
 import com.example.tienda.model.User
+import com.google.firebase.auth.FirebaseAuth
 
 class FragmentRegister : Fragment() {
 
@@ -20,10 +21,12 @@ class FragmentRegister : Fragment() {
     private lateinit var adapterEdad: ArrayAdapter<Int>
     private var correo: String? = null;
     private var pass: String? = null;
+    private lateinit var auth: FirebaseAuth
 
     override fun onAttach(context: Context) {
         // utilizo para inicializacion logica
         super.onAttach(context)
+        auth = FirebaseAuth.getInstance()
         val lista: ArrayList<Int> = ArrayList()
         for (i in 16..90) {
             lista.add(i)
@@ -56,6 +59,7 @@ class FragmentRegister : Fragment() {
         binding.spinnerEdad.adapter = adapterEdad
         binding.btnRegister.setOnClickListener {
             // llamar a la funcion del registro
+            /*
             if (DataSet.agregarUsuario(
                     User(
                         binding.editNombre.text.toString(),
@@ -70,6 +74,20 @@ class FragmentRegister : Fragment() {
             } else {
                 findNavController().navigate(R.id.action_fragmentRegister_to_dialogRegisterFAIL)
             }
+
+             */
+            // validar que los campos estar ok
+            auth.createUserWithEmailAndPassword(
+                binding.editCorreo.text.toString(),
+                binding.editPass.text.toString()
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    findNavController().navigate(R.id.action_fragmentRegister_to_dialogRegisterOK)
+                } else {
+                    findNavController().navigate(R.id.action_fragmentRegister_to_dialogRegisterFAIL)
+                }
+            }
+
 
         }
     }
