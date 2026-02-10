@@ -11,18 +11,21 @@ import com.example.tienda.databinding.FragmentMainBinding
 import com.example.tienda.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 
-class FragmentMain: Fragment() {
+class FragmentMain : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private lateinit var user: FirebaseUser
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
-
+        database =
+            FirebaseDatabase.getInstance("https://bmh2526-ret-default-rtdb.europe-west1.firebasedatabase.app/")
     }
 
     override fun onCreateView(
@@ -30,13 +33,24 @@ class FragmentMain: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMainBinding.inflate(inflater,container,false)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
+        database.reference.child("uLogin").setValue(user.uid)
         binding.textoMain.text = user.uid
     }
 
 }
+
+/*
+{
+  "rules": {
+    ".read": "now < 1773270000000",
+    ".write": "now < 1773270000000",
+
+  }
+}
+ */
