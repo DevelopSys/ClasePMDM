@@ -2,6 +2,7 @@ package com.example.tienda.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,11 @@ import androidx.fragment.app.Fragment
 import com.example.tienda.databinding.FragmentLoginBinding
 import com.example.tienda.databinding.FragmentMainBinding
 import com.example.tienda.databinding.FragmentRegisterBinding
+import com.example.tienda.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import com.google.gson.Gson
 
 class FragmentMain : Fragment() {
 
@@ -39,8 +42,20 @@ class FragmentMain : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        database.reference.child("uLogin").setValue(user.uid)
-        binding.textoMain.text = user.uid
+        val gson = Gson()
+        database.reference.child("usuarios")
+            .child(auth.currentUser!!.uid)
+            .get().addOnCompleteListener {
+                Log.v("consulta", it.getResult().toString())
+                val user: User = gson.fromJson(it.getResult().toString(), User::class.java)
+                binding.textoMain.text = user.nombre
+            }
+        binding.btnBorrar.setOnClickListener {
+            database.reference.child("usuarios")
+                .child(auth.currentUser!!.uid).setValue(null)
+        }
+        // database.reference.child("uLogin").setValue(user.uid)
+        // binding.textoMain.text = user.uid
     }
 
 }

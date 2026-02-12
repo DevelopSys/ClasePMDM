@@ -14,6 +14,7 @@ import com.example.tienda.databinding.FragmentRegisterBinding
 import com.example.tienda.dateset.DataSet
 import com.example.tienda.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class FragmentRegister : Fragment() {
 
@@ -22,10 +23,13 @@ class FragmentRegister : Fragment() {
     private var correo: String? = null;
     private var pass: String? = null;
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
 
     override fun onAttach(context: Context) {
         // utilizo para inicializacion logica
         super.onAttach(context)
+        database =
+            FirebaseDatabase.getInstance("https://bmh2526-ret-default-rtdb.europe-west1.firebasedatabase.app/")
         auth = FirebaseAuth.getInstance()
         val lista: ArrayList<Int> = ArrayList()
         for (i in 16..90) {
@@ -82,6 +86,18 @@ class FragmentRegister : Fragment() {
                 binding.editPass.text.toString()
             ).addOnCompleteListener {
                 if (it.isSuccessful) {
+                    database.reference
+                        .child("usuarios")
+                        .child(auth.currentUser!!.uid)
+                        .setValue(
+                            User(
+                                binding.editNombre.text.toString(),
+                                binding.editApellido.text.toString(),
+                                binding.spinnerEdad.selectedItem.toString().toInt(),
+                                binding.editCorreo.text.toString()
+                            )
+                        )
+
                     findNavController().navigate(R.id.action_fragmentRegister_to_dialogRegisterOK)
                 } else {
                     findNavController().navigate(R.id.action_fragmentRegister_to_dialogRegisterFAIL)

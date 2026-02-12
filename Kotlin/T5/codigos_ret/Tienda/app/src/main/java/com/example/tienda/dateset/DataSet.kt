@@ -18,7 +18,7 @@ class DataSet {
         }
 
         fun login(correo: String, pass: String): User? {
-            return lista.find { it.correo == correo && it.pass == pass }
+            return lista.find { it.correo == correo }
         }
 
     }
