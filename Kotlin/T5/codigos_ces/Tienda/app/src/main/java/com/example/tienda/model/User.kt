@@ -4,8 +4,8 @@ package com.example.tienda.model
 import java.io.Serializable
 
 class User(
-    var nombre: String,
-    var apellido: String,
-    var correo: String,
-    var edad: Int
-): Serializable
+    var nombre: String? = null,
+    var apellido: String? = null,
+    var correo: String? = null,
+    var edad: Int? = null
+) : Serializable
