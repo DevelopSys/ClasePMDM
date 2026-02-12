@@ -13,7 +13,11 @@ import com.example.tienda.databinding.FragmentRegisterBinding
 import com.example.tienda.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 
 class FragmentMain : Fragment() {
@@ -43,13 +47,55 @@ class FragmentMain : Fragment() {
     override fun onResume() {
         super.onResume()
         val gson = Gson()
-        database.reference.child("usuarios")
+        /*database.reference.child("usuarios")
             .child(auth.currentUser!!.uid)
             .get().addOnCompleteListener {
                 Log.v("consulta", it.getResult().toString())
                 val user: User = gson.fromJson(it.getResult().toString(), User::class.java)
                 binding.textoMain.text = user.nombre
-            }
+            }*/
+
+        database.reference.child("usuarios")
+            .addChildEventListener(object : ChildEventListener
+            {
+                override fun onChildAdded(
+                    snapshot: DataSnapshot,
+                    previousChildName: String?
+                ) {
+                    Log.v("consulta",snapshot.toString())
+                }
+
+                override fun onChildChanged(
+                    snapshot: DataSnapshot,
+                    previousChildName: String?
+                ) {
+
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                }
+
+                override fun onChildMoved(
+                    snapshot: DataSnapshot,
+                    previousChildName: String?
+                ) {
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
+
+            /*.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val user = gson.fromJson(snapshot.value.toString(), User::class.java)
+                    Log.v("test",user.nombre.toString())
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })*/
         binding.btnBorrar.setOnClickListener {
             database.reference.child("usuarios")
                 .child(auth.currentUser!!.uid).setValue(null)
