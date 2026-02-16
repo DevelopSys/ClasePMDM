@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tienda.adapter.AdapterUsers
 import com.example.tienda.databinding.FragmentLoginBinding
 import com.example.tienda.databinding.FragmentMainBinding
 import com.example.tienda.databinding.FragmentRegisterBinding
@@ -26,9 +28,11 @@ class FragmentMain : Fragment() {
     private lateinit var user: FirebaseUser
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
+    private lateinit var adapterUsers: AdapterUsers
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        adapterUsers = AdapterUsers(context)
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
         database =
@@ -47,6 +51,42 @@ class FragmentMain : Fragment() {
     override fun onResume() {
         super.onResume()
         val gson = Gson()
+        binding.recyclerUsuarios.adapter = adapterUsers
+        binding.recyclerUsuarios.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        database.reference
+            .child("usuarios")
+            .addChildEventListener(object : ChildEventListener{
+                override fun onChildAdded(
+                    snapshot: DataSnapshot,
+                    previousChildName: String?
+                ) {
+                    val user = gson.fromJson(snapshot.value.toString(), User::class.java)
+                    adapterUsers.agregarUsuario(user)
+                }
+
+                override fun onChildChanged(
+                    snapshot: DataSnapshot,
+                    previousChildName: String?
+                ) {
+                }
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {
+                }
+
+                override fun onChildMoved(
+                    snapshot: DataSnapshot,
+                    previousChildName: String?
+                ) {
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
+
+
         /*database.reference.child("usuarios")
             .child(auth.currentUser!!.uid)
             .get().addOnCompleteListener {
@@ -55,7 +95,7 @@ class FragmentMain : Fragment() {
                 binding.textoMain.text = user.nombre
             }*/
 
-        database.reference.child("usuarios")
+        /*database.reference.child("usuarios")
             .addChildEventListener(object : ChildEventListener
             {
                 override fun onChildAdded(
@@ -84,22 +124,19 @@ class FragmentMain : Fragment() {
                 override fun onCancelled(error: DatabaseError) {
                 }
 
-            })
-
-            /*.addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val user = gson.fromJson(snapshot.value.toString(), User::class.java)
-                    Log.v("test",user.nombre.toString())
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                }
-
             })*/
-        binding.btnBorrar.setOnClickListener {
-            database.reference.child("usuarios")
-                .child(auth.currentUser!!.uid).setValue(null)
-        }
+
+        /*.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val user = gson.fromJson(snapshot.value.toString(), User::class.java)
+                Log.v("test",user.nombre.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })*/
+
         // database.reference.child("uLogin").setValue(user.uid)
         // binding.textoMain.text = user.uid
     }
