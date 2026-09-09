@@ -11,6 +11,11 @@ fun main() {
     var localidad: String? = null
     lateinit var pais: String
     val correo = "borja@cesjuanpablo.com"
+    //println("Introduce el primer elemento")
+    // var n1 = readln().toInt()
+    // var n2 = readln().toInt()
+    // multiplicar(n1, n2)
+    sumaFlecha(2,5)
 
 
     /*println("Introduce nombre")
@@ -37,7 +42,8 @@ fun main() {
     // saludar(nombre)
     // saludar()
     // parametros nominales
-    saludar(nombreParam = nombre, apellidoParam = apellido, veces = 2)
+    // saludar(nombreParam = nombre, apellidoParam = apellido, veces = 2)
+
 
 }
 
@@ -51,7 +57,7 @@ fun saludar(nombreParam: String? = null, apellidoParam: String? = null, veces: I
     // (0 until veces).forEach { println("Hola ${nombreParam ?: ""} ${apellidoParam ?: ""}, primer metodo ok") }
     (0 until veces).forEachIndexed { _, index ->
         println(
-            "Saludo nº ${index+1} : Hola ${nombreParam ?: ""} " +
+            "Saludo nº ${index + 1} : Hola ${nombreParam ?: ""} " +
                     "${apellidoParam ?: ""}, primer metodo ok"
         )
     }
@@ -59,5 +65,30 @@ fun saludar(nombreParam: String? = null, apellidoParam: String? = null, veces: I
 
 }
 
+// realizar un programa que pida por consola el rango de numeros de los que
+// quiero sacar sus tablas de multiplicar y mostrarlas por consola
 
+fun multiplicar(x: Int, y: Int) {
+    println("Tablas de multiplicar")
+    (x..y).forEach { op -> println("Tabla del $op")
+        //(0..10).forEach { println("${op} * ${it} = ${op * it} ") }
+        (0..10).forEach { println(resultadoOperacion(op,it)) }
+    }
+
+    /*for (i in x..y){
+        println("Tabla del $i")
+        for (j in 0..10){
+            println("\t${i} * ${j} = ${j*i}")
+        }
+    }*/
+}
+
+fun resultadoOperacion(op1: Int, op2: Int): String{
+    return "$op1 * $op2 = ${op1 * op2}"
+}
+
+var sumaFlecha: (Int, Int) -> Unit = { op1: Int, op2: Int -> println(op1+op2) }
+var sumaFlechaOtra: (Int, Int) -> Unit? = { op1: Int, op2: Int -> println(op1+op2) }
+var sumaFlechaOtraMas: ((Int, Int) -> Unit?)? = { op1: Int, op2: Int -> println(op1+op2) }
+var sumaFlechaOtraUltima: (Int, Int) -> Int = { op1: Int, op2: Int -> op1+op2 }
 
