@@ -76,16 +76,7 @@ fun main() {
     println("El numero de elementos que coinciden con la busqueda es " +
             "${numeros.filter { numeroBuscar == it }.size} ")
 
-    val opcion = 1
-    when(opcion){
-        1 ->{}
-        2 ->{}
-        3 ->{}
-        4 ->{}
-        5 ->{}
-        in 6..10->{}
-        else -> {}
-    }
+
 
     /*
     Realizar una aplicacion que
