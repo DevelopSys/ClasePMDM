@@ -15,6 +15,7 @@ class School() {
 
     init {
         people = arrayListOf()
+        // estas listas no las voy a utilizar
         teachers = arrayListOf()
         students = arrayListOf()
     }
