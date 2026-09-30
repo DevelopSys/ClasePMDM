@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    android:padding="16dp"
-    android:gravity="center"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
     <TextView
-        android:textAlignment="center"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
+        android:layout_gravity="center"
         android:layout_margin="48dp"
-        android:text="@string/app_saludo"/>
+        android:text="@string/app_saludo"
+        android:textAlignment="center"
+        android:textSize="32sp" />
 
     <EditText
-        android:inputType="text"
-        android:drawablePadding="16dp"
-        android:drawableStart="@drawable/perfil"
-        android:gravity="start"
-        android:hint="@string/edit_hint"
+        android:id="@+id/editNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:id="@+id/editNombre"
-        />
+        android:drawableStart="@drawable/perfil"
+        android:drawablePadding="16dp"
+        android:gravity="start"
+        android:hint="@string/edit_hint"
+        android:inputType="text" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/buttonSaludar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="0.5"
+            android:text="@string/app_button" />
+
+        <Button
+            android:id="@+id/buttonLimpiar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Limpiar" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     <Button
-        android:id="@+id/buttonSaludar"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/buttonSalir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_button"
-        />
+        android:layout_gravity="center_horizontal"
+        android:text="Salir" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
