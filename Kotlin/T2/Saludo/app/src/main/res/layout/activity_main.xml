@@ -6,23 +6,26 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/padding_general"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="0dp"
+
         android:layout_margin="48dp"
-        android:text="@string/app_saludo"
+        android:layout_weight="0.4"
         android:textAlignment="center"
+        android:text="@string/app_saludo"
+
         android:textSize="32sp" />
 
     <EditText
         android:id="@+id/editNombre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="48dp"
+        android:layout_weight="0.2"
         android:drawableStart="@drawable/perfil"
         android:drawablePadding="16dp"
         android:gravity="start"
@@ -31,8 +34,9 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="16dp"
+        android:layout_weight="0.4"
         android:gravity="center">
 
         <Button
@@ -55,8 +59,9 @@
     <Button
         android:id="@+id/buttonSalir"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
+        android:layout_weight="0.4"
         android:text="Salir" />
 
 
