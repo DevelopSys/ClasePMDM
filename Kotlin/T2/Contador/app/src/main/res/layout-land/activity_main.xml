@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:text="Contador"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9">
+
+        <TextView
+            android:id="@+id/textCounter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="80sp" />
+
+        <LinearLayout
+            android:weightSum="0.9"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonInc"
+                android:text="+"
+                android:textSize="80sp"
+                android:layout_width="match_parent"
+                android:layout_weight="0.3"
+                android:layout_height="0dp"
+                />
+            <Button
+                android:id="@+id/buttonDec"
+                android:text="-"
+                android:textSize="80sp"
+                android:layout_width="match_parent"
+                android:layout_weight="0.3"
+                android:layout_height="0dp"/>
+            <Button
+                android:id="@+id/buttonRes"
+                android:text="R"
+                android:textSize="80sp"
+                android:layout_width="match_parent"
+                android:layout_weight="0.3"
+                android:layout_height="0dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
