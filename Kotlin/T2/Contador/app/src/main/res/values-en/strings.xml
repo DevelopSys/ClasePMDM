@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App Counter</string>
+    <string name="title">Counter</string>
+    <string name="message_max">Max counter</string>
+</resources>

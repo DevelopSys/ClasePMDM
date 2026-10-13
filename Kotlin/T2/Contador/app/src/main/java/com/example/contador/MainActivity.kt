@@ -39,14 +39,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun actions() {
         binding.buttonInc.setOnClickListener(this)
         binding.buttonDec.setOnClickListener(this)
+        binding.buttonRes?.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
+            binding.buttonRes?.id -> counter =0
             binding.buttonInc.id -> {
                 // binding.textCounter.setText((binding.textCounter.text.toString().toInt()+1).toString())
                 if (counter == 15) {
-                    Snackbar.make(binding.root, "Limite alcanzado", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "Borja, "+resources.getString(R.string.message_max), Snackbar.LENGTH_SHORT).show()
                 } else {
                     counter++
                 }

@@ -16,7 +16,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.1"
         android:textSize="20sp"
-        android:text="Contador"
+        android:text="@string/title"
         />
     <TextView
         android:id="@+id/textCounter"
