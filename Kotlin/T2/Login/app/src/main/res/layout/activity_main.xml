@@ -86,7 +86,7 @@
         android:id="@+id/btnRegistro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="login"
+        android:text="registrar"
         app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="@+id/chekRecordar"
         app:layout_constraintStart_toStartOf="@+id/guideline5"

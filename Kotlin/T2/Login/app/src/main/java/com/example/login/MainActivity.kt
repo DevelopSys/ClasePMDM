@@ -27,6 +27,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnRegistro.setOnClickListener(this)
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        binding.editMail.text.clear()
+        binding.editPass.text.clear()
+        binding.chekRecordar.isChecked = false;
+        binding.grupoUsuario.clearCheck()
+    }
+
+
     override fun onClick(p0: View?) {
         when (p0!!.id) {
             binding.btnRegistro.id -> {
@@ -41,3 +50,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 }
+
+
+/*
+Al registar, llevar el usaurio a la lista del companion
+    Si ya hay un usuario con ese correo -> aviso
+    Si lo registra bien, snackbar con la accion
+
+Al logear,
+    Si el usuario existe en la lista -> cambia de pantalla
+    Si el usuario no existe en la lista -> saca aviso en snack
+
+ */
