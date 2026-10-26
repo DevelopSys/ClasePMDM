@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.login.MainActivity
 import com.example.login.R
+import com.example.login.data.DataSet
 import com.example.login.databinding.ActivityRegistroBinding
 import com.example.login.model.User
 import com.google.android.material.snackbar.Snackbar
@@ -51,12 +52,27 @@ class RegistroActivity : AppCompatActivity() {
             } else {
                 // crear el usuario y meterlo en una lsita
                 // 0-> admin 1 -> user
+
                 val user = User(name, surname, mail, pass, profileIndex - 1)
-                Snackbar.make(binding.root, "Usuario creado, ¿quieres login?",
-                    Snackbar.LENGTH_LONG)
-                    .setAction("OK"){}
-                        // TODO terminar la accion con paso de datos
-                    .show()
+                if (DataSet.addUser(user)) {
+                    Snackbar.make(
+                        binding.root, "Usuario creado, ¿quieres login?",
+                        Snackbar.LENGTH_LONG
+                    )
+                        .setAction("OK") {
+                            val intent = Intent(applicationContext, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                        .show()
+                } else {
+                    Snackbar.make(
+                        binding.root, "Fallo en el registro",
+                        Snackbar.LENGTH_LONG
+                    )
+                        .show()
+                }
+
                 // mensaje confirmacion
                 // borrar todos
                 clearData()

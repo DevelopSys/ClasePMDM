@@ -7,8 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.login.activities.HomeActivity
 import com.example.login.activities.RegistroActivity
+import com.example.login.data.DataSet
 import com.example.login.databinding.ActivityMainBinding
+import com.example.login.model.User
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -45,7 +49,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             binding.btnLogin.id -> {
-
+                val mail = binding.editMail.text.toString()
+                val pass = binding.editPass.text.toString()
+                val user: User? = DataSet.getLogin(mail, pass)
+                if (user != null) {
+                    val intent = Intent(applicationContext, HomeActivity::class.java)
+                    // val bundle = Bundle()
+                    // bundle.putSerializable("user",user)
+                    intent.putExtra("user",user)
+                    startActivity(intent)
+                } else {
+                    Snackbar.make(binding.root, "Login incorrecto", Snackbar.LENGTH_LONG).show()
+                }
             }
         }
     }
