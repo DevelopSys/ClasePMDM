@@ -4,7 +4,7 @@ import java.io.Serializable
 
 
 class User(
-    private var name: String,
+    var name: String,
     var surname: String,
     var mail: String,
     var pass: String,

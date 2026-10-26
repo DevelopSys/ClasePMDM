@@ -29,6 +29,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onStart()
         binding.btnLogin.setOnClickListener(this)
         binding.btnRegistro.setOnClickListener(this)
+        binding.grupoUsuario.setOnCheckedChangeListener { _, i ->
+            var enable: Boolean = false;
+            when(i){
+                binding.radioUsuario.id->{enable = true}
+                binding.radioInvitado.id->{ enable = false}
+            }
+            binding.chekRecordar.isEnabled = enable
+
+        }
     }
 
     override fun onRestart() {
@@ -47,7 +56,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val intent: Intent = Intent(this, RegistroActivity::class.java)
                 startActivity(intent)
             }
-
             binding.btnLogin.id -> {
                 val mail = binding.editMail.text.toString()
                 val pass = binding.editPass.text.toString()
@@ -56,7 +64,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val intent = Intent(applicationContext, HomeActivity::class.java)
                     // val bundle = Bundle()
                     // bundle.putSerializable("user",user)
-                    intent.putExtra("user",user)
+                    // si esta seleccionado el radio usuario
+                    val radioSelected: Int = binding.grupoUsuario.checkedRadioButtonId
+                    if (radioSelected == binding.radioUsuario.id) {
+                        intent.putExtra("user", user)
+                    }
+
                     startActivity(intent)
                 } else {
                     Snackbar.make(binding.root, "Login incorrecto", Snackbar.LENGTH_LONG).show()

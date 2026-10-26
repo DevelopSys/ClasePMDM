@@ -61,6 +61,7 @@ class RegistroActivity : AppCompatActivity() {
                     )
                         .setAction("OK") {
                             val intent = Intent(applicationContext, HomeActivity::class.java)
+                            intent.putExtra("user",user)
                             startActivity(intent)
                             finish()
                         }
