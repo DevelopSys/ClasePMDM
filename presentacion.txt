@@ -1,0 +1,29 @@
+Android. Presentacion
+	Arquitectura -> movil / positibilidades
+		nativo -> 	Android (Google) 	-> 	java / kotlin (transpilacion) + IDE (Android Studio + (intellij + plugins) / Visual Studio Code (plugins))
+					IOS 		->	objective c / swift + IDE (XCode)
+
+
+					A.Studio -> SDK + AVD + Device fisico + la estructura de proyecto
+					Activity -> pantallas -> 1 a n -> Empty activity
+						.kt (logica) + .xml (grafica) -> compose (.kt grafico logico)
+						ciclo de vida
+						intent (acciones) + pasan datos
+						ui -> view + listener
+							recycler view + adapter
+						fragments -> "pantallas" en pantalla -> basic activity
+							dialogs y menu
+						bases de datos
+							1. SQLite -> base de datos interna. /data/data/com.example.miapp/database/midatabase.db
+								Room -> ORM (0 querys)
+							2. Movil  json  <------https------->    SRWeb - API   <--------------> SQL MODELO DE 3 CAPAS
+							3. PaaS -> Firebase (Google)  / Supabase -> Auth (SSO -> Google Sign in) + Database (RealTime NoSQL / SQL) + Storage
+
+
+		cross -> android / ios / web / desktop
+			React Native (js + ts) - Vue Native (js + ts) - Angular Native (js - ts) -> IONIc
+			Flutter (dart) -> widgets (pantalla - boton - Columna - texto) -> PWA
+					stateless / statefull
+
+	Videojuegos. Unity 2D Script C#
+			Components + game objects + scripts
