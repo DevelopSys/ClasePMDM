@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">App Contador</string>
+    <string name="message_max">Limite alcanzado</string>
+    <string name="title">Contador</string>
+    <style name="Base.Theme.Contador" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Contador" parent="Base.Theme.Contador"/>
+</resources>

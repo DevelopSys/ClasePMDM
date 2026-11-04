@@ -1,0 +1,21 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id buttonDec
+id buttonInc
+id buttonRes
+id main
+id textCounter
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string message_max
+string title
+style Base.Theme.Contador
+style Theme.Contador
+xml backup_rules
+xml data_extraction_rules

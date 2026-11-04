@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.contador.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "com.example.contador.app-main-41:/layout/activity_main.xml"
+    }
+]

@@ -1,0 +1,78 @@
+[
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/layout_activity_main.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.contador.app-debug-39:/layout-land_activity_main.xml.flat",
+        "source": "com.example.contador.app-main-41:/layout-land/activity_main.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/layout-land_activity_main.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/layout-land/activity_main.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/xml_backup_rules.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-debug-39:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-main-41:/mipmap-mdpi/ic_launcher.webp"
+    }
+]

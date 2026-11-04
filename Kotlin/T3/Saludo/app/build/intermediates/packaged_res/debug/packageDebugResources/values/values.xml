@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="perso">#F67575</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="padding_general">8dp</dimen>
+    <string name="app_button">Saludar</string>
+    <string name="app_name">Saludo</string>
+    <string name="app_saludo">Primera app android</string>
+    <string name="edit_hint">Introduce tu nombre</string>
+    <style name="Base.Theme.Saludo" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Saludo" parent="Base.Theme.Saludo"/>
+</resources>

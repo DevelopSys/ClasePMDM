@@ -1,0 +1,24 @@
+com.example.saludo
+color black
+color perso
+color white
+dimen padding_general
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable perfil
+id buttonLimpiar
+id buttonSalir
+id buttonSaludar
+id editNombre
+id main
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_button
+string app_name
+string app_saludo
+string edit_hint
+style Base_Theme_Saludo
+style Theme_Saludo
+xml backup_rules
+xml data_extraction_rules

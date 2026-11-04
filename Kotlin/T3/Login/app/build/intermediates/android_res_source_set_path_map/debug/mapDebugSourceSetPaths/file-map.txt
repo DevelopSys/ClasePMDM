@@ -1,0 +1,8 @@
+com.example.login.app-pngs-0 /Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T3/Login/app/build/generated/res/pngs/debug
+com.example.login.app-updated_navigation_xml-1 /Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T3/Login/app/build/generated/updated_navigation_xml/debug
+com.example.login.app-packageDebugResources-2 /Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T3/Login/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.login.app-packageDebugResources-3 /Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T3/Login/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.login.app-debug-4 /Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T3/Login/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.login.app-debug-5 /Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T3/Login/app/src/debug/res
+com.example.login.app-main-6 /Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T3/Login/app/src/main/res
+gradleHome-0 /Users/borja/.gradle

@@ -1,0 +1,41 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.contador.app-mergeDebugResources-37:/values-en/values-en.xml",
+            "map": [
+                {
+                    "source": "/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Contador/app/src/main/res/values-en/strings.xml",
+                    "from": {
+                        "startLines": "-1,4,-1",
+                        "startColumns": "-1,4,-1",
+                        "startOffsets": "-1,146,-1",
+                        "endColumns": "-1,51,-1",
+                        "endOffsets": "-1,193,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,104,156",
+                        "endColumns": "48,51,41",
+                        "endOffsets": "99,151,193"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/borja/.gradle/daemon/9.4.1/com.example.contador.app-mergeDebugResources-37:/values-en/values-en.xml",
+            "map": [
+                {
+                    "source": "/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Contador/app/src/main/res/values-en/strings.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,104",
+                        "endColumns": "48,41",
+                        "endOffsets": "99,141"
+                    }
+                }
+            ]
+        }
+    ]
+}

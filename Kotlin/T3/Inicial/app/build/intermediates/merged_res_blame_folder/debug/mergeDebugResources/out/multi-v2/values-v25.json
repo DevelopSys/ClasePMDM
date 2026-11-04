@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.inicial.app-mergeDebugResources-38:/values-v25/values-v25.xml",
+            "map": [
+                {
+                    "source": "/Users/borja/.gradle/caches/9.4.1/transforms/3f02d28f89b642f718fd84cb72f6f5ec/transformed/appcompat-1.7.1/res/values-v25/values-v25.xml",
+                    "from": {
+                        "startLines": "2,3,4,6",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,126,209,308",
+                        "endLines": "2,3,5,7",
+                        "endColumns": "70,82,12,12",
+                        "endOffsets": "121,204,303,414"
+                    }
+                }
+            ]
+        }
+    ]
+}

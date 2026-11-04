@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.inicial.app-mergeDebugResources-38:/values-v24/values-v24.xml",
+            "map": [
+                {
+                    "source": "/Users/borja/.gradle/caches/9.4.1/transforms/a85309ccc9a65e2fa985f3481eaa026d/transformed/material-1.14.0/res/values-v24/values-v24.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,12,18,24,30,33,36,39,42",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,140,239,326,427,703,993,1271,1563,1794,1992,2211,2419",
+                        "endLines": "2,3,4,5,11,17,23,29,32,35,38,41,44",
+                        "endColumns": "84,98,86,100,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "135,234,321,422,698,988,1266,1558,1789,1987,2206,2414,2622"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8,14,20,26,32,35,38,41,44",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "347,432,531,618,719,995,1285,1563,1855,2086,2284,2503,2711",
+                        "endLines": "4,5,6,7,13,19,25,31,34,37,40,43,46",
+                        "endColumns": "84,98,86,100,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "427,526,613,714,990,1280,1558,1850,2081,2279,2498,2706,2914"
+                    }
+                },
+                {
+                    "source": "/Users/borja/.gradle/caches/9.4.1/transforms/3f02d28f89b642f718fd84cb72f6f5ec/transformed/appcompat-1.7.1/res/values-v24/values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
+                    }
+                }
+            ]
+        }
+    ]
+}

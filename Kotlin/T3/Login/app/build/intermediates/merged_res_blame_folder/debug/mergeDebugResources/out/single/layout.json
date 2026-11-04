@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.example.login.app-mergeDebugResources-38:/layout/activity_registro.xml",
+        "source": "com.example.login.app-main-41:/layout/activity_registro.xml"
+    },
+    {
+        "merged": "com.example.login.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "com.example.login.app-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.login.app-mergeDebugResources-38:/layout/activity_home.xml",
+        "source": "com.example.login.app-main-41:/layout/activity_home.xml"
+    }
+]

@@ -1,0 +1,19 @@
+#Tue Oct 06 12:20:42 CEST 2026
+base.0=/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Saludo/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Saludo/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Saludo/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex
+base.3=/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Saludo/app/build/intermediates/global_synthetics_dex/debug/generateDebugGlobalSynthetics/classes.dex
+base.4=/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Saludo/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.5=/Users/borja/Documents/GitHub/ClasePMDM/Kotlin/T2/Saludo/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=2/classes.dex
+path.3=classes.dex
+path.4=classes2.dex
+path.5=11/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex
+renamed.3=classes4.dex
+renamed.4=classes5.dex
+renamed.5=classes6.dex
