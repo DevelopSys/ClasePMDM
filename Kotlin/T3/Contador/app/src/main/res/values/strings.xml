@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">App Contador</string>
+    <string name="title">Contador</string>
+    <string name="message_max">Limite alcanzado</string>
+</resources>
