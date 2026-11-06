@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_mail">Enter your main</string>
+    <string name="hint_pass">Enter yout pass</string>
+    <string name="btn_login">LogIn</string>
+    <string name="btn_register">SigIn</string>
+    <string name="btn_clear">Limpiar</string>
+    <string-array name="spinner_profile">
+        <item>Admin</item>
+        <item>User</item>
+    </string-array>
+</resources>

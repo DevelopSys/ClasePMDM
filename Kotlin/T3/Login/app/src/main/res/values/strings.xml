@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name" translatable="false">LOGIN</string>
+    <string name="hint_mail">Introduce tu mail</string>
+    <string name="hint_pass">Introduce tu pass</string>
+    <string name="btn_login">Iniciar</string>
+    <string name="btn_register">Registrar</string>
+    <string name="btn_clear">Limpiar</string>
+    <string-array name="spinner_profile">
+        <item>Administrador</item>
+        <item>Invitado</item>
+    </string-array>
+</resources>
