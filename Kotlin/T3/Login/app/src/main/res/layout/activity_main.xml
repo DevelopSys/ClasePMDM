@@ -8,88 +8,77 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imagen"
-        android:layout_width="325dp"
-        android:layout_height="200dp"
-        android:src="@drawable/login"
+        android:id="@+id/imgLogo"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo" />
+
     <EditText
-        android:layout_marginTop="16dp"
-        android:hint="introduce el correo"
+        android:gravity="center"
+        android:layout_marginTop="48dp"
         android:id="@+id/editMail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/imagen"
-        app:layout_constraintStart_toStartOf="@+id/imagen"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        android:hint="@string/hint_mail"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:layout_marginTop="16dp"
+        android:inputType="textPassword"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
         android:id="@+id/editPass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="introduce la pass"
-        app:layout_constraintEnd_toEndOf="@+id/editMail"
-        app:layout_constraintStart_toStartOf="@+id/editMail"
+        android:hint="@string/hint_pass"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toBottomOf="@+id/editMail" />
 
-    <RadioGroup
-        android:layout_marginTop="16dp"
-        android:id="@+id/grupoUsuario"
+    <Spinner
+        android:entries="@array/spinner_profile"
+        android:layout_marginTop="12dp"
+        android:id="@+id/spinnerProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/editPass"
-        app:layout_constraintTop_toBottomOf="@+id/editPass">
-
-        <RadioButton
-            android:id="@+id/radioUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Usuario" />
-
-        <RadioButton
-            android:layout_marginLeft="16dp"
-            android:id="@+id/radioInvitado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Invitado" />
-
-    </RadioGroup>
-
-    <CheckBox
-        android:id="@+id/chekRecordar"
-        android:layout_marginTop="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recordar pass"
-        app:layout_constraintEnd_toEndOf="@+id/grupoUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/grupoUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/editPass" />
 
     <Button
-        android:layout_marginEnd="8dp"
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="login"
+        android:text="@string/btn_login"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/editPass"
-        app:layout_constraintTop_toBottomOf="@+id/chekRecordar" />
+        app:layout_constraintEnd_toEndOf="@+id/spinnerProfile"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerProfile" />
 
     <Button
-        android:layout_marginStart="8dp"
-        android:id="@+id/btnRegistro"
+        android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="registrar"
+        android:text="@string/btn_register"
         app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
-        app:layout_constraintEnd_toEndOf="@+id/chekRecordar"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/editPass"
         app:layout_constraintTop_toTopOf="@+id/btnLogin" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -97,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"

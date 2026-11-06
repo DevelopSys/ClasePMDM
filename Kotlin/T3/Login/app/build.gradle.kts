@@ -35,11 +35,12 @@ android {
     }
 
     viewBinding{
-        enable = true;
+        enable = true
     }
 }
 
 dependencies {
+    implementation("com.github.bumptech.glide:glide:5.0.9")
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

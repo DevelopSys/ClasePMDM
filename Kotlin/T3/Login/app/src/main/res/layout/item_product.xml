@@ -1,36 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="16dp"
+    android:elevation="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="16dp"
-    android:layout_margin="16dp"
-    >
+    android:layout_margin="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="16dp"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imagen"
+
+            android:id="@+id/imageProduct"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/login"
+            android:src="@drawable/logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ASDASD"
-            app:layout_constraintBottom_toBottomOf="@+id/imagen"
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imagen"
-            app:layout_constraintTop_toTopOf="@+id/imagen" />
+            app:layout_constraintStart_toEndOf="@+id/imageProduct"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                tools:text="asdasdasd" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/textPrice"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                tools:text="asdasdasd" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+                <Button
+                    android:text="Ver detalle"
+                    android:id="@+id/btnDetalle"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:text="Comprar"
+                    android:id="@+id/btnComprar"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.cardview.widget.CardView>

@@ -2,92 +2,79 @@ package com.example.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.login.activities.HomeActivity
-import com.example.login.activities.RegistroActivity
-import com.example.login.data.DataSet
+import com.example.login.activity.HomeActivity
+import com.example.login.activity.RegisterActivity
 import com.example.login.databinding.ActivityMainBinding
-import com.example.login.model.User
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        DataSet.initList()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.btnRegister.setOnClickListener {
+            // funcion a realizar
+            // abrir formulario de registro -> intent
+            // val intent: Intent = Intent(thi)
+            val intent: Intent = Intent(applicationContext, RegisterActivity::class.java)
+            startActivity(intent)
 
+        }
+        binding.btnLogin.setOnClickListener {
+            // funcion a realizar
+            // entrar en la app con el user indicado
+            if (binding.editMail.text.toString()
+                    .equals("borja@gmail.com", true)
+                && binding.editPass.text.toString()
+                    .equals("1234", true)
+            ) {
+                val intent: Intent = Intent(applicationContext, HomeActivity::class.java)
+                intent.putExtra("user_name", binding.editMail.text.toString())
+                startActivity(intent)
+            } else {
+                Snackbar.make(binding.root, "Usuario invalido", Snackbar.LENGTH_SHORT).show()
+            }
+
+        }
+        binding.btnClear?.setOnClickListener {
+            // limpar los campos
+            binding.editPass.text.clear()
+            binding.editMail.text.clear()
+        }
+        Log.v("ciclo_vida", "Ejecutado onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-        binding.btnLogin.setOnClickListener(this)
-        binding.btnRegistro.setOnClickListener(this)
-        binding.grupoUsuario.setOnCheckedChangeListener { _, i ->
-            var enable: Boolean = false;
-            when(i){
-                binding.radioUsuario.id->{enable = true}
-                binding.radioInvitado.id->{ enable = false}
-            }
-            binding.chekRecordar.isEnabled = enable
+        Log.v("ciclo_vida", "Ejecutado onStart")
+    }
 
-        }
+    override fun onResume() {
+        super.onResume()
+        Log.v("ciclo_vida", "Ejecutado onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.v("ciclo_vida", "Ejecutado onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.v("ciclo_vida", "Ejecutado onStop")
     }
 
     override fun onRestart() {
         super.onRestart()
-        binding.editMail.text.clear()
-        binding.editPass.text.clear()
-        binding.chekRecordar.isChecked = false;
-        binding.grupoUsuario.clearCheck()
+        Log.v("ciclo_vida", "Ejecutado onRestart")
     }
 
-
-    override fun onClick(p0: View?) {
-        when (p0!!.id) {
-            binding.btnRegistro.id -> {
-
-                val intent: Intent = Intent(this, RegistroActivity::class.java)
-                startActivity(intent)
-            }
-            binding.btnLogin.id -> {
-                val mail = binding.editMail.text.toString()
-                val pass = binding.editPass.text.toString()
-                val user: User? = DataSet.getLogin(mail, pass)
-                if (user != null) {
-                    val intent = Intent(applicationContext, HomeActivity::class.java)
-                    // val bundle = Bundle()
-                    // bundle.putSerializable("user",user)
-                    // si esta seleccionado el radio usuario
-                    val radioSelected: Int = binding.grupoUsuario.checkedRadioButtonId
-                    if (radioSelected == binding.radioUsuario.id) {
-                        intent.putExtra("user", user)
-                    }
-
-                    startActivity(intent)
-                } else {
-                    Snackbar.make(binding.root, "Login incorrecto", Snackbar.LENGTH_LONG).show()
-                }
-            }
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.v("ciclo_vida", "Ejecutado onDestroy")
     }
 }
-
-
-/*
-Al registar, llevar el usaurio a la lista del companion
-    Si ya hay un usuario con ese correo -> aviso
-    Si lo registra bien, snackbar con la accion
-
-Al logear,
-    Si el usuario existe en la lista -> cambia de pantalla
-    Si el usuario no existe en la lista -> saca aviso en snack
-
- */
