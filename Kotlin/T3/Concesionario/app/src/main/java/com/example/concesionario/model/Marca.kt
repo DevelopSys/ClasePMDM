@@ -7,4 +7,8 @@ class Marca(
     var logo: Int,
     var name: String,
     var models: List<Model>
-) : Serializable
+) : Serializable{
+    override fun toString(): String {
+        return name
+    }
+}

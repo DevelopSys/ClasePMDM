@@ -42,6 +42,10 @@ class DataSet {
                 com.example.concesionario.R.drawable.audi,
                 "Audi", listModel.filter { it.marca == "audi" }
             ),
+            Marca(
+                com.example.concesionario.R.drawable.audi,
+                "Mercedes", arrayListOf()
+            ),
         )
     }
 }
