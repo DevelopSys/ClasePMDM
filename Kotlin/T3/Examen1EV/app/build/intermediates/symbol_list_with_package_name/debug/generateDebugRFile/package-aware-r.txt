@@ -1,0 +1,23 @@
+com.example.examen1ev
+array notas
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id btnPasar
+id checkFFE
+id checkTFG
+id editNombre
+id main
+id spinnerN1
+id spinnerN2
+id spinnerN3
+layout activity_main
+layout activity_second
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base_Theme_Examen1EV
+style Theme_Examen1EV
+xml backup_rules
+xml data_extraction_rules

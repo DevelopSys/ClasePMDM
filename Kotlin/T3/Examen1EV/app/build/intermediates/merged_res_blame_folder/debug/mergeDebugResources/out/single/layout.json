@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/borja/.gradle/daemon/9.4.1/com.example.examen1ev.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "/Users/borja/.gradle/daemon/9.4.1/com.example.examen1ev.app-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.examen1ev.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "com.example.examen1ev.app-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.examen1ev.app-mergeDebugResources-38:/layout/activity_second.xml",
+        "source": "com.example.examen1ev.app-main-41:/layout/activity_second.xml"
+    }
+]
