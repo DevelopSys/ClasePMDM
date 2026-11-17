@@ -34,6 +34,7 @@ class DataSet {
             )
         )
         val listMarca = arrayListOf<Marca>(
+            Marca(-1, "Todos", listModel),
             Marca(
                 com.example.concesionario.R.drawable.ford,
                 "Ford", listModel.filter { it.marca == "ford" }
@@ -43,7 +44,7 @@ class DataSet {
                 "Audi", listModel.filter { it.marca == "audi" }
             ),
             Marca(
-                com.example.concesionario.R.drawable.audi,
+                com.example.concesionario.R.drawable.mercedes,
                 "Mercedes", arrayListOf()
             ),
         )
