@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Examen1EV</string>
+    <string name="hint_edit">Introduce nombre</string>
+    <string name="btn_pasar">Pasar</string>
     <string-array name="notas">
         <item>1</item>
         <item>2</item>
@@ -12,4 +14,7 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+    <string name="snack_empty">Faltan datos en el formulario</string>
+    <string name="text_course">Curso pasado</string>
+    <string name="text_course_fail">Curso no pasado</string>
 </resources>

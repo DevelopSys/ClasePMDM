@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Examen1EV</string>
+    <string name="hint_edit">Enter your name</string>
+    <string name="btn_pasar">Next</string>
+    <string-array name="notas">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string name="snack_empty">Empty data</string>
+    <string name="text_course">Course OK</string>
+    <string name="text_course_fail">Course failed</string>
+</resources>

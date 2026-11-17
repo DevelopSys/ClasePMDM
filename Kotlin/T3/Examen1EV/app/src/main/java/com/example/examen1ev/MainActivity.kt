@@ -38,7 +38,9 @@ class MainActivity : AppCompatActivity() {
     private fun actions() {
         binding.btnPasar.setOnClickListener {
             if (binding.editNombre.text.isEmpty()) {
-                Snackbar.make(binding.root, "Faltan datos en el formulario", Snackbar.LENGTH_SHORT)
+                Snackbar.make(binding.root,
+                    "App: ${resources.getString(R.string.snack_empty)}",
+                    Snackbar.LENGTH_SHORT)
                     .show()
             } else {
                 val intent = Intent(applicationContext,

@@ -12,6 +12,7 @@
 
 
     <EditText
+        android:hint="@string/hint_edit"
         android:id="@+id/editNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -63,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnPasar"
-        android:text="Pasar"
+        android:text="@string/btn_pasar"
         />
 
 
