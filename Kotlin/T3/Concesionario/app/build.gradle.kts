@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation("com.squareup.picasso:picasso:2.8")
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

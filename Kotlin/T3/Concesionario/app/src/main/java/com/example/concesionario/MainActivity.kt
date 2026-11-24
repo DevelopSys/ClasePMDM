@@ -10,6 +10,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.concesionario.adapter.ModelAdapter
 import com.example.concesionario.data.DataSet
 import com.example.concesionario.databinding.ActivityMainBinding
 import com.example.concesionario.model.Marca
@@ -18,17 +21,26 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterMarca: ArrayAdapter<Marca>
+    private lateinit var adapterModel: ModelAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         instances()
+        initGUI()
         actions()
+    }
+
+    private fun initGUI() {
+        binding.recyclerModels.adapter = adapterModel
+        binding.recyclerModels.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        // GridLayoutManager(this,2, LinearLayoutManager.VERTICAL, false)
     }
 
     private fun actions() {
         // binding.spinnerMarca.onItemSelectedListener = this
-        binding.spinnerMarca.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.spinnerMarca.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 p0: AdapterView<*>?,
                 p1: View?,
@@ -55,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         )
         adapterMarca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerMarca.adapter = adapterMarca
+
+        adapterModel = ModelAdapter(DataSet.listModel, this)
 
     }
 
