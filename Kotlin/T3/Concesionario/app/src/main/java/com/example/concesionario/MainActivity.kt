@@ -48,7 +48,9 @@ class MainActivity : AppCompatActivity() {
                 p3: Long
             ) {
                 val marca: Marca = p0!!.adapter.getItem(p2) as Marca
-                Log.v("test_spinner", "cambio de seleccion a marca: ${marca.name}")
+                // Log.v("test_spinner", "cambio de seleccion a marca: ${marca.name}")
+                // marca.models
+                adapterModel.setListModels(marca.models)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

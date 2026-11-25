@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.concesionario.databinding.ItemCardBinding
+import com.example.concesionario.model.Marca
 import com.example.concesionario.model.Model
 import com.squareup.picasso.Picasso
 
@@ -45,6 +46,13 @@ class ModelAdapter(
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+
+    // Cambia la lista actual por la lista que te dicen
+    fun setListModels(list: List<Model>) {
+        this.list = list;
+        this.notifyDataSetChanged()
     }
 
 
