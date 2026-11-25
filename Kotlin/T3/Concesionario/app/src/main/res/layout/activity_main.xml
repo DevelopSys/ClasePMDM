@@ -27,7 +27,11 @@
         app:layout_constraintStart_toStartOf="@+id/spinnerMarca"
         app:layout_constraintTop_toBottomOf="@+id/spinnerMarca" />
 
+    <androidx.constraintlayout.widget.Guideline
 
+        app:layout_constraintGuide_percent="0.5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

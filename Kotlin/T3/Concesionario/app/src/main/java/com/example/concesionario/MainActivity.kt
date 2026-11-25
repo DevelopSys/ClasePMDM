@@ -16,12 +16,16 @@ import com.example.concesionario.adapter.ModelAdapter
 import com.example.concesionario.data.DataSet
 import com.example.concesionario.databinding.ActivityMainBinding
 import com.example.concesionario.model.Marca
+import com.example.concesionario.model.Model
+import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ModelAdapter.OnModelSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterMarca: ArrayAdapter<Marca>
     private lateinit var adapterModel: ModelAdapter
+    private var model1: Model? = null;
+    private var model2: Model? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -58,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
     }
 
     private fun instances() {
@@ -72,6 +77,14 @@ class MainActivity : AppCompatActivity() {
 
         adapterModel = ModelAdapter(DataSet.listModel, this)
 
+    }
+
+    override fun onModelSelected(model: Model) {
+        Snackbar.make(
+            binding.root,
+            "Modelo desde Activity ${model.name}", Snackbar.LENGTH_LONG
+        )
+            .show()
     }
 
     /*override fun onItemSelected(
